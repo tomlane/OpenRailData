@@ -147,22 +147,13 @@ namespace NetworkRail.CifParser.Entities
             OperatingCharacteristicsString = OperatingCharacteristicsString.Trim();
         }
 
-        public void MergeExtraScheduleDetails(string record)
+        public void MergeExtraScheduleDetails(BasicScheduleExtraDetailsRecord extraDetailsRecord)
         {
-            if (record.Substring(0, 2) != "BX")
-                throw new ArgumentException("Merge record is not of type Schedule Extra Details.");
-
-            UicCode = record.Substring(6, 5);
-            AtocCode = record.Substring(11, 2);
-            AtsCode = record.Substring(13, 1);
-            Rsid = record.Substring(14, 8);
-            DataSource = record.Substring(22, 1);
-
-            UicCode = UicCode.Trim();
-            AtocCode = AtocCode.Trim();
-            AtsCode = AtsCode.Trim();
-            Rsid = Rsid.Trim();
-            DataSource = DataSource.Trim();
+            UicCode = extraDetailsRecord.UicCode;
+            AtocCode = extraDetailsRecord.AtocCode;
+            AtsCode = extraDetailsRecord.AtsCode;
+            Rsid = extraDetailsRecord.Rsid;
+            DataSource = extraDetailsRecord.DataSource;
         }
 
         public CifRecordType GetRecordType()

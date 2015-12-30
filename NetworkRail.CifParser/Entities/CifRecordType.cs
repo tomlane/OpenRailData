@@ -9,7 +9,8 @@
         TiplocDelete = 4,
         Association = 5,
         BasicSchedule = 6,
-        Location = 7,
-        ChangesEnRoute = 8
+        BasicScheduleExtraDetails = 7,
+        Location = 8,
+        ChangesEnRoute = 9
     }
 }
