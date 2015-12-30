@@ -2,13 +2,13 @@
 
 namespace NetworkRail.CifParser.Utils
 {
-    public static class StringCasing
+    public static class StringExtensions
     {
-        public static string LocationCasing(string line)
+        public static string LocationCasing(this string value)
         {
             var textInfo = new CultureInfo("en-GB", false).TextInfo;
 
-            return textInfo.ToTitleCase(line);
+            return textInfo.ToTitleCase(value);
         }
     }
 }

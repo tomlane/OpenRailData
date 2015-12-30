@@ -44,19 +44,5 @@ namespace NetworkRail.CifParser.Entities
         {
             return CifRecordType.Header;
         }
-
-        public override string ToString()
-        {
-            return $"Main Frame ID: {MainFrameId}" +
-                   $" Date Extract: {DateExtract} " +
-                   $"Time Extract: {TimeExtract} " +
-                   $"Current File Ref: {CurrentFileRef} " +
-                   $"Last File Ref: {LastFileRef} " +
-                   $"Update Type: {UpdateType} " +
-                   $"Extract Start: {ExtractStart} " +
-                   $"Extract End {ExtractEnd} " +
-                   $"Main Frame User: {MainFrameUser} " +
-                   $"Extract Date: {ExtractDate}";
-        }
     }
 }

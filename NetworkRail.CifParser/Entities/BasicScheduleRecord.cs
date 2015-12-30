@@ -4,46 +4,46 @@ namespace NetworkRail.CifParser.Entities
 {
     public class BasicScheduleRecord : ICifRecord
     {
-        public string TransactionType { get;  }
-        public string Uid { get;  }
-        public string UniqueId { get;  }
-        public string DateFrom { get;  }
-        public string DateTo { get;  }
-        public string RunsMonday { get;  }
-        public string RunsTuesday { get;  }
-        public string RunsWednesday { get;  }
-        public string RunsThursday { get;  }
-        public string RunsFriday { get;  }
-        public string RunsSaturday { get;  }
-        public string RunsSunday { get;  }
-        public string BankHoliday { get;  }
-        public string Status { get;  }
-        public string Category { get;  }
-        public string TrainIdentity { get;  }
-        public string HeadCode { get;  }
-        public string ServiceCode { get;  }
-        public string PortionId { get;  }
-        public string PowerType { get;  }
-        public string TimingLoad { get;  }
-        public string Speed { get;  }
-        public string OperatingCharacteristicsString { get;  }
-        public string TrainClass { get;  }
-        public string Sleepers { get;  }
-        public string Reservations { get;  }
-        public string CateringCode { get;  }
-        public string ServiceBranding { get;  }
-        public string StpIndicator { get;  }
-        
+        public string TransactionType { get; } 
+        public string Uid { get;  } = string.Empty;
+        public string UniqueId { get;  } 
+        public string DateFrom { get;  } = string.Empty;
+        public string DateTo { get;  } = string.Empty;
+        public string RunsMonday { get;  } = string.Empty;
+        public string RunsTuesday { get;  } = string.Empty;
+        public string RunsWednesday { get;  } = string.Empty;
+        public string RunsThursday { get;  } = string.Empty;
+        public string RunsFriday { get;  } = string.Empty;
+        public string RunsSaturday { get;  } = string.Empty;
+        public string RunsSunday { get;  } = string.Empty;
+        public string BankHoliday { get;  } = string.Empty;
+        public string Status { get;  } = string.Empty;
+        public string Category { get;  } = string.Empty;
+        public string TrainIdentity { get;  } = string.Empty;
+        public string HeadCode { get;  } = string.Empty;
+        public string ServiceCode { get;  } = string.Empty;
+        public string PortionId { get;  } = string.Empty;
+        public string PowerType { get;  } = string.Empty;
+        public string TimingLoad { get;  } = string.Empty;
+        public string Speed { get;  } = string.Empty;
+        public string OperatingCharacteristicsString { get;  } = string.Empty;
+        public string TrainClass { get;  } = string.Empty;
+        public string Sleepers { get;  } = string.Empty;
+        public string Reservations { get;  } = string.Empty;
+        public string CateringCode { get;  } = string.Empty;
+        public string ServiceBranding { get;  } = string.Empty;
+        public string StpIndicator { get;  } = string.Empty;
+
         public bool Train { get;  }
         public bool Bus { get;  }
         public bool Ship { get;  }
         public bool Passenger { get;  }
 
-        public string UicCode { get; set; }
-        public string AtocCode { get; set; }
-        public string AtsCode { get; set; }
-        public string Rsid { get; set; }
-        public string DataSource { get; set; }
+        public string UicCode { get; set; } = string.Empty;
+        public string AtocCode { get; set; } = string.Empty;
+        public string AtsCode { get; set; } = string.Empty;
+        public string Rsid { get; set; } = string.Empty;
+        public string DataSource { get; set; } = string.Empty;
 
         public OperatingCharacteristics OperatingCharacteristics { get;  }
 

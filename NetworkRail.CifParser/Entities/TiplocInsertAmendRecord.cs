@@ -4,7 +4,7 @@ namespace NetworkRail.CifParser.Entities
 {
     public class TiplocInsertAmendRecord : ICifRecord
     {
-        public string RecordType { get; }
+        public string RecordType { get; } = string.Empty;
         public string TiplocCode { get; }
         public string Nlc { get; }
         public string TpsDescription { get; }
@@ -58,8 +58,8 @@ namespace NetworkRail.CifParser.Entities
             TiplocCode = TiplocCode.Trim();
             OldTiploc = OldTiploc.Trim();
 
-            TpsDescription = StringCasing.LocationCasing(TpsDescription);
-            CapriDescription = StringCasing.LocationCasing(CapriDescription);
+            TpsDescription = TpsDescription.LocationCasing();
+            CapriDescription = CapriDescription.LocationCasing();
         }
 
         public CifRecordType GetRecordType()
@@ -72,20 +72,6 @@ namespace NetworkRail.CifParser.Entities
 
             return CifRecordType.TiplocAmendOther;
 
-        }
-
-        public override string ToString()
-        {
-            return
-                $"Record Type: {RecordType}" +
-                $" Tiploc Code: {TiplocCode} " +
-                $"Nlc: {Nlc} " +
-                $"Tps Description: {TpsDescription} " +
-                $"Stanox: {Stanox} " +
-                $"Crs: {Crs} " +
-                $"Capri Description: {CapriDescription} " +
-                $"Old Tiploc: {OldTiploc} " +
-                $"Amend? {IsAmend}";
         }
     }
 }

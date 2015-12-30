@@ -39,41 +39,6 @@
 
         public LocationActivity(string activities)
         {
-            A = false;
-            Ae = false;
-            Bl = false;
-            C = false;
-            D = false;
-            MinusD = false;
-            E = false;
-            G = false;
-            H = false;
-            Hh = false;
-            K = false;
-            Kc = false;
-            Ke = false;
-            Kf = false;
-            Ks = false;
-            L = false;
-            N = false;
-            Op = false;
-            Or = false;
-            Pr = false;
-            R = false;
-            Rm = false;
-            Rr = false;
-            S = false;
-            T = false;
-            MinusT = false;
-            Tb = false;
-            Tf = false;
-            Ts = false;
-            Tw = false;
-            U = false;
-            MinusU = false;
-            W = false;
-            X = false;
-
             for (int i = 0; i < activities.Length; i = i + 2)
             {
                 string activity = activities.Substring(i, 2);

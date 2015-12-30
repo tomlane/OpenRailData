@@ -17,19 +17,6 @@
 
         public OperatingCharacteristics(string characteristics)
         {
-            B = false;
-            C = false;
-            D = false;
-            E = false;
-            G = false;
-            M = false;
-            P = false;
-            Q = false;
-            R = false;
-            S = false;
-            Y = false;
-            Z = false;
-
             foreach (var oc in characteristics)
             {
                 if (oc == 'B')

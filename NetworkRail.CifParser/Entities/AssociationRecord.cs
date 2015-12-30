@@ -4,25 +4,25 @@ namespace NetworkRail.CifParser.Entities
 {
     public class AssociationRecord : ICifRecord
     {
-        public string TransactionType { get; }
-        public string MainTrainUid { get; }
-        public string AssocTrainUid { get; }
-        public string DateFrom { get; }
-        public string DateTo { get; }
-        public string AssocMonday { get; }
-        public string AssocTuesday { get; }
-        public string AssocWednesday { get; }
-        public string AssocThursday { get; }
-        public string AssocFriday { get; }
-        public string AssocSaturday { get; }
-        public string AssocSunday { get; }
-        public string Category { get; }
-        public string DateIndicator { get; }
-        public string Location { get; }
-        public string BaseLocationSuffix { get; }
-        public string AssocLocationSuffix { get; }
-        public string AssocType { get; }
-        public string StpIndicator { get; }
+        public string TransactionType { get; } 
+        public string MainTrainUid { get; } = string.Empty;
+        public string AssocTrainUid { get; } = string.Empty;
+        public string DateFrom { get; } = string.Empty;
+        public string DateTo { get; } = string.Empty;
+        public string AssocMonday { get; } = string.Empty;
+        public string AssocTuesday { get; } = string.Empty;
+        public string AssocWednesday { get; } = string.Empty;
+        public string AssocThursday { get; } = string.Empty;
+        public string AssocFriday { get; } = string.Empty;
+        public string AssocSaturday { get; } = string.Empty;
+        public string AssocSunday { get; } = string.Empty;
+        public string Category { get; } = string.Empty;
+        public string DateIndicator { get; } = string.Empty;
+        public string Location { get; } = string.Empty;
+        public string BaseLocationSuffix { get; } = string.Empty;
+        public string AssocLocationSuffix { get; } = string.Empty;
+        public string AssocType { get; } = string.Empty;
+        public string StpIndicator { get; } = string.Empty;
 
         public AssociationRecord(string record)
         {
@@ -94,29 +94,6 @@ namespace NetworkRail.CifParser.Entities
         public CifRecordType GetRecordType()
         {
             return CifRecordType.Association;
-        }
-
-        public override string ToString()
-        {
-            return $"Transaction Type: {TransactionType}" +
-                   $" Main Train Uid: {MainTrainUid} " +
-                   $"Assoc Train Uid: {AssocTrainUid} " +
-                   $"Date From: {DateFrom} " +
-                   $"Date To: {DateTo} " +
-                   $"Monday: {AssocMonday} " +
-                   $"Tuesday: {AssocTuesday} " +
-                   $"Wednesday: {AssocWednesday} " +
-                   $"Thursday: {AssocThursday} " +
-                   $"Friday: {AssocFriday} " +
-                   $"Saturday: {AssocSaturday} " +
-                   $"Sunday: {AssocSunday} " +
-                   $"Category: {Category} " +
-                   $"Date Indicator: {DateIndicator} " +
-                   $"Location: {Location} " +
-                   $"Base Location Suffix: {BaseLocationSuffix} " +
-                   $"Assoc Location Suffix: {AssocLocationSuffix} " +
-                   $"Assoc Type: {AssocType} " +
-                   $"Stp Indicator: {StpIndicator}";
         }
     }
 }

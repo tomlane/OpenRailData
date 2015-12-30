@@ -1,4 +1,9 @@
-﻿using NetworkRail.CifParser.Entities;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using NetworkRail.CifParser.Entities;
 
 namespace NetworkRail.CifParser.Console
 {
@@ -6,15 +11,70 @@ namespace NetworkRail.CifParser.Console
     {
         static void Main(string[] args)
         {
-            var headerRecord = new HeaderRecord("HDTPS.UDFROC1.PD1512252512152106DFROC2E       FA251215241216                    ");
-            var tiplocRecord = new TiplocInsertAmendRecord("TIABER   08381300LABER                      78371   0ABEABER                    ");
-            var associationRecord = new AssociationRecord("AANC13005C133261512131601030000001NPSNTNG     TO                               P");
+            string path = @"CIF FILE PATH";
 
-            System.Console.WriteLine(headerRecord);
-            System.Console.WriteLine();
-            System.Console.WriteLine(tiplocRecord);
-            System.Console.WriteLine();
-            System.Console.WriteLine(associationRecord);
+            var parsedCifRecords = new List<ICifRecord>();
+
+            TimeSpan start = Process.GetCurrentProcess().TotalProcessorTime;
+
+            using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (BufferedStream bs = new BufferedStream(fs))
+            using (StreamReader sr = new StreamReader(bs))
+            {
+                string record;
+                while ((record = sr.ReadLine()) != null)
+                {
+                    string recordType = record.Substring(0, 2);
+
+                    switch (recordType)
+                    {
+                        case "HD":
+                            parsedCifRecords.Add(new HeaderRecord(record));
+                            break;
+                        case "TI":
+                            parsedCifRecords.Add(new TiplocInsertAmendRecord(record));
+                            break;
+                        case "TA":
+                            parsedCifRecords.Add(new TiplocInsertAmendRecord(record));
+                            break;
+                        case "AA":
+                            parsedCifRecords.Add(new AssociationRecord(record));
+                            break;
+                        case "BS":
+                            parsedCifRecords.Add(new BasicScheduleRecord(record));
+                            break;
+                        case "BX":
+                            var scheduleRecord = parsedCifRecords.Last() as BasicScheduleRecord;
+
+                            if (scheduleRecord == null)
+                                throw new InvalidOperationException("The Schedule Record record to merge was not found.");
+
+                            scheduleRecord.MergeExtraScheduleDetails(record);
+                            break;
+                        case "LO":
+                            parsedCifRecords.Add(new LocationRecord(record));
+                            break;
+                        case "LI":
+                            parsedCifRecords.Add(new LocationRecord(record));
+                            break;
+                        case "CR":
+                            parsedCifRecords.Add(new ChangesEnRouteRecord(record));
+                            break;
+                        case "LT":
+                            parsedCifRecords.Add(new LocationRecord(record));
+                            break;
+                        case "ZZ":
+                            break;
+                        default:
+                            throw new NotImplementedException($"The following record type has not been implemented: {recordType}");
+                    }
+                }
+            }
+
+            TimeSpan end = Process.GetCurrentProcess().TotalProcessorTime;
+
+            System.Console.WriteLine(@"Measured Time: " + (end - start).TotalMilliseconds + @"ms.");
+
             System.Console.ReadLine();
         }
     }

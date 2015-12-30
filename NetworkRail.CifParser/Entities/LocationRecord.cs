@@ -2,23 +2,23 @@
 {
     public class LocationRecord : ICifRecord
     {
-        public string RecordType { get; set; }
-        public string Tiploc { get; set; }
-        public string TiplocInstance { get; set; }
-        public string Arrival { get; set; }
-        public string PublicArrival { get; set; }
-        public string Departure { get; set; }
-        public string PublicDeparture { get; set; }
-        public string Pass { get; set; }
-        public string Platform { get; set; }
-        public string Line { get; set; }
-        public string Path { get; set; }
-        public string EngineeringAllowance { get; set; }
-        public string PathingAllowance { get; set; }
-        public string PerformanceAllowance { get; set; }
+        public string RecordType { get; }
+        public string Tiploc { get; }
+        public string TiplocInstance { get; }
+        public string Arrival { get; } = string.Empty;
+        public string PublicArrival { get; } = string.Empty;
+        public string Departure { get; } = string.Empty;
+        public string PublicDeparture { get; } = string.Empty;
+        public string Pass { get; } = string.Empty;
+        public string Platform { get; } = string.Empty;
+        public string Line { get; } = string.Empty;
+        public string Path { get; } = string.Empty;
+        public string EngineeringAllowance { get; } = string.Empty;
+        public string PathingAllowance { get; } = string.Empty;
+        public string PerformanceAllowance { get; } = string.Empty;
 
-        public string ActivityString { get; set; }
-        public LocationActivity Activity { get; set; }
+        public string ActivityString { get; } = string.Empty;
+        public LocationActivity Activity { get; }
 
         public string OrderTime { get; set; }
 
