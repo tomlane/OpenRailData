@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkRail.CifParser", "Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkRail.CifParser.Console", "NetworkRail.CifParser.Console\NetworkRail.CifParser.Console.csproj", "{B1D7DDBC-C216-4527-BA29-87053D3D2AC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkRail.CifParser.IoC", "NetworkRail.CifParser.IoC\NetworkRail.CifParser.IoC.csproj", "{4008ABC1-2FB4-4C90-9A5E-49DE9016ABE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkRail.CifParser.Tests", "NetworkRail.CifParser.Tests\NetworkRail.CifParser.Tests.csproj", "{5AC483DF-FC63-4930-B640-DBDA47DBC9E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{B1D7DDBC-C216-4527-BA29-87053D3D2AC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1D7DDBC-C216-4527-BA29-87053D3D2AC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1D7DDBC-C216-4527-BA29-87053D3D2AC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4008ABC1-2FB4-4C90-9A5E-49DE9016ABE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4008ABC1-2FB4-4C90-9A5E-49DE9016ABE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4008ABC1-2FB4-4C90-9A5E-49DE9016ABE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4008ABC1-2FB4-4C90-9A5E-49DE9016ABE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AC483DF-FC63-4930-B640-DBDA47DBC9E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AC483DF-FC63-4930-B640-DBDA47DBC9E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AC483DF-FC63-4930-B640-DBDA47DBC9E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AC483DF-FC63-4930-B640-DBDA47DBC9E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

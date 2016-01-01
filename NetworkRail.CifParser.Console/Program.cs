@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using NetworkRail.CifParser.Entities;
+using Microsoft.Practices.Unity;
+using NetworkRail.CifParser.IoC;
+using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.Console
 {
@@ -13,7 +14,9 @@ namespace NetworkRail.CifParser.Console
         {
             string path = @"CIF FILE PATH";
 
-            var cifRecordParser = new CifRecordParser();
+            var container = CifParserIocContainerBuilder.Build();
+
+            var cifRecordParser = container.Resolve<ICifRecordParser>();
             var parsedCifRecords = new List<ICifRecord>();
 
             TimeSpan start = Process.GetCurrentProcess().TotalProcessorTime;
@@ -31,7 +34,8 @@ namespace NetworkRail.CifParser.Console
 
             TimeSpan end = Process.GetCurrentProcess().TotalProcessorTime;
 
-            System.Console.WriteLine(@"Measured Time: " + (end - start).TotalMilliseconds + @"ms.");
+            System.Console.WriteLine("Records Parsed: {0}", parsedCifRecords.Count);
+            System.Console.WriteLine("Measured Time: {0} ms.", (end - start).TotalMilliseconds);
 
             System.Console.ReadLine();
         }

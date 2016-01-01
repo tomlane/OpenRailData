@@ -1,4 +1,4 @@
-﻿namespace NetworkRail.CifParser.Entities
+﻿namespace NetworkRail.CifParser.Records
 {
     public interface ICifRecord
     {

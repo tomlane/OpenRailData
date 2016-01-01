@@ -1,10 +1,21 @@
 ﻿using System;
-using NetworkRail.CifParser.Entities;
+using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser
 {
     public class CifRecordParser : ICifRecordParser
     {
+        private readonly ICifRecordBuilderContainer _cifRecordBuilderContainer;
+
+        public CifRecordParser(ICifRecordBuilderContainer cifRecordBuilderContainer)
+        {
+            if (cifRecordBuilderContainer == null)
+                throw new ArgumentNullException(nameof(cifRecordBuilderContainer));
+
+            _cifRecordBuilderContainer = cifRecordBuilderContainer;
+        }
+
         public ICifRecord ParseRecord(string record)
         {
             if (string.IsNullOrWhiteSpace(record))
@@ -17,34 +28,34 @@ namespace NetworkRail.CifParser
             switch (recordType)
             {
                 case "HD":
-                    result = new HeaderRecord(record);
+                    result = _cifRecordBuilderContainer.HeaderRecordBuilder.BuildRecord(record);
                     break;
                 case "TI":
-                    result = new TiplocInsertAmendRecord(record);
+                    result = _cifRecordBuilderContainer.TiplocInsertAmendRecordBuilder.BuildRecord(record);
                     break;
                 case "TA":
-                    result = new TiplocInsertAmendRecord(record);
+                    result = _cifRecordBuilderContainer.TiplocInsertAmendRecordBuilder.BuildRecord(record);
                     break;
                 case "AA":
-                    result = new AssociationRecord(record);
+                    result = _cifRecordBuilderContainer.AssociationRecordBuilder.BuildRecord(record);
                     break;
                 case "BS":
-                    result = new BasicScheduleRecord(record);
+                    result = _cifRecordBuilderContainer.BasicScheduleRecordBuilder.BuildRecord(record);
                     break;
                 case "BX":
-                    result = new BasicScheduleExtraDetailsRecord(record);
+                    result = _cifRecordBuilderContainer.BasicScheduleExtraDetailsRecordBuilder.BuildRecord(record);
                     break;
                 case "LO":
-                    result = new LocationRecord(record);
+                    result = _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
                     break;
                 case "LI":
-                    result = new LocationRecord(record);
+                    result = _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
                     break;
                 case "CR":
-                    result = new ChangesEnRouteRecord(record);
+                    result = _cifRecordBuilderContainer.ChangesEnRouteRecordBuilder.BuildRecord(record);
                     break;
                 case "LT":
-                    result = new LocationRecord(record);
+                    result = _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record); ;
                     break;
                 case "ZZ":
                     break;
