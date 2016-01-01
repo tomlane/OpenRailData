@@ -3,7 +3,7 @@ using NetworkRail.CifParser.RecordBuilders;
 using NetworkRail.CifParser.Records;
 using NUnit.Framework;
 
-namespace NetworkRail.CifParser.Tests
+namespace NetworkRail.CifParser.Tests.RecordBuilders
 {
     [TestFixture]
     public class TAssociationRecordBuilder

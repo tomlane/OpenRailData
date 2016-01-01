@@ -32,7 +32,7 @@ namespace NetworkRail.CifParser.Tests
         class ParseRecord
         {
             [Test]
-            public void throws_if_argument_is_null()
+            public void throws_if_argument_is_invalid()
             {
                 var cifRecordBuilderContainerMock = new Mock<ICifRecordBuilderContainer>();
 
@@ -41,7 +41,21 @@ namespace NetworkRail.CifParser.Tests
                 Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(null));
                 Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(string.Empty));
                 Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(" \t"));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseRecord("gibberish record"));
+            }
+
+            [Test]
+            public void throws_if_record_type_is_not_implemented()
+            {
+                var cifRecordBuilderContainerMock = new Mock<ICifRecordBuilderContainer>();
+
+                var parser = new CifRecordParser(cifRecordBuilderContainerMock.Object);
+
+                string notImplementedRecord =
+                    "XYRW01400W005701512131602070000001   ORPNGTN  T                                C";
+
+                Assert.Throws<NotImplementedException>(() => parser.ParseRecord(notImplementedRecord));
             }
         }
     }
-}
+} 

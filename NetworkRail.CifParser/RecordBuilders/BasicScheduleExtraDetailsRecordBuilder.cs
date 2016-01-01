@@ -1,4 +1,5 @@
-﻿using NetworkRail.CifParser.Records;
+﻿using System;
+using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.RecordBuilders
 {
@@ -6,6 +7,9 @@ namespace NetworkRail.CifParser.RecordBuilders
     {
         public BasicScheduleExtraDetailsRecord BuildRecord(string recordString)
         {
+            if (string.IsNullOrWhiteSpace(recordString))
+                throw new ArgumentNullException(nameof(recordString));
+
             BasicScheduleExtraDetailsRecord record = new BasicScheduleExtraDetailsRecord
             {
                 UicCode = recordString.Substring(6, 5),

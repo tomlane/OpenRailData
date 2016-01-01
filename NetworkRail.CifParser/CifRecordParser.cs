@@ -18,7 +18,7 @@ namespace NetworkRail.CifParser
 
         public ICifRecord ParseRecord(string record)
         {
-            if (string.IsNullOrWhiteSpace(record))
+            if (string.IsNullOrWhiteSpace(record) || record.Length != 80)
                 throw new ArgumentNullException(nameof(record));
 
             string recordType = record.Substring(0, 2);
@@ -55,7 +55,7 @@ namespace NetworkRail.CifParser
                     result = _cifRecordBuilderContainer.ChangesEnRouteRecordBuilder.BuildRecord(record);
                     break;
                 case "LT":
-                    result = _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record); ;
+                    result = _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
                     break;
                 case "ZZ":
                     break;
