@@ -27,5 +27,21 @@ namespace NetworkRail.CifParser.Tests
 
             Assert.IsInstanceOf<CifRecordParser>(parser);
         }
+
+        [TestFixture]
+        class ParseRecord
+        {
+            [Test]
+            public void throws_if_argument_is_null()
+            {
+                var cifRecordBuilderContainerMock = new Mock<ICifRecordBuilderContainer>();
+
+                var parser = new CifRecordParser(cifRecordBuilderContainerMock.Object);
+
+                Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(string.Empty));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(" \t"));
+            }
+        }
     }
 }

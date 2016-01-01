@@ -1,4 +1,5 @@
-﻿using NetworkRail.CifParser.Records;
+﻿using System;
+using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.Parsers
 {
@@ -6,6 +7,9 @@ namespace NetworkRail.CifParser.Parsers
     {
         public LocationActivity ParseActivity(string activities)
         {
+            if (activities == null)
+                throw new ArgumentNullException(nameof(activities));
+
             LocationActivity locationActivity = new LocationActivity();
 
             for (int i = 0; i < activities.Length; i = i + 2)

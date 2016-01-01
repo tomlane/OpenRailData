@@ -1,4 +1,5 @@
-﻿using NetworkRail.CifParser.Records;
+﻿using System;
+using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.Parsers
 {
@@ -6,6 +7,9 @@ namespace NetworkRail.CifParser.Parsers
     {
         public OperatingCharacteristics ParseOperatingCharacteristics(string characteristics)
         {
+            if (characteristics == null)
+                throw new ArgumentNullException(nameof(characteristics));
+
             OperatingCharacteristics operatingCharacteristics = new OperatingCharacteristics();
 
             foreach (var oc in characteristics)

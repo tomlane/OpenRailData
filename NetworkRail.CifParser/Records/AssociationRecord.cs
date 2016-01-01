@@ -19,6 +19,7 @@
         public string Location { get; set; } = string.Empty;
         public string BaseLocationSuffix { get; set; } = string.Empty;
         public string AssocLocationSuffix { get; set; } = string.Empty;
+        public string DiagramType { get; set; } = string.Empty;
         public string AssocType { get; set; } = string.Empty;
         public string StpIndicator { get; set; } = string.Empty;
         
