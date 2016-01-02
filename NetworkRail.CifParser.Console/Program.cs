@@ -12,7 +12,7 @@ namespace NetworkRail.CifParser.Console
     {
         static void Main(string[] args)
         {
-            string path = @"CIF FILE PATH";
+            string path = @"C:\RailData\Cif\update-29122015";
 
             var container = CifParserIocContainerBuilder.Build();
 

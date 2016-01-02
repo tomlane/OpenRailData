@@ -13,15 +13,15 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             TiplocInsertAmendRecord record = new TiplocInsertAmendRecord
             {
-                TiplocCode = recordString.Substring(2, 7),
-                CapitalsIdentification = recordString.Substring(9, 2),
-                Nalco = recordString.Substring(11, 6),
-                Nlc = recordString.Substring(17, 1),
-                TpsDescription = recordString.Substring(18, 26),
-                Stanox = recordString.Substring(44, 5),
-                PoMcbCode = recordString.Substring(49, 4),
-                CrsCode = recordString.Substring(53, 3),
-                CapriDescription = recordString.Substring(56, 16)
+                TiplocCode = recordString.Substring(2, 7).Trim(),
+                CapitalsIdentification = recordString.Substring(9, 2).Trim(),
+                Nalco = recordString.Substring(11, 6).Trim(),
+                Nlc = recordString.Substring(17, 1).Trim(),
+                TpsDescription = recordString.Substring(18, 26).Trim().LocationCasing(),
+                Stanox = recordString.Substring(44, 5).Trim(),
+                PoMcbCode = recordString.Substring(49, 4).Trim(),
+                CrsCode = recordString.Substring(53, 3).Trim(),
+                CapriDescription = recordString.Substring(56, 16).Trim().LocationCasing()
             };
 
             string recordType = recordString.Substring(0, 2);
@@ -38,22 +38,10 @@ namespace NetworkRail.CifParser.RecordBuilders
                 
                 if (newTiploc != string.Empty)
                 {
-                    record.OldTiploc = recordString.Substring(2, 7);
+                    record.OldTiploc = recordString.Substring(2, 7).Trim();
                     record.TiplocCode = newTiploc;
                 }
             }
-
-            record.TiplocCode = record.TiplocCode.Trim();
-            record.Nalco = record.Nalco.Trim();
-            record.Nlc = record.Nlc.Trim();
-            record.CrsCode = record.CrsCode.Trim();
-            record.TpsDescription = record.TpsDescription.Trim();
-            record.PoMcbCode = record.PoMcbCode.Trim();
-            record.CapriDescription = record.CapriDescription.Trim();
-            record.TpsDescription = record.TpsDescription.LocationCasing();
-            record.CapriDescription = record.CapriDescription.LocationCasing();
-
-            record.OldTiploc = record.OldTiploc.Trim();
 
             return record;
         }

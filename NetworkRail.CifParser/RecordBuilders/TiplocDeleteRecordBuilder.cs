@@ -12,11 +12,9 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             TiplocDeleteRecord record = new TiplocDeleteRecord
             {
-                TiplocCode = recordString.Substring(2, 7)
+                TiplocCode = recordString.Substring(2, 7).Trim()
             };
-
-            record.TiplocCode = record.TiplocCode.Trim();
-
+            
             return record;
         }
     }
