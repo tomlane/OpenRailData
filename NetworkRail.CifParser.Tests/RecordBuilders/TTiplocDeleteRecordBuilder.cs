@@ -1,5 +1,6 @@
 ﻿using System;
 using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.Records;
 using NUnit.Framework;
 
 namespace NetworkRail.CifParser.Tests.RecordBuilders
@@ -23,7 +24,18 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result()
             {
-                Assert.Inconclusive("Need to find an example Tiploc Delete record.");
+                var builder = new TiplocDeleteRecordBuilder();
+
+                string record = "TD1234567                                                                       ";
+
+                var result = builder.BuildRecord(record);
+
+                var expectedResult = new TiplocDeleteRecord
+                {
+                    TiplocCode = "1234567"
+                };
+
+                Assert.AreEqual(result.TiplocCode, expectedResult.TiplocCode);
             }
         }
     }
