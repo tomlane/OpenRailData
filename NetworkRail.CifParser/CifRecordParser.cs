@@ -18,8 +18,11 @@ namespace NetworkRail.CifParser
 
         public ICifRecord ParseRecord(string record)
         {
-            if (string.IsNullOrWhiteSpace(record) || record.Length != 80)
+            if (string.IsNullOrWhiteSpace(record))
                 throw new ArgumentNullException(nameof(record));
+
+            if (record.Length != 80)
+                throw new ArgumentOutOfRangeException($"The CIF record must have a length of 80 characters. Current record length: {record.Length}");
 
             string recordType = record.Substring(0, 2);
 

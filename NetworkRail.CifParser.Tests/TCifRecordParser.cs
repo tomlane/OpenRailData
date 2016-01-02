@@ -41,7 +41,8 @@ namespace NetworkRail.CifParser.Tests
                 Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(null));
                 Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(string.Empty));
                 Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(" \t"));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseRecord("gibberish record"));
+
+                Assert.Throws<ArgumentOutOfRangeException>(() => parser.ParseRecord("gibberish record"));
             }
 
             [Test]
