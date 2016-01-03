@@ -47,7 +47,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     TimeOfExtract = "2116",
                     CurrentFileRef = "DFROC1E",
                     LastFileRef = "DFROC1D",
-                    UpdateType = "U",
+                    ExtractUpdateType = "U",
                     CifSoftwareVersion = "A",
                     UserExtractStartDate = "301215",
                     UserExtractEndDate = "291216",
@@ -60,7 +60,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                 Assert.AreEqual(expectedResult.TimeOfExtract, result.TimeOfExtract);
                 Assert.AreEqual(expectedResult.CurrentFileRef, result.CurrentFileRef);
                 Assert.AreEqual(expectedResult.LastFileRef, result.LastFileRef);
-                Assert.AreEqual(expectedResult.UpdateType, result.UpdateType);
+                Assert.AreEqual(expectedResult.ExtractUpdateType, result.ExtractUpdateType);
                 Assert.AreEqual(expectedResult.CifSoftwareVersion, result.CifSoftwareVersion);
                 Assert.AreEqual(expectedResult.UserExtractStartDate, result.UserExtractStartDate);
                 Assert.AreEqual(expectedResult.UserExtractEndDate, result.UserExtractEndDate);

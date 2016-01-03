@@ -1,38 +1,40 @@
-﻿namespace NetworkRail.CifParser.Records
+﻿using System;
+using NetworkRail.CifParser.Records.Enums;
+
+namespace NetworkRail.CifParser.Records
 {
     public class BasicScheduleRecord : ICifRecord
     {
-        public string TransactionType { get; set; } = string.Empty;
-        public string Uid { get; set; } = string.Empty;
+        public CifRecordType RecordType { get; set; }
+        public TransactionType TransactionType { get; set; }
+        public string TrainUid { get; set; } = string.Empty;
         public string UniqueId { get; set; } = string.Empty;
-        public string DateFrom { get; set; } = string.Empty;
-        public string DateTo { get; set; } = string.Empty;
-        public string RunsMonday { get; set; } = string.Empty;
-        public string RunsTuesday { get; set; } = string.Empty;
-        public string RunsWednesday { get; set; } = string.Empty;
-        public string RunsThursday { get; set; } = string.Empty;
-        public string RunsFriday { get; set; } = string.Empty;
-        public string RunsSaturday { get; set; } = string.Empty;
-        public string RunsSunday { get; set; } = string.Empty;
-        public string BankHoliday { get; set; } = string.Empty;
-        public string Status { get; set; } = string.Empty;
-        public string Category { get; set; } = string.Empty;
+        public DateTime DateRunsFrom { get; set; }
+        public DateTime DateRunsTo { get; set; }
+        public Days RunningDays { get; set; }
+        
+        public BankHolidayRunning BankHoliday { get; set; }
+        public string TrainStatus { get; set; } = string.Empty;
+        public string TrainCategory { get; set; } = string.Empty;
         public string TrainIdentity { get; set; } = string.Empty;
         public string HeadCode { get; set; } = string.Empty;
-        public string ServiceCode { get; set; } = string.Empty;
+        public string CourseIndicator { get; set; } = string.Empty;
+        public string TrainServiceCode { get; set; } = string.Empty;
         public string PortionId { get; set; } = string.Empty;
         public string PowerType { get; set; } = string.Empty;
         public string TimingLoad { get; set; } = string.Empty;
         public string Speed { get; set; } = string.Empty;
         public string OperatingCharacteristicsString { get; set; } = string.Empty;
-        public string TrainClass { get; set; } = string.Empty;
-        public string Sleepers { get; set; } = string.Empty;
-        public string Reservations { get; set; } = string.Empty;
+        public OperatingCharacteristics OperatingCharacteristics { get; set; }
+        public SeatingClass SeatingClass { get; set; }
+        public SleeperDetails Sleepers { get; set; }
+        public ReservationDetails Reservations { get; set; }
+        public string ConnectionIndicator { get; set; } = string.Empty;
         public string CateringCode { get; set; } = string.Empty;
         public string ServiceBranding { get; set; } = string.Empty;
-        public string StpIndicator { get; set; } = string.Empty;
+        public StpIndicator StpIndicator { get; set; }
 
-        public bool Train { get; set; }
+        public bool Train { get; set; } = true;
         public bool Bus { get; set; }
         public bool Ship { get; set; }
         public bool Passenger { get; set; }
@@ -42,8 +44,6 @@
         public string AtsCode { get; set; } = string.Empty;
         public string Rsid { get; set; } = string.Empty;
         public string DataSource { get; set; } = string.Empty;
-
-        public OperatingCharacteristics OperatingCharacteristics { get; set; } = new OperatingCharacteristics();
         
         public void MergeExtraScheduleDetails(BasicScheduleExtraDetailsRecord extraDetailsRecord)
         {
@@ -52,11 +52,6 @@
             AtsCode = extraDetailsRecord.AtsCode;
             Rsid = extraDetailsRecord.Rsid;
             DataSource = extraDetailsRecord.DataSource;
-        }
-
-        public CifRecordType GetRecordType()
-        {
-            return CifRecordType.BasicSchedule;
         }
     }
 }

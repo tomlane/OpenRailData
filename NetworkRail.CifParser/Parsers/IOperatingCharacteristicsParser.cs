@@ -1,4 +1,4 @@
-﻿using NetworkRail.CifParser.Records;
+﻿using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.Parsers
 {

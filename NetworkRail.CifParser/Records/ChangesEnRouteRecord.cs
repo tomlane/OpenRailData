@@ -1,7 +1,10 @@
-﻿namespace NetworkRail.CifParser.Records
+﻿using NetworkRail.CifParser.Records.Enums;
+
+namespace NetworkRail.CifParser.Records
 {
     public class ChangesEnRouteRecord : ICifRecord
     {
+        public CifRecordType RecordType { get; set; }
         public string Tiploc { get; set; } = string.Empty; 
         public string TiplocSuffix { get; set; } = string.Empty; 
         public string Category { get; set; } = string.Empty;
@@ -14,18 +17,13 @@
         public string TimingLoad { get; set; } = string.Empty;
         public string Speed { get; set; } = string.Empty;
         public string OperatingCharacteristics { get; set; } = string.Empty;
-        public string SeatingClass { get; set; } = string.Empty;
-        public string Sleepers { get; set; } = string.Empty;
-        public string Reservations { get; set; } = string.Empty;
+        public SeatingClass SeatingClass { get; set; }
+        public SleeperDetails Sleepers { get; set; }
+        public ReservationDetails Reservations { get; set; }
         public string ConnectionIndicator { get; set; } = string.Empty;
         public string CateringCode { get; set; } = string.Empty;
         public string ServiceBranding { get; set; } = string.Empty;
         public string UicCode { get; set; } = string.Empty;
         public string Rsid { get; set; } = string.Empty;
-
-        public CifRecordType GetRecordType()
-        {
-            return CifRecordType.ChangesEnRoute;
-        }
     }
 }

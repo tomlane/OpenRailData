@@ -2,10 +2,9 @@
 {
     public enum CifRecordType
     {
-        Header = 0,
-        TiplocInsert = 1,
-        TiplocAmend = 2,
-        TiplocAmendOther = 3,
+        Header = 1,
+        TiplocInsert = 2,
+        TiplocAmend = 3,
         TiplocDelete = 4,
         Association = 5,
         BasicSchedule = 6,

@@ -1,5 +1,5 @@
 ﻿using System;
-using NetworkRail.CifParser.Records;
+using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.Parsers
 {
@@ -17,73 +17,73 @@ namespace NetworkRail.CifParser.Parsers
                 string activity = activities.Substring(i, 2);
 
                 if (activity == "A ")
-                    locationActivity.A = true;
+                    locationActivity = locationActivity | LocationActivity.A;
                 else if (activity == "AE")
-                    locationActivity.Ae = true;
+                    locationActivity = locationActivity | LocationActivity.AE;
                 else if (activity == "BL")
-                    locationActivity.Bl = true;
+                    locationActivity = locationActivity | LocationActivity.BL;
                 else if (activity == "C ")
-                    locationActivity.C = true;
+                    locationActivity = locationActivity | LocationActivity.C;
                 else if (activity == "D ")
-                    locationActivity.D = true;
+                    locationActivity = locationActivity | LocationActivity.D;
                 else if (activity == "-D")
-                    locationActivity.MinusD = true;
+                    locationActivity = locationActivity | LocationActivity.MinusD;
                 else if (activity == "E ")
-                    locationActivity.E = true;
+                    locationActivity = locationActivity | LocationActivity.E;
                 else if (activity == "G ")
-                    locationActivity.G = true;
+                    locationActivity = locationActivity | LocationActivity.G;
                 else if (activity == "H ")
-                    locationActivity.H = true;
+                    locationActivity = locationActivity | LocationActivity.H;
                 else if (activity == "HH")
-                    locationActivity.Hh = true;
+                    locationActivity = locationActivity | LocationActivity.HH;
                 else if (activity == "K ")
-                    locationActivity.K = true;
+                    locationActivity = locationActivity | LocationActivity.K;
                 else if (activity == "KC")
-                    locationActivity.Kc = true;
+                    locationActivity = locationActivity | LocationActivity.KC;
                 else if (activity == "KE")
-                    locationActivity.Ke = true;
+                    locationActivity = locationActivity | LocationActivity.KE;
                 else if (activity == "KF")
-                    locationActivity.Kf = true;
+                    locationActivity = locationActivity | LocationActivity.KF;
                 else if (activity == "KS")
-                    locationActivity.Ks = true;
+                    locationActivity = locationActivity | LocationActivity.KS;
                 else if (activity == "L ")
-                    locationActivity.L = true;
+                    locationActivity = locationActivity | LocationActivity.L;
                 else if (activity == "N ")
-                    locationActivity.N = true;
+                    locationActivity = locationActivity | LocationActivity.N;
                 else if (activity == "OP")
-                    locationActivity.Op = true;
+                    locationActivity = locationActivity | LocationActivity.OP;
                 else if (activity == "OR")
-                    locationActivity.Or = true;
+                    locationActivity = locationActivity | LocationActivity.OR;
                 else if (activity == "PR")
-                    locationActivity.Pr = true;
+                    locationActivity = locationActivity | LocationActivity.PR;
                 else if (activity == "R ")
-                    locationActivity.R = true;
+                    locationActivity = locationActivity | LocationActivity.R;
                 else if (activity == "RM")
-                    locationActivity.Rm = true;
+                    locationActivity = locationActivity | LocationActivity.RM;
                 else if (activity == "RR")
-                    locationActivity.Rr = true;
+                    locationActivity = locationActivity | LocationActivity.RR;
                 else if (activity == "S ")
-                    locationActivity.S = true;
+                    locationActivity = locationActivity | LocationActivity.S;
                 else if (activity == "T ")
-                    locationActivity.T = true;
+                    locationActivity = locationActivity | LocationActivity.T;
                 else if (activity == "-T")
-                    locationActivity.MinusT = true;
+                    locationActivity = locationActivity | LocationActivity.MinusT;
                 else if (activity == "TB")
-                    locationActivity.Tb = true;
+                    locationActivity = locationActivity | LocationActivity.TB;
                 else if (activity == "TF")
-                    locationActivity.Tf = true;
+                    locationActivity = locationActivity | LocationActivity.TF;
                 else if (activity == "TS")
-                    locationActivity.Ts = true;
+                    locationActivity = locationActivity | LocationActivity.TS;
                 else if (activity == "TW")
-                    locationActivity.Tw = true;
+                    locationActivity = locationActivity | LocationActivity.TW;
                 else if (activity == "U ")
-                    locationActivity.U = true;
+                    locationActivity = locationActivity | LocationActivity.U;
                 else if (activity == "-U")
-                    locationActivity.MinusU = true;
+                    locationActivity = locationActivity | LocationActivity.MinusU;
                 else if (activity == "W ")
-                    locationActivity.W = true;
+                    locationActivity = locationActivity | LocationActivity.W;
                 else if (activity == "X ")
-                    locationActivity.X = true;
+                    locationActivity = locationActivity | LocationActivity.X;
             }
 
             return locationActivity;

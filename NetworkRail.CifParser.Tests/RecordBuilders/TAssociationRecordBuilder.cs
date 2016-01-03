@@ -1,6 +1,7 @@
 ﻿using System;
 using NetworkRail.CifParser.RecordBuilders;
 using NetworkRail.CifParser.Records;
+using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
 
 namespace NetworkRail.CifParser.Tests.RecordBuilders
@@ -37,13 +38,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     AssocTrainUid = "W00570",
                     DateFrom = "151213",
                     DateTo = "160207",
-                    AssocMonday = "0",
-                    AssocTuesday = "0",
-                    AssocWednesday = "0",
-                    AssocThursday = "0",
-                    AssocFriday = "0",
-                    AssocSaturday = "0",
-                    AssocSunday = "1",
+                    AssocDays = Days.Sunday,
                     Category = string.Empty,
                     DateIndicator = string.Empty,
                     Location = "ORPNGTN",
@@ -59,13 +54,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                 Assert.AreEqual(expectedResult.AssocTrainUid, result.AssocTrainUid);
                 Assert.AreEqual(expectedResult.DateFrom, result.DateFrom);
                 Assert.AreEqual(expectedResult.DateTo, result.DateTo);
-                Assert.AreEqual(expectedResult.AssocMonday, result.AssocMonday);
-                Assert.AreEqual(expectedResult.AssocTuesday, result.AssocTuesday);
-                Assert.AreEqual(expectedResult.AssocWednesday, result.AssocWednesday);
-                Assert.AreEqual(expectedResult.AssocThursday, result.AssocThursday);
-                Assert.AreEqual(expectedResult.AssocFriday, result.AssocFriday);
-                Assert.AreEqual(expectedResult.AssocSaturday, result.AssocSaturday);
-                Assert.AreEqual(expectedResult.AssocSunday, result.AssocSunday);
+                Assert.AreEqual(expectedResult.AssocDays, result.AssocDays);
                 Assert.AreEqual(expectedResult.Category, result.Category);
                 Assert.AreEqual(expectedResult.DateIndicator, result.DateIndicator);
                 Assert.AreEqual(expectedResult.Location, result.Location);
@@ -92,13 +81,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     AssocTrainUid = "L83922",
                     DateFrom = "151219",
                     DateTo = "160102",
-                    AssocMonday = "0",
-                    AssocTuesday = "0",
-                    AssocWednesday = "0",
-                    AssocThursday = "0",
-                    AssocFriday = "0",
-                    AssocSaturday = "1",
-                    AssocSunday = "0",
+                    AssocDays = Days.Saturday,
                     Category = string.Empty,
                     DateIndicator = string.Empty,
                     Location = "CLCHSTR",
@@ -114,13 +97,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                 Assert.AreEqual(expectedResult.AssocTrainUid, result.AssocTrainUid);
                 Assert.AreEqual(expectedResult.DateFrom, result.DateFrom);
                 Assert.AreEqual(expectedResult.DateTo, result.DateTo);
-                Assert.AreEqual(expectedResult.AssocMonday, result.AssocMonday);
-                Assert.AreEqual(expectedResult.AssocTuesday, result.AssocTuesday);
-                Assert.AreEqual(expectedResult.AssocWednesday, result.AssocWednesday);
-                Assert.AreEqual(expectedResult.AssocThursday, result.AssocThursday);
-                Assert.AreEqual(expectedResult.AssocFriday, result.AssocFriday);
-                Assert.AreEqual(expectedResult.AssocSaturday, result.AssocSaturday);
-                Assert.AreEqual(expectedResult.AssocSunday, result.AssocSunday);
+                Assert.AreEqual(expectedResult.AssocDays, result.AssocDays);
                 Assert.AreEqual(expectedResult.Category, result.Category);
                 Assert.AreEqual(expectedResult.DateIndicator, result.DateIndicator);
                 Assert.AreEqual(expectedResult.Location, result.Location);
@@ -147,13 +124,6 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     AssocTrainUid = "L83922",
                     DateFrom = "151226",
                     DateTo = string.Empty,
-                    AssocMonday = string.Empty,
-                    AssocTuesday = string.Empty,
-                    AssocWednesday = string.Empty,
-                    AssocThursday = string.Empty,
-                    AssocFriday = string.Empty,
-                    AssocSaturday = string.Empty,
-                    AssocSunday = string.Empty,
                     Category = string.Empty,
                     DateIndicator = string.Empty,
                     Location = "CLCHSTR",
@@ -169,13 +139,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                 Assert.AreEqual(expectedResult.AssocTrainUid, result.AssocTrainUid);
                 Assert.AreEqual(expectedResult.DateFrom, result.DateFrom);
                 Assert.AreEqual(expectedResult.DateTo, result.DateTo);
-                Assert.AreEqual(expectedResult.AssocMonday, result.AssocMonday);
-                Assert.AreEqual(expectedResult.AssocTuesday, result.AssocTuesday);
-                Assert.AreEqual(expectedResult.AssocWednesday, result.AssocWednesday);
-                Assert.AreEqual(expectedResult.AssocThursday, result.AssocThursday);
-                Assert.AreEqual(expectedResult.AssocFriday, result.AssocFriday);
-                Assert.AreEqual(expectedResult.AssocSaturday, result.AssocSaturday);
-                Assert.AreEqual(expectedResult.AssocSunday, result.AssocSunday);
+                Assert.AreEqual(expectedResult.AssocDays, result.AssocDays);
                 Assert.AreEqual(expectedResult.Category, result.Category);
                 Assert.AreEqual(expectedResult.DateIndicator, result.DateIndicator);
                 Assert.AreEqual(expectedResult.Location, result.Location);

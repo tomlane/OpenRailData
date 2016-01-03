@@ -1,8 +1,11 @@
-﻿namespace NetworkRail.CifParser.Records
+﻿using NetworkRail.CifParser.Records.Enums;
+
+namespace NetworkRail.CifParser.Records
 {
     public class TiplocInsertAmendRecord : ICifRecord
     {
-        public string RecordType { get; set; } = string.Empty;
+        public CifRecordType RecordType { get; set; }
+        public TiplocRecordType TiplocRecordType { get; set; }
         public string TiplocCode { get; set; } = string.Empty;
         public string CapitalsIdentification { get; set; } = string.Empty;
         public string Nalco { get; set; } = string.Empty;
@@ -15,17 +18,5 @@
         public string OldTiploc { get; set; } = string.Empty;
 
         public bool IsAmend => !string.IsNullOrEmpty(OldTiploc);
-        
-        public CifRecordType GetRecordType()
-        {
-            if (RecordType == "I")
-                return CifRecordType.TiplocInsert;
-
-            if (RecordType == "A" && OldTiploc == string.Empty)
-                    return CifRecordType.TiplocAmend;
-
-            return CifRecordType.TiplocAmendOther;
-
-        }
     }
 }

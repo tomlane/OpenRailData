@@ -25,7 +25,7 @@ namespace NetworkRail.CifParser.RecordBuilders
             record.TimeOfExtract = recordString.Substring(28, 4);
             record.CurrentFileRef = recordString.Substring(32, 7);
             record.LastFileRef = recordString.Substring(39, 7);
-            record.UpdateType = recordString.Substring(46, 1);
+            record.ExtractUpdateType = recordString.Substring(46, 1);
             record.CifSoftwareVersion = recordString.Substring(47, 1);
             record.UserExtractStartDate = recordString.Substring(48, 6);
             record.UserExtractEndDate = recordString.Substring(54, 6);

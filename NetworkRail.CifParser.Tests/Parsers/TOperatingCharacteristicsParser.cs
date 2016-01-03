@@ -1,5 +1,6 @@
 ﻿using System;
 using NetworkRail.CifParser.Parsers;
+using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
 
 namespace NetworkRail.CifParser.Tests.Parsers
@@ -27,18 +28,18 @@ namespace NetworkRail.CifParser.Tests.Parsers
 
                 var result = parser.ParseOperatingCharacteristics(characteristics);
 
-                Assert.IsTrue(result.B);
-                Assert.IsTrue(result.C);
-                Assert.IsTrue(result.D);
-                Assert.IsTrue(result.E);
-                Assert.IsTrue(result.G);
-                Assert.IsTrue(result.M);
-                Assert.IsTrue(result.P);
-                Assert.IsTrue(result.Q);
-                Assert.IsTrue(result.R);
-                Assert.IsTrue(result.S);
-                Assert.IsTrue(result.Y);
-                Assert.IsTrue(result.Z);
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.B));
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.C));
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.D));
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.E));
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.G));
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.M));
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.P));
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.Q));
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.R));
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.S));
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.Y));
+                Assert.IsTrue(result.HasFlag(OperatingCharacteristics.Z));
             }
         }
     }

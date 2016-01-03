@@ -64,8 +64,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParserContainers\TAssociationRecordParserContainer.cs" />
+    <Compile Include="ParserContainers\TBasicScheduleRecordParserContainer.cs" />
+    <Compile Include="ParserContainers\TChangesEnRouteRecordParserContainer.cs" />
+    <Compile Include="ParserContainers\THeaderRecordParserContainer.cs" />
+    <Compile Include="ParserContainers\TLocationRecordParserContainer.cs" />
+    <Compile Include="Parsers\TAssociationCategoryParser.cs" />
+    <Compile Include="Parsers\TDateIndicatorParser.cs" />
+    <Compile Include="Parsers\TRawMessageDateTimeParser.cs" />
+    <Compile Include="Parsers\TBankHolidayRunningParser.cs" />
+    <Compile Include="Parsers\TLocationTypeParser.cs" />
+    <Compile Include="Parsers\TSeatingClassParser.cs" />
+    <Compile Include="Parsers\TTrainSleeperDetailsParser.cs" />
+    <Compile Include="Parsers\TTrainReservationDetailsParser.cs" />
+    <Compile Include="Parsers\TTimingAllowanceParser.cs" />
+    <Compile Include="Parsers\TStpIndicatorParser.cs" />
+    <Compile Include="Parsers\TTransactionTypeParser.cs" />
     <Compile Include="RecordBuilders\TAssociationRecordBuilder.cs" />
     <Compile Include="RecordBuilders\TBasicScheduleExtraDetailsRecordBuilder.cs" />
+    <Compile Include="RecordBuilders\TBasicScheduleRecordBuilder.cs" />
     <Compile Include="RecordBuilders\TChangesEnRouteRecordBuilder.cs" />
     <Compile Include="RecordBuilders\THeaderRecordBuilder.cs" />
     <Compile Include="RecordBuilders\TTiplocDeleteRecordBuilder.cs" />

@@ -1,5 +1,5 @@
 ﻿using System;
-using NetworkRail.CifParser.Records;
+using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.Parsers
 {
@@ -15,29 +15,29 @@ namespace NetworkRail.CifParser.Parsers
             foreach (var oc in characteristics)
             {
                 if (oc == 'B')
-                    operatingCharacteristics.B = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.B;
                 else if (oc == 'C')
-                    operatingCharacteristics.C = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.C;
                 else if (oc == 'D')
-                    operatingCharacteristics.D = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.D;
                 else if (oc == 'E')
-                    operatingCharacteristics.E = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.E;
                 else if (oc == 'G')
-                    operatingCharacteristics.G = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.G;
                 else if (oc == 'M')
-                    operatingCharacteristics.M = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.M;
                 else if (oc == 'P')
-                    operatingCharacteristics.P = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.P;
                 else if (oc == 'Q')
-                    operatingCharacteristics.Q = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.Q;
                 else if (oc == 'R')
-                    operatingCharacteristics.R = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.R;
                 else if (oc == 'S')
-                    operatingCharacteristics.S = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.S;
                 else if (oc == 'Y')
-                    operatingCharacteristics.Y = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.Y;
                 else if (oc == 'Z')
-                    operatingCharacteristics.Z = true;
+                    operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.Z;
             }
 
             return operatingCharacteristics;
