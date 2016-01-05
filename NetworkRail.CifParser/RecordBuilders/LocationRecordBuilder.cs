@@ -1,5 +1,5 @@
 ﻿using System;
-using NetworkRail.CifParser.Parsers;
+using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 
@@ -7,92 +7,69 @@ namespace NetworkRail.CifParser.RecordBuilders
 {
     public class LocationRecordBuilder : ICifRecordBuilder<LocationRecord>
     {
-        private readonly ILocationActivityParser _locationActivityParser;
+        private readonly ILocationRecordParserContainer _recordParserContainer;
 
-        public LocationRecordBuilder(ILocationActivityParser locationActivityParser)
+        public LocationRecordBuilder(ILocationRecordParserContainer recordParserContainer)
         {
-            if (locationActivityParser == null)
-                throw new ArgumentNullException(nameof(locationActivityParser));
+            if (recordParserContainer == null)
+                throw new ArgumentNullException(nameof(recordParserContainer));
 
-            _locationActivityParser = locationActivityParser;
+            _recordParserContainer = recordParserContainer;
         }
 
         public LocationRecord BuildRecord(string recordString)
         {
             LocationRecord record = new LocationRecord
             {
-                RecordType = recordString.Substring(0, 2),
+                RecordIdentity = CifRecordType.Location,
                 Tiploc = recordString.Substring(2, 7),
                 TiplocInstance = recordString.Substring(9, 1)
             };
 
 
-            if (record.RecordType == "LO")
+            if (record.LocationType == LocationType.Originating)
             {
-                record.Departure = recordString.Substring(10, 5);
-                record.PublicDeparture = recordString.Substring(15, 4);
-                record.Platform = recordString.Substring(19, 3);
-                record.Line = recordString.Substring(22, 3);
-                record.EngineeringAllowance = recordString.Substring(25, 2);
-                record.PathingAllowance = recordString.Substring(27, 2);
+                record.Departure = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(10, 5));
+                record.PublicDeparture = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(15, 4));
+                record.Platform = recordString.Substring(19, 3).Trim();
+                record.Line = recordString.Substring(22, 3).Trim();
+                record.EngineeringAllowance = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(25, 2));
+                record.PathingAllowance = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(27, 2));
                 record.LocationActivityString = recordString.Substring(29, 12);
-                record.PerformanceAllowance = recordString.Substring(41, 2);
+                record.PerformanceAllowance = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(41, 2));
             }
-            else if (record.RecordType == "LI")
+            else if (record.LocationType == LocationType.Intermediate)
             {
-                record.Arrival = recordString.Substring(10, 5);
-                record.Departure = recordString.Substring(15, 5);
-                record.Pass = recordString.Substring(20, 5);
-                record.PublicArrival = recordString.Substring(25, 4);
-                record.PublicDeparture = recordString.Substring(29, 4);
-                record.Platform = recordString.Substring(33, 3);
-                record.Line = recordString.Substring(36, 3);
-                record.Path = recordString.Substring(39, 3);
+                record.Arrival = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(10, 5));
+                record.Departure = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(15, 5));
+                record.Pass = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(20, 5));
+                record.PublicArrival = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(25, 4));
+                record.PublicDeparture = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(29, 4));
+                record.Platform = recordString.Substring(33, 3).Trim();
+                record.Line = recordString.Substring(36, 3).Trim();
+                record.Path = recordString.Substring(39, 3).Trim();
                 record.LocationActivityString = recordString.Substring(42, 12);
-                record.EngineeringAllowance = recordString.Substring(54, 2);
-                record.PathingAllowance = recordString.Substring(56, 2);
-                record.PerformanceAllowance = recordString.Substring(58, 2);
+                record.EngineeringAllowance = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(54, 2));
+                record.PathingAllowance = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(56, 2));
+                record.PerformanceAllowance = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(58, 2));
             }
-            else if (record.RecordType == "LT")
+            else if (record.LocationType == LocationType.Terminating)
             {
-                record.Arrival = recordString.Substring(10, 5);
-                record.PublicArrival = recordString.Substring(15, 4);
-                record.Platform = recordString.Substring(19, 3);
-                record.Path = recordString.Substring(22, 3);
+                record.Arrival = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(10, 5));
+                record.PublicArrival = _recordParserContainer.TimeParser.ParseNullableTime(recordString.Substring(15, 4));
+                record.Platform = recordString.Substring(19, 3).Trim();
+                record.Path = recordString.Substring(22, 3).Trim();
                 record.LocationActivityString = recordString.Substring(25, 12);
             }
 
             record.Tiploc = record.Tiploc.Trim();
             record.TiplocInstance = record.TiplocInstance.Trim();
+            
+            record.LocationActivity = _recordParserContainer.LocationActivityParser.ParseActivity(record.LocationActivityString);
 
-            record.Arrival = record.Arrival.Trim();
-            record.Departure = record.Departure.Trim();
-            record.Pass = record.Pass.Trim();
-            record.PublicArrival = record.PublicArrival.Trim();
-            record.PublicDeparture = record.PublicDeparture.Trim();
-
-            record.Platform = record.Platform.Trim();
-            record.Line = record.Line.Trim();
-            record.Path = record.Path.Trim();
-            record.EngineeringAllowance = record.EngineeringAllowance.Trim();
-            record.PathingAllowance = record.PathingAllowance.Trim();
-            record.PerformanceAllowance = record.PerformanceAllowance.Trim();
-
-            if (record.PublicArrival == "0000")
-                record.PublicArrival = string.Empty;
-
-            if (record.PublicDeparture == "0000")
-                record.PublicDeparture = string.Empty;
-
-            record.LocationActivity = _locationActivityParser.ParseActivity(record.LocationActivityString);
-            record.LocationActivityString = record.LocationActivityString.Trim();
-
-            record.PublicCall = record.LocationActivity.HasFlag(LocationActivity.N) && (record.PublicArrival != string.Empty || record.PublicDeparture != string.Empty);
-            record.ActualCall = record.Arrival != string.Empty || record.Departure != string.Empty;
-
-            if (record.Pass != string.Empty)
+            if (record.Pass != null)
                 record.OrderTime = record.Pass;
-            else if (record.Departure != string.Empty)
+            else if (record.Departure != null)
                 record.OrderTime = record.Departure;
             else
                 record.OrderTime = record.Arrival;

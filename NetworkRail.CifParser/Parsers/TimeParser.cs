@@ -2,25 +2,25 @@
 
 namespace NetworkRail.CifParser.Parsers
 {
-    public class TimingAllowanceParser : ITimingAllowanceParser
+    public class TimeParser : ITimeParser
     {
-        public TimeSpan? ParseTimingAllowance(string timingAllowance)
+        public TimeSpan? ParseNullableTime(string timeString)
         {
-            if (string.IsNullOrWhiteSpace(timingAllowance))
+            if (string.IsNullOrWhiteSpace(timeString))
             {
                 return null;
             }
 
             int minutes;
 
-            if (timingAllowance.Length == 1)
+            if (timeString.Length == 1)
             {
-                if (timingAllowance.Contains("H"))
+                if (timeString.Contains("H"))
                     return TimeSpan.FromSeconds(30);
 
                 try
                 {
-                    minutes = int.Parse(timingAllowance);
+                    minutes = int.Parse(timeString);
                 }
                 catch (FormatException)
                 {
@@ -32,15 +32,15 @@ namespace NetworkRail.CifParser.Parsers
 
             TimeSpan result = new TimeSpan();
 
-            if (timingAllowance.Contains("H"))
+            if (timeString.Contains("H"))
             {
                 result = TimeSpan.FromSeconds(30);
-                timingAllowance = timingAllowance.Replace('H', ' ');
+                timeString = timeString.Replace('H', ' ');
             }
 
             try
             {
-                minutes = int.Parse(timingAllowance);
+                minutes = int.Parse(timeString);
             }
             catch (FormatException)
             {
@@ -50,6 +50,11 @@ namespace NetworkRail.CifParser.Parsers
             result = result.Add(TimeSpan.FromMinutes(minutes));
 
             return result;
+        }
+
+        public TimeSpan ParseTime(string timeString)
+        {
+            throw new NotImplementedException();
         }
     }
 }

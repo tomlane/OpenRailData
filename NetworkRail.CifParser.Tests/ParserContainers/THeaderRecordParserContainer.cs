@@ -14,9 +14,11 @@ namespace NetworkRail.CifParser.Tests.ParserContainers
         {
             var dateTimeParserMock = new Mock<IDateTimeParser>();
             var updateTypeParserMock = new Mock<IExtractUpdateTypeParser>();
+            var timeParserMock = new Mock<ITimeParser>();
 
-            Assert.Throws<ArgumentNullException>(() => new HeaderRecordParserContainer(null, updateTypeParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new HeaderRecordParserContainer(dateTimeParserMock.Object, null));
+            Assert.Throws<ArgumentNullException>(() => new HeaderRecordParserContainer(null, updateTypeParserMock.Object, timeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new HeaderRecordParserContainer(dateTimeParserMock.Object, null, timeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new HeaderRecordParserContainer(dateTimeParserMock.Object, updateTypeParserMock.Object, null));
         }
 
         [Test]
@@ -24,11 +26,13 @@ namespace NetworkRail.CifParser.Tests.ParserContainers
         {
             var dateTimeParserMock = new Mock<IDateTimeParser>();
             var updateTypeParserMock = new Mock<IExtractUpdateTypeParser>();
+            var timeParserMock = new Mock<ITimeParser>();
 
-            var container = new HeaderRecordParserContainer(dateTimeParserMock.Object, updateTypeParserMock.Object);
+            var container = new HeaderRecordParserContainer(dateTimeParserMock.Object, updateTypeParserMock.Object, timeParserMock.Object);
 
             Assert.AreEqual(dateTimeParserMock.Object, container.DateTimeParser);
             Assert.AreEqual(updateTypeParserMock.Object, container.UpdateTypeParser);
+            Assert.AreEqual(updateTypeParserMock.Object, container.TimeParser);
         }
     }
 }

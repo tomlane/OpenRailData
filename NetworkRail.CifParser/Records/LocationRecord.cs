@@ -5,7 +5,7 @@ namespace NetworkRail.CifParser.Records
 {
     public class LocationRecord : ICifRecord
     {
-        public CifRecordType RecordType { get; set; }
+        public CifRecordType RecordIdentity { get; set; }
         public LocationType LocationType { get; set; }
         public string Tiploc { get; set; } = string.Empty;
         public string TiplocInstance { get; set; } = string.Empty;
@@ -27,7 +27,7 @@ namespace NetworkRail.CifParser.Records
         public TimeSpan? OrderTime { get; set; }
         
         // lambda expressions?
-        public bool PublicCall { get; set; }
-        public bool ActualCall { get; set; }
+        public bool PublicCall => LocationActivity.HasFlag(LocationActivity.N) && (PublicArrival != null || PublicDeparture != null);
+        public bool ActualCall => Arrival != null || Departure != null;
     }
 }

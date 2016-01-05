@@ -18,13 +18,15 @@ namespace NetworkRail.CifParser.Tests.ParserContainers
             var associationCategoryParserMock = new Mock<IAssociationCategoryParser>();
             var dateIndicatorParserMock = new Mock<IDateIndicatorParser>();
             var assocationTypeParserMock = new Mock<IAssociationTypeParser>();
+            var stpIndicatorParserMock = new Mock<IStpIndicatorParser>();
 
-            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(null, dateTimeParserMock.Object,runningDaysParserMock.Object, associationCategoryParserMock.Object, dateIndicatorParserMock.Object, assocationTypeParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(transactionTypeParserMock.Object, null, runningDaysParserMock.Object, associationCategoryParserMock.Object, dateIndicatorParserMock.Object, assocationTypeParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(transactionTypeParserMock.Object, dateTimeParserMock.Object, null, associationCategoryParserMock.Object, dateIndicatorParserMock.Object, assocationTypeParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(transactionTypeParserMock.Object, dateTimeParserMock.Object, runningDaysParserMock.Object, null, dateIndicatorParserMock.Object, assocationTypeParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(transactionTypeParserMock.Object, dateTimeParserMock.Object, runningDaysParserMock.Object, associationCategoryParserMock.Object, null, assocationTypeParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(transactionTypeParserMock.Object, dateTimeParserMock.Object, runningDaysParserMock.Object, associationCategoryParserMock.Object, dateIndicatorParserMock.Object, null));
+            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(null, dateTimeParserMock.Object,runningDaysParserMock.Object, associationCategoryParserMock.Object, dateIndicatorParserMock.Object, assocationTypeParserMock.Object, stpIndicatorParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(transactionTypeParserMock.Object, null, runningDaysParserMock.Object, associationCategoryParserMock.Object, dateIndicatorParserMock.Object, assocationTypeParserMock.Object, stpIndicatorParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(transactionTypeParserMock.Object, dateTimeParserMock.Object, null, associationCategoryParserMock.Object, dateIndicatorParserMock.Object, assocationTypeParserMock.Object, stpIndicatorParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(transactionTypeParserMock.Object, dateTimeParserMock.Object, runningDaysParserMock.Object, null, dateIndicatorParserMock.Object, assocationTypeParserMock.Object, stpIndicatorParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(transactionTypeParserMock.Object, dateTimeParserMock.Object, runningDaysParserMock.Object, associationCategoryParserMock.Object, null, assocationTypeParserMock.Object, stpIndicatorParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(transactionTypeParserMock.Object, dateTimeParserMock.Object, runningDaysParserMock.Object, associationCategoryParserMock.Object, dateIndicatorParserMock.Object, null, stpIndicatorParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParserContainer(transactionTypeParserMock.Object, dateTimeParserMock.Object, runningDaysParserMock.Object, associationCategoryParserMock.Object, dateIndicatorParserMock.Object, assocationTypeParserMock.Object, null));
         }
 
         [Test]
@@ -36,8 +38,9 @@ namespace NetworkRail.CifParser.Tests.ParserContainers
             var associationCategoryParserMock = new Mock<IAssociationCategoryParser>();
             var dateIndicatorParserMock = new Mock<IDateIndicatorParser>();
             var assocationTypeParserMock = new Mock<IAssociationTypeParser>();
+            var stpIndicatorParserMock = new Mock<IStpIndicatorParser>();
 
-            var container = new AssociationRecordParserContainer(transactionTypeParserMock.Object, dateTimeParserMock.Object, runningDaysParserMock.Object, associationCategoryParserMock.Object, dateIndicatorParserMock.Object, assocationTypeParserMock.Object);
+            var container = new AssociationRecordParserContainer(transactionTypeParserMock.Object, dateTimeParserMock.Object, runningDaysParserMock.Object, associationCategoryParserMock.Object, dateIndicatorParserMock.Object, assocationTypeParserMock.Object, stpIndicatorParserMock.Object);
 
             Assert.AreEqual(transactionTypeParserMock.Object, container.TransactionTypeParser);
             Assert.AreEqual(dateTimeParserMock.Object, container.DateTimeParser);
@@ -45,6 +48,7 @@ namespace NetworkRail.CifParser.Tests.ParserContainers
             Assert.AreEqual(associationCategoryParserMock.Object, container.AssociationCategoryParser);
             Assert.AreEqual(dateIndicatorParserMock.Object, container.DateIndicatorParser);
             Assert.AreEqual(assocationTypeParserMock.Object, container.AssociationTypeParser);
+            Assert.AreEqual(stpIndicatorParserMock.Object, container.StpIndicatorParser);
         }
     }
 }

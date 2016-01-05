@@ -13,8 +13,9 @@ namespace NetworkRail.CifParser.ParserContainers
         public ISleeperDetailsParser SleeperDetailsParser { get; set; }
         public IReservationDetailsParser ReservationDetailsParser { get; set; }
         public IStpIndicatorParser StpIndicatorParser { get; set; }
+        public IDateTimeParser DateTimeParser { get; set; }
 
-        public BasicScheduleRecordParserContainer(ITransactionTypeParser transactionTypeParser, IRunningDaysParser runningDaysParser, IBankHolidayRunningParser bankHolidayRunningParser, IOperatingCharacteristicsParser operatingCharacteristicsParser, ISeatingClassParser seatingClassParser, ISleeperDetailsParser sleeperDetailsParser, IReservationDetailsParser reservationDetailsParser, IStpIndicatorParser stpIndicatorParser)
+        public BasicScheduleRecordParserContainer(ITransactionTypeParser transactionTypeParser, IRunningDaysParser runningDaysParser, IBankHolidayRunningParser bankHolidayRunningParser, IOperatingCharacteristicsParser operatingCharacteristicsParser, ISeatingClassParser seatingClassParser, ISleeperDetailsParser sleeperDetailsParser, IReservationDetailsParser reservationDetailsParser, IStpIndicatorParser stpIndicatorParser, IDateTimeParser dateTimeParser)
         {
             if (transactionTypeParser == null)
                 throw new ArgumentNullException(nameof(transactionTypeParser));
@@ -32,6 +33,8 @@ namespace NetworkRail.CifParser.ParserContainers
                 throw new ArgumentNullException(nameof(reservationDetailsParser));
             if (stpIndicatorParser == null)
                 throw new ArgumentNullException(nameof(stpIndicatorParser));
+            if (dateTimeParser == null)
+                throw new ArgumentNullException(nameof(dateTimeParser));
 
             TransactionTypeParser = transactionTypeParser;
             RunningDaysParser = runningDaysParser;
@@ -41,6 +44,7 @@ namespace NetworkRail.CifParser.ParserContainers
             SleeperDetailsParser = sleeperDetailsParser;
             ReservationDetailsParser = reservationDetailsParser;
             StpIndicatorParser = stpIndicatorParser;
+            DateTimeParser = dateTimeParser;
         }
     }
 }

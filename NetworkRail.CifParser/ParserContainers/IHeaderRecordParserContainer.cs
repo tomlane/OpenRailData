@@ -6,5 +6,6 @@ namespace NetworkRail.CifParser.ParserContainers
     {
         IDateTimeParser DateTimeParser { get; set; }
         IExtractUpdateTypeParser UpdateTypeParser { get; set; }
+        ITimeParser TimeParser { get; set; }
     }
 }

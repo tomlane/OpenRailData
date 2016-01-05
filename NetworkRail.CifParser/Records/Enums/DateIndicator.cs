@@ -4,6 +4,9 @@ namespace NetworkRail.CifParser.Records.Enums
 {
     public enum DateIndicator
     {
+        [Description("None")]
+        None = 0,
+
         [Description("Standard")]
         Standard = 1,
 

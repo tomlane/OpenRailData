@@ -32,7 +32,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
 
                 var expectedResult = new TiplocInsertAmendRecord
                 {
-                    RecordType = "I",
+                    RecordIdentity = CifRecordType.TiplocInsert,
                     TiplocCode = "PURLSGB",
                     CapitalsIdentification = "00",
                     Nalco = "537901",
@@ -45,7 +45,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     OldTiploc = string.Empty
                 };
 
-                Assert.AreEqual(expectedResult.RecordType, result.RecordType);
+                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
                 Assert.AreEqual(expectedResult.TiplocCode, result.TiplocCode);
                 Assert.AreEqual(expectedResult.CapitalsIdentification, result.CapitalsIdentification);
                 Assert.AreEqual(expectedResult.Nalco, result.Nalco);
@@ -71,7 +71,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
 
                 var expectedResult = new TiplocInsertAmendRecord
                 {
-                    RecordType = "A",
+                    RecordIdentity = CifRecordType.TiplocAmend,
                     TiplocCode = "0111193",
                     CapitalsIdentification = "08",
                     Nalco = "544815",
@@ -84,7 +84,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     OldTiploc = "EBOUCS"
                 };
 
-                Assert.AreEqual(expectedResult.RecordType, result.RecordType);
+                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
                 Assert.AreEqual(expectedResult.TiplocCode, result.TiplocCode);
                 Assert.AreEqual(expectedResult.CapitalsIdentification, result.CapitalsIdentification);
                 Assert.AreEqual(expectedResult.Nalco, result.Nalco);

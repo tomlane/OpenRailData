@@ -5,11 +5,11 @@ namespace NetworkRail.CifParser.Records
 {
     public class AssociationRecord : ICifRecord
     {
-        public CifRecordType RecordType { get; set; }
+        public CifRecordType RecordIdentity { get; set; }
         public TransactionType TransactionType { get; set; }
         public string MainTrainUid { get; set; } = string.Empty;
         public string AssocTrainUid { get; set; } = string.Empty;
-        public DateTime? DateFrom { get; set; }
+        public DateTime DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
         public Days AssocDays { get; set; }
         public AssociationCategory Category { get; set; }

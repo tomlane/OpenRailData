@@ -5,15 +5,15 @@ namespace NetworkRail.CifParser.Records
 {
     public class BasicScheduleRecord : ICifRecord
     {
-        public CifRecordType RecordType { get; set; }
+        public CifRecordType RecordIdentity { get; set; }
         public TransactionType TransactionType { get; set; }
         public string TrainUid { get; set; } = string.Empty;
         public string UniqueId { get; set; } = string.Empty;
         public DateTime DateRunsFrom { get; set; }
-        public DateTime DateRunsTo { get; set; }
+        public DateTime? DateRunsTo { get; set; }
         public Days RunningDays { get; set; }
         
-        public BankHolidayRunning BankHoliday { get; set; }
+        public BankHolidayRunning BankHolidayRunning { get; set; }
         public string TrainStatus { get; set; } = string.Empty;
         public string TrainCategory { get; set; } = string.Empty;
         public string TrainIdentity { get; set; } = string.Empty;

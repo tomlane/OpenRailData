@@ -1,6 +1,9 @@
 ﻿using System;
+using Moq;
+using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordBuilders;
 using NetworkRail.CifParser.Records;
+using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
 
 namespace NetworkRail.CifParser.Tests.RecordBuilders
@@ -8,13 +11,23 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
     [TestFixture]
     public class THeaderRecordBuilder
     {
+        [Test]
+        public void throws_when_dependencies_are_null()
+        {
+            var headerRecordParserContainerMock = new Mock<IHeaderRecordParserContainer>();
+
+            Assert.Throws<ArgumentNullException>(() => new HeaderRecordBuilder(null));
+        }
+
         [TestFixture]
         class BuildRecord
         {
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var builder = new HeaderRecordBuilder();
+                var headerRecordParserContainerMock = new Mock<IHeaderRecordParserContainer>();
+
+                var builder = new HeaderRecordBuilder(headerRecordParserContainerMock.Object);
 
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
@@ -24,7 +37,9 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_mainframe_identity_is_invalid()
             {
-                var builder = new HeaderRecordBuilder();
+                var headerRecordParserContainerMock = new Mock<IHeaderRecordParserContainer>();
+
+                var builder = new HeaderRecordBuilder(headerRecordParserContainerMock.Object);
 
                 string record = "HD                    3012152116DFROC1EDFROC1DUA301215291216                    ";
 
@@ -34,7 +49,9 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result()
             {
-                var builder = new HeaderRecordBuilder();
+                var headerRecordParserContainerMock = new Mock<IHeaderRecordParserContainer>();
+
+                var builder = new HeaderRecordBuilder(headerRecordParserContainerMock.Object);
 
                 string record = "HDTPS.UDFROC1.PD1512303012152116DFROC1EDFROC1DUA301215291216                    ";
 
@@ -42,20 +59,20 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
 
                 var expectedResult = new HeaderRecord
                 {
-                    MainFrameId = "TPS.UDFROC1.PD151230",
-                    DateOfExtract = "301215",
-                    TimeOfExtract = "2116",
+                    MainFrameIdentity = "TPS.UDFROC1.PD151230",
+                    DateOfExtract = new DateTime(2015, 12, 30),
+                    TimeOfExtract = new TimeSpan(0, 21, 16),
                     CurrentFileRef = "DFROC1E",
                     LastFileRef = "DFROC1D",
-                    ExtractUpdateType = "U",
+                    ExtractUpdateType = ExtractUpdateType.UpdateExtract,
                     CifSoftwareVersion = "A",
-                    UserExtractStartDate = "301215",
-                    UserExtractEndDate = "291216",
+                    UserExtractStartDate = new DateTime(2015, 12, 30),
+                    UserExtractEndDate = new DateTime(2016, 12, 29),
                     MainFrameUser = "DFROC1",
-                    MainFrameExtractDate = "151230"
+                    MainFrameExtractDate = new DateTime(2015, 12, 30)
                 };
 
-                Assert.AreEqual(expectedResult.MainFrameId, result.MainFrameId);
+                Assert.AreEqual(expectedResult.MainFrameIdentity, result.MainFrameIdentity);
                 Assert.AreEqual(expectedResult.DateOfExtract, result.DateOfExtract);
                 Assert.AreEqual(expectedResult.TimeOfExtract, result.TimeOfExtract);
                 Assert.AreEqual(expectedResult.CurrentFileRef, result.CurrentFileRef);

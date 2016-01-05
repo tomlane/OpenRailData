@@ -11,8 +11,9 @@ namespace NetworkRail.CifParser.ParserContainers
         public IAssociationCategoryParser AssociationCategoryParser { get; set; }
         public IDateIndicatorParser DateIndicatorParser { get; set; }
         public IAssociationTypeParser AssociationTypeParser { get; set; }
+        public IStpIndicatorParser StpIndicatorParser { get; set; }
 
-        public AssociationRecordParserContainer(ITransactionTypeParser transactionTypeParser, IDateTimeParser dateTimeParser, IRunningDaysParser runningDaysParser, IAssociationCategoryParser associationCategoryParser, IDateIndicatorParser dateIndicatorParser, IAssociationTypeParser associationTypeParser)
+        public AssociationRecordParserContainer(ITransactionTypeParser transactionTypeParser, IDateTimeParser dateTimeParser, IRunningDaysParser runningDaysParser, IAssociationCategoryParser associationCategoryParser, IDateIndicatorParser dateIndicatorParser, IAssociationTypeParser associationTypeParser, IStpIndicatorParser stpIndicatorParser)
         {
             if (transactionTypeParser == null)
                 throw new ArgumentNullException(nameof(transactionTypeParser));
@@ -26,6 +27,8 @@ namespace NetworkRail.CifParser.ParserContainers
                 throw new ArgumentNullException(nameof(dateIndicatorParser));
             if (associationTypeParser == null)
                 throw new ArgumentNullException(nameof(associationTypeParser));
+            if (stpIndicatorParser == null)
+                throw new ArgumentNullException(nameof(stpIndicatorParser));
 
             TransactionTypeParser = transactionTypeParser;
             DateTimeParser = dateTimeParser;
@@ -33,6 +36,7 @@ namespace NetworkRail.CifParser.ParserContainers
             AssociationCategoryParser = associationCategoryParser;
             DateIndicatorParser = dateIndicatorParser;
             AssociationTypeParser = associationTypeParser;
+            StpIndicatorParser = stpIndicatorParser;
         }
     }
 }

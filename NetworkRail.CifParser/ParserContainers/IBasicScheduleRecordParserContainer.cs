@@ -12,5 +12,6 @@ namespace NetworkRail.CifParser.ParserContainers
         ISleeperDetailsParser SleeperDetailsParser { get; set; }
         IReservationDetailsParser ReservationDetailsParser { get; set; }
         IStpIndicatorParser StpIndicatorParser { get; set; }
+        IDateTimeParser DateTimeParser { get; set; }
     }
 }

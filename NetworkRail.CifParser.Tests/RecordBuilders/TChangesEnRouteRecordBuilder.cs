@@ -1,6 +1,9 @@
 ﻿using System;
+using Moq;
+using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordBuilders;
 using NetworkRail.CifParser.Records;
+using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
 
 namespace NetworkRail.CifParser.Tests.RecordBuilders
@@ -8,13 +11,23 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
     [TestFixture]
     public class TChangesEnRouteRecordBuilder
     {
+        [Test]
+        public void throws_when_dependencies_are_null()
+        {
+            var changesEnRouteRecordParserContainer = new Mock<IChangesEnRouteRecordParserContainer>();
+
+            Assert.Throws<ArgumentNullException>(() => new ChangesEnRouteRecordBuilder(null));
+        }
+
         [TestFixture]
         class BuildRecord
         {
             [Test]
             public void throws_when_argument_string_is_invalid()
             {
-                var builder = new ChangesEnRouteRecordBuilder();
+                var changesEnRouteRecordParserContainer = new Mock<IChangesEnRouteRecordParserContainer>();
+
+                var builder = new ChangesEnRouteRecordBuilder(changesEnRouteRecordParserContainer.Object);
 
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
@@ -24,7 +37,9 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result()
             {
-                var builder = new ChangesEnRouteRecordBuilder();
+                var changesEnRouteRecordParserContainer = new Mock<IChangesEnRouteRecordParserContainer>();
+
+                var builder = new ChangesEnRouteRecordBuilder(changesEnRouteRecordParserContainer.Object);
 
                 string record = "CRHULL    XX1J22    111808920 DMUS   075      S S                               ";
 
@@ -44,9 +59,9 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     TimingLoad = "S",
                     Speed = "075",
                     OperatingCharacteristics = string.Empty,
-                    SeatingClass = "S",
-                    Sleepers = string.Empty,
-                    Reservations = "S",
+                    SeatingClass = SeatingClass.StandardClassOnly,
+                    Sleepers = SleeperDetails.NotAvailable,
+                    Reservations = ReservationDetails.PossibleFromAnyStation,
                     ConnectionIndicator = string.Empty,
                     CateringCode = string.Empty,
                     ServiceBranding = string.Empty,

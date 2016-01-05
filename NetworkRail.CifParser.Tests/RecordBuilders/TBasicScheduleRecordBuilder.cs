@@ -1,5 +1,6 @@
 ﻿using System;
 using Moq;
+using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.Parsers;
 using NetworkRail.CifParser.RecordBuilders;
 using NetworkRail.CifParser.Records;
@@ -14,9 +15,10 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            var operatingCharacteristicsParserMock = new Mock<IOperatingCharacteristicsParser>();
+            var basicScheduleRecordParserContainer = new Mock<IBasicScheduleRecordParserContainer>();
 
             Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordBuilder(null));
+            
         }
 
         [TestFixture]
@@ -25,9 +27,9 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var operatingCharacteristicsParserMock = new Mock<IOperatingCharacteristicsParser>();
+                var basicScheduleRecordParserContainer = new Mock<IBasicScheduleRecordParserContainer>();
 
-                var builder = new BasicScheduleRecordBuilder(operatingCharacteristicsParserMock.Object);
+                var builder = new BasicScheduleRecordBuilder(basicScheduleRecordParserContainer.Object);
 
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
@@ -37,12 +39,9 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_with_permanent_record()
             {
-                var operatingCharacteristicsParserMock = new Mock<IOperatingCharacteristicsParser>();
-
-                operatingCharacteristicsParserMock.Setup(m => m.ParseOperatingCharacteristics(It.IsAny<string>()))
-                    .Returns(new OperatingCharacteristics() | OperatingCharacteristics.E | OperatingCharacteristics.P);
-
-                var builder = new BasicScheduleRecordBuilder(operatingCharacteristicsParserMock.Object);
+                var basicScheduleRecordParserContainer = new Mock<IBasicScheduleRecordParserContainer>();
+                
+                var builder = new BasicScheduleRecordBuilder(basicScheduleRecordParserContainer.Object);
 
                 string record = "BSRY802011512141601011111100 PXX1A521780121702001 E  410 125EP    B R CM       P";
 
@@ -50,10 +49,10 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
 
                 var expectedResult = new BasicScheduleRecord
                 {
-                    TransactionType = "R",
+                    TransactionType = TransactionType.Revise,
                     TrainUid = "Y80201",
-                    DateRunsFrom = "151214",
-                    DateRunsTo = "160101",
+                    DateRunsFrom = new DateTime(2015, 12, 14),
+                    DateRunsTo = new DateTime(2016, 1, 1),
                     RunningDays = Days.Monday | Days.Tuesday | Days.Wednesday | Days.Thursday | Days.Friday,
                     TrainStatus = "P",
                     TrainCategory = "XX",
@@ -67,13 +66,13 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     Speed = "125",
                     OperatingCharacteristicsString = "EP    ",
                     OperatingCharacteristics = OperatingCharacteristics.E | OperatingCharacteristics.P,
-                    SeatingClass = "B",
-                    Sleepers = string.Empty,
-                    Reservations = "R",
+                    SeatingClass = SeatingClass.FirstAndStandardClass,
+                    Sleepers = SleeperDetails.NotAvailable,
+                    Reservations = ReservationDetails.Recommended,
                     ConnectionIndicator = string.Empty,
                     CateringCode = "CM",
                     ServiceBranding = string.Empty,
-                    StpIndicator = "P"
+                    StpIndicator = StpIndicator.Permanent
                 };
 
                 Assert.AreEqual(expectedResult.TransactionType, result.TransactionType);

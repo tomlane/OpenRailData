@@ -20,15 +20,17 @@ namespace NetworkRail.CifParser.Tests.ParserContainers
             var sleeperDetailsParserMock = new Mock<ISleeperDetailsParser>();
             var reservationDetailsParserMock = new Mock<IReservationDetailsParser>();
             var stpIndicatorParserMock = new Mock<IStpIndicatorParser>();
+            var dateTimeParserMock = new Mock<IDateTimeParser>();
 
-            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(null, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, null, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, null, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, null, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, null, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, null, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, null, stpIndicatorParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, null));
+            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(null, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object, dateTimeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, null, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object, dateTimeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, null, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object, dateTimeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, null, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object, dateTimeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, null, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object, dateTimeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, null, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object, dateTimeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, null, stpIndicatorParserMock.Object, dateTimeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, null, dateTimeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object, runningDaysParserMock.Object, bankHolidayRunningParserMock.Object, operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object, sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object, null));
         }
 
         [Test]
@@ -42,11 +44,12 @@ namespace NetworkRail.CifParser.Tests.ParserContainers
             var sleeperDetailsParserMock = new Mock<ISleeperDetailsParser>();
             var reservationDetailsParserMock = new Mock<IReservationDetailsParser>();
             var stpIndicatorParserMock = new Mock<IStpIndicatorParser>();
+            var dateTimeParserMock = new Mock<IDateTimeParser>();
 
             var container = new BasicScheduleRecordParserContainer(transactionTypeParserMock.Object,
                 runningDaysParserMock.Object, bankHolidayRunningParserMock.Object,
                 operatingCharacteristicsParserMock.Object, seatingClassParserMock.Object,
-                sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object);
+                sleeperDetailsParserMock.Object, reservationDetailsParserMock.Object, stpIndicatorParserMock.Object, dateTimeParserMock.Object);
 
             Assert.AreEqual(transactionTypeParserMock.Object, container.TransactionTypeParser);
             Assert.AreEqual(runningDaysParserMock.Object, container.RunningDaysParser);
@@ -56,6 +59,7 @@ namespace NetworkRail.CifParser.Tests.ParserContainers
             Assert.AreEqual(sleeperDetailsParserMock.Object, container.SleeperDetailsParser);
             Assert.AreEqual(reservationDetailsParserMock.Object, container.ReservationDetailsParser);
             Assert.AreEqual(stpIndicatorParserMock.Object, container.StpIndicatorParser);
+            Assert.AreEqual(dateTimeParserMock.Object, container.DateTimeParser);
         }
     }
 }

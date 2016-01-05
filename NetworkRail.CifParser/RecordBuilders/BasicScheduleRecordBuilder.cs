@@ -1,4 +1,5 @@
 ﻿using System;
+using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.Parsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
@@ -7,14 +8,14 @@ namespace NetworkRail.CifParser.RecordBuilders
 {
     public class BasicScheduleRecordBuilder : ICifRecordBuilder<BasicScheduleRecord>
     {
-        private readonly IOperatingCharacteristicsParser _operatingCharacteristicsParser;
+        private readonly IBasicScheduleRecordParserContainer _recordParserContainer;
 
-        public BasicScheduleRecordBuilder(IOperatingCharacteristicsParser operatingCharacteristicsParser)
+        public BasicScheduleRecordBuilder(IBasicScheduleRecordParserContainer recordParserContainer)
         {
-            if (operatingCharacteristicsParser == null)
-                throw new ArgumentNullException(nameof(operatingCharacteristicsParser));
+            if (recordParserContainer == null)
+                throw new ArgumentNullException(nameof(recordParserContainer));
 
-            _operatingCharacteristicsParser = operatingCharacteristicsParser;
+            _recordParserContainer = recordParserContainer;
         }
 
         public BasicScheduleRecord BuildRecord(string recordString)
@@ -24,11 +25,19 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             BasicScheduleRecord record = new BasicScheduleRecord
             {
-                TransactionType = recordString.Substring(2, 1).Trim(),
-                TrainUid = recordString.Substring(3, 6).Trim(),
-                DateRunsFrom = recordString.Substring(9, 6).Trim(),
-                DateRunsTo = recordString.Substring(15, 6).Trim(),
-                BankHoliday = recordString.Substring(28, 1).Trim(),
+                TransactionType = _recordParserContainer.TransactionTypeParser.ParseTransactionType(recordString.Substring(2, 1)),
+                TrainUid = recordString.Substring(3, 6),
+                DateRunsFrom = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
+                {
+                    DateTimeFormat = "yymmdd",
+                    DateTimeString = recordString.Substring(9, 6)
+                }),
+                DateRunsTo = _recordParserContainer.DateTimeParser.ParseNullableDateTime(new DateTimeParserRequest
+                {
+                    DateTimeFormat = "yymmdd",
+                    DateTimeString = recordString.Substring(15, 6)
+                }),
+                BankHolidayRunning = _recordParserContainer.BankHolidayRunningParser.ParseBankHolidayRunning(recordString.Substring(28, 1)),
                 TrainStatus = recordString.Substring(29, 1).Trim(),
                 TrainCategory = recordString.Substring(30, 2).Trim(),
                 TrainIdentity = recordString.Substring(32, 4).Trim(),
@@ -40,13 +49,13 @@ namespace NetworkRail.CifParser.RecordBuilders
                 TimingLoad = recordString.Substring(53, 4).Trim(),
                 Speed = recordString.Substring(57, 3).Trim(),
                 OperatingCharacteristicsString = recordString.Substring(60, 6),
-                SeatingClass = recordString.Substring(66, 1).Trim(),
-                Sleepers = recordString.Substring(67, 1).Trim(),
-                Reservations = recordString.Substring(68, 1).Trim(),
+                SeatingClass = _recordParserContainer.SeatingClassParser.ParseSeatingClass(recordString.Substring(66, 1)),
+                Sleepers = _recordParserContainer.SleeperDetailsParser.ParseTrainSleeperDetails(recordString.Substring(67, 1)),
+                Reservations = _recordParserContainer.ReservationDetailsParser.ParseTrainResevationDetails(recordString.Substring(68, 1)),
                 ConnectionIndicator = recordString.Substring(69, 1).Trim(),
                 CateringCode = recordString.Substring(70, 4).Trim(),
                 ServiceBranding = recordString.Substring(74, 4).Trim(),
-                StpIndicator = recordString.Substring(79, 1).Trim()
+                StpIndicator = _recordParserContainer.StpIndicatorParser.ParseStpIndicator(recordString.Substring(79, 1))
             };
 
             if (recordString.Substring(21, 1).Trim() == "1")
@@ -63,7 +72,7 @@ namespace NetworkRail.CifParser.RecordBuilders
                 record.RunningDays = record.RunningDays | Days.Saturday;
             if (recordString.Substring(27, 1).Trim() == "1")
                 record.RunningDays = record.RunningDays | Days.Sunday;
-            
+
             record.UniqueId = record.TrainUid + recordString.Substring(9, 6) + record.StpIndicator;
 
             if (record.TrainCategory == "BR" || record.TrainCategory == "BS")
@@ -80,8 +89,8 @@ namespace NetworkRail.CifParser.RecordBuilders
             if (record.Bus || record.Ship || record.TrainCategory == "OL" || record.TrainCategory == "OO" || record.TrainCategory == "XC" || record.TrainCategory == "XX" || record.TrainCategory == "XZ")
                 record.Passenger = true;
 
-            record.OperatingCharacteristics = _operatingCharacteristicsParser.ParseOperatingCharacteristics(record.OperatingCharacteristicsString);
-            
+            record.OperatingCharacteristics = _recordParserContainer.OperatingCharacteristicsParser.ParseOperatingCharacteristics(record.OperatingCharacteristicsString);
+
             return record;
         }
     }

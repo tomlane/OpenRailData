@@ -10,5 +10,6 @@ namespace NetworkRail.CifParser.ParserContainers
         IAssociationCategoryParser AssociationCategoryParser { get; set; }
         IDateIndicatorParser DateIndicatorParser { get; set; }
         IAssociationTypeParser AssociationTypeParser { get; set; }
+        IStpIndicatorParser StpIndicatorParser { get; set; }
     }
 }
