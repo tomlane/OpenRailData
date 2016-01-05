@@ -1,7 +1,8 @@
 ﻿using System;
+using Microsoft.Practices.Unity;
 using Moq;
+using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
-using NetworkRail.CifParser.Parsers;
 using NetworkRail.CifParser.RecordBuilders;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
@@ -12,6 +13,14 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
     [TestFixture]
     public class TBasicScheduleRecordBuilder
     {
+        private static IUnityContainer _container;
+
+        [OneTimeSetUp]
+        public void ContainerSetup()
+        {
+            _container = CifParserIocContainerBuilder.Build();
+        }
+
         [Test]
         public void throws_when_dependencies_are_null()
         {
@@ -39,9 +48,9 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_with_permanent_record()
             {
-                var basicScheduleRecordParserContainer = new Mock<IBasicScheduleRecordParserContainer>();
+                var basicScheduleRecordParserContainer = _container.Resolve<IBasicScheduleRecordParserContainer>();
                 
-                var builder = new BasicScheduleRecordBuilder(basicScheduleRecordParserContainer.Object);
+                var builder = new BasicScheduleRecordBuilder(basicScheduleRecordParserContainer);
 
                 string record = "BSRY802011512141601011111100 PXX1A521780121702001 E  410 125EP    B R CM       P";
 

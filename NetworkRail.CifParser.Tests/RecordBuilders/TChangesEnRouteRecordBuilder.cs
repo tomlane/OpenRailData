@@ -1,5 +1,7 @@
 ﻿using System;
+using Microsoft.Practices.Unity;
 using Moq;
+using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordBuilders;
 using NetworkRail.CifParser.Records;
@@ -11,6 +13,14 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
     [TestFixture]
     public class TChangesEnRouteRecordBuilder
     {
+        private static IUnityContainer _container;
+
+        [OneTimeSetUp]
+        public void ContainerSetup()
+        {
+            _container = CifParserIocContainerBuilder.Build();
+        }
+
         [Test]
         public void throws_when_dependencies_are_null()
         {
@@ -37,9 +47,9 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result()
             {
-                var changesEnRouteRecordParserContainer = new Mock<IChangesEnRouteRecordParserContainer>();
+                var changesEnRouteRecordParserContainer = _container.Resolve<IChangesEnRouteRecordParserContainer>();
 
-                var builder = new ChangesEnRouteRecordBuilder(changesEnRouteRecordParserContainer.Object);
+                var builder = new ChangesEnRouteRecordBuilder(changesEnRouteRecordParserContainer);
 
                 string record = "CRHULL    XX1J22    111808920 DMUS   075      S S                               ";
 

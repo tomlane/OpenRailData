@@ -1,5 +1,7 @@
 ﻿using System;
+using Microsoft.Practices.Unity;
 using Moq;
+using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordBuilders;
 using NetworkRail.CifParser.Records;
@@ -11,6 +13,14 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
     [TestFixture]
     public class THeaderRecordBuilder
     {
+        private static IUnityContainer _container;
+
+        [OneTimeSetUp]
+        public void ContainerSetup()
+        {
+            _container = CifParserIocContainerBuilder.Build();
+        }
+
         [Test]
         public void throws_when_dependencies_are_null()
         {
@@ -49,9 +59,9 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result()
             {
-                var headerRecordParserContainerMock = new Mock<IHeaderRecordParserContainer>();
+                var headerRecordParserContainerMock = _container.Resolve<IHeaderRecordParserContainer>();
 
-                var builder = new HeaderRecordBuilder(headerRecordParserContainerMock.Object);
+                var builder = new HeaderRecordBuilder(headerRecordParserContainerMock);
 
                 string record = "HDTPS.UDFROC1.PD1512303012152116DFROC1EDFROC1DUA301215291216                    ";
 
