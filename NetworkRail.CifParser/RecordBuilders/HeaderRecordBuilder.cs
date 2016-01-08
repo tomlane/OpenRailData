@@ -33,37 +33,57 @@ namespace NetworkRail.CifParser.RecordBuilders
             if (!mainFrameUserRegex.IsMatch(record.MainFrameIdentity))
                 throw new InvalidOperationException("The main frame id is not valid in the header record.");
             
-            record.DateOfExtract = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
+            var dateOfExtractResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
             {
                 DateTimeFormat = "ddmmyy",
                 DateTimeString = recordString.Substring(22, 6)
             });
+
+            if (dateOfExtractResult.HasValue)
+                record.DateOfExtract = dateOfExtractResult.Value;
+            else
+                throw new ArgumentException("Failed to parse Date of Extract in Header Record");
+
+            var userExtractStartDateResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
+            {
+                DateTimeFormat = "ddmmyy",
+                DateTimeString = recordString.Substring(48, 6)
+            });
+
+            if (userExtractStartDateResult.HasValue)
+                record.UserExtractStartDate = userExtractStartDateResult.Value;
+            else
+                throw new ArgumentException("Failed to parse User Extract Start Date in Header Record");
+
+            var userExtractEndDateResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
+            {
+                DateTimeFormat = "ddmmyy",
+                DateTimeString = recordString.Substring(54, 6)
+            });
+
+            if (userExtractEndDateResult.HasValue)
+                record.UserExtractEndDate = userExtractEndDateResult.Value;
+            else
+                throw new ArgumentException("Failed to parse User Extract End Date in Header Record");
+
+            var mainFrameExtractDateResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
+            {
+                DateTimeFormat = "yymmdd",
+                DateTimeString = record.MainFrameIdentity.Substring(14, 6)
+            });
+
+            if (mainFrameExtractDateResult.HasValue)
+                record.MainFrameExtractDate = mainFrameExtractDateResult.Value;
+            else
+                throw new ArgumentException("Failed to parse User Extract End Date in Header Record");
 
             record.TimeOfExtract = _recordParserContainer.TimeParser.ParseTime(recordString.Substring(28, 4));
             record.CurrentFileRef = recordString.Substring(32, 7);
             record.LastFileRef = recordString.Substring(39, 7);
             record.ExtractUpdateType = _recordParserContainer.UpdateTypeParser.ParseExtractUpdateType(recordString.Substring(46, 1));
             record.CifSoftwareVersion = recordString.Substring(47, 1);
-
-            record.UserExtractStartDate = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
-            {
-                DateTimeFormat = "ddmmyy",
-                DateTimeString = recordString.Substring(48, 6)
-            });
-
-            record.UserExtractEndDate = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
-            {
-                DateTimeFormat = "ddmmyy",
-                DateTimeString = recordString.Substring(54, 6)
-            });
-
+            
             record.MainFrameUser = record.MainFrameIdentity.Substring(5, 6);
-
-            record.MainFrameExtractDate = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
-            {
-                DateTimeFormat = "yymmdd",
-                DateTimeString = record.MainFrameIdentity.Substring(14, 6)
-            });
 
             return record;
         }

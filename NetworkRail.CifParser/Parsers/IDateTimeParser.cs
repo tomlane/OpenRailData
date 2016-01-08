@@ -4,8 +4,7 @@ namespace NetworkRail.CifParser.Parsers
 {
     public interface IDateTimeParser
     {
-        DateTime? ParseNullableDateTime(DateTimeParserRequest request);
-        DateTime ParseDateTime(DateTimeParserRequest request);
+        DateTime? ParseDateTime(DateTimeParserRequest request);
     }
 
     public class DateTimeParserRequest

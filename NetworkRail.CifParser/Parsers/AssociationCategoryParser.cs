@@ -7,6 +7,9 @@ namespace NetworkRail.CifParser.Parsers
     {
         public AssociationCategory ParseAssociationCategory(string associationCategory)
         {
+            if (string.IsNullOrWhiteSpace(associationCategory))
+                throw new ArgumentNullException(nameof(associationCategory));
+
             switch (associationCategory)
             {
                 case "JJ":

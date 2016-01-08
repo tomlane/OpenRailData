@@ -34,10 +34,7 @@ namespace NetworkRail.CifParser.Records
         public string ServiceBranding { get; set; } = string.Empty;
         public StpIndicator StpIndicator { get; set; }
 
-        public bool Train { get; set; } = true;
-        public bool Bus { get; set; }
-        public bool Ship { get; set; }
-        public bool Passenger { get; set; }
+        public ServiceTypeFlags ServiceTypeFlags { get; set; } = ServiceTypeFlags.Train;
 
         public string UicCode { get; set; } = string.Empty;
         public string AtocCode { get; set; } = string.Empty;

@@ -7,6 +7,9 @@ namespace NetworkRail.CifParser.Parsers
     {
         public ReservationDetails ParseTrainResevationDetails(string reservationDetails)
         {
+            if (string.IsNullOrWhiteSpace(reservationDetails))
+                throw new ArgumentNullException(nameof(reservationDetails));
+
             switch (reservationDetails)
             {
                 case "A":

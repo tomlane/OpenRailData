@@ -32,7 +32,7 @@ namespace NetworkRail.CifParser.Tests.ParserContainers
 
             Assert.AreEqual(dateTimeParserMock.Object, container.DateTimeParser);
             Assert.AreEqual(updateTypeParserMock.Object, container.UpdateTypeParser);
-            Assert.AreEqual(updateTypeParserMock.Object, container.TimeParser);
+            Assert.AreEqual(timeParserMock.Object, container.TimeParser);
         }
     }
 }

@@ -27,16 +27,12 @@ namespace NetworkRail.CifParser.RecordBuilders
             {
                 TransactionType = _recordParserContainer.TransactionTypeParser.ParseTransactionType(recordString.Substring(2, 1)),
                 TrainUid = recordString.Substring(3, 6),
-                DateRunsFrom = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
-                {
-                    DateTimeFormat = "yymmdd",
-                    DateTimeString = recordString.Substring(9, 6)
-                }),
-                DateRunsTo = _recordParserContainer.DateTimeParser.ParseNullableDateTime(new DateTimeParserRequest
+                DateRunsTo = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
                 {
                     DateTimeFormat = "yymmdd",
                     DateTimeString = recordString.Substring(15, 6)
                 }),
+                RunningDays = _recordParserContainer.RunningDaysParser.ParseRunningDays(recordString.Substring(21, 7)),
                 BankHolidayRunning = _recordParserContainer.BankHolidayRunningParser.ParseBankHolidayRunning(recordString.Substring(28, 1)),
                 TrainStatus = recordString.Substring(29, 1).Trim(),
                 TrainCategory = recordString.Substring(30, 2).Trim(),
@@ -58,36 +54,35 @@ namespace NetworkRail.CifParser.RecordBuilders
                 StpIndicator = _recordParserContainer.StpIndicatorParser.ParseStpIndicator(recordString.Substring(79, 1))
             };
 
-            if (recordString.Substring(21, 1).Trim() == "1")
-                record.RunningDays = record.RunningDays | Days.Monday;
-            if (recordString.Substring(22, 1).Trim() == "1")
-                record.RunningDays = record.RunningDays | Days.Tuesday;
-            if (recordString.Substring(23, 1).Trim() == "1")
-                record.RunningDays = record.RunningDays | Days.Wednesday;
-            if (recordString.Substring(24, 1).Trim() == "1")
-                record.RunningDays = record.RunningDays | Days.Thursday;
-            if (recordString.Substring(25, 1).Trim() == "1")
-                record.RunningDays = record.RunningDays | Days.Friday;
-            if (recordString.Substring(26, 1).Trim() == "1")
-                record.RunningDays = record.RunningDays | Days.Saturday;
-            if (recordString.Substring(27, 1).Trim() == "1")
-                record.RunningDays = record.RunningDays | Days.Sunday;
+            var dateRunsFromResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
+            {
+                DateTimeFormat = "yymmdd",
+                DateTimeString = recordString.Substring(9, 6)
+            });
+
+            if (dateRunsFromResult.HasValue)
+                record.DateRunsFrom = dateRunsFromResult.Value;
+            else
+            {
+                throw new ArgumentException("Failed to parse Date Runs From in Basic Schedule Record");
+            }
 
             record.UniqueId = record.TrainUid + recordString.Substring(9, 6) + record.StpIndicator;
 
             if (record.TrainCategory == "BR" || record.TrainCategory == "BS")
             {
-                record.Bus = true;
-                record.Train = false;
+                record.ServiceTypeFlags = record.ServiceTypeFlags | ServiceTypeFlags.Bus;
+                record.ServiceTypeFlags = record.ServiceTypeFlags &= ~ServiceTypeFlags.Train;
             }
             else if (record.TrainStatus == "S" || record.TrainStatus == "4")
             {
-                record.Ship = true;
-                record.Train = false;
+                record.ServiceTypeFlags = record.ServiceTypeFlags | ServiceTypeFlags.Ship;
+                record.ServiceTypeFlags = record.ServiceTypeFlags &= ~ServiceTypeFlags.Train;
             }
 
-            if (record.Bus || record.Ship || record.TrainCategory == "OL" || record.TrainCategory == "OO" || record.TrainCategory == "XC" || record.TrainCategory == "XX" || record.TrainCategory == "XZ")
-                record.Passenger = true;
+            if (record.ServiceTypeFlags.HasFlag(ServiceTypeFlags.Bus) || record.ServiceTypeFlags.HasFlag(ServiceTypeFlags.Ship) || 
+                record.TrainCategory == "OL" || record.TrainCategory == "OO" || record.TrainCategory == "XC" || record.TrainCategory == "XX" || record.TrainCategory == "XZ")
+                record.ServiceTypeFlags = record.ServiceTypeFlags | ServiceTypeFlags.Passenger;
 
             record.OperatingCharacteristics = _recordParserContainer.OperatingCharacteristicsParser.ParseOperatingCharacteristics(record.OperatingCharacteristicsString);
 

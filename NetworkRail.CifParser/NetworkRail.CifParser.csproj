@@ -105,6 +105,7 @@
     <Compile Include="Records\Enums\DateIndicator.cs" />
     <Compile Include="Records\Enums\LocationRecordType.cs" />
     <Compile Include="Records\Enums\LocationType.cs" />
+    <Compile Include="Records\Enums\ServiceTypeFlags.cs" />
     <Compile Include="Records\Enums\SleeperDetails.cs" />
     <Compile Include="Records\Enums\StpIndicator.cs" />
     <Compile Include="Records\Enums\SeatingClass.cs" />

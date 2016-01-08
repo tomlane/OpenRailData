@@ -1,4 +1,5 @@
-﻿using NetworkRail.CifParser.Records.Enums;
+﻿using System;
+using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.Parsers
 {
@@ -6,6 +7,9 @@ namespace NetworkRail.CifParser.Parsers
     {
         public BankHolidayRunning ParseBankHolidayRunning(string runningIndicator)
         {
+            if (runningIndicator == null)
+                throw new ArgumentNullException(nameof(runningIndicator));
+
             switch (runningIndicator)
             {
                 case "G":

@@ -1,6 +1,7 @@
 ﻿using System;
 using NetworkRail.CifParser.RecordBuilders;
 using NetworkRail.CifParser.Records;
+using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
 
 namespace NetworkRail.CifParser.Tests.RecordBuilders
@@ -33,6 +34,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                 var expectedResult = new TiplocInsertAmendRecord
                 {
                     RecordIdentity = CifRecordType.TiplocInsert,
+                    TiplocRecordType = TiplocRecordType.Insert,
                     TiplocCode = "PURLSGB",
                     CapitalsIdentification = "00",
                     Nalco = "537901",
@@ -46,6 +48,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                 };
 
                 Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
+                Assert.AreEqual(expectedResult.TiplocRecordType, result.TiplocRecordType);
                 Assert.AreEqual(expectedResult.TiplocCode, result.TiplocCode);
                 Assert.AreEqual(expectedResult.CapitalsIdentification, result.CapitalsIdentification);
                 Assert.AreEqual(expectedResult.Nalco, result.Nalco);
@@ -72,6 +75,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                 var expectedResult = new TiplocInsertAmendRecord
                 {
                     RecordIdentity = CifRecordType.TiplocAmend,
+                    TiplocRecordType = TiplocRecordType.Amend,
                     TiplocCode = "0111193",
                     CapitalsIdentification = "08",
                     Nalco = "544815",
@@ -85,6 +89,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                 };
 
                 Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
+                Assert.AreEqual(expectedResult.TiplocRecordType, result.TiplocRecordType);
                 Assert.AreEqual(expectedResult.TiplocCode, result.TiplocCode);
                 Assert.AreEqual(expectedResult.CapitalsIdentification, result.CapitalsIdentification);
                 Assert.AreEqual(expectedResult.Nalco, result.Nalco);

@@ -7,6 +7,9 @@ namespace NetworkRail.CifParser.Parsers
     {
         public DateIndicator ParseDateIndicator(string dateIndicator)
         {
+            if (string.IsNullOrWhiteSpace(dateIndicator))
+                throw new ArgumentNullException(nameof(dateIndicator));
+
             switch (dateIndicator)
             {
                 case "S":

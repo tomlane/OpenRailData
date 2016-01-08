@@ -27,12 +27,7 @@ namespace NetworkRail.CifParser.RecordBuilders
                 TransactionType = _recordParserContainer.TransactionTypeParser.ParseTransactionType(recordString.Substring(2, 1)),
                 MainTrainUid = recordString.Substring(3, 6),
                 AssocTrainUid = recordString.Substring(9, 6),
-                DateFrom = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
-                {
-                    DateTimeFormat = "yymmdd",
-                    DateTimeString = recordString.Substring(15, 6)
-                }),
-                DateTo = _recordParserContainer.DateTimeParser.ParseNullableDateTime(new DateTimeParserRequest
+                DateTo = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
                 {
                     DateTimeFormat = "yymmdd",
                     DateTimeString = recordString.Substring(21, 6)
@@ -46,6 +41,17 @@ namespace NetworkRail.CifParser.RecordBuilders
                 DiagramType = recordString.Substring(46, 1).Trim(),
                 StpIndicator = _recordParserContainer.StpIndicatorParser.ParseStpIndicator(recordString.Substring(79, 1))
             };
+
+            var dateFromResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
+            {
+                DateTimeFormat = "yymmdd",
+                DateTimeString = recordString.Substring(15, 6)
+            });
+
+            if (dateFromResult.HasValue)
+                record.DateFrom = dateFromResult.Value;
+            else
+                throw new ArgumentException("Failed to parse Date From for Association record.");
 
             return record;
         }

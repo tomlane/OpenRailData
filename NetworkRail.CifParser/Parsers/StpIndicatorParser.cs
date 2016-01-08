@@ -7,6 +7,9 @@ namespace NetworkRail.CifParser.Parsers
     {
         public StpIndicator ParseStpIndicator(string stpIndicator)
         {
+            if (string.IsNullOrWhiteSpace(stpIndicator))
+                throw new ArgumentNullException(nameof(stpIndicator));
+
             switch (stpIndicator)
             {
                 case "C":

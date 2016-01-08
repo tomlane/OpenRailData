@@ -7,6 +7,9 @@ namespace NetworkRail.CifParser.Parsers
     {
         public LocationType ParseLocationType(string locationType)
         {
+            if (string.IsNullOrWhiteSpace(locationType))
+                throw new ArgumentNullException(nameof(locationType));
+
             switch (locationType)
             {
                 case "LO":

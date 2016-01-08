@@ -7,6 +7,9 @@ namespace NetworkRail.CifParser.Parsers
     {
         public SleeperDetails ParseTrainSleeperDetails(string sleeperDetails)
         {
+            if (string.IsNullOrWhiteSpace(sleeperDetails))
+                throw new ArgumentNullException(nameof(sleeperDetails));
+
             switch (sleeperDetails)
             {
                 case "B":

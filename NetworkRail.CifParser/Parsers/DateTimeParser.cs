@@ -1,17 +1,37 @@
 ﻿using System;
+using System.Globalization;
 
 namespace NetworkRail.CifParser.Parsers
 {
     public class DateTimeParser : IDateTimeParser
     {
-        public DateTime? ParseNullableDateTime(DateTimeParserRequest request)
+        public DateTime? ParseDateTime(DateTimeParserRequest request)
         {
-            throw new NotImplementedException();
-        }
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+            
+            if (string.IsNullOrWhiteSpace(request.DateTimeFormat))
+                throw new ArgumentNullException("Format string can not be null.");
 
-        public DateTime ParseDateTime(DateTimeParserRequest request)
-        {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(request.DateTimeString))
+                return null;
+
+
+            CultureInfo culture = CultureInfo.CreateSpecificCulture("en-UK");
+
+            // year should be 19xx if > 60 and 20xx if < 60
+            culture.Calendar.TwoDigitYearMax = 2059;
+
+
+            DateTime result;
+
+            bool successful = DateTime.TryParseExact(request.DateTimeString, request.DateTimeFormat, culture,
+                DateTimeStyles.AdjustToUniversal, out result);
+
+            if (successful)
+                return result;
+
+            return null;
         }
     }
 }

@@ -7,10 +7,11 @@ namespace NetworkRail.CifParser.Parsers
     {
         public SeatingClass ParseSeatingClass(string seatingClass)
         {
+            if (seatingClass == null)
+                throw new ArgumentNullException(nameof(seatingClass));
+
             if (seatingClass == string.Empty)
-            {
                 return SeatingClass.FirstAndStandardClass;
-            }
             
             switch (seatingClass)
             {
