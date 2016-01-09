@@ -7,7 +7,7 @@ namespace NetworkRail.CifParser.Parsers
     {
         public AssociationCategory ParseAssociationCategory(string associationCategory)
         {
-            if (string.IsNullOrWhiteSpace(associationCategory))
+            if (associationCategory == null)
                 throw new ArgumentNullException(nameof(associationCategory));
 
             switch (associationCategory)
@@ -19,7 +19,7 @@ namespace NetworkRail.CifParser.Parsers
                 case "NP":
                     return AssociationCategory.Next;
                 default:
-                    throw new ArgumentException($"Unknown Association Category: {associationCategory}");
+                    return AssociationCategory.None;
             }
         }
     }

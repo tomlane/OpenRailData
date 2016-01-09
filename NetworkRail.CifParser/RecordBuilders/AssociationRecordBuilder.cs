@@ -24,12 +24,13 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             AssociationRecord record = new AssociationRecord
             {
+                RecordIdentity = CifRecordType.Association,
                 TransactionType = _recordParserContainer.TransactionTypeParser.ParseTransactionType(recordString.Substring(2, 1)),
                 MainTrainUid = recordString.Substring(3, 6),
                 AssocTrainUid = recordString.Substring(9, 6),
                 DateTo = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
                 {
-                    DateTimeFormat = "yymmdd",
+                    DateTimeFormat = "yyMMdd",
                     DateTimeString = recordString.Substring(21, 6)
                 }),
                 AssocDays = _recordParserContainer.RunningDaysParser.ParseRunningDays(recordString.Substring(27, 7)),
@@ -44,7 +45,7 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             var dateFromResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
             {
-                DateTimeFormat = "yymmdd",
+                DateTimeFormat = "yyMMdd",
                 DateTimeString = recordString.Substring(15, 6)
             });
 

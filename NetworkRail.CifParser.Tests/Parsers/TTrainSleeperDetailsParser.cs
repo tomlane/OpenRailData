@@ -17,8 +17,6 @@ namespace NetworkRail.CifParser.Tests.Parsers
                 var parser = new SleeperDetailsParser();
 
                 Assert.Throws<ArgumentNullException>(() => parser.ParseTrainSleeperDetails(null));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseTrainSleeperDetails(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseTrainSleeperDetails(" \t"));
             }
 
             [Test]
@@ -37,11 +35,13 @@ namespace NetworkRail.CifParser.Tests.Parsers
             }
 
             [Test]
-            public void throws_when_argument_is_unknown()
+            public void returns_not_available_when_argument_is_unknown()
             {
                 var parser = new SleeperDetailsParser();
 
-                Assert.Throws<ArgumentException>(() => parser.ParseTrainSleeperDetails("Z"));
+                var result = parser.ParseTrainSleeperDetails("zzz");
+
+                Assert.AreEqual(SleeperDetails.NotAvailable, result);
             }
         }
     }

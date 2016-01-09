@@ -12,6 +12,7 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             TiplocDeleteRecord record = new TiplocDeleteRecord
             {
+                RecordIdentity = CifRecordType.TiplocDelete,
                 TiplocCode = recordString.Substring(2, 7).Trim()
             };
             

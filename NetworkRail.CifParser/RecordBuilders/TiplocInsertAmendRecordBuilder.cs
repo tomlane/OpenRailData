@@ -1,6 +1,5 @@
 ﻿using System;
 using NetworkRail.CifParser.Records;
-using NetworkRail.CifParser.Records.Enums;
 using NetworkRail.CifParser.Utils;
 
 namespace NetworkRail.CifParser.RecordBuilders
@@ -30,12 +29,10 @@ namespace NetworkRail.CifParser.RecordBuilders
             if (recordType == "TI")
             {
                 record.RecordIdentity = CifRecordType.TiplocInsert;
-                record.TiplocRecordType = TiplocRecordType.Insert;
             }
             else if (recordType == "TA")
             {
                 record.RecordIdentity = CifRecordType.TiplocAmend;
-                record.TiplocRecordType = TiplocRecordType.Amend;
 
                 string newTiploc = recordString.Substring(72, 7).Trim();
                 

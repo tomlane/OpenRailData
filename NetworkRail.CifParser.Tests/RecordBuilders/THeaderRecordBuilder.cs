@@ -69,9 +69,10 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
 
                 var expectedResult = new HeaderRecord
                 {
+                    RecordIdentity = CifRecordType.Header,
                     MainFrameIdentity = "TPS.UDFROC1.PD151230",
                     DateOfExtract = new DateTime(2015, 12, 30),
-                    TimeOfExtract = new TimeSpan(0, 21, 16),
+                    TimeOfExtract = new TimeSpan(21, 16, 0),
                     CurrentFileRef = "DFROC1E",
                     LastFileRef = "DFROC1D",
                     ExtractUpdateType = ExtractUpdateType.UpdateExtract,
@@ -82,6 +83,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     MainFrameExtractDate = new DateTime(2015, 12, 30)
                 };
 
+                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
                 Assert.AreEqual(expectedResult.MainFrameIdentity, result.MainFrameIdentity);
                 Assert.AreEqual(expectedResult.DateOfExtract, result.DateOfExtract);
                 Assert.AreEqual(expectedResult.TimeOfExtract, result.TimeOfExtract);

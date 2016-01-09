@@ -23,6 +23,7 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             return new ChangesEnRouteRecord
             {
+                RecordIdentity = CifRecordType.ChangesEnRoute,
                 Tiploc = recordString.Substring(2, 7).Trim(),
                 TiplocSuffix = recordString.Substring(9, 1).Trim(),
                 Category = recordString.Substring(10, 2).Trim(),

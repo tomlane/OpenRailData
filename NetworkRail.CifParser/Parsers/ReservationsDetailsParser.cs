@@ -7,7 +7,7 @@ namespace NetworkRail.CifParser.Parsers
     {
         public ReservationDetails ParseTrainResevationDetails(string reservationDetails)
         {
-            if (string.IsNullOrWhiteSpace(reservationDetails))
+            if (reservationDetails == null)
                 throw new ArgumentNullException(nameof(reservationDetails));
 
             switch (reservationDetails)
@@ -21,7 +21,7 @@ namespace NetworkRail.CifParser.Parsers
                 case "S":
                     return ReservationDetails.PossibleFromAnyStation;
                 default:
-                    throw new ArgumentException($"Unknown Reservation Details: {reservationDetails}");
+                    return ReservationDetails.None;
             }
         }
     }

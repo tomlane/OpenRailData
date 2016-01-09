@@ -4,20 +4,27 @@ namespace NetworkRail.CifParser.Parsers
 {
     public class TimeParser : ITimeParser
     {
-        public TimeSpan? ParseNullableTime(string timeString)
+        public TimeSpan? ParseTime(string timeString)
         {
             if (string.IsNullOrWhiteSpace(timeString))
             {
                 return null;
             }
 
-            int minutes;
+            TimeSpan result = new TimeSpan();
+            int minutes = 0, hours = 0;
 
-            if (timeString.Length == 1)
+            if (timeString[timeString.Length - 1] == 'H')
             {
-                if (timeString.Contains("H"))
-                    return TimeSpan.FromSeconds(30);
+                result = TimeSpan.FromSeconds(30);
+                timeString = timeString.Remove(timeString.Length - 1);
+            }
 
+            if (timeString == string.Empty)
+                return result;
+
+            if (timeString.Length <= 2)
+            {
                 try
                 {
                     minutes = int.Parse(timeString);
@@ -27,34 +34,28 @@ namespace NetworkRail.CifParser.Parsers
                     return null;
                 }
 
-                return TimeSpan.FromMinutes(minutes);
+                return result.Add(TimeSpan.FromMinutes(minutes));
             }
 
-            TimeSpan result = new TimeSpan();
-
-            if (timeString.Contains("H"))
+            if (timeString.Length == 4)
             {
-                result = TimeSpan.FromSeconds(30);
-                timeString = timeString.Replace('H', ' ');
-            }
+                try
+                {
+                    hours = int.Parse(timeString.Substring(0, 2));
+                    result = result.Add(TimeSpan.FromHours(hours));
 
-            try
-            {
-                minutes = int.Parse(timeString);
-            }
-            catch (FormatException)
-            {
-                return null;
-            }
+                    minutes = int.Parse(timeString.Substring(2, 2));
+                    result = result.Add(TimeSpan.FromMinutes(minutes));
 
-            result = result.Add(TimeSpan.FromMinutes(minutes));
 
+                }
+                catch (FormatException)
+                {
+                    return null;
+                }
+            }
+            
             return result;
-        }
-
-        public TimeSpan ParseTime(string timeString)
-        {
-            throw new NotImplementedException();
         }
     }
 }

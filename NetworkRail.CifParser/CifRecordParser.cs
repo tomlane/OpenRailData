@@ -26,47 +26,33 @@ namespace NetworkRail.CifParser
 
             string recordType = record.Substring(0, 2);
 
-            ICifRecord result = null;
-
             switch (recordType)
             {
                 case "HD":
-                    result = _cifRecordBuilderContainer.HeaderRecordBuilder.BuildRecord(record);
-                    break;
+                    return _cifRecordBuilderContainer.HeaderRecordBuilder.BuildRecord(record);
                 case "TI":
-                    result = _cifRecordBuilderContainer.TiplocInsertAmendRecordBuilder.BuildRecord(record);
-                    break;
+                    return _cifRecordBuilderContainer.TiplocInsertAmendRecordBuilder.BuildRecord(record);
                 case "TA":
-                    result = _cifRecordBuilderContainer.TiplocInsertAmendRecordBuilder.BuildRecord(record);
-                    break;
+                    return _cifRecordBuilderContainer.TiplocInsertAmendRecordBuilder.BuildRecord(record);
                 case "AA":
-                    result = _cifRecordBuilderContainer.AssociationRecordBuilder.BuildRecord(record);
-                    break;
+                    return _cifRecordBuilderContainer.AssociationRecordBuilder.BuildRecord(record);
                 case "BS":
-                    result = _cifRecordBuilderContainer.BasicScheduleRecordBuilder.BuildRecord(record);
-                    break;
+                    return _cifRecordBuilderContainer.BasicScheduleRecordBuilder.BuildRecord(record);
                 case "BX":
-                    result = _cifRecordBuilderContainer.BasicScheduleExtraDetailsRecordBuilder.BuildRecord(record);
-                    break;
+                    return _cifRecordBuilderContainer.BasicScheduleExtraDetailsRecordBuilder.BuildRecord(record);
                 case "LO":
-                    result = _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
-                    break;
+                    return _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
                 case "LI":
-                    result = _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
-                    break;
+                    return _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
                 case "CR":
-                    result = _cifRecordBuilderContainer.ChangesEnRouteRecordBuilder.BuildRecord(record);
-                    break;
+                    return _cifRecordBuilderContainer.ChangesEnRouteRecordBuilder.BuildRecord(record);
                 case "LT":
-                    result = _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
-                    break;
+                    return _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
                 case "ZZ":
-                    break;
+                    return null;
                 default:
                     throw new NotImplementedException($"The following record type has not been implemented: {recordType}");
             }
-
-            return result;
         }
     }
 }

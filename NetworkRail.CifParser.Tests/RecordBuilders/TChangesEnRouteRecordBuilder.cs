@@ -57,6 +57,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
 
                 var expectedResult = new ChangesEnRouteRecord
                 {
+                    RecordIdentity = CifRecordType.ChangesEnRoute,
                     Tiploc = "HULL",
                     TiplocSuffix = string.Empty,
                     Category = "XX",
@@ -79,6 +80,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     Rsid = string.Empty
                 };
 
+                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
                 Assert.AreEqual(expectedResult.Tiploc, result.Tiploc);
                 Assert.AreEqual(expectedResult.TiplocSuffix, result.TiplocSuffix);
                 Assert.AreEqual(expectedResult.Category, result.Category);

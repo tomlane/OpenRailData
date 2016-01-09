@@ -58,6 +58,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
 
                 var expectedResult = new BasicScheduleRecord
                 {
+                    RecordIdentity = CifRecordType.BasicSchedule,
                     TransactionType = TransactionType.Revise,
                     TrainUid = "Y80201",
                     DateRunsFrom = new DateTime(2015, 12, 14),
@@ -84,6 +85,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     StpIndicator = StpIndicator.Permanent
                 };
 
+                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
                 Assert.AreEqual(expectedResult.TransactionType, result.TransactionType);
                 Assert.AreEqual(expectedResult.TrainUid, result.TrainUid);
                 Assert.AreEqual(expectedResult.DateRunsFrom, result.DateRunsFrom);

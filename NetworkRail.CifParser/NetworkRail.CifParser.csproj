@@ -109,7 +109,6 @@
     <Compile Include="Records\Enums\SleeperDetails.cs" />
     <Compile Include="Records\Enums\StpIndicator.cs" />
     <Compile Include="Records\Enums\SeatingClass.cs" />
-    <Compile Include="Records\Enums\TiplocRecordType.cs" />
     <Compile Include="Records\Enums\ReservationDetails.cs" />
     <Compile Include="Records\Enums\TransactionType.cs" />
     <Compile Include="Records\Enums\ExtractUpdateType.cs" />

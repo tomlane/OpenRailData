@@ -17,8 +17,6 @@ namespace NetworkRail.CifParser.Tests.Parsers
                 var parser = new DateIndicatorParser();
 
                 Assert.Throws<ArgumentNullException>(() => parser.ParseDateIndicator(null));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseDateIndicator(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseDateIndicator(" \t"));
             }
 
             [Test]
@@ -37,11 +35,13 @@ namespace NetworkRail.CifParser.Tests.Parsers
             }
 
             [Test]
-            public void throws_when_argument_is_unknown()
+            public void returns_none_when_argument_is_unknown()
             {
                 var parser = new DateIndicatorParser();
 
-                Assert.Throws<ArgumentException>(() => parser.ParseDateIndicator("Z"));
+                var result = parser.ParseDateIndicator("ZZZ");
+
+                Assert.AreEqual(DateIndicator.None, result);
             }
         }
     }

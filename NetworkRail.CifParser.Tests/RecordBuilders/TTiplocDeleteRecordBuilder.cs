@@ -32,10 +32,12 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
 
                 var expectedResult = new TiplocDeleteRecord
                 {
+                    RecordIdentity = CifRecordType.TiplocDelete,
                     TiplocCode = "1234567"
                 };
 
-                Assert.AreEqual(result.TiplocCode, expectedResult.TiplocCode);
+                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
+                Assert.AreEqual(expectedResult.TiplocCode, result.TiplocCode);
             }
         }
     }

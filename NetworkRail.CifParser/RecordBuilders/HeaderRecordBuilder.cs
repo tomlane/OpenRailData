@@ -25,6 +25,7 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             HeaderRecord record = new HeaderRecord
             {
+                RecordIdentity = CifRecordType.Header,
                 MainFrameIdentity = recordString.Substring(2, 20)
             };
 
@@ -35,7 +36,7 @@ namespace NetworkRail.CifParser.RecordBuilders
             
             var dateOfExtractResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
             {
-                DateTimeFormat = "ddmmyy",
+                DateTimeFormat = "ddMMyy",
                 DateTimeString = recordString.Substring(22, 6)
             });
 
@@ -46,7 +47,7 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             var userExtractStartDateResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
             {
-                DateTimeFormat = "ddmmyy",
+                DateTimeFormat = "ddMMyy",
                 DateTimeString = recordString.Substring(48, 6)
             });
 
@@ -57,7 +58,7 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             var userExtractEndDateResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
             {
-                DateTimeFormat = "ddmmyy",
+                DateTimeFormat = "ddMMyy",
                 DateTimeString = recordString.Substring(54, 6)
             });
 
@@ -68,7 +69,7 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             var mainFrameExtractDateResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
             {
-                DateTimeFormat = "yymmdd",
+                DateTimeFormat = "yyMMdd",
                 DateTimeString = record.MainFrameIdentity.Substring(14, 6)
             });
 
@@ -77,7 +78,13 @@ namespace NetworkRail.CifParser.RecordBuilders
             else
                 throw new ArgumentException("Failed to parse User Extract End Date in Header Record");
 
-            record.TimeOfExtract = _recordParserContainer.TimeParser.ParseTime(recordString.Substring(28, 4));
+            var timeOfExtractResult = _recordParserContainer.TimeParser.ParseTime(recordString.Substring(28, 4));
+
+            if (timeOfExtractResult.HasValue)
+                record.TimeOfExtract = timeOfExtractResult.Value;
+            else
+                throw new ArgumentNullException("Failed to parse Time of Extract in Header Record");
+            
             record.CurrentFileRef = recordString.Substring(32, 7);
             record.LastFileRef = recordString.Substring(39, 7);
             record.ExtractUpdateType = _recordParserContainer.UpdateTypeParser.ParseExtractUpdateType(recordString.Substring(46, 1));

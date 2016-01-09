@@ -1,4 +1,5 @@
-﻿using NetworkRail.CifParser.Records.Enums;
+﻿using System;
+using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.Parsers
 {
@@ -6,7 +7,18 @@ namespace NetworkRail.CifParser.Parsers
     {
         public ExtractUpdateType ParseExtractUpdateType(string extractUpdateType)
         {
-            throw new System.NotImplementedException();
+            if (string.IsNullOrWhiteSpace(extractUpdateType))
+                throw new ArgumentNullException(nameof(extractUpdateType));
+
+            switch (extractUpdateType)
+            {
+                case "F":
+                    return ExtractUpdateType.FullExtract;
+                case "U":
+                    return ExtractUpdateType.UpdateExtract;
+                default:
+                    throw new ArgumentException("Extract Type is not valid");
+            }
         }
     }
 }

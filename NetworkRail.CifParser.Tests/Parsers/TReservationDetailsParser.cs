@@ -6,19 +6,17 @@ using NUnit.Framework;
 namespace NetworkRail.CifParser.Tests.Parsers
 {
     [TestFixture]
-    public class TTrainReservationDetailsParser
+    public class TReservationDetailsParser
     {
         [TestFixture]
         class ParseTrainReservationDetails
         {
             [Test]
-            public void throws_when_string_is_null_or_empty()
+            public void throws_when_string_is_null()
             {
                 var parser = new ReservationsDetailsParser();
 
                 Assert.Throws<ArgumentNullException>(() => parser.ParseTrainResevationDetails(null));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseTrainResevationDetails(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseTrainResevationDetails(" \t"));
             }
 
             [Test]
@@ -40,11 +38,13 @@ namespace NetworkRail.CifParser.Tests.Parsers
             }
 
             [Test]
-            public void throws_when_argument_is_unknown()
+            public void returns_none_when_argument_is_unknown()
             {
                 var parser = new ReservationsDetailsParser();
 
-                Assert.Throws<ArgumentException>(() => parser.ParseTrainResevationDetails("Z"));
+                var result = parser.ParseTrainResevationDetails(" ");
+
+                Assert.AreEqual(ReservationDetails.None, result);
             }
         }
     }

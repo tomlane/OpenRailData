@@ -7,7 +7,7 @@ namespace NetworkRail.CifParser.Parsers
     {
         public DateIndicator ParseDateIndicator(string dateIndicator)
         {
-            if (string.IsNullOrWhiteSpace(dateIndicator))
+            if (dateIndicator == null)
                 throw new ArgumentNullException(nameof(dateIndicator));
 
             switch (dateIndicator)
@@ -19,7 +19,7 @@ namespace NetworkRail.CifParser.Parsers
                 case "P":
                     return DateIndicator.PreviousNight;
                 default:
-                    throw new ArgumentException($"Unknown Date Indicator: {dateIndicator}");
+                    return DateIndicator.None;
             }
         }
     }

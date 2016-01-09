@@ -4,6 +4,9 @@ namespace NetworkRail.CifParser.Records.Enums
 {
     public enum ReservationDetails
     {
+        [Description("None")]
+        None = 0,
+
         [Description("Compulsory")]
         Compulsory = 1,
 

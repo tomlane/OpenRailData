@@ -12,7 +12,7 @@ namespace NetworkRail.CifParser.Console
     {
         static void Main(string[] args)
         {
-            string path = @"C:\RailData\Cif\update-29122015";
+            string path = @"C:\RailData\Cif\weekly-25122015";
 
             var container = CifParserIocContainerBuilder.Build();
 
@@ -28,7 +28,7 @@ namespace NetworkRail.CifParser.Console
                 string record;
                 while ((record = sr.ReadLine()) != null)
                 {
-                    parsedCifRecords.Add(cifRecordParser.ParseRecord(record));
+                    cifRecordParser.ParseRecord(record);
                 }
             }
 

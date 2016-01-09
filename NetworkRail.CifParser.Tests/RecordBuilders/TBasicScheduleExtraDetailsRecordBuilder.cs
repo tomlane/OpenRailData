@@ -32,6 +32,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
 
                 var expectedResult = new BasicScheduleExtraDetailsRecord
                 {
+                    RecordIdentity = CifRecordType.BasicScheduleExtraDetails,
                     AtocCode = "XC",
                     AtsCode = "Y",
                     DataSource = string.Empty,
@@ -39,6 +40,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     UicCode = string.Empty
                 };
 
+                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
                 Assert.AreEqual(expectedResult.AtocCode, result.AtocCode);
                 Assert.AreEqual(expectedResult.AtsCode, result.AtsCode);
                 Assert.AreEqual(expectedResult.DataSource, result.DataSource);

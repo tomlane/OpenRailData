@@ -12,6 +12,7 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             BasicScheduleExtraDetailsRecord record = new BasicScheduleExtraDetailsRecord
             {
+                RecordIdentity = CifRecordType.BasicScheduleExtraDetails,
                 UicCode = recordString.Substring(6, 5).Trim(),
                 AtocCode = recordString.Substring(11, 2).Trim(),
                 AtsCode = recordString.Substring(13, 1).Trim(),

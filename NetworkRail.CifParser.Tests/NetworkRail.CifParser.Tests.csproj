@@ -74,12 +74,14 @@
     <Compile Include="Parsers\TDateTimeParser.cs" />
     <Compile Include="Parsers\TBankHolidayRunningParser.cs" />
     <Compile Include="Parsers\TLocationTypeParser.cs" />
+    <Compile Include="Parsers\TRunningDaysParser.cs" />
     <Compile Include="Parsers\TSeatingClassParser.cs" />
     <Compile Include="Parsers\TTrainSleeperDetailsParser.cs" />
-    <Compile Include="Parsers\TTrainReservationDetailsParser.cs" />
+    <Compile Include="Parsers\TReservationDetailsParser.cs" />
     <Compile Include="Parsers\TTimeParser.cs" />
     <Compile Include="Parsers\TStpIndicatorParser.cs" />
     <Compile Include="Parsers\TTransactionTypeParser.cs" />
+    <Compile Include="Parsers\TExtractUpdateTypeParser.cs" />
     <Compile Include="RecordBuilders\TAssociationRecordBuilder.cs" />
     <Compile Include="RecordBuilders\TBasicScheduleExtraDetailsRecordBuilder.cs" />
     <Compile Include="RecordBuilders\TBasicScheduleRecordBuilder.cs" />

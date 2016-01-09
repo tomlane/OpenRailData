@@ -17,8 +17,6 @@ namespace NetworkRail.CifParser.Tests.Parsers
                 var parser = new AssociationCategoryParser();
 
                 Assert.Throws<ArgumentNullException>(() => parser.ParseAssociationCategory(null));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseAssociationCategory(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseAssociationCategory(" \t"));
             }
 
             [Test]
@@ -37,11 +35,13 @@ namespace NetworkRail.CifParser.Tests.Parsers
             }
 
             [Test]
-            public void throws_when_argument_unknown()
+            public void returns_none_when_argument_is_unknown()
             {
                 var parser = new AssociationCategoryParser();
 
-                Assert.Throws<ArgumentException>(() => parser.ParseAssociationCategory("XYZ"));
+                var result = parser.ParseAssociationCategory("XYZ");
+                Assert.AreEqual(AssociationCategory.None, result);
+
             }
         }
     }

@@ -25,11 +25,12 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             BasicScheduleRecord record = new BasicScheduleRecord
             {
+                RecordIdentity = CifRecordType.BasicSchedule,
                 TransactionType = _recordParserContainer.TransactionTypeParser.ParseTransactionType(recordString.Substring(2, 1)),
                 TrainUid = recordString.Substring(3, 6),
                 DateRunsTo = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
                 {
-                    DateTimeFormat = "yymmdd",
+                    DateTimeFormat = "yyMMdd",
                     DateTimeString = recordString.Substring(15, 6)
                 }),
                 RunningDays = _recordParserContainer.RunningDaysParser.ParseRunningDays(recordString.Substring(21, 7)),
@@ -56,7 +57,7 @@ namespace NetworkRail.CifParser.RecordBuilders
 
             var dateRunsFromResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
             {
-                DateTimeFormat = "yymmdd",
+                DateTimeFormat = "yyMMdd",
                 DateTimeString = recordString.Substring(9, 6)
             });
 

@@ -1,11 +1,8 @@
-﻿using NetworkRail.CifParser.Records.Enums;
-
-namespace NetworkRail.CifParser.Records
+﻿namespace NetworkRail.CifParser.Records
 {
     public class TiplocInsertAmendRecord : ICifRecord
     {
         public CifRecordType RecordIdentity { get; set; }
-        public TiplocRecordType TiplocRecordType { get; set; }
         public string TiplocCode { get; set; } = string.Empty;
         public string CapitalsIdentification { get; set; } = string.Empty;
         public string Nalco { get; set; } = string.Empty;
