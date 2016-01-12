@@ -184,26 +184,6 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                 Assert.AreEqual(expectedResult.AssocType, result.AssocType);
                 Assert.AreEqual(expectedResult.StpIndicator, result.StpIndicator);
             }
-
-            [Test]
-            public void throws_when_date_from_fails_to_parse()
-            {
-                var associationRecordParserContainer = new Mock<IAssociationRecordParserContainer>();
-
-                var dateTimeParserMock = new Mock<IDateTimeParser>();
-
-                dateTimeParserMock.SetupSequence(m => m.ParseDateTime(It.IsAny<DateTimeParserRequest>()))
-                    .Returns(new DateTime(2016, 1, 1))
-                    .Returns(new DateTime?());
-
-                associationRecordParserContainer.SetupGet(m => m.DateTimeParser).Returns(dateTimeParserMock.Object);
-
-                var recordBuilder = new AssociationRecordBuilder(associationRecordParserContainer.Object);
-
-                string recordToParse = "AARW01400W005701512131602070000001   ORPNGTN  T                                C";
-
-                Assert.Inconclusive();
-            }
         }
     }
 }

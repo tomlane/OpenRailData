@@ -22,8 +22,9 @@ namespace NetworkRail.CifParser.RecordBuilders
             LocationRecord record = new LocationRecord
             {
                 RecordIdentity = CifRecordType.Location,
+                LocationType = _recordParserContainer.LocationTypeParser.ParseLocationType(recordString.Substring(0, 2)),
                 Tiploc = recordString.Substring(2, 7),
-                TiplocInstance = recordString.Substring(9, 1)
+                TiplocSuffix = recordString.Substring(9, 1)
             };
 
 
@@ -63,7 +64,7 @@ namespace NetworkRail.CifParser.RecordBuilders
             }
 
             record.Tiploc = record.Tiploc.Trim();
-            record.TiplocInstance = record.TiplocInstance.Trim();
+            record.TiplocSuffix = record.TiplocSuffix.Trim();
             
             record.LocationActivity = _recordParserContainer.LocationActivityParser.ParseActivity(record.LocationActivityString);
 

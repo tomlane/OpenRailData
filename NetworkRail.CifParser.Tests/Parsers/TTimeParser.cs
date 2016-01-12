@@ -38,6 +38,15 @@ namespace NetworkRail.CifParser.Tests.Parsers
             }
 
             [Test]
+            public void returns_expected_result_with_white_space()
+            {
+                var parser = new TimeParser();
+
+                var result = parser.ParseTime("1020 ");
+                Assert.AreEqual(new TimeSpan(0, 10, 20, 0), result);
+            }
+
+            [Test]
             public void returns_expected_result_for_whole_minutes()
             {
                 var parser = new TimeParser();
@@ -55,7 +64,7 @@ namespace NetworkRail.CifParser.Tests.Parsers
                 var parser = new TimeParser();
 
                 var result = parser.ParseTime("1028");
-                Assert.AreEqual(TimeSpan.FromHours(10).Add(TimeSpan.FromMinutes(28)), result);
+                Assert.AreEqual(new TimeSpan(0, 10, 28, 0), result);
             }
 
             [Test]

@@ -11,6 +11,8 @@ namespace NetworkRail.CifParser.Parsers
                 return null;
             }
 
+            timeString = timeString.Trim();
+
             TimeSpan result = new TimeSpan();
             int minutes = 0, hours = 0;
 
@@ -46,8 +48,6 @@ namespace NetworkRail.CifParser.Parsers
 
                     minutes = int.Parse(timeString.Substring(2, 2));
                     result = result.Add(TimeSpan.FromMinutes(minutes));
-
-
                 }
                 catch (FormatException)
                 {

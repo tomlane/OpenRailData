@@ -87,6 +87,7 @@
     <Compile Include="RecordBuilders\TBasicScheduleRecordBuilder.cs" />
     <Compile Include="RecordBuilders\TChangesEnRouteRecordBuilder.cs" />
     <Compile Include="RecordBuilders\THeaderRecordBuilder.cs" />
+    <Compile Include="RecordBuilders\TLocationRecordBuilder.cs" />
     <Compile Include="RecordBuilders\TTiplocDeleteRecordBuilder.cs" />
     <Compile Include="RecordBuilders\TTiplocInsertAmendRecordBuilder.cs" />
     <Compile Include="TCifRecordBuilderContainer.cs" />
