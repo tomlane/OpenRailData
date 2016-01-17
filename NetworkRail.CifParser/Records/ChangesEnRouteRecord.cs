@@ -15,7 +15,7 @@ namespace NetworkRail.CifParser.Records
         public string PortionId { get; set; } = string.Empty; 
         public string PowerType { get; set; } = string.Empty;
         public string TimingLoad { get; set; } = string.Empty;
-        public string Speed { get; set; } = string.Empty;
+        public int Speed { get; set; }
         public string OperatingCharacteristics { get; set; } = string.Empty;
         public SeatingClass SeatingClass { get; set; }
         public SleeperDetails Sleepers { get; set; }

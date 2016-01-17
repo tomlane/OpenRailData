@@ -68,7 +68,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     PortionId = string.Empty,
                     PowerType = "DMU",
                     TimingLoad = "S",
-                    Speed = "075",
+                    Speed = 075,
                     OperatingCharacteristics = string.Empty,
                     SeatingClass = SeatingClass.StandardClassOnly,
                     Sleepers = SleeperDetails.NotAvailable,

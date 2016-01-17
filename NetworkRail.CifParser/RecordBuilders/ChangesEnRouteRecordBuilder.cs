@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.Records;
 
@@ -21,7 +22,7 @@ namespace NetworkRail.CifParser.RecordBuilders
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
-            return new ChangesEnRouteRecord
+            var record = new ChangesEnRouteRecord
             {
                 RecordIdentity = CifRecordType.ChangesEnRoute,
                 Tiploc = recordString.Substring(2, 7).Trim(),
@@ -34,7 +35,6 @@ namespace NetworkRail.CifParser.RecordBuilders
                 PortionId = recordString.Substring(29, 1).Trim(),
                 PowerType = recordString.Substring(30, 3).Trim(),
                 TimingLoad = recordString.Substring(33, 4).Trim(),
-                Speed = recordString.Substring(37, 3).Trim(),
                 OperatingCharacteristics = recordString.Substring(40, 6).Trim(),
                 SeatingClass = _recordParserContainer.SeatingClassParser.ParseSeatingClass(recordString.Substring(46, 1)),
                 Sleepers = _recordParserContainer.SleeperDetailsParser.ParseTrainSleeperDetails(recordString.Substring(47, 1)),
@@ -45,6 +45,15 @@ namespace NetworkRail.CifParser.RecordBuilders
                 UicCode = recordString.Substring(58, 5).Trim(),
                 Rsid = recordString.Substring(63, 8).Trim()
             };
+
+            int speed;
+            bool speedParsed = int.TryParse(recordString.Substring(37, 3).Trim(), NumberStyles.Any,
+                new CultureInfo("en-gb"), out speed);
+
+            if (speedParsed)
+                record.Speed = speed;
+
+            return record;
         }
     }
 }
