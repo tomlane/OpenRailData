@@ -44,6 +44,9 @@ namespace NetworkRail.CifParser.Records
         
         public void MergeExtraScheduleDetails(BasicScheduleExtraDetailsRecord extraDetailsRecord)
         {
+            if (extraDetailsRecord == null)
+                throw new ArgumentNullException(nameof(extraDetailsRecord));
+
             UicCode = extraDetailsRecord.UicCode;
             AtocCode = extraDetailsRecord.AtocCode;
             AtsCode = extraDetailsRecord.AtsCode;

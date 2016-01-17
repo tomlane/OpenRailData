@@ -1,4 +1,5 @@
-﻿using NetworkRail.CifParser.Records;
+﻿using System;
+using NetworkRail.CifParser.Records;
 using NUnit.Framework;
 
 namespace NetworkRail.CifParser.Tests.Records
@@ -9,6 +10,14 @@ namespace NetworkRail.CifParser.Tests.Records
         [TestFixture]
         class MergeExtraScheduleDetails
         {
+            [Test]
+            public void throws_when_argument_is_null()
+            {
+                var basicScheduleRecord = new BasicScheduleRecord();
+
+                Assert.Throws<ArgumentNullException>(() => basicScheduleRecord.MergeExtraScheduleDetails(null));
+            }
+
             [Test]
             public void returns_expected_result()
             {
