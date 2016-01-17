@@ -90,6 +90,7 @@
     <Compile Include="RecordBuilders\TLocationRecordBuilder.cs" />
     <Compile Include="RecordBuilders\TTiplocDeleteRecordBuilder.cs" />
     <Compile Include="RecordBuilders\TTiplocInsertAmendRecordBuilder.cs" />
+    <Compile Include="Records\TBasicScheduleRecord.cs" />
     <Compile Include="TCifRecordBuilderContainer.cs" />
     <Compile Include="TCifRecordParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
