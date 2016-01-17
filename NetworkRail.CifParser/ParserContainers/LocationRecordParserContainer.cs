@@ -5,9 +5,9 @@ namespace NetworkRail.CifParser.ParserContainers
 {
     public class LocationRecordParserContainer : ILocationRecordParserContainer
     {
-        public ILocationTypeParser LocationTypeParser { get; set; }
-        public ITimeParser TimeParser { get; set; }
-        public ILocationActivityParser LocationActivityParser { get; set; }
+        public ILocationTypeParser LocationTypeParser { get; }
+        public ITimeParser TimeParser { get; }
+        public ILocationActivityParser LocationActivityParser { get; }
 
         public LocationRecordParserContainer(ILocationTypeParser locationTypeParser, ITimeParser timeParser, ILocationActivityParser locationActivityParser)
         {

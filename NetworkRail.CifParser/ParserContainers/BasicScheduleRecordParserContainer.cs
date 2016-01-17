@@ -5,15 +5,15 @@ namespace NetworkRail.CifParser.ParserContainers
 {
     public class BasicScheduleRecordParserContainer : IBasicScheduleRecordParserContainer
     {
-        public ITransactionTypeParser TransactionTypeParser { get; set; }
-        public IRunningDaysParser RunningDaysParser { get; set; }
-        public IBankHolidayRunningParser BankHolidayRunningParser { get; set; }
-        public IOperatingCharacteristicsParser OperatingCharacteristicsParser { get; set; }
-        public ISeatingClassParser SeatingClassParser { get; set; }
-        public ISleeperDetailsParser SleeperDetailsParser { get; set; }
-        public IReservationDetailsParser ReservationDetailsParser { get; set; }
-        public IStpIndicatorParser StpIndicatorParser { get; set; }
-        public IDateTimeParser DateTimeParser { get; set; }
+        public ITransactionTypeParser TransactionTypeParser { get; }
+        public IRunningDaysParser RunningDaysParser { get; }
+        public IBankHolidayRunningParser BankHolidayRunningParser { get; }
+        public IOperatingCharacteristicsParser OperatingCharacteristicsParser { get; }
+        public ISeatingClassParser SeatingClassParser { get; }
+        public ISleeperDetailsParser SleeperDetailsParser { get; }
+        public IReservationDetailsParser ReservationDetailsParser { get; }
+        public IStpIndicatorParser StpIndicatorParser { get; }
+        public IDateTimeParser DateTimeParser { get; }
 
         public BasicScheduleRecordParserContainer(ITransactionTypeParser transactionTypeParser, IRunningDaysParser runningDaysParser, IBankHolidayRunningParser bankHolidayRunningParser, IOperatingCharacteristicsParser operatingCharacteristicsParser, ISeatingClassParser seatingClassParser, ISleeperDetailsParser sleeperDetailsParser, IReservationDetailsParser reservationDetailsParser, IStpIndicatorParser stpIndicatorParser, IDateTimeParser dateTimeParser)
         {
