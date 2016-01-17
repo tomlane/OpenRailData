@@ -5,15 +5,15 @@ namespace NetworkRail.CifParser.Records.Enums
     public enum StpIndicator
     {
         [Description("Permanent Schedule")]
-        Permanent = 1,
+        P = 1,
         
         [Description("Overlay Schedule")]
-        Overlay = 2,
+        O = 2,
 
         [Description("New Schedule")]
-        New = 3,
+        N = 3,
 
         [Description("Schedule Cancellation")]
-        Cancellation = 4
+        C = 4
     }
 }

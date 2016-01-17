@@ -13,13 +13,13 @@ namespace NetworkRail.CifParser.Parsers
             switch (stpIndicator)
             {
                 case "C":
-                    return StpIndicator.Cancellation;
+                    return StpIndicator.C;
                 case "N":
-                    return StpIndicator.New;
+                    return StpIndicator.N;
                 case "O":
-                    return StpIndicator.Overlay;
+                    return StpIndicator.O;
                 case "P":
-                    return StpIndicator.Permanent;
+                    return StpIndicator.P;
                 default:
                     throw new ArgumentException($"Unknown STP Indicator {stpIndicator}");
             }

@@ -72,7 +72,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     AssocLocationSuffix = string.Empty,
                     DiagramType = "T",
                     AssocType = AssociationType.None,
-                    StpIndicator = StpIndicator.Cancellation
+                    StpIndicator = StpIndicator.C
                 };
 
                 Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
@@ -119,7 +119,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     AssocLocationSuffix = string.Empty,
                     DiagramType = "T",
                     AssocType = AssociationType.None,
-                    StpIndicator = StpIndicator.Cancellation
+                    StpIndicator = StpIndicator.C
                 };
 
                 Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
@@ -165,7 +165,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     AssocLocationSuffix = string.Empty,
                     DiagramType = "T",
                     AssocType = AssociationType.None,
-                    StpIndicator = StpIndicator.Cancellation
+                    StpIndicator = StpIndicator.C
                 };
 
                 Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);

@@ -73,7 +73,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     PortionId = string.Empty,
                     PowerType = "E",
                     TimingLoad = "410",
-                    Speed = "125",
+                    Speed = 125,
                     OperatingCharacteristicsString = "EP    ",
                     OperatingCharacteristics = OperatingCharacteristics.E | OperatingCharacteristics.P,
                     SeatingClass = SeatingClass.FirstAndStandardClass,
@@ -82,7 +82,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     ConnectionIndicator = string.Empty,
                     CateringCode = "CM",
                     ServiceBranding = string.Empty,
-                    StpIndicator = StpIndicator.Permanent
+                    StpIndicator = StpIndicator.P
                 };
 
                 Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);

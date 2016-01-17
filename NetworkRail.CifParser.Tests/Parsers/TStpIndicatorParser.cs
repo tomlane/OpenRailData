@@ -27,16 +27,16 @@ namespace NetworkRail.CifParser.Tests.Parsers
                 var parser = new StpIndicatorParser();
 
                 var result = parser.ParseStpIndicator("C");
-                Assert.AreEqual(StpIndicator.Cancellation, result);
+                Assert.AreEqual(StpIndicator.C, result);
 
                 result = parser.ParseStpIndicator("N");
-                Assert.AreEqual(StpIndicator.New, result);
+                Assert.AreEqual(StpIndicator.N, result);
 
                 result = parser.ParseStpIndicator("O");
-                Assert.AreEqual(StpIndicator.Overlay, result);
+                Assert.AreEqual(StpIndicator.O, result);
 
                 result = parser.ParseStpIndicator("P");
-                Assert.AreEqual(StpIndicator.Permanent, result);
+                Assert.AreEqual(StpIndicator.P, result);
             }
 
             [Test]

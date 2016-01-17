@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.Parsers;
 using NetworkRail.CifParser.Records;
@@ -44,7 +45,6 @@ namespace NetworkRail.CifParser.RecordBuilders
                 PortionId = recordString.Substring(49, 1).Trim(),
                 PowerType = recordString.Substring(50, 3).Trim(),
                 TimingLoad = recordString.Substring(53, 4).Trim(),
-                Speed = recordString.Substring(57, 3).Trim(),
                 OperatingCharacteristicsString = recordString.Substring(60, 6),
                 SeatingClass = _recordParserContainer.SeatingClassParser.ParseSeatingClass(recordString.Substring(66, 1)),
                 Sleepers = _recordParserContainer.SleeperDetailsParser.ParseTrainSleeperDetails(recordString.Substring(67, 1)),
@@ -54,6 +54,13 @@ namespace NetworkRail.CifParser.RecordBuilders
                 ServiceBranding = recordString.Substring(74, 4).Trim(),
                 StpIndicator = _recordParserContainer.StpIndicatorParser.ParseStpIndicator(recordString.Substring(79, 1))
             };
+
+            int speed;
+            bool speedParsed = int.TryParse(recordString.Substring(57, 3).Trim(), NumberStyles.Any,
+                new CultureInfo("en-gb"), out speed);
+
+            if (speedParsed)
+                record.Speed = speed;
 
             var dateRunsFromResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
             {
