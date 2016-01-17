@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
-using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.Console
 {
@@ -12,30 +10,25 @@ namespace NetworkRail.CifParser.Console
     {
         static void Main(string[] args)
         {
-            string path = @"C:\RailData\Cif Schedule Extracts\update-160116";
-
-            var container = CifParserIocContainerBuilder.Build();
-
-            var cifRecordParser = container.Resolve<ICifRecordParser>();
-            var parsedCifRecords = new List<ICifRecord>();
+            string path = @"C:\RailData\Cif\update-30122015";
 
             TimeSpan start = Process.GetCurrentProcess().TotalProcessorTime;
 
-            using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            using (BufferedStream bs = new BufferedStream(fs))
-            using (StreamReader sr = new StreamReader(bs))
-            {
-                string record;
-                while ((record = sr.ReadLine()) != null)
-                {
-                    parsedCifRecords.Add(cifRecordParser.ParseRecord(record));
-                }
-            }
+            var container = CifParserIocContainerBuilder.Build();
 
+            var updateProcessor = container.Resolve<IScheduleUpdateProcessor>();
+
+            CifScheduleRecordCollection entites;
+
+            using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                entites = updateProcessor.ParseScheduleUpdate(fs);
+            }
+            
             TimeSpan end = Process.GetCurrentProcess().TotalProcessorTime;
 
-            System.Console.WriteLine("Records Parsed: {0}", parsedCifRecords.Count);
             System.Console.WriteLine("Measured Time: {0} ms.", (end - start).TotalMilliseconds);
+            System.Console.WriteLine("Schedule date: {0}", entites.HeaderRecord.DateOfExtract);
 
             System.Console.ReadLine();
         }

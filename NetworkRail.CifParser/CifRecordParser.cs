@@ -49,7 +49,7 @@ namespace NetworkRail.CifParser
                 case "LT":
                     return _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
                 case "ZZ":
-                    return null;
+                    return new EndOfFileRecord();
                 default:
                     throw new NotImplementedException($"The following record type has not been implemented: {recordType}");
             }
