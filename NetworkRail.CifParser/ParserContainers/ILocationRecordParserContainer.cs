@@ -4,8 +4,8 @@ namespace NetworkRail.CifParser.ParserContainers
 {
     public interface ILocationRecordParserContainer
     {
-        ILocationTypeParser LocationTypeParser { get; set; } 
-        ITimeParser TimeParser { get; set; }
-        ILocationActivityParser LocationActivityParser { get; set; }
+        ILocationTypeParser LocationTypeParser { get; } 
+        ITimeParser TimeParser { get; }
+        ILocationActivityParser LocationActivityParser { get; }
     }
 }

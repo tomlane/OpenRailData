@@ -5,9 +5,9 @@ namespace NetworkRail.CifParser.ParserContainers
 {
     public class ChangesEnRouteRecordParserContainer : IChangesEnRouteRecordParserContainer
     {
-        public ISeatingClassParser SeatingClassParser { get; set; }
-        public ISleeperDetailsParser SleeperDetailsParser { get; set; }
-        public IReservationDetailsParser ReservationDetailsParser { get; set; }
+        public ISeatingClassParser SeatingClassParser { get; }
+        public ISleeperDetailsParser SleeperDetailsParser { get; }
+        public IReservationDetailsParser ReservationDetailsParser { get; }
 
         public ChangesEnRouteRecordParserContainer(ISeatingClassParser seatingClassParser, ISleeperDetailsParser sleeperDetailsParser, IReservationDetailsParser reservationDetailsParser)
         {

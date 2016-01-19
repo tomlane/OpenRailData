@@ -41,6 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CifRecordParser.cs" />
+    <Compile Include="CifScheduleUpdateProcessor.cs" />
+    <Compile Include="IScheduleUpdateProcessor.cs" />
+    <Compile Include="ScheduleRecord.cs" />
+    <Compile Include="CifScheduleRecordCollection.cs" />
     <Compile Include="ParserContainers\AssociationRecordParserContainer.cs" />
     <Compile Include="ParserContainers\BasicScheduleRecordParserContainer.cs" />
     <Compile Include="ParserContainers\ChangesEnRouteRecordParserContainer.cs" />
@@ -99,6 +103,7 @@
     <Compile Include="Records\BasicScheduleRecord.cs" />
     <Compile Include="Records\ChangesEnRouteRecord.cs" />
     <Compile Include="Records\CifRecordType.cs" />
+    <Compile Include="Records\EndOfFileRecord.cs" />
     <Compile Include="Records\Enums\AssociationCategory.cs" />
     <Compile Include="Records\Enums\AssociationType.cs" />
     <Compile Include="Records\Enums\BankHolidayRunning.cs" />

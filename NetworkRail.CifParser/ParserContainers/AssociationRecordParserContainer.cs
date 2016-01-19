@@ -5,13 +5,13 @@ namespace NetworkRail.CifParser.ParserContainers
 {
     public class AssociationRecordParserContainer : IAssociationRecordParserContainer
     {
-        public ITransactionTypeParser TransactionTypeParser { get; set; }
-        public IDateTimeParser DateTimeParser { get; set; }
-        public IRunningDaysParser RunningDaysParser { get; set; }
-        public IAssociationCategoryParser AssociationCategoryParser { get; set; }
-        public IDateIndicatorParser DateIndicatorParser { get; set; }
-        public IAssociationTypeParser AssociationTypeParser { get; set; }
-        public IStpIndicatorParser StpIndicatorParser { get; set; }
+        public ITransactionTypeParser TransactionTypeParser { get; }
+        public IDateTimeParser DateTimeParser { get; }
+        public IRunningDaysParser RunningDaysParser { get; }
+        public IAssociationCategoryParser AssociationCategoryParser { get; }
+        public IDateIndicatorParser DateIndicatorParser { get; }
+        public IAssociationTypeParser AssociationTypeParser { get; }
+        public IStpIndicatorParser StpIndicatorParser { get; }
 
         public AssociationRecordParserContainer(ITransactionTypeParser transactionTypeParser, IDateTimeParser dateTimeParser, IRunningDaysParser runningDaysParser, IAssociationCategoryParser associationCategoryParser, IDateIndicatorParser dateIndicatorParser, IAssociationTypeParser associationTypeParser, IStpIndicatorParser stpIndicatorParser)
         {

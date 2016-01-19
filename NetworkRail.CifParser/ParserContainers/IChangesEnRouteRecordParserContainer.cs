@@ -4,8 +4,8 @@ namespace NetworkRail.CifParser.ParserContainers
 {
     public interface IChangesEnRouteRecordParserContainer
     {
-        ISeatingClassParser SeatingClassParser { get; set; }
-        ISleeperDetailsParser SleeperDetailsParser { get; set; }
-        IReservationDetailsParser ReservationDetailsParser { get; set; }
+        ISeatingClassParser SeatingClassParser { get; }
+        ISleeperDetailsParser SleeperDetailsParser { get; }
+        IReservationDetailsParser ReservationDetailsParser { get; }
     }
 }

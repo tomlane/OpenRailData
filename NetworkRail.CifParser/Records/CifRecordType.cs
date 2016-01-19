@@ -10,6 +10,7 @@
         BasicSchedule = 6,
         BasicScheduleExtraDetails = 7,
         Location = 8,
-        ChangesEnRoute = 9
+        ChangesEnRoute = 9,
+        EndOfFile = 10
     }
 }

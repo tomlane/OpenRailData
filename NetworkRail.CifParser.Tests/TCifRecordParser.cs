@@ -3,6 +3,7 @@ using Microsoft.Practices.Unity;
 using Moq;
 using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.Records;
 using NUnit.Framework;
 
 namespace NetworkRail.CifParser.Tests
@@ -56,6 +57,21 @@ namespace NetworkRail.CifParser.Tests
                     "XYRW01400W005701512131602070000001   ORPNGTN  T                                C";
 
                 Assert.Throws<NotImplementedException>(() => parser.ParseRecord(notImplementedRecord));
+            }
+
+            [Test]
+            public void returns_end_of_file_record_for_zz_record()
+            {
+                var cifRecordBuilderContainerMock = new Mock<ICifRecordBuilderContainer>();
+
+                var parser = new CifRecordParser(cifRecordBuilderContainerMock.Object);
+
+                string endOfFileRecord =
+                    "ZZ                                                                              ";
+
+                var result = parser.ParseRecord(endOfFileRecord);
+
+                Assert.AreEqual(CifRecordType.EndOfFile, result.RecordIdentity);
             }
         }
     }

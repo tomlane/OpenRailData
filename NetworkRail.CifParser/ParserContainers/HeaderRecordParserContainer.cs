@@ -5,9 +5,9 @@ namespace NetworkRail.CifParser.ParserContainers
 {
     public class HeaderRecordParserContainer : IHeaderRecordParserContainer
     {
-        public IDateTimeParser DateTimeParser { get; set; }
-        public IExtractUpdateTypeParser UpdateTypeParser { get; set; }
-        public ITimeParser TimeParser { get; set; }
+        public IDateTimeParser DateTimeParser { get; }
+        public IExtractUpdateTypeParser UpdateTypeParser { get; }
+        public ITimeParser TimeParser { get; }
 
         public HeaderRecordParserContainer(IDateTimeParser dateTimeParser, IExtractUpdateTypeParser updateTypeParser, ITimeParser timeParser)
         {
