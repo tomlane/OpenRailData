@@ -22,6 +22,8 @@ namespace NetworkRail.CifParser.RecordBuilders
             ICifRecordBuilder<LocationRecord> locationRecordBuilder, 
             ICifRecordBuilder<TiplocDeleteRecord> tiplocDeleteRecordBuilder, 
             ICifRecordBuilder<TiplocInsertAmendRecord> tiplocInsertAmendRecordBuilder)
+
+            // inject an ienumerable of recordbuilders, create a dictionary with record type as key e.g. 'TD' (Tiploc Delete)
         {
             if (associationRecordBuilder == null)
                 throw new ArgumentNullException(nameof(associationRecordBuilder));

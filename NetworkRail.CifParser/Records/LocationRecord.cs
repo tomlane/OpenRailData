@@ -30,5 +30,22 @@ namespace NetworkRail.CifParser.Records
         public bool ActualCall => Arrival != null || Departure != null;
 
         public string Location => $"{Tiploc}{TiplocSuffix}";
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as LocationRecord);
+        }
+
+        public bool Equals(LocationRecord record)
+        {
+            if (record == null)
+                return false;
+
+            if (ReferenceEquals(record, this))
+                return true;
+
+            return Equals(record.RecordIdentity, RecordIdentity);
+            // && each property
+        }
     }
 }

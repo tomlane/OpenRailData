@@ -10,9 +10,9 @@ namespace NetworkRail.CifParser.Console
     {
         static void Main(string[] args)
         {
-            string path = @"C:\RailData\Cif\update-30122015";
+            var path = @"C:\RailData\Cif Schedule Extracts\weekly-150116";
 
-            TimeSpan start = Process.GetCurrentProcess().TotalProcessorTime;
+            var start = Process.GetCurrentProcess().TotalProcessorTime;
 
             var container = CifParserIocContainerBuilder.Build();
 
@@ -25,7 +25,7 @@ namespace NetworkRail.CifParser.Console
                 entites = updateProcessor.ParseScheduleUpdate(fs);
             }
             
-            TimeSpan end = Process.GetCurrentProcess().TotalProcessorTime;
+            var end = Process.GetCurrentProcess().TotalProcessorTime;
 
             System.Console.WriteLine("Measured Time: {0} ms.", (end - start).TotalMilliseconds);
             System.Console.WriteLine("Schedule date: {0}", entites.HeaderRecord.DateOfExtract);
