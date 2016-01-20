@@ -1,9 +1,9 @@
 ﻿using System;
 using NetworkRail.CifParser.Records;
 
-namespace NetworkRail.CifParser.RecordBuilders
+namespace NetworkRail.CifParser.RecordParsers
 {
-    public class TiplocDeleteRecordBuilder : ICifRecordBuilder<TiplocDeleteRecord>
+    public class TiplocDeleteRecordParser : ICifRecordParser<TiplocDeleteRecord>
     {
         public TiplocDeleteRecord BuildRecord(string recordString)
         {

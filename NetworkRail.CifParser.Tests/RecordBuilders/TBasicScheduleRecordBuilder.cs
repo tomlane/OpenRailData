@@ -2,7 +2,7 @@
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
-using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
@@ -25,7 +25,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordBuilder(null));
+            Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordParser(null));
         }
 
         [TestFixture]
@@ -34,7 +34,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var builder = new BasicScheduleRecordBuilder(_parserContainer);
+                var builder = new BasicScheduleRecordParser(_parserContainer);
 
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
@@ -44,7 +44,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_with_permanent_record()
             {
-                var builder = new BasicScheduleRecordBuilder(_parserContainer);
+                var builder = new BasicScheduleRecordParser(_parserContainer);
 
                 string record = "BSRY802011512141601011111100 PXX1A521780121702001 E  410 125EP    B R CM       P";
 

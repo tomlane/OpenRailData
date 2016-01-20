@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.ParserContainers;
-using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 
@@ -19,14 +19,14 @@ namespace NetworkRail.CifParser.IoC
 
             container.RegisterType<ICifRecordBuilderContainer, CifRecordBuilderContainer>();
 
-            container.RegisterType<ICifRecordBuilder<AssociationRecord>, AssociationRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<BasicScheduleExtraDetailsRecord>, BasicScheduleExtraDetailsRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<BasicScheduleRecord>, BasicScheduleRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<ChangesEnRouteRecord>, ChangesEnRouteRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<HeaderRecord>, HeaderRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<LocationRecord>, LocationRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<TiplocDeleteRecord>, TiplocDeleteRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<TiplocInsertAmendRecord>, TiplocInsertAmendRecordBuilder>();
+            container.RegisterType<ICifRecordParser<AssociationRecord>, AssociationRecordParser>();
+            container.RegisterType<ICifRecordParser<BasicScheduleExtraDetailsRecord>, BasicScheduleExtraDetailsRecordParser>();
+            container.RegisterType<ICifRecordParser<BasicScheduleRecord>, BasicScheduleRecordParser>();
+            container.RegisterType<ICifRecordParser<ChangesEnRouteRecord>, ChangesEnRouteRecordParser>();
+            container.RegisterType<ICifRecordParser<HeaderRecord>, HeaderRecordParser>();
+            container.RegisterType<ICifRecordParser<LocationRecord>, LocationRecordParser>();
+            container.RegisterType<ICifRecordParser<TiplocDeleteRecord>, TiplocDeleteRecordParser>();
+            container.RegisterType<ICifRecordParser<TiplocInsertAmendRecord>, TiplocInsertAmendRecordParser>();
 
             container.RegisterType<IAssociationRecordParserContainer, AssociationRecordParserContainer>();
             container.RegisterType<IBasicScheduleRecordParserContainer, BasicScheduleRecordParserContainer>();

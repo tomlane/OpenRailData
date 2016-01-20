@@ -4,13 +4,13 @@ using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 
-namespace NetworkRail.CifParser.RecordBuilders
+namespace NetworkRail.CifParser.RecordParsers
 {
-    public class HeaderRecordBuilder : ICifRecordBuilder<HeaderRecord>
+    public class HeaderRecordParser : ICifRecordParser<HeaderRecord>
     {
         private readonly IHeaderRecordParserContainer _recordParserContainer;
 
-        public HeaderRecordBuilder(IHeaderRecordParserContainer recordParserContainer)
+        public HeaderRecordParser(IHeaderRecordParserContainer recordParserContainer)
         {
             if (recordParserContainer == null)
                 throw new ArgumentNullException(nameof(recordParserContainer));

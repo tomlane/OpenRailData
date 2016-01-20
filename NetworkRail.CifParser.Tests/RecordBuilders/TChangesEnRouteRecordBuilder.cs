@@ -2,7 +2,7 @@
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
-using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
@@ -25,7 +25,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            Assert.Throws<ArgumentNullException>(() => new ChangesEnRouteRecordBuilder(null));
+            Assert.Throws<ArgumentNullException>(() => new ChangesEnRouteRecordParser(null));
         }
 
         [TestFixture]
@@ -34,7 +34,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_string_is_invalid()
             {
-                var builder = new ChangesEnRouteRecordBuilder(_parserContainer);
+                var builder = new ChangesEnRouteRecordParser(_parserContainer);
 
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
@@ -44,7 +44,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result()
             {
-                var builder = new ChangesEnRouteRecordBuilder(_parserContainer);
+                var builder = new ChangesEnRouteRecordParser(_parserContainer);
 
                 string record = "CRHULL    XX1J22    111808920 DMUS   075      S S                               ";
 

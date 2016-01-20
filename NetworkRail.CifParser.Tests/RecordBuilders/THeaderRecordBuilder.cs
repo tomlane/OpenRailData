@@ -2,7 +2,7 @@
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
-using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
@@ -25,7 +25,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            Assert.Throws<ArgumentNullException>(() => new HeaderRecordBuilder(null));
+            Assert.Throws<ArgumentNullException>(() => new HeaderRecordParser(null));
         }
 
         [TestFixture]
@@ -34,7 +34,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var builder = new HeaderRecordBuilder(_parserContainer);
+                var builder = new HeaderRecordParser(_parserContainer);
 
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
@@ -44,7 +44,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_mainframe_identity_is_invalid()
             {
-                var builder = new HeaderRecordBuilder(_parserContainer);
+                var builder = new HeaderRecordParser(_parserContainer);
 
                 string record = "HD                    3012152116DFROC1EDFROC1DUA301215291216                    ";
 
@@ -54,7 +54,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result()
             {
-                var builder = new HeaderRecordBuilder(_parserContainer);
+                var builder = new HeaderRecordParser(_parserContainer);
 
                 string record = "HDTPS.UDFROC1.PD1512303012152116DFROC1EDFROC1DUA301215291216                    ";
 

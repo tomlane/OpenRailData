@@ -1,9 +1,9 @@
 ﻿using System;
 using NetworkRail.CifParser.Records;
 
-namespace NetworkRail.CifParser.RecordBuilders
+namespace NetworkRail.CifParser.RecordParsers
 {
-    public class BasicScheduleExtraDetailsRecordBuilder : ICifRecordBuilder<BasicScheduleExtraDetailsRecord>
+    public class BasicScheduleExtraDetailsRecordParser : ICifRecordParser<BasicScheduleExtraDetailsRecord>
     {
         public BasicScheduleExtraDetailsRecord BuildRecord(string recordString)
         {

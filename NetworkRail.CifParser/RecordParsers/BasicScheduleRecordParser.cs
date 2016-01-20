@@ -5,13 +5,13 @@ using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 
-namespace NetworkRail.CifParser.RecordBuilders
+namespace NetworkRail.CifParser.RecordParsers
 {
-    public class BasicScheduleRecordBuilder : ICifRecordBuilder<BasicScheduleRecord>
+    public class BasicScheduleRecordParser : ICifRecordParser<BasicScheduleRecord>
     {
         private readonly IBasicScheduleRecordParserContainer _recordParserContainer;
 
-        public BasicScheduleRecordBuilder(IBasicScheduleRecordParserContainer recordParserContainer)
+        public BasicScheduleRecordParser(IBasicScheduleRecordParserContainer recordParserContainer)
         {
             if (recordParserContainer == null)
                 throw new ArgumentNullException(nameof(recordParserContainer));

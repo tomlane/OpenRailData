@@ -1,5 +1,5 @@
 ﻿using System;
-using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NUnit.Framework;
 
@@ -14,7 +14,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var builder = new TiplocInsertAmendRecordBuilder();
+                var builder = new TiplocInsertAmendRecordParser();
 
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
@@ -24,7 +24,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_with_insert_record()
             {
-                var builder = new TiplocInsertAmendRecordBuilder();
+                var builder = new TiplocInsertAmendRecordParser();
 
                 string record = "TIPURLSGB00537901JPURLEY DOWN SIDING GBRF   87807   0                           ";
 
@@ -53,7 +53,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_with_amend_record()
             {
-                var builder = new TiplocInsertAmendRecordBuilder();
+                var builder = new TiplocInsertAmendRecordParser();
 
                 string record = "TAEBOUCS 08544815BEASTBOURNE C.S.           88253   0XEB                0111193 ";
 

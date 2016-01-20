@@ -1,5 +1,5 @@
 ﻿using System;
-using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser
@@ -29,25 +29,25 @@ namespace NetworkRail.CifParser
             switch (recordType)
             {
                 case "HD":
-                    return _cifRecordBuilderContainer.HeaderRecordBuilder.BuildRecord(record);
+                    return _cifRecordBuilderContainer.HeaderRecordParser.BuildRecord(record);
                 case "TI":
-                    return _cifRecordBuilderContainer.TiplocInsertAmendRecordBuilder.BuildRecord(record);
+                    return _cifRecordBuilderContainer.TiplocInsertAmendRecordParser.BuildRecord(record);
                 case "TA":
-                    return _cifRecordBuilderContainer.TiplocInsertAmendRecordBuilder.BuildRecord(record);
+                    return _cifRecordBuilderContainer.TiplocInsertAmendRecordParser.BuildRecord(record);
                 case "AA":
-                    return _cifRecordBuilderContainer.AssociationRecordBuilder.BuildRecord(record);
+                    return _cifRecordBuilderContainer.AssociationRecordParser.BuildRecord(record);
                 case "BS":
-                    return _cifRecordBuilderContainer.BasicScheduleRecordBuilder.BuildRecord(record);
+                    return _cifRecordBuilderContainer.BasicScheduleRecordParser.BuildRecord(record);
                 case "BX":
-                    return _cifRecordBuilderContainer.BasicScheduleExtraDetailsRecordBuilder.BuildRecord(record);
+                    return _cifRecordBuilderContainer.BasicScheduleExtraDetailsRecordParser.BuildRecord(record);
                 case "LO":
-                    return _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
+                    return _cifRecordBuilderContainer.LocationRecordParser.BuildRecord(record);
                 case "LI":
-                    return _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
+                    return _cifRecordBuilderContainer.LocationRecordParser.BuildRecord(record);
                 case "CR":
-                    return _cifRecordBuilderContainer.ChangesEnRouteRecordBuilder.BuildRecord(record);
+                    return _cifRecordBuilderContainer.ChangesEnRouteRecordParser.BuildRecord(record);
                 case "LT":
-                    return _cifRecordBuilderContainer.LocationRecordBuilder.BuildRecord(record);
+                    return _cifRecordBuilderContainer.LocationRecordParser.BuildRecord(record);
                 case "ZZ":
                     return new EndOfFileRecord();
                 default:

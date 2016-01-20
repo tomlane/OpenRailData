@@ -3,13 +3,13 @@ using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 
-namespace NetworkRail.CifParser.RecordBuilders
+namespace NetworkRail.CifParser.RecordParsers
 {
-    public class LocationRecordBuilder : ICifRecordBuilder<LocationRecord>
+    public class LocationRecordParser : ICifRecordParser<LocationRecord>
     {
         private readonly ILocationRecordParserContainer _recordParserContainer;
 
-        public LocationRecordBuilder(ILocationRecordParserContainer recordParserContainer)
+        public LocationRecordParser(ILocationRecordParserContainer recordParserContainer)
         {
             if (recordParserContainer == null)
                 throw new ArgumentNullException(nameof(recordParserContainer));

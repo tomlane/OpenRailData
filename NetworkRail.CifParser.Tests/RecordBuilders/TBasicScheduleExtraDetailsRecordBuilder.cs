@@ -1,5 +1,5 @@
 ﻿using System;
-using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NUnit.Framework;
 
@@ -14,7 +14,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_is_null()
             {
-                var parser = new BasicScheduleExtraDetailsRecordBuilder();
+                var parser = new BasicScheduleExtraDetailsRecordParser();
 
                 Assert.Throws<ArgumentNullException>(() => parser.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => parser.BuildRecord(string.Empty));
@@ -24,7 +24,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result()
             {
-                var parser = new BasicScheduleExtraDetailsRecordBuilder();
+                var parser = new BasicScheduleExtraDetailsRecordParser();
 
                 string record = "BX         XCY                                                                  ";
 

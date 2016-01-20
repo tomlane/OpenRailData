@@ -2,9 +2,9 @@
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Utils;
 
-namespace NetworkRail.CifParser.RecordBuilders
+namespace NetworkRail.CifParser.RecordParsers
 {
-    public class TiplocInsertAmendRecordBuilder : ICifRecordBuilder<TiplocInsertAmendRecord>
+    public class TiplocInsertAmendRecordParser : ICifRecordParser<TiplocInsertAmendRecord>
     {
         public TiplocInsertAmendRecord BuildRecord(string recordString)
         {

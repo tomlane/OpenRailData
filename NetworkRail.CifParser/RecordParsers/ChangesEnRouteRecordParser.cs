@@ -3,13 +3,13 @@ using System.Globalization;
 using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.Records;
 
-namespace NetworkRail.CifParser.RecordBuilders
+namespace NetworkRail.CifParser.RecordParsers
 {
-    public class ChangesEnRouteRecordBuilder : ICifRecordBuilder<ChangesEnRouteRecord>
+    public class ChangesEnRouteRecordParser : ICifRecordParser<ChangesEnRouteRecord>
     {
         private readonly IChangesEnRouteRecordParserContainer _recordParserContainer;
 
-        public ChangesEnRouteRecordBuilder(IChangesEnRouteRecordParserContainer recordParserContainer)
+        public ChangesEnRouteRecordParser(IChangesEnRouteRecordParserContainer recordParserContainer)
         {
             if (recordParserContainer == null)
                 throw new ArgumentNullException(nameof(recordParserContainer));

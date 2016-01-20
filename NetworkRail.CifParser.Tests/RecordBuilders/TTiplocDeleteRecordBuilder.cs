@@ -1,5 +1,5 @@
 ﻿using System;
-using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NUnit.Framework;
 
@@ -14,7 +14,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var builder = new TiplocDeleteRecordBuilder();
+                var builder = new TiplocDeleteRecordParser();
 
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
@@ -24,7 +24,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result()
             {
-                var builder = new TiplocDeleteRecordBuilder();
+                var builder = new TiplocDeleteRecordParser();
 
                 string record = "TD1234567                                                                       ";
 

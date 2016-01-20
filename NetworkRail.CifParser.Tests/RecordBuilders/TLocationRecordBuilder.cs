@@ -2,7 +2,7 @@
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
-using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
@@ -15,7 +15,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            Assert.Throws<ArgumentNullException>(() => new LocationRecordBuilder(null));
+            Assert.Throws<ArgumentNullException>(() => new LocationRecordParser(null));
         }
 
         [TestFixture]
@@ -34,7 +34,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_from_origin_location_record()
             {
-                var recordBuilder = new LocationRecordBuilder(_parserContainer);
+                var recordBuilder = new LocationRecordParser(_parserContainer);
 
                 string record = "LOSDON    1242 12422         TB                                                 ";
 
@@ -60,7 +60,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_from_intermediate_location_arrival_and_departure()
             {
-                var recordBuilder = new LocationRecordBuilder(_parserContainer);
+                var recordBuilder = new LocationRecordParser(_parserContainer);
 
                 string record = "LIMELKSHM 1307H1308      13081308         T                                     ";
 
@@ -86,7 +86,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_from_intermediate_location_pass()
             {
-                var recordBuilder = new LocationRecordBuilder(_parserContainer);
+                var recordBuilder = new LocationRecordParser(_parserContainer);
 
                 string record = "LIBRDFDJN           1314 00000000                                               ";
 
@@ -109,7 +109,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_from_terminating_location()
             {
-                var recordBuilder = new LocationRecordBuilder(_parserContainer);
+                var recordBuilder = new LocationRecordParser(_parserContainer);
 
                 string record = "LTWSTBRYW 1323 13253     TF                                                     ";
 

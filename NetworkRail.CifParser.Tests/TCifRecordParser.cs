@@ -2,7 +2,7 @@
 using Microsoft.Practices.Unity;
 using Moq;
 using NetworkRail.CifParser.IoC;
-using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NUnit.Framework;
 

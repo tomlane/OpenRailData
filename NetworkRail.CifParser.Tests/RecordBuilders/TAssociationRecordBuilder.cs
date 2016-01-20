@@ -2,7 +2,7 @@
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
-using NetworkRail.CifParser.RecordBuilders;
+using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
@@ -25,7 +25,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            Assert.Throws<ArgumentNullException>(() => new AssociationRecordBuilder(null));
+            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParser(null));
         }
 
         [TestFixture]
@@ -34,7 +34,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var recordBuilder = new AssociationRecordBuilder(_parserContainer);
+                var recordBuilder = new AssociationRecordParser(_parserContainer);
 
                 Assert.Throws<ArgumentNullException>(() => recordBuilder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => recordBuilder.BuildRecord(string.Empty));
@@ -44,7 +44,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_with_revise_record()
             {
-                var recordBuilder = new AssociationRecordBuilder(_parserContainer);
+                var recordBuilder = new AssociationRecordParser(_parserContainer);
 
                 string recordToParse = "AARW01400W005701512131602070000001   ORPNGTN  T                                C";
 
@@ -75,7 +75,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_with_new_record()
             {
-                var recordBuilder = new AssociationRecordBuilder(_parserContainer);
+                var recordBuilder = new AssociationRecordParser(_parserContainer);
 
                 string record = "AANL82468L839221512191601020000010   CLCHSTR  T                                C";
 
@@ -106,7 +106,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_with_delete_record()
             {
-                var recordBuilder = new AssociationRecordBuilder(_parserContainer);
+                var recordBuilder = new AssociationRecordParser(_parserContainer);
 
                 string record = "AADL82468L83922151226                CLCHSTR  T                                C";
 

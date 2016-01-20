@@ -3,13 +3,13 @@ using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 
-namespace NetworkRail.CifParser.RecordBuilders
+namespace NetworkRail.CifParser.RecordParsers
 {
-    public class AssociationRecordBuilder : ICifRecordBuilder<AssociationRecord>
+    public class AssociationRecordParser : ICifRecordParser<AssociationRecord>
     {
         private readonly IAssociationRecordParserContainer _recordParserContainer;
 
-        public AssociationRecordBuilder(IAssociationRecordParserContainer recordParserContainer)
+        public AssociationRecordParser(IAssociationRecordParserContainer recordParserContainer)
         {
             if (recordParserContainer == null)
                 throw new ArgumentNullException(nameof(recordParserContainer));
