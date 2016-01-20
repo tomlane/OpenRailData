@@ -3,10 +3,10 @@ using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NUnit.Framework;
 
-namespace NetworkRail.CifParser.Tests.RecordBuilders
+namespace NetworkRail.CifParser.Tests.RecordParsers
 {
     [TestFixture]
-    public class TBasicScheduleExtraDetailsRecordBuilder
+    public class TBasicScheduleExtraDetailsRecordParser
     {
         [TestFixture]
         class BuildRecord

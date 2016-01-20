@@ -7,10 +7,10 @@ using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
 
-namespace NetworkRail.CifParser.Tests.RecordBuilders
+namespace NetworkRail.CifParser.Tests.RecordParsers
 {
     [TestFixture]
-    public class TLocationRecordBuilder
+    public class TLocationRecordParser
     {
         [Test]
         public void throws_when_dependencies_are_null()

@@ -2,7 +2,7 @@
 using NetworkRail.CifParser.RecordPropertyParsers;
 using NUnit.Framework;
 
-namespace NetworkRail.CifParser.Tests.Parsers
+namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
 {
     [TestFixture]
     public class TTimeParser

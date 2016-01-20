@@ -3,7 +3,7 @@ using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
 
-namespace NetworkRail.CifParser.Tests.Parsers
+namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
 {
     [TestFixture]
     public class TOperatingCharacteristicsParser

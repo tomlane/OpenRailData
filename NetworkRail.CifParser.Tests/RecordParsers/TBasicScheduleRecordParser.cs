@@ -7,10 +7,10 @@ using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
 
-namespace NetworkRail.CifParser.Tests.RecordBuilders
+namespace NetworkRail.CifParser.Tests.RecordParsers
 {
     [TestFixture]
-    public class TBasicScheduleRecordBuilder
+    public class TBasicScheduleRecordParser
     {
         private static IUnityContainer _container;
         private static IBasicScheduleRecordParserContainer _parserContainer;
