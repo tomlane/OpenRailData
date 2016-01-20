@@ -53,6 +53,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                 var expectedResult = new BasicScheduleRecord
                 {
                     RecordIdentity = CifRecordType.BasicSchedule,
+                    BankHolidayRunning = BankHolidayRunning.RunsOnBankHoliday,
                     TransactionType = TransactionType.Revise,
                     TrainUid = "Y80201",
                     DateRunsFrom = new DateTime(2015, 12, 14),
@@ -76,7 +77,10 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     ConnectionIndicator = string.Empty,
                     CateringCode = "CM",
                     ServiceBranding = string.Empty,
-                    StpIndicator = StpIndicator.P
+                    StpIndicator = StpIndicator.P,
+                    UniqueId = "Y80201151214P",
+                    ServiceTypeFlags = ServiceTypeFlags.Passenger | ServiceTypeFlags.Train
+                    
                 };
 
                 Assert.AreEqual(expectedResult, result);

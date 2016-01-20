@@ -99,7 +99,8 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     Tiploc = "BRDFDJN",
                     Pass = new TimeSpan(0, 13, 14, 0),
                     OrderTime = new TimeSpan(0, 13, 14, 0),
-                    //TODO: LocationActivityString = "            "
+                    LocationActivityString = "            ",
+                    
                 };
 
                 Assert.AreEqual(expectedResult, result);
