@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
-using Moq;
 using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordBuilders;
@@ -14,20 +13,19 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
     public class TBasicScheduleRecordBuilder
     {
         private static IUnityContainer _container;
+        private static IBasicScheduleRecordParserContainer _parserContainer;
 
         [OneTimeSetUp]
-        public void ContainerSetup()
+        public void InitialSetup()
         {
             _container = CifParserIocContainerBuilder.Build();
+            _parserContainer = _container.Resolve<IBasicScheduleRecordParserContainer>();
         }
 
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            var basicScheduleRecordParserContainer = new Mock<IBasicScheduleRecordParserContainer>();
-
             Assert.Throws<ArgumentNullException>(() => new BasicScheduleRecordBuilder(null));
-            
         }
 
         [TestFixture]
@@ -36,9 +34,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var basicScheduleRecordParserContainer = new Mock<IBasicScheduleRecordParserContainer>();
-
-                var builder = new BasicScheduleRecordBuilder(basicScheduleRecordParserContainer.Object);
+                var builder = new BasicScheduleRecordBuilder(_parserContainer);
 
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
@@ -48,9 +44,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_with_permanent_record()
             {
-                var basicScheduleRecordParserContainer = _container.Resolve<IBasicScheduleRecordParserContainer>();
-                
-                var builder = new BasicScheduleRecordBuilder(basicScheduleRecordParserContainer);
+                var builder = new BasicScheduleRecordBuilder(_parserContainer);
 
                 string record = "BSRY802011512141601011111100 PXX1A521780121702001 E  410 125EP    B R CM       P";
 
@@ -59,6 +53,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                 var expectedResult = new BasicScheduleRecord
                 {
                     RecordIdentity = CifRecordType.BasicSchedule,
+                    BankHolidayRunning = BankHolidayRunning.RunsOnBankHoliday,
                     TransactionType = TransactionType.Revise,
                     TrainUid = "Y80201",
                     DateRunsFrom = new DateTime(2015, 12, 14),
@@ -82,34 +77,13 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     ConnectionIndicator = string.Empty,
                     CateringCode = "CM",
                     ServiceBranding = string.Empty,
-                    StpIndicator = StpIndicator.P
+                    StpIndicator = StpIndicator.P,
+                    UniqueId = "Y80201151214P",
+                    ServiceTypeFlags = ServiceTypeFlags.Passenger | ServiceTypeFlags.Train
+                    
                 };
 
-                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
-                Assert.AreEqual(expectedResult.TransactionType, result.TransactionType);
-                Assert.AreEqual(expectedResult.TrainUid, result.TrainUid);
-                Assert.AreEqual(expectedResult.DateRunsFrom, result.DateRunsFrom);
-                Assert.AreEqual(expectedResult.DateRunsTo, result.DateRunsTo);
-                Assert.AreEqual(expectedResult.RunningDays, result.RunningDays);
-                Assert.AreEqual(expectedResult.TrainStatus, result.TrainStatus);
-                Assert.AreEqual(expectedResult.TrainCategory, result.TrainCategory);
-                Assert.AreEqual(expectedResult.TrainIdentity, result.TrainIdentity);
-                Assert.AreEqual(expectedResult.HeadCode, result.HeadCode);
-                Assert.AreEqual(expectedResult.CourseIndicator, result.CourseIndicator);
-                Assert.AreEqual(expectedResult.TrainServiceCode, result.TrainServiceCode);
-                Assert.AreEqual(expectedResult.PortionId, result.PortionId);
-                Assert.AreEqual(expectedResult.PowerType, result.PowerType);
-                Assert.AreEqual(expectedResult.TimingLoad, result.TimingLoad);
-                Assert.AreEqual(expectedResult.Speed, result.Speed);
-                Assert.AreEqual(expectedResult.OperatingCharacteristicsString, result.OperatingCharacteristicsString);
-                Assert.AreEqual(expectedResult.OperatingCharacteristics, result.OperatingCharacteristics);
-                Assert.AreEqual(expectedResult.SeatingClass, result.SeatingClass);
-                Assert.AreEqual(expectedResult.Sleepers, result.Sleepers);
-                Assert.AreEqual(expectedResult.Reservations, result.Reservations);
-                Assert.AreEqual(expectedResult.ConnectionIndicator, result.ConnectionIndicator);
-                Assert.AreEqual(expectedResult.CateringCode, result.CateringCode);
-                Assert.AreEqual(expectedResult.ServiceBranding, result.ServiceBranding);
-                Assert.AreEqual(expectedResult.StpIndicator, result.StpIndicator);
+                Assert.AreEqual(expectedResult, result);
             }
         }
     }

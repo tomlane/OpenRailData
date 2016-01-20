@@ -6,15 +6,13 @@ namespace NetworkRail.CifParser.Parsers
     {
         public TimeSpan? ParseTime(string timeString)
         {
-            if (string.IsNullOrWhiteSpace(timeString))
-            {
+            if (string.IsNullOrWhiteSpace(timeString) || timeString == "0000")
                 return null;
-            }
-
+            
             timeString = timeString.Trim();
 
             TimeSpan result = new TimeSpan();
-            int minutes = 0, hours = 0;
+            int minutes = 0;
 
             if (timeString[timeString.Length - 1] == 'H')
             {
@@ -43,7 +41,7 @@ namespace NetworkRail.CifParser.Parsers
             {
                 try
                 {
-                    hours = int.Parse(timeString.Substring(0, 2));
+                    var hours = int.Parse(timeString.Substring(0, 2));
                     result = result.Add(TimeSpan.FromHours(hours));
 
                     minutes = int.Parse(timeString.Substring(2, 2));

@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
-using Moq;
 using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordBuilders;
@@ -14,18 +13,18 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
     public class THeaderRecordBuilder
     {
         private static IUnityContainer _container;
+        private static IHeaderRecordParserContainer _parserContainer;
 
         [OneTimeSetUp]
         public void ContainerSetup()
         {
             _container = CifParserIocContainerBuilder.Build();
+            _parserContainer = _container.Resolve<IHeaderRecordParserContainer>();
         }
 
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            var headerRecordParserContainerMock = new Mock<IHeaderRecordParserContainer>();
-
             Assert.Throws<ArgumentNullException>(() => new HeaderRecordBuilder(null));
         }
 
@@ -35,9 +34,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var headerRecordParserContainerMock = new Mock<IHeaderRecordParserContainer>();
-
-                var builder = new HeaderRecordBuilder(headerRecordParserContainerMock.Object);
+                var builder = new HeaderRecordBuilder(_parserContainer);
 
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
@@ -47,9 +44,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_mainframe_identity_is_invalid()
             {
-                var headerRecordParserContainerMock = new Mock<IHeaderRecordParserContainer>();
-
-                var builder = new HeaderRecordBuilder(headerRecordParserContainerMock.Object);
+                var builder = new HeaderRecordBuilder(_parserContainer);
 
                 string record = "HD                    3012152116DFROC1EDFROC1DUA301215291216                    ";
 
@@ -59,9 +54,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result()
             {
-                var headerRecordParserContainerMock = _container.Resolve<IHeaderRecordParserContainer>();
-
-                var builder = new HeaderRecordBuilder(headerRecordParserContainerMock);
+                var builder = new HeaderRecordBuilder(_parserContainer);
 
                 string record = "HDTPS.UDFROC1.PD1512303012152116DFROC1EDFROC1DUA301215291216                    ";
 
@@ -83,18 +76,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     MainFrameExtractDate = new DateTime(2015, 12, 30)
                 };
 
-                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
-                Assert.AreEqual(expectedResult.MainFrameIdentity, result.MainFrameIdentity);
-                Assert.AreEqual(expectedResult.DateOfExtract, result.DateOfExtract);
-                Assert.AreEqual(expectedResult.TimeOfExtract, result.TimeOfExtract);
-                Assert.AreEqual(expectedResult.CurrentFileRef, result.CurrentFileRef);
-                Assert.AreEqual(expectedResult.LastFileRef, result.LastFileRef);
-                Assert.AreEqual(expectedResult.ExtractUpdateType, result.ExtractUpdateType);
-                Assert.AreEqual(expectedResult.CifSoftwareVersion, result.CifSoftwareVersion);
-                Assert.AreEqual(expectedResult.UserExtractStartDate, result.UserExtractStartDate);
-                Assert.AreEqual(expectedResult.UserExtractEndDate, result.UserExtractEndDate);
-                Assert.AreEqual(expectedResult.MainFrameUser, result.MainFrameUser);
-                Assert.AreEqual(expectedResult.MainFrameExtractDate, result.MainFrameExtractDate);
+                Assert.AreEqual(expectedResult, result);
             }
         }
     }

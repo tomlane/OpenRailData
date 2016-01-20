@@ -26,26 +26,69 @@ namespace NetworkRail.CifParser.Records
 
         public TimeSpan? OrderTime { get; set; }
         
-        public bool PublicCall => LocationActivity.HasFlag(LocationActivity.N) && (PublicArrival != null || PublicDeparture != null);
+        public bool PublicCall => !LocationActivity.HasFlag(LocationActivity.N) && (PublicArrival != null || PublicDeparture != null);
         public bool ActualCall => Arrival != null || Departure != null;
 
         public string Location => $"{Tiploc}{TiplocSuffix}";
 
-        public override bool Equals(object obj)
+        protected bool Equals(LocationRecord other)
         {
-            return Equals(obj as LocationRecord);
+            return Arrival.Equals(other.Arrival) && 
+                Departure.Equals(other.Departure) && 
+                EngineeringAllowance.Equals(other.EngineeringAllowance) && 
+                string.Equals(Line, other.Line) && 
+                LocationActivity == other.LocationActivity && 
+                string.Equals(LocationActivityString, other.LocationActivityString) && 
+                LocationType == other.LocationType && 
+                OrderTime.Equals(other.OrderTime) && 
+                Pass.Equals(other.Pass) && 
+                string.Equals(Path, other.Path) && 
+                PathingAllowance.Equals(other.PathingAllowance) && 
+                PerformanceAllowance.Equals(other.PerformanceAllowance) && 
+                string.Equals(Platform, other.Platform) && 
+                PublicArrival.Equals(other.PublicArrival) && 
+                PublicDeparture.Equals(other.PublicDeparture) && 
+                RecordIdentity == other.RecordIdentity && 
+                string.Equals(Tiploc, other.Tiploc) && 
+                string.Equals(TiplocSuffix, other.TiplocSuffix);
         }
 
-        public bool Equals(LocationRecord record)
+        public override bool Equals(object obj)
         {
-            if (record == null)
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            if (obj.GetType() != GetType())
                 return false;
 
-            if (ReferenceEquals(record, this))
-                return true;
+            return Equals((LocationRecord) obj);
+        }
 
-            return Equals(record.RecordIdentity, RecordIdentity);
-            // && each property
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = Arrival.GetHashCode();
+                hashCode = (hashCode*397) ^ Departure.GetHashCode();
+                hashCode = (hashCode*397) ^ EngineeringAllowance.GetHashCode();
+                hashCode = (hashCode*397) ^ (Line != null ? Line.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (int) LocationActivity;
+                hashCode = (hashCode*397) ^ (LocationActivityString != null ? LocationActivityString.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (int) LocationType;
+                hashCode = (hashCode*397) ^ OrderTime.GetHashCode();
+                hashCode = (hashCode*397) ^ Pass.GetHashCode();
+                hashCode = (hashCode*397) ^ (Path != null ? Path.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ PathingAllowance.GetHashCode();
+                hashCode = (hashCode*397) ^ PerformanceAllowance.GetHashCode();
+                hashCode = (hashCode*397) ^ (Platform != null ? Platform.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ PublicArrival.GetHashCode();
+                hashCode = (hashCode*397) ^ PublicDeparture.GetHashCode();
+                hashCode = (hashCode*397) ^ (int) RecordIdentity;
+                hashCode = (hashCode*397) ^ (Tiploc != null ? Tiploc.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (TiplocSuffix != null ? TiplocSuffix.GetHashCode() : 0);
+                return hashCode;
+            }
         }
     }
 }

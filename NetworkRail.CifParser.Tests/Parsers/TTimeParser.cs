@@ -26,6 +26,14 @@ namespace NetworkRail.CifParser.Tests.Parsers
             }
 
             [Test]
+            public void returns_null_when_argument_is_four_zeros()
+            {
+                var parser = new TimeParser();
+
+                Assert.IsNull(parser.ParseTime("0000"));
+            }
+
+            [Test]
             public void returns_expected_result_for_half_time()
             {
                 var parser = new TimeParser();

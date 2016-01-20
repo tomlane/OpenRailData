@@ -1,9 +1,7 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
-using Moq;
 using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
-using NetworkRail.CifParser.Parsers;
 using NetworkRail.CifParser.RecordBuilders;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
@@ -15,18 +13,18 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
     public class TAssociationRecordBuilder
     {
         private static IUnityContainer _container;
+        private static IAssociationRecordParserContainer _parserContainer;
 
         [OneTimeSetUp]
         public void ContainerSetup()
         {
             _container = CifParserIocContainerBuilder.Build();
+            _parserContainer = _container.Resolve<IAssociationRecordParserContainer>();
         }
 
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            var associationRecordParserContainer = new Mock<IAssociationRecordParserContainer>();
-
             Assert.Throws<ArgumentNullException>(() => new AssociationRecordBuilder(null));
         }
 
@@ -36,9 +34,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var associationRecordParserContainer = new Mock<IAssociationRecordParserContainer>();
-
-                var recordBuilder = new AssociationRecordBuilder(associationRecordParserContainer.Object);
+                var recordBuilder = new AssociationRecordBuilder(_parserContainer);
 
                 Assert.Throws<ArgumentNullException>(() => recordBuilder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => recordBuilder.BuildRecord(string.Empty));
@@ -48,9 +44,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result_with_revise_record()
             {
-                var associationRecordParserContainer = _container.Resolve<IAssociationRecordParserContainer>();
-
-                var recordBuilder = new AssociationRecordBuilder(associationRecordParserContainer);
+                var recordBuilder = new AssociationRecordBuilder(_parserContainer);
 
                 string recordToParse = "AARW01400W005701512131602070000001   ORPNGTN  T                                C";
 
@@ -75,29 +69,13 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     StpIndicator = StpIndicator.C
                 };
 
-                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
-                Assert.AreEqual(expectedResult.TransactionType, result.TransactionType);
-                Assert.AreEqual(expectedResult.MainTrainUid, result.MainTrainUid);
-                Assert.AreEqual(expectedResult.AssocTrainUid, result.AssocTrainUid);
-                Assert.AreEqual(expectedResult.DateFrom, result.DateFrom);
-                Assert.AreEqual(expectedResult.DateTo, result.DateTo);
-                Assert.AreEqual(expectedResult.AssocDays, result.AssocDays);
-                Assert.AreEqual(expectedResult.Category, result.Category);
-                Assert.AreEqual(expectedResult.DateIndicator, result.DateIndicator);
-                Assert.AreEqual(expectedResult.Location, result.Location);
-                Assert.AreEqual(expectedResult.BaseLocationSuffix, result.BaseLocationSuffix);
-                Assert.AreEqual(expectedResult.AssocLocationSuffix, result.AssocLocationSuffix);
-                Assert.AreEqual(expectedResult.DiagramType, result.DiagramType);
-                Assert.AreEqual(expectedResult.AssocType, result.AssocType);
-                Assert.AreEqual(expectedResult.StpIndicator, result.StpIndicator);
+                Assert.AreEqual(expectedResult, result);
             }
 
             [Test]
             public void returns_expected_result_with_new_record()
             {
-                var associationRecordParserContainer = _container.Resolve<IAssociationRecordParserContainer>();
-
-                var recordBuilder = new AssociationRecordBuilder(associationRecordParserContainer);
+                var recordBuilder = new AssociationRecordBuilder(_parserContainer);
 
                 string record = "AANL82468L839221512191601020000010   CLCHSTR  T                                C";
 
@@ -122,29 +100,13 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     StpIndicator = StpIndicator.C
                 };
 
-                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
-                Assert.AreEqual(expectedResult.TransactionType, result.TransactionType);
-                Assert.AreEqual(expectedResult.MainTrainUid, result.MainTrainUid);
-                Assert.AreEqual(expectedResult.AssocTrainUid, result.AssocTrainUid);
-                Assert.AreEqual(expectedResult.DateFrom, result.DateFrom);
-                Assert.AreEqual(expectedResult.DateTo, result.DateTo);
-                Assert.AreEqual(expectedResult.AssocDays, result.AssocDays);
-                Assert.AreEqual(expectedResult.Category, result.Category);
-                Assert.AreEqual(expectedResult.DateIndicator, result.DateIndicator);
-                Assert.AreEqual(expectedResult.Location, result.Location);
-                Assert.AreEqual(expectedResult.BaseLocationSuffix, result.BaseLocationSuffix);
-                Assert.AreEqual(expectedResult.AssocLocationSuffix, result.AssocLocationSuffix);
-                Assert.AreEqual(expectedResult.DiagramType, result.DiagramType);
-                Assert.AreEqual(expectedResult.AssocType, result.AssocType);
-                Assert.AreEqual(expectedResult.StpIndicator, result.StpIndicator);
+                Assert.AreEqual(expectedResult, result);
             }
 
             [Test]
             public void returns_expected_result_with_delete_record()
             {
-                var associationRecordParserContainer = _container.Resolve<IAssociationRecordParserContainer>();
-
-                var recordBuilder = new AssociationRecordBuilder(associationRecordParserContainer);
+                var recordBuilder = new AssociationRecordBuilder(_parserContainer);
 
                 string record = "AADL82468L83922151226                CLCHSTR  T                                C";
 
@@ -168,21 +130,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     StpIndicator = StpIndicator.C
                 };
 
-                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
-                Assert.AreEqual(expectedResult.TransactionType, result.TransactionType);
-                Assert.AreEqual(expectedResult.MainTrainUid, result.MainTrainUid);
-                Assert.AreEqual(expectedResult.AssocTrainUid, result.AssocTrainUid);
-                Assert.AreEqual(expectedResult.DateFrom, result.DateFrom);
-                Assert.AreEqual(expectedResult.DateTo, result.DateTo);
-                Assert.AreEqual(expectedResult.AssocDays, result.AssocDays);
-                Assert.AreEqual(expectedResult.Category, result.Category);
-                Assert.AreEqual(expectedResult.DateIndicator, result.DateIndicator);
-                Assert.AreEqual(expectedResult.Location, result.Location);
-                Assert.AreEqual(expectedResult.BaseLocationSuffix, result.BaseLocationSuffix);
-                Assert.AreEqual(expectedResult.AssocLocationSuffix, result.AssocLocationSuffix);
-                Assert.AreEqual(expectedResult.DiagramType, result.DiagramType);
-                Assert.AreEqual(expectedResult.AssocType, result.AssocType);
-                Assert.AreEqual(expectedResult.StpIndicator, result.StpIndicator);
+                Assert.AreEqual(expectedResult, result);
             }
         }
     }
