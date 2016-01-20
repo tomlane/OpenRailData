@@ -40,12 +40,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     UicCode = string.Empty
                 };
 
-                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
-                Assert.AreEqual(expectedResult.AtocCode, result.AtocCode);
-                Assert.AreEqual(expectedResult.AtsCode, result.AtsCode);
-                Assert.AreEqual(expectedResult.DataSource, result.DataSource);
-                Assert.AreEqual(expectedResult.Rsid, result.Rsid);
-                Assert.AreEqual(expectedResult.UicCode, result.UicCode);
+                Assert.AreEqual(expectedResult, result);
             }
         }
     }

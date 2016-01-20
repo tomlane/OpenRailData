@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
-using Moq;
 using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordBuilders;
@@ -14,18 +13,18 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
     public class TChangesEnRouteRecordBuilder
     {
         private static IUnityContainer _container;
+        private static IChangesEnRouteRecordParserContainer _parserContainer;
 
         [OneTimeSetUp]
         public void ContainerSetup()
         {
             _container = CifParserIocContainerBuilder.Build();
+            _parserContainer = _container.Resolve<IChangesEnRouteRecordParserContainer>();
         }
 
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            var changesEnRouteRecordParserContainer = new Mock<IChangesEnRouteRecordParserContainer>();
-
             Assert.Throws<ArgumentNullException>(() => new ChangesEnRouteRecordBuilder(null));
         }
 
@@ -35,9 +34,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void throws_when_argument_string_is_invalid()
             {
-                var changesEnRouteRecordParserContainer = new Mock<IChangesEnRouteRecordParserContainer>();
-
-                var builder = new ChangesEnRouteRecordBuilder(changesEnRouteRecordParserContainer.Object);
+                var builder = new ChangesEnRouteRecordBuilder(_parserContainer);
 
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
                 Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
@@ -47,9 +44,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
             [Test]
             public void returns_expected_result()
             {
-                var changesEnRouteRecordParserContainer = _container.Resolve<IChangesEnRouteRecordParserContainer>();
-
-                var builder = new ChangesEnRouteRecordBuilder(changesEnRouteRecordParserContainer);
+                var builder = new ChangesEnRouteRecordBuilder(_parserContainer);
 
                 string record = "CRHULL    XX1J22    111808920 DMUS   075      S S                               ";
 
@@ -80,27 +75,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     Rsid = string.Empty
                 };
 
-                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
-                Assert.AreEqual(expectedResult.Tiploc, result.Tiploc);
-                Assert.AreEqual(expectedResult.TiplocSuffix, result.TiplocSuffix);
-                Assert.AreEqual(expectedResult.Category, result.Category);
-                Assert.AreEqual(expectedResult.TrainIdentity, result.TrainIdentity);
-                Assert.AreEqual(expectedResult.HeadCode, result.HeadCode);
-                Assert.AreEqual(expectedResult.CourseIndicator, result.CourseIndicator);
-                Assert.AreEqual(expectedResult.ServiceCode, result.ServiceCode);
-                Assert.AreEqual(expectedResult.PortionId, result.PortionId);
-                Assert.AreEqual(expectedResult.PowerType, result.PowerType);
-                Assert.AreEqual(expectedResult.TimingLoad, result.TimingLoad);
-                Assert.AreEqual(expectedResult.Speed, result.Speed);
-                Assert.AreEqual(expectedResult.OperatingCharacteristics, result.OperatingCharacteristics);
-                Assert.AreEqual(expectedResult.SeatingClass, result.SeatingClass);
-                Assert.AreEqual(expectedResult.Sleepers, result.Sleepers);
-                Assert.AreEqual(expectedResult.Reservations, result.Reservations);
-                Assert.AreEqual(expectedResult.ConnectionIndicator, result.ConnectionIndicator);
-                Assert.AreEqual(expectedResult.CateringCode, result.CateringCode);
-                Assert.AreEqual(expectedResult.ServiceBranding, result.ServiceBranding);
-                Assert.AreEqual(expectedResult.UicCode, result.UicCode);
-                Assert.AreEqual(expectedResult.Rsid, result.Rsid);
+                Assert.AreEqual(expectedResult, result);
             }
         }
     }

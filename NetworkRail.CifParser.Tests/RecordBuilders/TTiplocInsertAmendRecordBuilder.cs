@@ -45,18 +45,8 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     OldTiploc = string.Empty
                 };
 
-                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
-                Assert.AreEqual(expectedResult.TiplocCode, result.TiplocCode);
-                Assert.AreEqual(expectedResult.CapitalsIdentification, result.CapitalsIdentification);
-                Assert.AreEqual(expectedResult.Nalco, result.Nalco);
-                Assert.AreEqual(expectedResult.Nlc, result.Nlc);
-                Assert.AreEqual(expectedResult.TpsDescription, result.TpsDescription);
-                Assert.AreEqual(expectedResult.Stanox, result.Stanox);
-                Assert.AreEqual(expectedResult.PoMcbCode, result.PoMcbCode);
-                Assert.AreEqual(expectedResult.CrsCode, result.CrsCode);
-                Assert.AreEqual(expectedResult.CapriDescription, result.CapriDescription);
-                Assert.AreEqual(expectedResult.OldTiploc, result.OldTiploc);
-
+                Assert.AreEqual(expectedResult, result);
+                
                 Assert.IsFalse(result.IsAmend);
             }
 
@@ -84,17 +74,7 @@ namespace NetworkRail.CifParser.Tests.RecordBuilders
                     OldTiploc = "EBOUCS"
                 };
 
-                Assert.AreEqual(expectedResult.RecordIdentity, result.RecordIdentity);
-                Assert.AreEqual(expectedResult.TiplocCode, result.TiplocCode);
-                Assert.AreEqual(expectedResult.CapitalsIdentification, result.CapitalsIdentification);
-                Assert.AreEqual(expectedResult.Nalco, result.Nalco);
-                Assert.AreEqual(expectedResult.Nlc, result.Nlc);
-                Assert.AreEqual(expectedResult.TpsDescription, result.TpsDescription);
-                Assert.AreEqual(expectedResult.Stanox, result.Stanox);
-                Assert.AreEqual(expectedResult.PoMcbCode, result.PoMcbCode);
-                Assert.AreEqual(expectedResult.CrsCode, result.CrsCode);
-                Assert.AreEqual(expectedResult.CapriDescription, result.CapriDescription);
-                Assert.AreEqual(expectedResult.OldTiploc, result.OldTiploc);
+                Assert.AreEqual(expectedResult, result);
 
                 Assert.IsTrue(result.IsAmend);
             }
