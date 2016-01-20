@@ -43,6 +43,7 @@
     <Compile Include="CifRecordParser.cs" />
     <Compile Include="CifScheduleUpdateProcessor.cs" />
     <Compile Include="IScheduleUpdateProcessor.cs" />
+    <Compile Include="RecordBuilders\ICifRecordBuilder.cs" />
     <Compile Include="ScheduleRecord.cs" />
     <Compile Include="CifScheduleRecordCollection.cs" />
     <Compile Include="ParserContainers\AssociationRecordParserContainer.cs" />
