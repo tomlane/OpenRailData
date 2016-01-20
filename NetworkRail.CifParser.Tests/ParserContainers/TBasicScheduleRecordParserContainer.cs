@@ -1,7 +1,7 @@
 ﻿using System;
 using Moq;
 using NetworkRail.CifParser.ParserContainers;
-using NetworkRail.CifParser.Parsers;
+using NetworkRail.CifParser.RecordPropertyParsers;
 using NUnit.Framework;
 
 namespace NetworkRail.CifParser.Tests.ParserContainers

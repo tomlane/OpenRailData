@@ -1,5 +1,5 @@
 ﻿using System;
-using NetworkRail.CifParser.Parsers;
+using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
 
