@@ -34,21 +34,21 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var recordBuilder = new AssociationRecordParser(_parserContainer);
+                var recordParser = new AssociationRecordParser(_parserContainer);
 
-                Assert.Throws<ArgumentNullException>(() => recordBuilder.BuildRecord(null));
-                Assert.Throws<ArgumentNullException>(() => recordBuilder.BuildRecord(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => recordBuilder.BuildRecord(" \t"));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(" \t"));
             }
 
             [Test]
             public void returns_expected_result_with_revise_record()
             {
-                var recordBuilder = new AssociationRecordParser(_parserContainer);
+                var recordParser = new AssociationRecordParser(_parserContainer);
 
                 string recordToParse = "AARW01400W005701512131602070000001   ORPNGTN  T                                C";
 
-                var result = recordBuilder.BuildRecord(recordToParse);
+                var result = recordParser.ParseRecord(recordToParse);
 
                 var expectedResult = new AssociationRecord
                 {
@@ -75,11 +75,11 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void returns_expected_result_with_new_record()
             {
-                var recordBuilder = new AssociationRecordParser(_parserContainer);
+                var recordParser = new AssociationRecordParser(_parserContainer);
 
                 string record = "AANL82468L839221512191601020000010   CLCHSTR  T                                C";
 
-                var result = recordBuilder.BuildRecord(record);
+                var result = recordParser.ParseRecord(record);
 
                 var expectedResult = new AssociationRecord
                 {
@@ -106,11 +106,11 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void returns_expected_result_with_delete_record()
             {
-                var recordBuilder = new AssociationRecordParser(_parserContainer);
+                var recordParser = new AssociationRecordParser(_parserContainer);
 
                 string record = "AADL82468L83922151226                CLCHSTR  T                                C";
 
-                var result = recordBuilder.BuildRecord(record);
+                var result = recordParser.ParseRecord(record);
 
                 var expectedResult = new AssociationRecord
                 {

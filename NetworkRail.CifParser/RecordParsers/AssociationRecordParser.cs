@@ -17,7 +17,7 @@ namespace NetworkRail.CifParser.RecordParsers
             _recordParserContainer = recordParserContainer;
         }
 
-        public AssociationRecord BuildRecord(string recordString)
+        public AssociationRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));

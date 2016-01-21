@@ -5,7 +5,7 @@ namespace NetworkRail.CifParser.RecordParsers
 {
     public class TiplocDeleteRecordParser : ICifRecordParser<TiplocDeleteRecord>
     {
-        public TiplocDeleteRecord BuildRecord(string recordString)
+        public TiplocDeleteRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));

@@ -17,7 +17,7 @@ namespace NetworkRail.CifParser.RecordParsers
             _recordParserContainer = recordParserContainer;
         }
 
-        public LocationRecord BuildRecord(string recordString)
+        public LocationRecord ParseRecord(string recordString)
         {
             LocationRecord record = new LocationRecord
             {

@@ -34,11 +34,11 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void returns_expected_result_from_origin_location_record()
             {
-                var recordBuilder = new LocationRecordParser(_parserContainer);
+                var recordParser = new LocationRecordParser(_parserContainer);
 
                 string record = "LOSDON    1242 12422         TB                                                 ";
 
-                var result = recordBuilder.BuildRecord(record);
+                var result = recordParser.ParseRecord(record);
 
                 var expectedResult = new LocationRecord
                 {
@@ -60,11 +60,11 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void returns_expected_result_from_intermediate_location_arrival_and_departure()
             {
-                var recordBuilder = new LocationRecordParser(_parserContainer);
+                var recordParser = new LocationRecordParser(_parserContainer);
 
                 string record = "LIMELKSHM 1307H1308      13081308         T                                     ";
 
-                var result = recordBuilder.BuildRecord(record);
+                var result = recordParser.ParseRecord(record);
 
                 var expectedResult = new LocationRecord
                 {
@@ -86,11 +86,11 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void returns_expected_result_from_intermediate_location_pass()
             {
-                var recordBuilder = new LocationRecordParser(_parserContainer);
+                var recordParser = new LocationRecordParser(_parserContainer);
 
                 string record = "LIBRDFDJN           1314 00000000                                               ";
 
-                var result = recordBuilder.BuildRecord(record);
+                var result = recordParser.ParseRecord(record);
 
                 var expectedResult = new LocationRecord
                 {
@@ -109,11 +109,11 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void returns_expected_result_from_terminating_location()
             {
-                var recordBuilder = new LocationRecordParser(_parserContainer);
+                var recordParser = new LocationRecordParser(_parserContainer);
 
                 string record = "LTWSTBRYW 1323 13253     TF                                                     ";
 
-                var result = recordBuilder.BuildRecord(record);
+                var result = recordParser.ParseRecord(record);
 
                 var expectedResult = new LocationRecord
                 {

@@ -3,7 +3,7 @@ using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser
 {
-    public class CifScheduleRecordCollection
+    public class CifScheduleEntityCollection
     {
         public HeaderRecord HeaderRecord { get; set; }
         public List<AssociationRecord> AssociationRecords { get; set; }

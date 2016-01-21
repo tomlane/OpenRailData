@@ -14,7 +14,7 @@ namespace NetworkRail.CifParser.Tests
         {
             var cifRecordParserMock = new Mock<ICifRecordParser>();
 
-            Assert.Throws<ArgumentNullException>(() => new CifScheduleUpdateProcessor(null));
+            Assert.Throws<ArgumentNullException>(() => new CifScheduleManager(null));
         }
 
         [Test]
@@ -22,9 +22,9 @@ namespace NetworkRail.CifParser.Tests
         {
             var container = CifParserIocContainerBuilder.Build();
 
-            var processor = container.Resolve<IScheduleUpdateProcessor>();
+            var processor = container.Resolve<IScheduleManager>();
 
-            Assert.IsInstanceOf<CifScheduleUpdateProcessor>(processor);
+            Assert.IsInstanceOf<CifScheduleManager>(processor);
         }
 
         [TestFixture]
@@ -35,9 +35,9 @@ namespace NetworkRail.CifParser.Tests
             {
                 var cifRecordParserMock = new Mock<ICifRecordParser>();
 
-                var updateProcessor = new CifScheduleUpdateProcessor(cifRecordParserMock.Object);
+                var updateProcessor = new CifScheduleManager(cifRecordParserMock.Object);
 
-                Assert.Throws<ArgumentNullException>(() => updateProcessor.ParseScheduleUpdate(null));
+                Assert.Throws<ArgumentNullException>(() => updateProcessor.ParseScheduleEntites(null));
             }
         }
     }

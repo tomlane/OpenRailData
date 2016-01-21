@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using NetworkRail.CifParser.Records;
 
-namespace NetworkRail.CifParser
+namespace NetworkRail.CifParser.Records
 {
     public class ScheduleRecord
     {

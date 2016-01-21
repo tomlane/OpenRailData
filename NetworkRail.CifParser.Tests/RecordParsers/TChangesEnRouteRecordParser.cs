@@ -34,21 +34,21 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void throws_when_argument_string_is_invalid()
             {
-                var builder = new ChangesEnRouteRecordParser(_parserContainer);
+                var recordParser = new ChangesEnRouteRecordParser(_parserContainer);
 
-                Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
-                Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(" \t"));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(" \t"));
             }
 
             [Test]
             public void returns_expected_result()
             {
-                var builder = new ChangesEnRouteRecordParser(_parserContainer);
+                var recordParser = new ChangesEnRouteRecordParser(_parserContainer);
 
                 string record = "CRHULL    XX1J22    111808920 DMUS   075      S S                               ";
 
-                var result = builder.BuildRecord(record);
+                var result = recordParser.ParseRecord(record);
 
                 var expectedResult = new ChangesEnRouteRecord
                 {

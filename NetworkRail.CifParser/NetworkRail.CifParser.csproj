@@ -41,11 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CifRecordParser.cs" />
-    <Compile Include="CifScheduleUpdateProcessor.cs" />
-    <Compile Include="IScheduleUpdateProcessor.cs" />
-    <Compile Include="RecordBuilders\ICifRecordBuilder.cs" />
-    <Compile Include="ScheduleRecord.cs" />
-    <Compile Include="CifScheduleRecordCollection.cs" />
+    <Compile Include="CifScheduleManager.cs" />
+    <Compile Include="IScheduleManager.cs" />
+    <Compile Include="RecordParserStrategy\ICifRecordParserStrategy.cs" />
+    <Compile Include="Records\ScheduleRecord.cs" />
+    <Compile Include="CifScheduleEntityCollection.cs" />
     <Compile Include="ParserContainers\AssociationRecordParserContainer.cs" />
     <Compile Include="ParserContainers\BasicScheduleRecordParserContainer.cs" />
     <Compile Include="ParserContainers\ChangesEnRouteRecordParserContainer.cs" />

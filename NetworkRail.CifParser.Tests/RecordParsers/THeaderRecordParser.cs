@@ -34,31 +34,31 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var builder = new HeaderRecordParser(_parserContainer);
+                var recordParser = new HeaderRecordParser(_parserContainer);
 
-                Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
-                Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(" \t"));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(" \t"));
             }
 
             [Test]
             public void throws_when_mainframe_identity_is_invalid()
             {
-                var builder = new HeaderRecordParser(_parserContainer);
+                var recordParser = new HeaderRecordParser(_parserContainer);
 
                 string record = "HD                    3012152116DFROC1EDFROC1DUA301215291216                    ";
 
-                Assert.Throws<InvalidOperationException>(() => builder.BuildRecord(record));
+                Assert.Throws<InvalidOperationException>(() => recordParser.ParseRecord(record));
             }
 
             [Test]
             public void returns_expected_result()
             {
-                var builder = new HeaderRecordParser(_parserContainer);
+                var recordParser = new HeaderRecordParser(_parserContainer);
 
                 string record = "HDTPS.UDFROC1.PD1512303012152116DFROC1EDFROC1DUA301215291216                    ";
 
-                var result = builder.BuildRecord(record);
+                var result = recordParser.ParseRecord(record);
 
                 var expectedResult = new HeaderRecord
                 {

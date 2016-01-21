@@ -5,7 +5,7 @@ namespace NetworkRail.CifParser.RecordParsers
 {
     public class BasicScheduleExtraDetailsRecordParser : ICifRecordParser<BasicScheduleExtraDetailsRecord>
     {
-        public BasicScheduleExtraDetailsRecord BuildRecord(string recordString)
+        public BasicScheduleExtraDetailsRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));

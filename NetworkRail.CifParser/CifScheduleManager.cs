@@ -5,11 +5,11 @@ using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser
 {
-    public class CifScheduleUpdateProcessor : IScheduleUpdateProcessor
+    public class CifScheduleManager : IScheduleManager
     {
         private readonly ICifRecordParser _cifRecordParser;
 
-        public CifScheduleUpdateProcessor(ICifRecordParser cifRecordParser)
+        public CifScheduleManager(ICifRecordParser cifRecordParser)
         {
             if (cifRecordParser == null)
                 throw new ArgumentNullException(nameof(cifRecordParser));
@@ -17,12 +17,12 @@ namespace NetworkRail.CifParser
             _cifRecordParser = cifRecordParser;
         }
 
-        public CifScheduleRecordCollection ParseScheduleUpdate(Stream scheduleStream)
+        public CifScheduleEntityCollection ParseScheduleEntites(Stream scheduleStream)
         {
             if (scheduleStream == null)
                 throw new ArgumentNullException(nameof(scheduleStream));
 
-            var scheduleEntites = new CifScheduleRecordCollection
+            var scheduleEntites = new CifScheduleEntityCollection
             {
                 AssociationRecords = new List<AssociationRecord>(),
                 ScheduleRecords = new List<ScheduleRecord>(),
@@ -87,6 +87,11 @@ namespace NetworkRail.CifParser
             }
 
             return scheduleEntites;
+        }
+
+        public void SaveScheduleEntities(CifScheduleEntityCollection entites)
+        {
+            throw new NotImplementedException();
         }
     }
 }

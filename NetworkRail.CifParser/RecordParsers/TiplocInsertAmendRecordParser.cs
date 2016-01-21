@@ -6,7 +6,7 @@ namespace NetworkRail.CifParser.RecordParsers
 {
     public class TiplocInsertAmendRecordParser : ICifRecordParser<TiplocInsertAmendRecord>
     {
-        public TiplocInsertAmendRecord BuildRecord(string recordString)
+        public TiplocInsertAmendRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));

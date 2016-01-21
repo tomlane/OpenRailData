@@ -14,21 +14,21 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void throws_when_argument_is_null()
             {
-                var parser = new BasicScheduleExtraDetailsRecordParser();
+                var recordParser = new BasicScheduleExtraDetailsRecordParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.BuildRecord(null));
-                Assert.Throws<ArgumentNullException>(() => parser.BuildRecord(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => parser.BuildRecord(" \t"));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(" \t"));
             }
 
             [Test]
             public void returns_expected_result()
             {
-                var parser = new BasicScheduleExtraDetailsRecordParser();
+                var recordParser = new BasicScheduleExtraDetailsRecordParser();
 
                 string record = "BX         XCY                                                                  ";
 
-                var result = parser.BuildRecord(record);
+                var result = recordParser.ParseRecord(record);
 
                 var expectedResult = new BasicScheduleExtraDetailsRecord
                 {

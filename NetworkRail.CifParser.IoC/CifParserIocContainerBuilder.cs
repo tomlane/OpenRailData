@@ -13,7 +13,7 @@ namespace NetworkRail.CifParser.IoC
             if (container == null)
                 container = new UnityContainer();
 
-            container.RegisterType<IScheduleUpdateProcessor, CifScheduleUpdateProcessor>();
+            container.RegisterType<IScheduleManager, CifScheduleManager>();
 
             container.RegisterType<ICifRecordParser, CifRecordParser>();
 

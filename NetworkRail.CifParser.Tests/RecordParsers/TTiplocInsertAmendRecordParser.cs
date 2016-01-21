@@ -14,21 +14,21 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var builder = new TiplocInsertAmendRecordParser();
+                var recordParser = new TiplocInsertAmendRecordParser();
 
-                Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(null));
-                Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => builder.BuildRecord(" \t"));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
+                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(" \t"));
             }
 
             [Test]
             public void returns_expected_result_with_insert_record()
             {
-                var builder = new TiplocInsertAmendRecordParser();
+                var recordParser = new TiplocInsertAmendRecordParser();
 
                 string record = "TIPURLSGB00537901JPURLEY DOWN SIDING GBRF   87807   0                           ";
 
-                var result = builder.BuildRecord(record);
+                var result = recordParser.ParseRecord(record);
 
                 var expectedResult = new TiplocInsertAmendRecord
                 {
@@ -53,11 +53,11 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void returns_expected_result_with_amend_record()
             {
-                var builder = new TiplocInsertAmendRecordParser();
+                var recordParser = new TiplocInsertAmendRecordParser();
 
                 string record = "TAEBOUCS 08544815BEASTBOURNE C.S.           88253   0XEB                0111193 ";
 
-                var result = builder.BuildRecord(record);
+                var result = recordParser.ParseRecord(record);
 
                 var expectedResult = new TiplocInsertAmendRecord
                 {
