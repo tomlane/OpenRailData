@@ -9,8 +9,10 @@
         Association = 5,
         BasicSchedule = 6,
         BasicScheduleExtraDetails = 7,
-        Location = 8,
-        ChangesEnRoute = 9,
-        EndOfFile = 10
+        OriginLocation = 8,
+        IntermediateLocation = 9,
+        TerminatingLocation = 10,
+        ChangesEnRoute = 11,
+        EndOfFile = 12
     }
 }

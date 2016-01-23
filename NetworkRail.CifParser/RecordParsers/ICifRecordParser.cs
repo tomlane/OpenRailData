@@ -2,8 +2,10 @@
 
 namespace NetworkRail.CifParser.RecordParsers
 {
-    public interface ICifRecordParser<T> where T : ICifRecord
+    public interface ICifRecordParser
     {
-        T ParseRecord(string recordString);
+        string RecordKey { get; }
+
+        ICifRecord ParseRecord(string recordString);
     }
 }

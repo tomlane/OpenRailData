@@ -4,7 +4,7 @@ namespace NetworkRail.CifParser.Records
 {
     public class ChangesEnRouteRecord : ICifRecord
     {
-        public CifRecordType RecordIdentity { get; set; }
+        public CifRecordType RecordIdentity { get; } = CifRecordType.ChangesEnRoute;
         public string Tiploc { get; set; } = string.Empty; 
         public string TiplocSuffix { get; set; } = string.Empty; 
         public string Category { get; set; } = string.Empty;

@@ -32,7 +32,6 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
 
                 var expectedResult = new BasicScheduleExtraDetailsRecord
                 {
-                    RecordIdentity = CifRecordType.BasicScheduleExtraDetails,
                     AtocCode = "XC",
                     AtsCode = "Y",
                     DataSource = string.Empty,

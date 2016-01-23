@@ -5,7 +5,7 @@ using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.RecordParsers
 {
-    public class ChangesEnRouteRecordParser : ICifRecordParser<ChangesEnRouteRecord>
+    public class ChangesEnRouteRecordParser : ICifRecordParser
     {
         private readonly IChangesEnRouteRecordParserContainer _recordParserContainer;
 
@@ -17,14 +17,15 @@ namespace NetworkRail.CifParser.RecordParsers
             _recordParserContainer = recordParserContainer;
         }
 
-        public ChangesEnRouteRecord ParseRecord(string recordString)
+        public string RecordKey { get; } = "CR";
+
+        public ICifRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
             var record = new ChangesEnRouteRecord
             {
-                RecordIdentity = CifRecordType.ChangesEnRoute,
                 Tiploc = recordString.Substring(2, 7).Trim(),
                 TiplocSuffix = recordString.Substring(9, 1).Trim(),
                 Category = recordString.Substring(10, 2).Trim(),

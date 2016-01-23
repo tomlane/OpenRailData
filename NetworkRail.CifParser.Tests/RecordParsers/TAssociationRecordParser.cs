@@ -52,7 +52,6 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
 
                 var expectedResult = new AssociationRecord
                 {
-                    RecordIdentity = CifRecordType.Association,
                     TransactionType = TransactionType.Revise,
                     MainTrainUid = "W01400",
                     AssocTrainUid = "W00570",
@@ -83,7 +82,6 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
 
                 var expectedResult = new AssociationRecord
                 {
-                    RecordIdentity = CifRecordType.Association,
                     TransactionType = TransactionType.New,
                     MainTrainUid = "L82468",
                     AssocTrainUid = "L83922",
@@ -114,7 +112,6 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
 
                 var expectedResult = new AssociationRecord
                 {
-                    RecordIdentity = CifRecordType.Association,
                     TransactionType = TransactionType.Delete,
                     MainTrainUid = "L82468",
                     AssocTrainUid = "L83922",

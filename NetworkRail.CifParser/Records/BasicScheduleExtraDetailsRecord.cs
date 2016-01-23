@@ -2,7 +2,7 @@
 {
     public class BasicScheduleExtraDetailsRecord : ICifRecord
     {
-        public CifRecordType RecordIdentity { get; set; }
+        public CifRecordType RecordIdentity { get; } = CifRecordType.BasicScheduleExtraDetails;
         public string UicCode { get; set; } = string.Empty;
         public string AtocCode { get; set; } = string.Empty;
         public string AtsCode { get; set; } = string.Empty;

@@ -2,6 +2,6 @@
 {
     public interface ICifRecord
     {
-        CifRecordType RecordIdentity { get; set; }
+        CifRecordType RecordIdentity { get; }
     }
 }

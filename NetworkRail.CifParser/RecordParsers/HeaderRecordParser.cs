@@ -6,7 +6,7 @@ using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.RecordParsers
 {
-    public class HeaderRecordParser : ICifRecordParser<HeaderRecord>
+    public class HeaderRecordParser : ICifRecordParser
     {
         private readonly IHeaderRecordParserContainer _recordParserContainer;
 
@@ -18,14 +18,15 @@ namespace NetworkRail.CifParser.RecordParsers
             _recordParserContainer = recordParserContainer;
         }
 
-        public HeaderRecord ParseRecord(string recordString)
+        public string RecordKey { get; } = "HD";
+
+        public ICifRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
             HeaderRecord record = new HeaderRecord
             {
-                RecordIdentity = CifRecordType.Header,
                 MainFrameIdentity = recordString.Substring(2, 20)
             };
 

@@ -62,7 +62,6 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
 
                 var expectedResult = new HeaderRecord
                 {
-                    RecordIdentity = CifRecordType.Header,
                     MainFrameIdentity = "TPS.UDFROC1.PD151230",
                     DateOfExtract = new DateTime(2015, 12, 30),
                     TimeOfExtract = new TimeSpan(21, 16, 0),

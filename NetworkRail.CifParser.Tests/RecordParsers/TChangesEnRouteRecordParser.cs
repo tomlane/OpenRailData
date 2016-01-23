@@ -52,7 +52,6 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
 
                 var expectedResult = new ChangesEnRouteRecord
                 {
-                    RecordIdentity = CifRecordType.ChangesEnRoute,
                     Tiploc = "HULL",
                     TiplocSuffix = string.Empty,
                     Category = "XX",

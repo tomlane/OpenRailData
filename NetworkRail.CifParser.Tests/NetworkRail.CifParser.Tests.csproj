@@ -69,11 +69,13 @@
     <Compile Include="ParserContainers\TChangesEnRouteRecordParserContainer.cs" />
     <Compile Include="ParserContainers\THeaderRecordParserContainer.cs" />
     <Compile Include="ParserContainers\TLocationRecordParserContainer.cs" />
+    <Compile Include="RecordParsers\TIntermediateLocationRecordParser.cs" />
+    <Compile Include="RecordParsers\TTerminatingLocationRecordParser.cs" />
+    <Compile Include="RecordParsers\TTiplocAmendRecordParser.cs" />
     <Compile Include="RecordPropertyParsers\TAssociationCategoryParser.cs" />
     <Compile Include="RecordPropertyParsers\TDateIndicatorParser.cs" />
     <Compile Include="RecordPropertyParsers\TDateTimeParser.cs" />
     <Compile Include="RecordPropertyParsers\TBankHolidayRunningParser.cs" />
-    <Compile Include="RecordPropertyParsers\TLocationTypeParser.cs" />
     <Compile Include="RecordPropertyParsers\TRunningDaysParser.cs" />
     <Compile Include="RecordPropertyParsers\TSeatingClassParser.cs" />
     <Compile Include="RecordPropertyParsers\TTrainSleeperDetailsParser.cs" />
@@ -87,16 +89,13 @@
     <Compile Include="RecordParsers\TBasicScheduleRecordParser.cs" />
     <Compile Include="RecordParsers\TChangesEnRouteRecordParser.cs" />
     <Compile Include="RecordParsers\THeaderRecordParser.cs" />
-    <Compile Include="RecordParsers\TLocationRecordParser.cs" />
+    <Compile Include="RecordParsers\TOriginLocationRecordParser.cs" />
     <Compile Include="RecordParsers\TTiplocDeleteRecordParser.cs" />
-    <Compile Include="RecordParsers\TTiplocInsertAmendRecordParser.cs" />
+    <Compile Include="RecordParsers\TTiplocInsertRecordParser.cs" />
     <Compile Include="Records\TBasicScheduleRecord.cs" />
-    <Compile Include="TCifRecordBuilderContainer.cs" />
-    <Compile Include="TCifRecordParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecordPropertyParsers\TLocationActivityParser.cs" />
     <Compile Include="RecordPropertyParsers\TOperatingCharacteristicsParser.cs" />
-    <Compile Include="TCifScheduleUpdateProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -3,16 +3,17 @@ using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.RecordParsers
 {
-    public class BasicScheduleExtraDetailsRecordParser : ICifRecordParser<BasicScheduleExtraDetailsRecord>
+    public class BasicScheduleExtraDetailsRecordParser : ICifRecordParser
     {
-        public BasicScheduleExtraDetailsRecord ParseRecord(string recordString)
+        public string RecordKey { get; } = "BX";
+
+        public ICifRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
             BasicScheduleExtraDetailsRecord record = new BasicScheduleExtraDetailsRecord
             {
-                RecordIdentity = CifRecordType.BasicScheduleExtraDetails,
                 UicCode = recordString.Substring(6, 5).Trim(),
                 AtocCode = recordString.Substring(11, 2).Trim(),
                 AtsCode = recordString.Substring(13, 1).Trim(),

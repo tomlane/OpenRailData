@@ -52,7 +52,6 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
 
                 var expectedResult = new BasicScheduleRecord
                 {
-                    RecordIdentity = CifRecordType.BasicSchedule,
                     BankHolidayRunning = BankHolidayRunning.RunsOnBankHoliday,
                     TransactionType = TransactionType.Revise,
                     TrainUid = "Y80201",

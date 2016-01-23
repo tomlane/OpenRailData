@@ -5,7 +5,7 @@ using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.RecordParsers
 {
-    public class AssociationRecordParser : ICifRecordParser<AssociationRecord>
+    public class AssociationRecordParser : ICifRecordParser
     {
         private readonly IAssociationRecordParserContainer _recordParserContainer;
 
@@ -17,14 +17,15 @@ namespace NetworkRail.CifParser.RecordParsers
             _recordParserContainer = recordParserContainer;
         }
 
-        public AssociationRecord ParseRecord(string recordString)
+        public string RecordKey { get; } = "AA";
+
+        public ICifRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
             AssociationRecord record = new AssociationRecord
             {
-                RecordIdentity = CifRecordType.Association,
                 TransactionType = _recordParserContainer.TransactionTypeParser.ParseTransactionType(recordString.Substring(2, 1)),
                 MainTrainUid = recordString.Substring(3, 6),
                 AssocTrainUid = recordString.Substring(9, 6),

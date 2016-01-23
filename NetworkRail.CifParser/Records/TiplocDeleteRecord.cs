@@ -2,7 +2,7 @@
 {
     public class TiplocDeleteRecord : ICifRecord
     {
-        public CifRecordType RecordIdentity { get; set; }
+        public CifRecordType RecordIdentity { get; } = CifRecordType.TiplocDelete;
         public string TiplocCode { get; set; } = string.Empty;
 
         protected bool Equals(TiplocDeleteRecord other)

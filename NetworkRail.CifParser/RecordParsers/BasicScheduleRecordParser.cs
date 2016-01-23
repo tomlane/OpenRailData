@@ -7,7 +7,7 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordParsers
 {
-    public class BasicScheduleRecordParser : ICifRecordParser<BasicScheduleRecord>
+    public class BasicScheduleRecordParser : ICifRecordParser
     {
         private readonly IBasicScheduleRecordParserContainer _recordParserContainer;
 
@@ -19,14 +19,15 @@ namespace NetworkRail.CifParser.RecordParsers
             _recordParserContainer = recordParserContainer;
         }
 
-        public BasicScheduleRecord ParseRecord(string recordString)
+        public string RecordKey { get; } = "BS";
+
+        public ICifRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
             BasicScheduleRecord record = new BasicScheduleRecord
             {
-                RecordIdentity = CifRecordType.BasicSchedule,
                 TransactionType = _recordParserContainer.TransactionTypeParser.ParseTransactionType(recordString.Substring(2, 1)),
                 TrainUid = recordString.Substring(3, 6),
                 DateRunsTo = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest

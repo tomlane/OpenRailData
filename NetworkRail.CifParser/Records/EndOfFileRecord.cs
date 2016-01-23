@@ -2,7 +2,7 @@
 {
     public class EndOfFileRecord : ICifRecord
     {
-        public CifRecordType RecordIdentity { get; set; } = CifRecordType.EndOfFile;
+        public CifRecordType RecordIdentity { get; } = CifRecordType.EndOfFile;
 
         protected bool Equals(EndOfFileRecord other)
         {

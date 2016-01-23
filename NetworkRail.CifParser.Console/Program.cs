@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
@@ -16,13 +15,13 @@ namespace NetworkRail.CifParser.Console
 
             var container = CifParserIocContainerBuilder.Build();
 
-            var updateProcessor = container.Resolve<IScheduleUpdateProcessor>();
+            var scheduleManager = container.Resolve<IScheduleManager>();
 
-            CifScheduleRecordCollection entites;
+            CifScheduleEntityCollection entites;
 
             using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
-                entites = updateProcessor.ParseScheduleUpdate(fs);
+                entites = scheduleManager.ParseScheduleEntites(fs);
             }
             
             var end = Process.GetCurrentProcess().TotalProcessorTime;
