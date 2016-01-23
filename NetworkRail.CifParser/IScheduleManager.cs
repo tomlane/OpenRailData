@@ -1,10 +1,12 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser
 {
     public interface IScheduleManager
     {
-        CifScheduleEntityCollection ParseScheduleEntites(Stream scheduleStream);
-        void SaveScheduleEntities(CifScheduleEntityCollection entites);
+        IList<ICifRecord> ParseScheduleEntites(Stream scheduleStream);
+        void SaveScheduleEntities(IList<ICifRecord> entites);
     }
 }
