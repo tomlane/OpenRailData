@@ -2,7 +2,7 @@
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class TimeParser : ITimeParser
+    public class TimingAllowanceParser : ITimingAllowanceParser
     {
         public TimeSpan? ParseTime(string timeString)
         {

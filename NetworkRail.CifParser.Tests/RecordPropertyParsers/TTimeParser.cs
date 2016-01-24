@@ -13,7 +13,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             [Test]
             public void returns_null_when_argument_is_null_or_empty()
             {
-                var parser = new TimeParser();
+                var parser = new TimingAllowanceParser();
 
                 var result = parser.ParseTime(null);
                 Assert.IsNull(result);
@@ -28,7 +28,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             [Test]
             public void returns_null_when_argument_is_four_zeros()
             {
-                var parser = new TimeParser();
+                var parser = new TimingAllowanceParser();
 
                 Assert.IsNull(parser.ParseTime("0000"));
             }
@@ -36,7 +36,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             [Test]
             public void returns_expected_result_for_half_time()
             {
-                var parser = new TimeParser();
+                var parser = new TimingAllowanceParser();
 
                 var result = parser.ParseTime("H");
                 Assert.AreEqual(TimeSpan.FromSeconds(30), result);
@@ -48,7 +48,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             [Test]
             public void returns_expected_result_with_white_space()
             {
-                var parser = new TimeParser();
+                var parser = new TimingAllowanceParser();
 
                 var result = parser.ParseTime("1020 ");
                 Assert.AreEqual(new TimeSpan(0, 10, 20, 0), result);
@@ -57,7 +57,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             [Test]
             public void returns_expected_result_for_whole_minutes()
             {
-                var parser = new TimeParser();
+                var parser = new TimingAllowanceParser();
 
                 var result = parser.ParseTime("1");
                 Assert.AreEqual(TimeSpan.FromMinutes(1), result);
@@ -69,7 +69,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             [Test]
             public void returns_expected_result_for_hours_and_minutes()
             {
-                var parser = new TimeParser();
+                var parser = new TimingAllowanceParser();
 
                 var result = parser.ParseTime("1028");
                 Assert.AreEqual(new TimeSpan(0, 10, 28, 0), result);
@@ -78,7 +78,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             [Test]
             public void returns_null_when_argument_is_invalid()
             {
-                var parser = new TimeParser();
+                var parser = new TimingAllowanceParser();
 
                 var result = parser.ParseTime("Y");
                 Assert.IsNull(result);

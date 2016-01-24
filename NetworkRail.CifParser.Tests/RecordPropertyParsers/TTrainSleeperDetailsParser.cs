@@ -16,7 +16,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new SleeperDetailsParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseTrainSleeperDetails(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
             }
 
             [Test]
@@ -24,13 +24,13 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new SleeperDetailsParser();
 
-                var result = parser.ParseTrainSleeperDetails("B");
+                var result = parser.ParseProperty("B");
                 Assert.AreEqual(SleeperDetails.FirstAndStandard, result);
 
-                result = parser.ParseTrainSleeperDetails("F");
+                result = parser.ParseProperty("F");
                 Assert.AreEqual(SleeperDetails.FirstClassOnly, result);
 
-                result = parser.ParseTrainSleeperDetails("S");
+                result = parser.ParseProperty("S");
                 Assert.AreEqual(SleeperDetails.StandardClassOnly, result);
             }
 
@@ -39,7 +39,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new SleeperDetailsParser();
 
-                var result = parser.ParseTrainSleeperDetails("zzz");
+                var result = parser.ParseProperty("zzz");
 
                 Assert.AreEqual(SleeperDetails.NotAvailable, result);
             }

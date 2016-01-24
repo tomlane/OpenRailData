@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
-using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
@@ -64,7 +63,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                     TimingLoad = "S",
                     Speed = 075,
                     OperatingCharacteristics = string.Empty,
-                    SeatingClass = SeatingClass.StandardClassOnly,
+                    SeatingClass = SeatingClass.S,
                     Sleepers = SleeperDetails.NotAvailable,
                     Reservations = ReservationDetails.PossibleFromAnyStation,
                     ConnectionIndicator = string.Empty,

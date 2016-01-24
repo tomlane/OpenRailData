@@ -12,7 +12,7 @@ namespace NetworkRail.CifParser.Console
     {
         static void Main(string[] args)
         {
-            var path = @"C:\RailData\Cif Schedule Extracts\weekly-150116";
+            var path = @"C:\RailData\Cif\update-28122015";
 
             var start = Process.GetCurrentProcess().TotalProcessorTime;
 

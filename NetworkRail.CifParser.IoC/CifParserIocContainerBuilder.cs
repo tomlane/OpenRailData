@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Practices.Unity;
-using NetworkRail.CifParser.ParserContainers;
+﻿using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.RecordPropertyParsers;
 
@@ -27,27 +25,21 @@ namespace NetworkRail.CifParser.IoC
             container.RegisterType<ICifRecordParser, TiplocInsertRecordParser>("TiplocInsertRecordParser");
             container.RegisterType<ICifRecordParser, TiplocAmendRecordParser>("TiplocAmendRecordParser");
             
-            container.RegisterType<IAssociationRecordParserContainer, AssociationRecordParserContainer>();
-            container.RegisterType<IBasicScheduleRecordParserContainer, BasicScheduleRecordParserContainer>();
-            container.RegisterType<IChangesEnRouteRecordParserContainer, ChangesEnRouteRecordParserContainer>();
-            container.RegisterType<IHeaderRecordParserContainer, HeaderRecordParserContainer>();
-            container.RegisterType<ILocationRecordParserContainer, LocationRecordParserContainer>();
-
-            container.RegisterType<IAssociationCategoryParser, AssociationCategoryParser>();
-            container.RegisterType<IAssociationTypeParser, AssociationTypeParser>();
-            container.RegisterType<IBankHolidayRunningParser, BankHolidayRunningParser>();
-            container.RegisterType<IDateIndicatorParser, DateIndicatorParser>();
+            container.RegisterType<IRecordEnumPropertyParser, AssociationCategoryParser>("AssociationCategoryParser");
+            container.RegisterType<IRecordEnumPropertyParser, AssociationTypeParser>("AssociationTypeParser");
+            container.RegisterType<IRecordEnumPropertyParser, BankHolidayRunningParser>("BankHolidayRunningParser");
+            container.RegisterType<IRecordEnumPropertyParser, DateIndicatorParser>("DateIndicatorParser");
             container.RegisterType<IDateTimeParser, DateTimeParser>();
-            container.RegisterType<IExtractUpdateTypeParser, ExtractUpdateTypeParser>();
-            container.RegisterType<ILocationActivityParser, LocationActivityParser>();
-            container.RegisterType<IOperatingCharacteristicsParser, OperatingCharacteristicsParser>();
-            container.RegisterType<IReservationDetailsParser, ReservationsDetailsParser>();
-            container.RegisterType<IRunningDaysParser, RunningDaysParser>();
-            container.RegisterType<ISeatingClassParser, SeatingClassParser>();
-            container.RegisterType<ISleeperDetailsParser, SleeperDetailsParser>();
-            container.RegisterType<IStpIndicatorParser, StpIndicatorParser>();
-            container.RegisterType<ITimeParser, TimeParser>();
-            container.RegisterType<ITransactionTypeParser, TransactionTypeParser>();
+            container.RegisterType<IRecordEnumPropertyParser, ExtractUpdateTypeParser>("ExtractUpdateTypeParser");
+            container.RegisterType<IRecordEnumPropertyParser, LocationActivityParser>("LocationActivityParser");
+            container.RegisterType<IRecordEnumPropertyParser, OperatingCharacteristicsParser>("OperatingCharacteristicsParser");
+            container.RegisterType<IRecordEnumPropertyParser, ReservationDetailsParser>("ReservationDetailsParser");
+            container.RegisterType<IRecordEnumPropertyParser, RunningDaysParser>("RunningDaysParser");
+            container.RegisterType<IRecordEnumPropertyParser, SeatingClassParser>("SeatingClassParser");
+            container.RegisterType<IRecordEnumPropertyParser, SleeperDetailsParser>("SleeperDetailsParser");
+            container.RegisterType<IRecordEnumPropertyParser, StpIndicatorParser>("StpIndicatorParser");
+            container.RegisterType<ITimingAllowanceParser, TimingAllowanceParser>();
+            container.RegisterType<IRecordEnumPropertyParser, TransactionTypeParser>("TransactionTypeParser");
 
             return container;
         }

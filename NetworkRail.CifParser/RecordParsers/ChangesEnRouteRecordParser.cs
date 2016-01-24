@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.RecordParsers

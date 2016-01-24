@@ -1,12 +1,22 @@
-﻿using NetworkRail.CifParser.Records.Enums;
+﻿using System;
+using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class AssociationTypeParser : IAssociationTypeParser
+    public class AssociationTypeParser : IRecordEnumPropertyParser
     {
-        public AssociationType ParseAssociationType(string associationType)
+        public string PropertyKey { get; } = "AssociationType";
+
+        public Enum ParseProperty(string propertyString)
         {
-            throw new System.NotImplementedException();
+            if (propertyString == null)
+                throw new ArgumentNullException(nameof(propertyString));
+
+            AssociationType result;
+
+            bool successful = Enum.TryParse(propertyString, true, out result);
+
+            return successful ? result : AssociationType.None;
         }
     }
 }

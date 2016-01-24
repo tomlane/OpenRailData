@@ -16,7 +16,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new SeatingClassParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseSeatingClass(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
             }
 
             [Test]
@@ -24,9 +24,9 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new SeatingClassParser();
 
-                var result = parser.ParseSeatingClass(string.Empty);
+                var result = parser.ParseProperty(string.Empty);
 
-                Assert.AreEqual(SeatingClass.FirstAndStandardClass, result);
+                Assert.AreEqual(SeatingClass.B, result);
             }
 
             [Test]
@@ -34,13 +34,13 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new SeatingClassParser();
 
-                var result = parser.ParseSeatingClass("S");
+                var result = parser.ParseProperty("S");
 
-                Assert.AreEqual(SeatingClass.StandardClassOnly, result);
+                Assert.AreEqual(SeatingClass.S, result);
 
-                result = parser.ParseSeatingClass("B");
+                result = parser.ParseProperty("B");
 
-                Assert.AreEqual(SeatingClass.FirstAndStandardClass, result);
+                Assert.AreEqual(SeatingClass.B, result);
             }
         }
     }

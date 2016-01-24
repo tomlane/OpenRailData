@@ -14,35 +14,35 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             [Test]
             public void throws_when_string_is_null()
             {
-                var parser = new ReservationsDetailsParser();
+                var parser = new ReservationDetailsParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseTrainResevationDetails(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
             }
 
             [Test]
             public void returns_expected_result_from_argument()
             {
-                var parser = new ReservationsDetailsParser();
+                var parser = new ReservationDetailsParser();
 
-                var result = parser.ParseTrainResevationDetails("A");
+                var result = parser.ParseProperty("A");
                 Assert.AreEqual(ReservationDetails.Compulsory, result);
 
-                result = parser.ParseTrainResevationDetails("E");
+                result = parser.ParseProperty("E");
                 Assert.AreEqual(ReservationDetails.BicyclesEssential, result);
 
-                result = parser.ParseTrainResevationDetails("R");
+                result = parser.ParseProperty("R");
                 Assert.AreEqual(ReservationDetails.Recommended, result);
 
-                result = parser.ParseTrainResevationDetails("S");
+                result = parser.ParseProperty("S");
                 Assert.AreEqual(ReservationDetails.PossibleFromAnyStation, result);
             }
 
             [Test]
             public void returns_none_when_argument_is_unknown()
             {
-                var parser = new ReservationsDetailsParser();
+                var parser = new ReservationDetailsParser();
 
-                var result = parser.ParseTrainResevationDetails(" ");
+                var result = parser.ParseProperty(" ");
 
                 Assert.AreEqual(ReservationDetails.None, result);
             }

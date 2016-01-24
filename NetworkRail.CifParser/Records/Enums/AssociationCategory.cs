@@ -8,12 +8,12 @@ namespace NetworkRail.CifParser.Records.Enums
         None = 0,
 
         [Description("Join")]
-        Join = 1,
+        JJ = 1,
 
         [Description("Split")]
-        Split = 2,
+        VV = 2,
 
         [Description("Next")]
-        Next = 3
+        NP = 3
     }
 }

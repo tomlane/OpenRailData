@@ -3,16 +3,18 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class OperatingCharacteristicsParser : IOperatingCharacteristicsParser
+    public class OperatingCharacteristicsParser : IRecordEnumPropertyParser
     {
-        public OperatingCharacteristics ParseOperatingCharacteristics(string characteristics)
+        public string PropertyKey { get; } = "OperatingCharacteristics";
+
+        public Enum ParseProperty(string propertyString)
         {
-            if (characteristics == null)
-                throw new ArgumentNullException(nameof(characteristics));
+            if (propertyString == null)
+                throw new ArgumentNullException(nameof(propertyString));
 
             OperatingCharacteristics operatingCharacteristics = new OperatingCharacteristics();
 
-            foreach (var oc in characteristics)
+            foreach (var oc in propertyString)
             {
                 if (oc == 'B')
                     operatingCharacteristics = operatingCharacteristics | OperatingCharacteristics.B;

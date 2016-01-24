@@ -3,18 +3,20 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class LocationActivityParser : ILocationActivityParser
+    public class LocationActivityParser : IRecordEnumPropertyParser
     {
-        public LocationActivity ParseActivity(string activities)
+        public string PropertyKey { get; } = "LocationActivity";
+
+        public Enum ParseProperty(string propertyString)
         {
-            if (activities == null)
-                throw new ArgumentNullException(nameof(activities));
+            if (propertyString == null)
+                throw new ArgumentNullException(nameof(propertyString));
 
             LocationActivity locationActivity = new LocationActivity();
 
-            for (int i = 0; i < activities.Length; i = i + 2)
+            for (int i = 0; i < propertyString.Length; i = i + 2)
             {
-                string activity = activities.Substring(i, 2);
+                string activity = propertyString.Substring(i, 2);
 
                 if (activity == "A ")
                     locationActivity = locationActivity | LocationActivity.A;

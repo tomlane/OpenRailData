@@ -16,9 +16,9 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new ExtractUpdateTypeParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseExtractUpdateType(null));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseExtractUpdateType(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseExtractUpdateType(" \t"));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(string.Empty));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(" \t"));
             }
 
             [Test]
@@ -26,11 +26,11 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new ExtractUpdateTypeParser();
 
-                var result = parser.ParseExtractUpdateType("F");
-                Assert.AreEqual(ExtractUpdateType.FullExtract, result);
+                var result = parser.ParseProperty("F");
+                Assert.AreEqual(ExtractUpdateType.F, result);
 
-                result = parser.ParseExtractUpdateType("U");
-                Assert.AreEqual(ExtractUpdateType.UpdateExtract, result);
+                result = parser.ParseProperty("U");
+                Assert.AreEqual(ExtractUpdateType.U, result);
             }
 
             [Test]
@@ -38,7 +38,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new ExtractUpdateTypeParser();
 
-                Assert.Throws<ArgumentException>(() => parser.ParseExtractUpdateType("Z"));
+                Assert.Throws<ArgumentException>(() => parser.ParseProperty("Z"));
             }
         }
     }

@@ -16,7 +16,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new LocationActivityParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseActivity(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
             }
 
             [Test]
@@ -26,7 +26,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
 
                 string activities = "A AEBLC D -DE G H HHK KCKEKFKSL N OPORPRR RMRRS T -TTBTFTSTWU -UW X ";
 
-                var result = parser.ParseActivity(activities);
+                var result = parser.ParseProperty(activities);
                 
                 Assert.IsTrue(result.HasFlag(LocationActivity.A));
                 Assert.IsTrue(result.HasFlag(LocationActivity.AE));

@@ -3,22 +3,16 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class ExtractUpdateTypeParser : IExtractUpdateTypeParser
+    public class ExtractUpdateTypeParser : IRecordEnumPropertyParser
     {
-        public ExtractUpdateType ParseExtractUpdateType(string extractUpdateType)
-        {
-            if (string.IsNullOrWhiteSpace(extractUpdateType))
-                throw new ArgumentNullException(nameof(extractUpdateType));
+        public string PropertyKey { get; } = "ExtractUpdateType";
 
-            switch (extractUpdateType)
-            {
-                case "F":
-                    return ExtractUpdateType.FullExtract;
-                case "U":
-                    return ExtractUpdateType.UpdateExtract;
-                default:
-                    throw new ArgumentException("Extract Type is not valid");
-            }
+        public Enum ParseProperty(string propertyString)
+        {
+            if (string.IsNullOrWhiteSpace(propertyString))
+                throw new ArgumentNullException(nameof(propertyString));
+            
+            return (ExtractUpdateType)Enum.Parse(typeof(ExtractUpdateType), propertyString);
         }
     }
 }

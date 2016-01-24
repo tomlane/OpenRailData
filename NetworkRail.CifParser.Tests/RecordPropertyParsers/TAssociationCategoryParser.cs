@@ -16,7 +16,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new AssociationCategoryParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseAssociationCategory(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
             }
 
             [Test]
@@ -24,14 +24,14 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new AssociationCategoryParser();
 
-                var result = parser.ParseAssociationCategory("JJ");
-                Assert.AreEqual(AssociationCategory.Join, result);
+                var result = parser.ParseProperty("JJ");
+                Assert.AreEqual(AssociationCategory.JJ, result);
 
-                result = parser.ParseAssociationCategory("VV");
-                Assert.AreEqual(AssociationCategory.Split, result);
+                result = parser.ParseProperty("VV");
+                Assert.AreEqual(AssociationCategory.VV, result);
 
-                result = parser.ParseAssociationCategory("NP");
-                Assert.AreEqual(AssociationCategory.Next, result);
+                result = parser.ParseProperty("NP");
+                Assert.AreEqual(AssociationCategory.NP, result);
             }
 
             [Test]
@@ -39,7 +39,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new AssociationCategoryParser();
 
-                var result = parser.ParseAssociationCategory("XYZ");
+                var result = parser.ParseProperty("XYZ");
                 Assert.AreEqual(AssociationCategory.None, result);
 
             }

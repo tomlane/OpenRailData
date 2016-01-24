@@ -21,8 +21,7 @@ namespace NetworkRail.CifParser.RecordPropertyParsers
 
             // year should be 19xx if > 60 and 20xx if < 60
             culture.Calendar.TwoDigitYearMax = 2059;
-
-
+            
             DateTime result;
 
             bool successful = DateTime.TryParseExact(request.DateTimeString, request.DateTimeFormat, culture,

@@ -7,13 +7,13 @@ namespace NetworkRail.CifParser.Records.Enums
         [Description("None")]
         None = 0,
 
-        [Description("Standard")]
-        Standard = 1,
+        [Description("Standard (same day)")]
+        S = 1,
 
-        [Description("Overnight")]
-        Overnight = 2,
+        [Description("Over next midnight")]
+        N = 2,
 
-        [Description("Previous Night")]
-        PreviousNight = 3
+        [Description("Over previous midnight")]
+        P = 3
     }
 }

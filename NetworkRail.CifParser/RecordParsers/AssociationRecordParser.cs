@@ -1,5 +1,4 @@
 ﻿using System;
-using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
-using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
@@ -67,7 +66,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                     TimeOfExtract = new TimeSpan(21, 16, 0),
                     CurrentFileRef = "DFROC1E",
                     LastFileRef = "DFROC1D",
-                    ExtractUpdateType = ExtractUpdateType.UpdateExtract,
+                    ExtractUpdateType = ExtractUpdateType.U,
                     CifSoftwareVersion = "A",
                     UserExtractStartDate = new DateTime(2015, 12, 30),
                     UserExtractEndDate = new DateTime(2016, 12, 29),

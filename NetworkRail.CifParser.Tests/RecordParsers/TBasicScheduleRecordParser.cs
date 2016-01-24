@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
-using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
@@ -52,7 +51,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
 
                 var expectedResult = new BasicScheduleRecord
                 {
-                    BankHolidayRunning = BankHolidayRunning.RunsOnBankHoliday,
+                    BankHolidayRunning = BankHolidayRunning.R,
                     TransactionType = TransactionType.Revise,
                     TrainUid = "Y80201",
                     DateRunsFrom = new DateTime(2015, 12, 14),
@@ -70,7 +69,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                     Speed = 125,
                     OperatingCharacteristicsString = "EP    ",
                     OperatingCharacteristics = OperatingCharacteristics.E | OperatingCharacteristics.P,
-                    SeatingClass = SeatingClass.FirstAndStandardClass,
+                    SeatingClass = SeatingClass.B,
                     Sleepers = SleeperDetails.NotAvailable,
                     Reservations = ReservationDetails.Recommended,
                     ConnectionIndicator = string.Empty,

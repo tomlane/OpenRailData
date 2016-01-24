@@ -3,22 +3,20 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class BankHolidayRunningParser : IBankHolidayRunningParser
+    public class BankHolidayRunningParser : IRecordEnumPropertyParser
     {
-        public BankHolidayRunning ParseBankHolidayRunning(string runningIndicator)
-        {
-            if (runningIndicator == null)
-                throw new ArgumentNullException(nameof(runningIndicator));
+        public string PropertyKey { get; } = "BankHolidayRunning";
 
-            switch (runningIndicator)
-            {
-                case "G":
-                    return BankHolidayRunning.DoesNotRunGlasgow;
-                case "X":
-                    return BankHolidayRunning.DoesNotRun;
-                default:
-                    return BankHolidayRunning.RunsOnBankHoliday;
-            }
+        public Enum ParseProperty(string propertyString)
+        {
+            if (propertyString == null)
+                throw new ArgumentNullException(nameof(propertyString));
+
+            BankHolidayRunning result;
+
+            bool successful = Enum.TryParse(propertyString, true, out result);
+
+            return successful ? result : BankHolidayRunning.R;
         }
     }
 }

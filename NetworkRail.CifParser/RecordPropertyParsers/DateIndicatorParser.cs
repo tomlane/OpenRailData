@@ -3,24 +3,20 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class DateIndicatorParser : IDateIndicatorParser
+    public class DateIndicatorParser : IRecordEnumPropertyParser
     {
-        public DateIndicator ParseDateIndicator(string dateIndicator)
-        {
-            if (dateIndicator == null)
-                throw new ArgumentNullException(nameof(dateIndicator));
+        public string PropertyKey { get; } = "DateIndicator";
 
-            switch (dateIndicator)
-            {
-                case "S":
-                    return DateIndicator.Standard;
-                case "N":
-                    return DateIndicator.Overnight;
-                case "P":
-                    return DateIndicator.PreviousNight;
-                default:
-                    return DateIndicator.None;
-            }
+        public Enum ParseProperty(string propertyString)
+        {
+            if (propertyString == null)
+                throw new ArgumentNullException(nameof(propertyString));
+
+            DateIndicator result;
+
+            bool successful = Enum.TryParse(propertyString, true, out result);
+
+            return successful ? result : DateIndicator.None;
         }
     }
 }

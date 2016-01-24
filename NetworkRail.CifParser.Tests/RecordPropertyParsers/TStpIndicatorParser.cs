@@ -16,9 +16,9 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new StpIndicatorParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseStpIndicator(null));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseStpIndicator(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseStpIndicator(" \t"));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(string.Empty));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(" \t"));
             }
 
             [Test]
@@ -26,16 +26,16 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new StpIndicatorParser();
 
-                var result = parser.ParseStpIndicator("C");
+                var result = parser.ParseProperty("C");
                 Assert.AreEqual(StpIndicator.C, result);
 
-                result = parser.ParseStpIndicator("N");
+                result = parser.ParseProperty("N");
                 Assert.AreEqual(StpIndicator.N, result);
 
-                result = parser.ParseStpIndicator("O");
+                result = parser.ParseProperty("O");
                 Assert.AreEqual(StpIndicator.O, result);
 
-                result = parser.ParseStpIndicator("P");
+                result = parser.ParseProperty("P");
                 Assert.AreEqual(StpIndicator.P, result);
             }
 
@@ -44,7 +44,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new StpIndicatorParser();
 
-                Assert.Throws<ArgumentException>(() => parser.ParseStpIndicator("Z"));
+                Assert.Throws<ArgumentException>(() => parser.ParseProperty("Z"));
             }
         }
     }

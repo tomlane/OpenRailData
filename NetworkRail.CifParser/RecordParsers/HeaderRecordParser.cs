@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 

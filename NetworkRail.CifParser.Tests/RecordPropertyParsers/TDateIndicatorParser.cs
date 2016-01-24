@@ -16,7 +16,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new DateIndicatorParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseDateIndicator(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
             }
 
             [Test]
@@ -24,14 +24,14 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new DateIndicatorParser();
 
-                var result = parser.ParseDateIndicator("S");
-                Assert.AreEqual(DateIndicator.Standard, result);
+                var result = parser.ParseProperty("S");
+                Assert.AreEqual(DateIndicator.S, result);
 
-                result = parser.ParseDateIndicator("N");
-                Assert.AreEqual(DateIndicator.Overnight, result);
+                result = parser.ParseProperty("N");
+                Assert.AreEqual(DateIndicator.N, result);
 
-                result = parser.ParseDateIndicator("P");
-                Assert.AreEqual(DateIndicator.PreviousNight, result);
+                result = parser.ParseProperty("P");
+                Assert.AreEqual(DateIndicator.P, result);
             }
 
             [Test]
@@ -39,7 +39,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new DateIndicatorParser();
 
-                var result = parser.ParseDateIndicator("ZZZ");
+                var result = parser.ParseProperty("ZZZ");
 
                 Assert.AreEqual(DateIndicator.None, result);
             }

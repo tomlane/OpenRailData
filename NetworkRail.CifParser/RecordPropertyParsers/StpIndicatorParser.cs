@@ -3,26 +3,16 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class StpIndicatorParser : IStpIndicatorParser
+    public class StpIndicatorParser : IRecordEnumPropertyParser
     {
-        public StpIndicator ParseStpIndicator(string stpIndicator)
-        {
-            if (string.IsNullOrWhiteSpace(stpIndicator))
-                throw new ArgumentNullException(nameof(stpIndicator));
+        public string PropertyKey { get; } = "StpIndicator";
 
-            switch (stpIndicator)
-            {
-                case "C":
-                    return StpIndicator.C;
-                case "N":
-                    return StpIndicator.N;
-                case "O":
-                    return StpIndicator.O;
-                case "P":
-                    return StpIndicator.P;
-                default:
-                    throw new ArgumentException($"Unknown STP Indicator {stpIndicator}");
-            }
+        public Enum ParseProperty(string propertyString)
+        {
+            if (propertyString == null)
+                throw new ArgumentNullException(nameof(propertyString));
+
+            return (StpIndicator)Enum.Parse(typeof(StpIndicator), propertyString);
         }
     }
 }
