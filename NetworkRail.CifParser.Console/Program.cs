@@ -1,8 +1,10 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
+using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.Console
 {
@@ -16,19 +18,19 @@ namespace NetworkRail.CifParser.Console
 
             var container = CifParserIocContainerBuilder.Build();
 
-            var updateProcessor = container.Resolve<IScheduleUpdateProcessor>();
+            var scheduleManager = container.Resolve<IScheduleManager>();
 
-            CifScheduleRecordCollection entites;
+            List<ICifRecord> entites;
 
             using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
-                entites = updateProcessor.ParseScheduleUpdate(fs);
+                entites = scheduleManager.ParseScheduleEntites(fs).ToList();
             }
             
             var end = Process.GetCurrentProcess().TotalProcessorTime;
 
             System.Console.WriteLine("Measured Time: {0} ms.", (end - start).TotalMilliseconds);
-            System.Console.WriteLine("Schedule date: {0}", entites.HeaderRecord.DateOfExtract);
+            System.Console.WriteLine("Records Processed: {0}", entites.Count);
 
             System.Console.ReadLine();
         }

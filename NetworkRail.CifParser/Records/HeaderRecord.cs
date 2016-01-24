@@ -5,7 +5,7 @@ namespace NetworkRail.CifParser.Records
 {
     public class HeaderRecord : ICifRecord
     {
-        public CifRecordType RecordIdentity { get; set; }
+        public CifRecordType RecordIdentity { get; } = CifRecordType.Header;
         public string MainFrameIdentity { get; set; } = string.Empty;
         public DateTime DateOfExtract { get; set; }
         public TimeSpan TimeOfExtract { get; set; }

@@ -69,34 +69,34 @@
     <Compile Include="ParserContainers\TChangesEnRouteRecordParserContainer.cs" />
     <Compile Include="ParserContainers\THeaderRecordParserContainer.cs" />
     <Compile Include="ParserContainers\TLocationRecordParserContainer.cs" />
-    <Compile Include="Parsers\TAssociationCategoryParser.cs" />
-    <Compile Include="Parsers\TDateIndicatorParser.cs" />
-    <Compile Include="Parsers\TDateTimeParser.cs" />
-    <Compile Include="Parsers\TBankHolidayRunningParser.cs" />
-    <Compile Include="Parsers\TLocationTypeParser.cs" />
-    <Compile Include="Parsers\TRunningDaysParser.cs" />
-    <Compile Include="Parsers\TSeatingClassParser.cs" />
-    <Compile Include="Parsers\TTrainSleeperDetailsParser.cs" />
-    <Compile Include="Parsers\TReservationDetailsParser.cs" />
-    <Compile Include="Parsers\TTimeParser.cs" />
-    <Compile Include="Parsers\TStpIndicatorParser.cs" />
-    <Compile Include="Parsers\TTransactionTypeParser.cs" />
-    <Compile Include="Parsers\TExtractUpdateTypeParser.cs" />
-    <Compile Include="RecordBuilders\TAssociationRecordBuilder.cs" />
-    <Compile Include="RecordBuilders\TBasicScheduleExtraDetailsRecordBuilder.cs" />
-    <Compile Include="RecordBuilders\TBasicScheduleRecordBuilder.cs" />
-    <Compile Include="RecordBuilders\TChangesEnRouteRecordBuilder.cs" />
-    <Compile Include="RecordBuilders\THeaderRecordBuilder.cs" />
-    <Compile Include="RecordBuilders\TLocationRecordBuilder.cs" />
-    <Compile Include="RecordBuilders\TTiplocDeleteRecordBuilder.cs" />
-    <Compile Include="RecordBuilders\TTiplocInsertAmendRecordBuilder.cs" />
+    <Compile Include="RecordParsers\TIntermediateLocationRecordParser.cs" />
+    <Compile Include="RecordParsers\TTerminatingLocationRecordParser.cs" />
+    <Compile Include="RecordParsers\TTiplocAmendRecordParser.cs" />
+    <Compile Include="RecordPropertyParsers\TAssociationCategoryParser.cs" />
+    <Compile Include="RecordPropertyParsers\TDateIndicatorParser.cs" />
+    <Compile Include="RecordPropertyParsers\TDateTimeParser.cs" />
+    <Compile Include="RecordPropertyParsers\TBankHolidayRunningParser.cs" />
+    <Compile Include="RecordPropertyParsers\TRunningDaysParser.cs" />
+    <Compile Include="RecordPropertyParsers\TSeatingClassParser.cs" />
+    <Compile Include="RecordPropertyParsers\TTrainSleeperDetailsParser.cs" />
+    <Compile Include="RecordPropertyParsers\TReservationDetailsParser.cs" />
+    <Compile Include="RecordPropertyParsers\TTimeParser.cs" />
+    <Compile Include="RecordPropertyParsers\TStpIndicatorParser.cs" />
+    <Compile Include="RecordPropertyParsers\TTransactionTypeParser.cs" />
+    <Compile Include="RecordPropertyParsers\TExtractUpdateTypeParser.cs" />
+    <Compile Include="RecordParsers\TAssociationRecordParser.cs" />
+    <Compile Include="RecordParsers\TBasicScheduleExtraDetailsRecordParser.cs" />
+    <Compile Include="RecordParsers\TBasicScheduleRecordParser.cs" />
+    <Compile Include="RecordParsers\TChangesEnRouteRecordParser.cs" />
+    <Compile Include="RecordParsers\THeaderRecordParser.cs" />
+    <Compile Include="RecordParsers\TOriginLocationRecordParser.cs" />
+    <Compile Include="RecordParsers\TTiplocDeleteRecordParser.cs" />
+    <Compile Include="RecordParsers\TTiplocInsertRecordParser.cs" />
     <Compile Include="Records\TBasicScheduleRecord.cs" />
-    <Compile Include="TCifRecordBuilderContainer.cs" />
-    <Compile Include="TCifRecordParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Parsers\TLocationActivityParser.cs" />
-    <Compile Include="Parsers\TOperatingCharacteristicsParser.cs" />
-    <Compile Include="TCifScheduleUpdateProcessor.cs" />
+    <Compile Include="RecordPropertyParsers\TLocationActivityParser.cs" />
+    <Compile Include="RecordPropertyParsers\TOperatingCharacteristicsParser.cs" />
+    <Compile Include="TCifScheduleManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -111,6 +111,7 @@
       <Name>NetworkRail.CifParser</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,8 +1,8 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System.Collections.Generic;
+using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.ParserContainers;
-using NetworkRail.CifParser.Parsers;
-using NetworkRail.CifParser.RecordBuilders;
-using NetworkRail.CifParser.Records;
+using NetworkRail.CifParser.RecordParsers;
+using NetworkRail.CifParser.RecordPropertyParsers;
 
 namespace NetworkRail.CifParser.IoC
 {
@@ -13,21 +13,20 @@ namespace NetworkRail.CifParser.IoC
             if (container == null)
                 container = new UnityContainer();
 
-            container.RegisterType<IScheduleUpdateProcessor, CifScheduleUpdateProcessor>();
+            container.RegisterType<IScheduleManager, CifScheduleManager>();
 
-            container.RegisterType<ICifRecordParser, CifRecordParser>();
-
-            container.RegisterType<ICifRecordBuilderContainer, CifRecordBuilderContainer>();
-
-            container.RegisterType<ICifRecordBuilder<AssociationRecord>, AssociationRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<BasicScheduleExtraDetailsRecord>, BasicScheduleExtraDetailsRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<BasicScheduleRecord>, BasicScheduleRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<ChangesEnRouteRecord>, ChangesEnRouteRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<HeaderRecord>, HeaderRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<LocationRecord>, LocationRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<TiplocDeleteRecord>, TiplocDeleteRecordBuilder>();
-            container.RegisterType<ICifRecordBuilder<TiplocInsertAmendRecord>, TiplocInsertAmendRecordBuilder>();
-
+            container.RegisterType<ICifRecordParser, AssociationRecordParser>("AssociationRecordParser");
+            container.RegisterType<ICifRecordParser, BasicScheduleExtraDetailsRecordParser>("BasicScheduleExtraDetailsRecordParser");
+            container.RegisterType<ICifRecordParser, BasicScheduleRecordParser>("BasicScheduleRecordParser");
+            container.RegisterType<ICifRecordParser, ChangesEnRouteRecordParser>("ChangesEnRouteRecordParser");
+            container.RegisterType<ICifRecordParser, HeaderRecordParser>("HeaderRecordParser");
+            container.RegisterType<ICifRecordParser, OriginLocationRecordParser>("OriginLocationRecordParser");
+            container.RegisterType<ICifRecordParser, IntermediateLocationRecordParser>("IntermediateLocationRecordParser");
+            container.RegisterType<ICifRecordParser, TerminatingLocationRecordParser>("TerminatingLocationRecordParser");
+            container.RegisterType<ICifRecordParser, TiplocDeleteRecordParser>("TiplocDeleteRecordParser");
+            container.RegisterType<ICifRecordParser, TiplocInsertRecordParser>("TiplocInsertRecordParser");
+            container.RegisterType<ICifRecordParser, TiplocAmendRecordParser>("TiplocAmendRecordParser");
+            
             container.RegisterType<IAssociationRecordParserContainer, AssociationRecordParserContainer>();
             container.RegisterType<IBasicScheduleRecordParserContainer, BasicScheduleRecordParserContainer>();
             container.RegisterType<IChangesEnRouteRecordParserContainer, ChangesEnRouteRecordParserContainer>();
@@ -41,7 +40,6 @@ namespace NetworkRail.CifParser.IoC
             container.RegisterType<IDateTimeParser, DateTimeParser>();
             container.RegisterType<IExtractUpdateTypeParser, ExtractUpdateTypeParser>();
             container.RegisterType<ILocationActivityParser, LocationActivityParser>();
-            container.RegisterType<ILocationTypeParser, LocationTypeParser>();
             container.RegisterType<IOperatingCharacteristicsParser, OperatingCharacteristicsParser>();
             container.RegisterType<IReservationDetailsParser, ReservationsDetailsParser>();
             container.RegisterType<IRunningDaysParser, RunningDaysParser>();

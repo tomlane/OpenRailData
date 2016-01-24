@@ -5,7 +5,7 @@ namespace NetworkRail.CifParser.Records
 {
     public class BasicScheduleRecord : ICifRecord
     {
-        public CifRecordType RecordIdentity { get; set; }
+        public CifRecordType RecordIdentity { get; } = CifRecordType.BasicSchedule;
         public TransactionType TransactionType { get; set; }
         public string TrainUid { get; set; } = string.Empty;
         public string UniqueId { get; set; } = string.Empty;
