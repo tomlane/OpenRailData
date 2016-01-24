@@ -13,7 +13,10 @@ namespace NetworkRail.CifParser
 
         public CifScheduleManager(ICifRecordParser[] recordParsers)
         {
-                _cifRecordParsers = recordParsers.ToDictionary(x => x.RecordKey, x => x);
+            if (recordParsers == null)
+                throw new ArgumentNullException(nameof(recordParsers));
+
+            _cifRecordParsers = recordParsers.ToDictionary(x => x.RecordKey, x => x);
         }
 
         public IList<ICifRecord> ParseScheduleEntites(Stream scheduleStream)
@@ -37,7 +40,16 @@ namespace NetworkRail.CifParser
                         break;
                     }
 
-                    var parser = _cifRecordParsers[recordType];
+                    ICifRecordParser parser;
+
+                    try
+                    {
+                        parser = _cifRecordParsers[recordType];
+                    }
+                    catch (KeyNotFoundException exception)
+                    {
+                        throw new ArgumentException($"No parser found for record type {recordType}", exception);
+                    }
 
                     recordList.Add(parser.ParseRecord(record));
                 }
