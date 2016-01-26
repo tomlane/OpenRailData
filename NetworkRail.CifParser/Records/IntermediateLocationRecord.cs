@@ -9,11 +9,11 @@ namespace NetworkRail.CifParser.Records
         public string Tiploc { get; set; } = string.Empty;
         public string TiplocSuffix { get; set; } = string.Empty;
         public string Location => $"{Tiploc}{TiplocSuffix}";
-        public TimeSpan? WorkingArrival { get; set; }
-        public TimeSpan? PublicArrival { get; set; }
-        public TimeSpan? WorkingDeparture { get; set; }
-        public TimeSpan? PublicDeparture { get; set; }
-        public TimeSpan? Pass { get; set; }
+        public string WorkingArrival { get; set; }
+        public string PublicArrival { get; set; }
+        public string WorkingDeparture { get; set; }
+        public string PublicDeparture { get; set; }
+        public string Pass { get; set; }
         public string Platform { get; set; } = string.Empty;
         public string Line { get; set; } = string.Empty;
         public string Path { get; set; } = string.Empty;
@@ -23,7 +23,7 @@ namespace NetworkRail.CifParser.Records
         public TimeSpan? PathingAllowance { get; set; }
         public TimeSpan? PerformanceAllowance { get; set; }
 
-        public TimeSpan? OrderTime { get; set; }
+        public string OrderTime { get; set; }
 
         public bool PublicCall => !LocationActivity.HasFlag(LocationActivity.N) && (PublicArrival != null || PublicDeparture != null);
         public bool ActualCall => WorkingArrival != null || WorkingDeparture != null;

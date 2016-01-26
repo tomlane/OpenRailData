@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
@@ -8,14 +10,18 @@ namespace NetworkRail.CifParser.RecordParsers
 {
     public class BasicScheduleRecordParser : ICifRecordParser
     {
-        private readonly IBasicScheduleRecordParserContainer _recordParserContainer;
-
-        public BasicScheduleRecordParser(IBasicScheduleRecordParserContainer recordParserContainer)
+        private readonly Dictionary<string, IRecordEnumPropertyParser> _enumPropertyParsers;
+        private readonly IDateTimeParser _dateTimeParser;
+        
+        public BasicScheduleRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers, IDateTimeParser dateTimeParser)
         {
-            if (recordParserContainer == null)
-                throw new ArgumentNullException(nameof(recordParserContainer));
+            if (enumPropertyParsers == null)
+                throw new ArgumentNullException(nameof(enumPropertyParsers));
+            if (dateTimeParser == null)
+                throw new ArgumentNullException(nameof(dateTimeParser));
 
-            _recordParserContainer = recordParserContainer;
+            _enumPropertyParsers = enumPropertyParsers.ToDictionary(x => x.PropertyKey, x => x);
+            _dateTimeParser = dateTimeParser;
         }
 
         public string RecordKey { get; } = "BS";
@@ -27,15 +33,15 @@ namespace NetworkRail.CifParser.RecordParsers
 
             BasicScheduleRecord record = new BasicScheduleRecord
             {
-                TransactionType = _recordParserContainer.TransactionTypeParser.ParseTransactionType(recordString.Substring(2, 1)),
+                TransactionType = (TransactionType)_enumPropertyParsers["TransactionType"].ParseProperty(recordString.Substring(2, 1)),
                 TrainUid = recordString.Substring(3, 6),
-                DateRunsTo = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
+                DateRunsTo = _dateTimeParser.ParseDateTime(new DateTimeParserRequest
                 {
                     DateTimeFormat = "yyMMdd",
                     DateTimeString = recordString.Substring(15, 6)
                 }),
-                RunningDays = _recordParserContainer.RunningDaysParser.ParseRunningDays(recordString.Substring(21, 7)),
-                BankHolidayRunning = _recordParserContainer.BankHolidayRunningParser.ParseBankHolidayRunning(recordString.Substring(28, 1)),
+                RunningDays = (Days)_enumPropertyParsers["RunningDays"].ParseProperty(recordString.Substring(21, 7)),
+                BankHolidayRunning = (BankHolidayRunning)_enumPropertyParsers["BankHolidayRunning"].ParseProperty(recordString.Substring(28, 1)),
                 TrainStatus = recordString.Substring(29, 1).Trim(),
                 TrainCategory = recordString.Substring(30, 2).Trim(),
                 TrainIdentity = recordString.Substring(32, 4).Trim(),
@@ -46,13 +52,13 @@ namespace NetworkRail.CifParser.RecordParsers
                 PowerType = recordString.Substring(50, 3).Trim(),
                 TimingLoad = recordString.Substring(53, 4).Trim(),
                 OperatingCharacteristicsString = recordString.Substring(60, 6),
-                SeatingClass = _recordParserContainer.SeatingClassParser.ParseSeatingClass(recordString.Substring(66, 1)),
-                Sleepers = _recordParserContainer.SleeperDetailsParser.ParseTrainSleeperDetails(recordString.Substring(67, 1)),
-                Reservations = _recordParserContainer.ReservationDetailsParser.ParseTrainResevationDetails(recordString.Substring(68, 1)),
+                SeatingClass = (SeatingClass)_enumPropertyParsers["SeatingClass"].ParseProperty(recordString.Substring(66, 1)),
+                Sleepers = (SleeperDetails)_enumPropertyParsers["SleeperDetails"].ParseProperty(recordString.Substring(67, 1)),
+                Reservations = (ReservationDetails)_enumPropertyParsers["ReservationDetails"].ParseProperty(recordString.Substring(68, 1)),
                 ConnectionIndicator = recordString.Substring(69, 1).Trim(),
                 CateringCode = recordString.Substring(70, 4).Trim(),
                 ServiceBranding = recordString.Substring(74, 4).Trim(),
-                StpIndicator = _recordParserContainer.StpIndicatorParser.ParseStpIndicator(recordString.Substring(79, 1))
+                StpIndicator = (StpIndicator)_enumPropertyParsers["StpIndicator"].ParseProperty(recordString.Substring(79, 1))
             };
 
             int speed;
@@ -62,7 +68,7 @@ namespace NetworkRail.CifParser.RecordParsers
             if (speedParsed)
                 record.Speed = speed;
 
-            var dateRunsFromResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
+            var dateRunsFromResult = _dateTimeParser.ParseDateTime(new DateTimeParserRequest
             {
                 DateTimeFormat = "yyMMdd",
                 DateTimeString = recordString.Substring(9, 6)
@@ -92,7 +98,7 @@ namespace NetworkRail.CifParser.RecordParsers
                 record.TrainCategory == "OL" || record.TrainCategory == "OO" || record.TrainCategory == "XC" || record.TrainCategory == "XX" || record.TrainCategory == "XZ")
                 record.ServiceTypeFlags = record.ServiceTypeFlags | ServiceTypeFlags.Passenger;
 
-            record.OperatingCharacteristics = _recordParserContainer.OperatingCharacteristicsParser.ParseOperatingCharacteristics(record.OperatingCharacteristicsString);
+            record.OperatingCharacteristics = (OperatingCharacteristics)_enumPropertyParsers["OperatingCharacteristics"].ParseProperty(record.OperatingCharacteristicsString);
 
             return record;
         }
