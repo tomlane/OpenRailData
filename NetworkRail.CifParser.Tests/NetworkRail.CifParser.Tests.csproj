@@ -93,6 +93,8 @@
     <Compile Include="RecordPropertyParsers\TLocationActivityParser.cs" />
     <Compile Include="RecordPropertyParsers\TOperatingCharacteristicsParser.cs" />
     <Compile Include="TCifScheduleManager.cs" />
+    <Compile Include="TCifScheduleParser.cs" />
+    <Compile Include="TFileScheduleReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
