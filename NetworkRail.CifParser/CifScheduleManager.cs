@@ -9,14 +9,18 @@ namespace NetworkRail.CifParser
 {
     public class CifScheduleManager : IScheduleManager
     {
-        private readonly Dictionary<string, ICifRecordParser> _cifRecordParsers;
+        private readonly IScheduleReader _scheduleReader;
+        private readonly IScheduleParser _scheduleParser;
 
-        public CifScheduleManager(ICifRecordParser[] recordParsers)
+        public CifScheduleManager(IScheduleReader scheduleReader, IScheduleParser scheduleParser)
         {
-            if (recordParsers == null)
-                throw new ArgumentNullException(nameof(recordParsers));
+            if (scheduleReader == null)
+                throw new ArgumentNullException(nameof(scheduleReader));
+            if (scheduleParser == null)
+                throw new ArgumentNullException(nameof(scheduleParser));
 
-            _cifRecordParsers = recordParsers.ToDictionary(x => x.RecordKey, x => x);
+            _scheduleReader = scheduleReader;
+            _scheduleParser = scheduleParser;
         }
 
         public IList<ICifRecord> ParseScheduleEntites(Stream scheduleStream)
@@ -56,6 +60,16 @@ namespace NetworkRail.CifParser
             }
 
             return recordList;
+        }
+
+        public IList<ICifRecord> ParseScheduleEntites(string scheduleFilePath)
+        {
+            if (string.IsNullOrWhiteSpace(scheduleFilePath))
+                throw new ArgumentNullException(nameof(scheduleFilePath));
+
+            var recordsToParse = _scheduleReader.ReadSchedule(scheduleFilePath);
+
+            return _scheduleParser.ParseScheduleFile(recordsToParse);
         }
 
         public void SaveScheduleEntities(IList<ICifRecord> entites)
