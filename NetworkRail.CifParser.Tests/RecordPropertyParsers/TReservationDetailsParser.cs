@@ -25,16 +25,16 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
                 var parser = new ReservationDetailsParser();
 
                 var result = parser.ParseProperty("A");
-                Assert.AreEqual(ReservationDetails.Compulsory, result);
+                Assert.AreEqual(ReservationDetails.A, result);
 
                 result = parser.ParseProperty("E");
-                Assert.AreEqual(ReservationDetails.BicyclesEssential, result);
+                Assert.AreEqual(ReservationDetails.E, result);
 
                 result = parser.ParseProperty("R");
-                Assert.AreEqual(ReservationDetails.Recommended, result);
+                Assert.AreEqual(ReservationDetails.R, result);
 
                 result = parser.ParseProperty("S");
-                Assert.AreEqual(ReservationDetails.PossibleFromAnyStation, result);
+                Assert.AreEqual(ReservationDetails.S, result);
             }
 
             [Test]

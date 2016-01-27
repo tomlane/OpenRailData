@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Practices.Unity;
 using Moq;
 using NetworkRail.CifParser.IoC;
@@ -62,7 +61,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                 var expectedResult = new BasicScheduleRecord
                 {
                     BankHolidayRunning = BankHolidayRunning.R,
-                    TransactionType = TransactionType.Revise,
+                    TransactionType = TransactionType.R,
                     TrainUid = "Y80201",
                     DateRunsFrom = new DateTime(2015, 12, 14),
                     DateRunsTo = new DateTime(2016, 1, 1),
@@ -81,7 +80,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                     OperatingCharacteristics = OperatingCharacteristics.E | OperatingCharacteristics.P,
                     SeatingClass = SeatingClass.B,
                     Sleepers = SleeperDetails.NotAvailable,
-                    Reservations = ReservationDetails.Recommended,
+                    Reservations = ReservationDetails.R,
                     ConnectionIndicator = string.Empty,
                     CateringCode = "CM",
                     ServiceBranding = string.Empty,

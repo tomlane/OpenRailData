@@ -34,8 +34,8 @@ namespace NetworkRail.CifParser.RecordParsers
             {
                 Tiploc = recordString.Substring(2, 7).Trim(),
                 TiplocSuffix = recordString.Substring(9, 1).Trim(),
-                WorkingDeparture = recordString.Substring(10, 5),
-                PublicDeparture = recordString.Substring(15, 4),
+                WorkingDeparture = recordString.Substring(10, 5).Trim(),
+                PublicDeparture = recordString.Substring(15, 4).Trim(),
                 Platform = recordString.Substring(19, 3).Trim(),
                 Line = recordString.Substring(22, 3).Trim(),
                 EngineeringAllowance = _timingAllowanceParser.ParseTime(recordString.Substring(25, 2)),

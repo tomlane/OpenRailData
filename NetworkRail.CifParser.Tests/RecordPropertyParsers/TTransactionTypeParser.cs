@@ -27,13 +27,13 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
                 var parser = new TransactionTypeParser();
 
                 var result = parser.ParseProperty("N");
-                Assert.AreEqual(TransactionType.New, result);
+                Assert.AreEqual(TransactionType.N, result);
 
                 result = parser.ParseProperty("R");
-                Assert.AreEqual(TransactionType.Revise, result);
+                Assert.AreEqual(TransactionType.R, result);
 
                 result = parser.ParseProperty("D");
-                Assert.AreEqual(TransactionType.Delete, result);
+                Assert.AreEqual(TransactionType.D, result);
             }
 
             [Test]

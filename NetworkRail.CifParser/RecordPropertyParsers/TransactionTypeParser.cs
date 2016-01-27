@@ -9,7 +9,7 @@ namespace NetworkRail.CifParser.RecordPropertyParsers
 
         public Enum ParseProperty(string propertyString)
         {
-            if (propertyString == null)
+            if (string.IsNullOrWhiteSpace(propertyString))
                 throw new ArgumentNullException(nameof(propertyString));
             
             return (TransactionType)Enum.Parse(typeof(TransactionType), propertyString);

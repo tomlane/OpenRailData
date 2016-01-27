@@ -88,7 +88,7 @@ namespace NetworkRail.CifParser.RecordParsers
             
             record.CurrentFileRef = recordString.Substring(32, 7);
             record.LastFileRef = recordString.Substring(39, 7);
-            record.ExtractUpdateType = (ExtractUpdateType)_enumPropertyParsers["UpdateExtractType"].ParseProperty(recordString.Substring(46, 1));
+            record.ExtractUpdateType = (ExtractUpdateType)_enumPropertyParsers["ExtractUpdateType"].ParseProperty(recordString.Substring(46, 1));
             record.CifSoftwareVersion = recordString.Substring(47, 1);
             
             record.MainFrameUser = record.MainFrameIdentity.Substring(5, 6);

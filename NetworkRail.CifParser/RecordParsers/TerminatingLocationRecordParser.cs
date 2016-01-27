@@ -30,8 +30,8 @@ namespace NetworkRail.CifParser.RecordParsers
             {
                 Tiploc = recordString.Substring(2, 7).Trim(),
                 TiplocSuffix = recordString.Substring(9, 1).Trim(),
-                WorkingArrival = recordString.Substring(10, 5),
-                PublicArrival = recordString.Substring(15, 4),
+                WorkingArrival = recordString.Substring(10, 5).Trim(),
+                PublicArrival = recordString.Substring(15, 4).Trim(),
                 Platform = recordString.Substring(19, 3).Trim(),
                 Path = recordString.Substring(22, 3).Trim(),
                 LocationActivityString = recordString.Substring(25, 12),

@@ -60,7 +60,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
 
                 var expectedResult = new AssociationRecord
                 {
-                    TransactionType = TransactionType.Revise,
+                    TransactionType = TransactionType.R,
                     MainTrainUid = "W01400",
                     AssocTrainUid = "W00570",
                     DateFrom = new DateTime(2015, 12, 13),
@@ -90,7 +90,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
 
                 var expectedResult = new AssociationRecord
                 {
-                    TransactionType = TransactionType.New,
+                    TransactionType = TransactionType.N,
                     MainTrainUid = "L82468",
                     AssocTrainUid = "L83922",
                     DateFrom = new DateTime(2015, 12, 19),
@@ -120,7 +120,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
 
                 var expectedResult = new AssociationRecord
                 {
-                    TransactionType = TransactionType.Delete,
+                    TransactionType = TransactionType.D,
                     MainTrainUid = "L82468",
                     AssocTrainUid = "L83922",
                     DateFrom = new DateTime(2015, 12, 26),

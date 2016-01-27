@@ -34,11 +34,11 @@ namespace NetworkRail.CifParser.RecordParsers
             {
                 Tiploc = recordString.Substring(2, 7).Trim(),
                 TiplocSuffix = recordString.Substring(9, 1).Trim(),
-                WorkingArrival = recordString.Substring(10, 5),
-                WorkingDeparture = recordString.Substring(15, 5),
-                Pass = recordString.Substring(20, 5),
-                PublicArrival = recordString.Substring(25, 4),
-                PublicDeparture = recordString.Substring(29, 4),
+                WorkingArrival = recordString.Substring(10, 5).Trim(),
+                WorkingDeparture = recordString.Substring(15, 5).Trim(),
+                Pass = recordString.Substring(20, 5).Trim(),
+                PublicArrival = recordString.Substring(25, 4).Trim(),
+                PublicDeparture = recordString.Substring(29, 4).Trim(),
                 Platform = recordString.Substring(33, 3).Trim(),
                 Line = recordString.Substring(36, 3).Trim(),
                 Path = recordString.Substring(39, 3).Trim(),
@@ -50,8 +50,8 @@ namespace NetworkRail.CifParser.RecordParsers
 
             record.LocationActivity = (LocationActivity)_enumPropertyParsers["LocationActivity"].ParseProperty(record.LocationActivityString);
 
-            record.OrderTime = record.Pass ?? record.WorkingDeparture;
-
+            record.OrderTime = !string.IsNullOrWhiteSpace(record.Pass) ? record.Pass : record.WorkingDeparture;
+            
             return record;
         }
     }

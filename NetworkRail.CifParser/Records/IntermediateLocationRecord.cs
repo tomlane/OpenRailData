@@ -30,20 +30,20 @@ namespace NetworkRail.CifParser.Records
 
         protected bool Equals(IntermediateLocationRecord other)
         {
-            return WorkingArrival.Equals(other.WorkingArrival) &&
-                WorkingDeparture.Equals(other.WorkingDeparture) &&
+            return string.Equals(WorkingArrival, other.WorkingArrival) &&
+                string.Equals(WorkingDeparture, other.WorkingDeparture) &&
                 EngineeringAllowance.Equals(other.EngineeringAllowance) &&
                 string.Equals(Line, other.Line) &&
                 LocationActivity == other.LocationActivity &&
                 string.Equals(LocationActivityString, other.LocationActivityString) &&
-                OrderTime.Equals(other.OrderTime) &&
-                Pass.Equals(other.Pass) &&
+                string.Equals(OrderTime, other.OrderTime) &&
+                string.Equals(Pass, other.Pass) &&
                 string.Equals(Path, other.Path) &&
                 PathingAllowance.Equals(other.PathingAllowance) &&
                 PerformanceAllowance.Equals(other.PerformanceAllowance) &&
                 string.Equals(Platform, other.Platform) &&
-                PublicArrival.Equals(other.PublicArrival) &&
-                PublicDeparture.Equals(other.PublicDeparture) &&
+                string.Equals(PublicArrival, other.PublicArrival) &&
+                string.Equals(PublicDeparture, other.PublicDeparture) &&
                 RecordIdentity == other.RecordIdentity &&
                 string.Equals(Tiploc, other.Tiploc) &&
                 string.Equals(TiplocSuffix, other.TiplocSuffix);

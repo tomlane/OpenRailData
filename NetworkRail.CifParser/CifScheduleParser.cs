@@ -6,7 +6,7 @@ using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser
 {
-    class CifScheduleParser : IScheduleParser
+    public class CifScheduleParser : IScheduleParser
     {
         private readonly Dictionary<string, ICifRecordParser> _cifRecordParsers;
 

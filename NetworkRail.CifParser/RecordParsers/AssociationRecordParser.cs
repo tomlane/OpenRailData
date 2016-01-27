@@ -20,6 +20,7 @@ namespace NetworkRail.CifParser.RecordParsers
                 throw new ArgumentNullException(nameof(dateTimeParser));
 
             _enumPropertyParsers = enumPropertyParsers.ToDictionary(x => x.PropertyKey, x => x);
+            _dateTimeParser = dateTimeParser;
         }
 
         public string RecordKey { get; } = "AA";

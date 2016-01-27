@@ -2,6 +2,7 @@
 using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.IoC;
 using NetworkRail.CifParser.RecordParsers;
+using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
@@ -21,19 +22,19 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
         class BuildRecord
         {
             private static IUnityContainer _container;
-            private static ILocationRecordParserContainer _parserContainer;
+            private static IRecordEnumPropertyParser[] _enumPropertyParsers;
 
             [OneTimeSetUp]
             public void OneTimeSetUp()
             {
                 _container = CifParserIocContainerBuilder.Build();
-                _parserContainer = _container.Resolve<ILocationRecordParserContainer>();
+                _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
             }
             
             [Test]
             public void returns_expected_result()
             {
-                var recordParser = new TerminatingLocationRecordParser(_parserContainer);
+                var recordParser = new TerminatingLocationRecordParser(_enumPropertyParsers);
 
                 string record = "LTWSTBRYW 1323 13253     TF                                                     ";
 
@@ -42,12 +43,12 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                 var expectedResult = new TerminatingLocationRecord
                 {
                     Tiploc = "WSTBRYW",
-                    WorkingArrival = new TimeSpan(0, 13, 23, 0),
-                    PublicArrival = new TimeSpan(0, 13, 25, 0),
+                    WorkingArrival = "1323",
+                    PublicArrival = "1325",
                     Platform = "3",
                     LocationActivity = LocationActivity.TF,
                     LocationActivityString = "TF          ",
-                    OrderTime = new TimeSpan(0, 13, 23, 0)
+                    OrderTime = "1323"
                 };
 
                 Assert.AreEqual(expectedResult, result);

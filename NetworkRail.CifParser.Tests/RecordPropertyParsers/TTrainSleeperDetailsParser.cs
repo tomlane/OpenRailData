@@ -25,13 +25,13 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
                 var parser = new SleeperDetailsParser();
 
                 var result = parser.ParseProperty("B");
-                Assert.AreEqual(SleeperDetails.FirstAndStandard, result);
+                Assert.AreEqual(SleeperDetails.B, result);
 
                 result = parser.ParseProperty("F");
-                Assert.AreEqual(SleeperDetails.FirstClassOnly, result);
+                Assert.AreEqual(SleeperDetails.F, result);
 
                 result = parser.ParseProperty("S");
-                Assert.AreEqual(SleeperDetails.StandardClassOnly, result);
+                Assert.AreEqual(SleeperDetails.S, result);
             }
 
             [Test]
