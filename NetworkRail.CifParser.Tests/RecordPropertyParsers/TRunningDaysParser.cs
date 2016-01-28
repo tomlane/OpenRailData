@@ -16,7 +16,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new RunningDaysParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseRunningDays(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
             }
 
             [Test]
@@ -24,8 +24,8 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new RunningDaysParser();
                 
-                Assert.Throws<ArgumentException>(() => parser.ParseRunningDays("12345678"));
-                Assert.Throws<ArgumentException>(() => parser.ParseRunningDays("123456"));
+                Assert.Throws<ArgumentException>(() => parser.ParseProperty("12345678"));
+                Assert.Throws<ArgumentException>(() => parser.ParseProperty("123456"));
             }
 
             [Test]
@@ -33,7 +33,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new RunningDaysParser();
 
-                var result = parser.ParseRunningDays("1111111");
+                var result = parser.ParseProperty("1111111");
 
                 var expectedResult = Days.Monday | Days.Tuesday | Days.Wednesday | Days.Thursday | Days.Friday |
                                      Days.Saturday | Days.Sunday;
@@ -46,7 +46,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new RunningDaysParser();
 
-                var result = parser.ParseRunningDays("1111100");
+                var result = parser.ParseProperty("1111100");
 
                 var expectedResult = Days.Monday | Days.Tuesday | Days.Wednesday | Days.Thursday | Days.Friday;
 
@@ -58,7 +58,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new RunningDaysParser();
 
-                var result = parser.ParseRunningDays("0000011");
+                var result = parser.ParseProperty("0000011");
 
                 var expectedResult = Days.Saturday | Days.Sunday;
 

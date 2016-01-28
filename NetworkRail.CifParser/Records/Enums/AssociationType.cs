@@ -8,9 +8,9 @@ namespace NetworkRail.CifParser.Records.Enums
         None = 0,
 
         [Description("Passenger Use")]
-        PassengerUse = 1,
+        P = 1,
 
         [Description("Operating Use Only")]
-        OperatingUseOnly = 2
+        O = 2
     }
 }

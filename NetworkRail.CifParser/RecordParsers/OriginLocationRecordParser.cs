@@ -1,19 +1,26 @@
 ﻿using System;
-using NetworkRail.CifParser.ParserContainers;
+using System.Collections.Generic;
+using System.Linq;
+using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
+using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordParsers
 {
     public class OriginLocationRecordParser : ICifRecordParser
     {
-        private readonly ILocationRecordParserContainer _recordParserContainer;
+        private readonly ITimingAllowanceParser _timingAllowanceParser;
+        private readonly Dictionary<string, IRecordEnumPropertyParser> _enumPropertyParsers; 
 
-        public OriginLocationRecordParser(ILocationRecordParserContainer recordParserContainer)
+        public OriginLocationRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers, ITimingAllowanceParser timingAllowanceParser)
         {
-            if (recordParserContainer == null)
-                throw new ArgumentNullException(nameof(recordParserContainer));
+            if (enumPropertyParsers == null)
+                throw new ArgumentNullException(nameof(enumPropertyParsers));
+            if (timingAllowanceParser == null)
+                throw new ArgumentNullException(nameof(timingAllowanceParser));
 
-            _recordParserContainer = recordParserContainer;
+            _enumPropertyParsers = enumPropertyParsers.ToDictionary(x => x.PropertyKey, x => x);
+            _timingAllowanceParser = timingAllowanceParser;
         }
 
         public string RecordKey { get; } = "LO";
@@ -27,17 +34,17 @@ namespace NetworkRail.CifParser.RecordParsers
             {
                 Tiploc = recordString.Substring(2, 7).Trim(),
                 TiplocSuffix = recordString.Substring(9, 1).Trim(),
-                WorkingDeparture = _recordParserContainer.TimeParser.ParseTime(recordString.Substring(10, 5)),
-                PublicDeparture = _recordParserContainer.TimeParser.ParseTime(recordString.Substring(15, 4)),
+                WorkingDeparture = recordString.Substring(10, 5).Trim(),
+                PublicDeparture = recordString.Substring(15, 4).Trim(),
                 Platform = recordString.Substring(19, 3).Trim(),
                 Line = recordString.Substring(22, 3).Trim(),
-                EngineeringAllowance = _recordParserContainer.TimeParser.ParseTime(recordString.Substring(25, 2)),
-                PathingAllowance = _recordParserContainer.TimeParser.ParseTime(recordString.Substring(27, 2)),
+                EngineeringAllowance = _timingAllowanceParser.ParseTime(recordString.Substring(25, 2)),
+                PathingAllowance = _timingAllowanceParser.ParseTime(recordString.Substring(27, 2)),
                 LocationActivityString = recordString.Substring(29, 12),
-                PerformanceAllowance = _recordParserContainer.TimeParser.ParseTime(recordString.Substring(41, 2))
+                PerformanceAllowance = _timingAllowanceParser.ParseTime(recordString.Substring(41, 2))
             };
 
-            record.LocationActivity = _recordParserContainer.LocationActivityParser.ParseActivity(record.LocationActivityString);
+            record.LocationActivity = (LocationActivity)_enumPropertyParsers["LocationActivity"].ParseProperty(record.LocationActivityString);
 
             record.OrderTime = record.WorkingDeparture;
 

@@ -1,20 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
-using NetworkRail.CifParser.ParserContainers;
+using System.Linq;
+using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
+using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordParsers
 {
     public class ChangesEnRouteRecordParser : ICifRecordParser
     {
-        private readonly IChangesEnRouteRecordParserContainer _recordParserContainer;
+        private readonly Dictionary<string, IRecordEnumPropertyParser> _enumPropertyParsers;
 
-        public ChangesEnRouteRecordParser(IChangesEnRouteRecordParserContainer recordParserContainer)
+        public ChangesEnRouteRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers)
         {
-            if (recordParserContainer == null)
-                throw new ArgumentNullException(nameof(recordParserContainer));
+            if (enumPropertyParsers == null)
+                throw new ArgumentNullException(nameof(enumPropertyParsers));
 
-            _recordParserContainer = recordParserContainer;
+            _enumPropertyParsers = enumPropertyParsers.ToDictionary(x => x.PropertyKey, x => x);
         }
 
         public string RecordKey { get; } = "CR";
@@ -37,9 +40,9 @@ namespace NetworkRail.CifParser.RecordParsers
                 PowerType = recordString.Substring(30, 3).Trim(),
                 TimingLoad = recordString.Substring(33, 4).Trim(),
                 OperatingCharacteristics = recordString.Substring(40, 6).Trim(),
-                SeatingClass = _recordParserContainer.SeatingClassParser.ParseSeatingClass(recordString.Substring(46, 1)),
-                Sleepers = _recordParserContainer.SleeperDetailsParser.ParseTrainSleeperDetails(recordString.Substring(47, 1)),
-                Reservations = _recordParserContainer.ReservationDetailsParser.ParseTrainResevationDetails(recordString.Substring(48, 1)),
+                SeatingClass = (SeatingClass)_enumPropertyParsers["SeatingClass"].ParseProperty(recordString.Substring(46, 1)),
+                Sleepers = (SleeperDetails)_enumPropertyParsers["SleeperDetails"].ParseProperty(recordString.Substring(47, 1)),
+                Reservations = (ReservationDetails)_enumPropertyParsers["ReservationDetails"].ParseProperty(recordString.Substring(48, 1)),
                 ConnectionIndicator = recordString.Substring(49, 1).Trim(),
                 CateringCode = recordString.Substring(50, 4).Trim(),
                 ServiceBranding = recordString.Substring(54, 4).Trim(),

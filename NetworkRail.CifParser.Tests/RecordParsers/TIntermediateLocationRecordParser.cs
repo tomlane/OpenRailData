@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
+using Moq;
 using NetworkRail.CifParser.IoC;
-using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordParsers;
+using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
@@ -15,26 +16,32 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            Assert.Throws<ArgumentNullException>(() => new IntermediateLocationRecordParser(null));
+            var enumPropertyParsers = new IRecordEnumPropertyParser[0];
+            var timingAllowanceParserMock = new Mock<ITimingAllowanceParser>();
+
+            Assert.Throws<ArgumentNullException>(() => new IntermediateLocationRecordParser(null, timingAllowanceParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new IntermediateLocationRecordParser(enumPropertyParsers, null));
         }
 
         [TestFixture]
         class BuildRecord
         {
             private static IUnityContainer _container;
-            private static ILocationRecordParserContainer _parserContainer;
+            private static IRecordEnumPropertyParser[] _enumPropertyParsers;
+            private static ITimingAllowanceParser _timingAllowanceParser;
 
             [OneTimeSetUp]
             public void OneTimeSetUp()
             {
                 _container = CifParserIocContainerBuilder.Build();
-                _parserContainer = _container.Resolve<ILocationRecordParserContainer>();
+                _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
+                _timingAllowanceParser = _container.Resolve<ITimingAllowanceParser>();
             }
 
             [Test]
             public void returns_expected_result_arrival_and_departure()
             {
-                var recordParser = new IntermediateLocationRecordParser(_parserContainer);
+                var recordParser = new IntermediateLocationRecordParser(_enumPropertyParsers, _timingAllowanceParser);
 
                 string record = "LIMELKSHM 1307H1308      13081308         T                                     ";
 
@@ -43,13 +50,14 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                 var expectedResult = new IntermediateLocationRecord
                 {
                     Tiploc = "MELKSHM",
-                    WorkingArrival = new TimeSpan(0, 13, 07, 30),
-                    PublicArrival = new TimeSpan(0, 13, 08, 0),
-                    WorkingDeparture = new TimeSpan(0, 13, 08, 0),
-                    PublicDeparture = new TimeSpan(0, 13, 08, 0),
+                    WorkingArrival = "1307H",
+                    PublicArrival = "1308",
+                    WorkingDeparture = "1308",
+                    PublicDeparture = "1308",
                     LocationActivity = LocationActivity.T,
                     LocationActivityString = "T           ",
-                    OrderTime = new TimeSpan(0, 13, 8, 0)
+                    OrderTime = "1308",
+                    Pass = string.Empty
                 };
 
                 Assert.AreEqual(expectedResult, result);
@@ -58,7 +66,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void returns_expected_result_pass()
             {
-                var recordParser = new IntermediateLocationRecordParser(_parserContainer);
+                var recordParser = new IntermediateLocationRecordParser(_enumPropertyParsers, _timingAllowanceParser);
 
                 string record = "LIBRDFDJN           1314 00000000                                               ";
 
@@ -67,9 +75,13 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                 var expectedResult = new IntermediateLocationRecord
                 {
                     Tiploc = "BRDFDJN",
-                    Pass = new TimeSpan(0, 13, 14, 0),
-                    OrderTime = new TimeSpan(0, 13, 14, 0),
-                    LocationActivityString = "            "
+                    Pass = "1314",
+                    OrderTime = "1314",
+                    LocationActivityString = "            ",
+                    PublicArrival = "0000",
+                    PublicDeparture = "0000",
+                    WorkingDeparture = string.Empty,
+                    WorkingArrival = string.Empty
                 };
 
                 Assert.AreEqual(expectedResult, result);

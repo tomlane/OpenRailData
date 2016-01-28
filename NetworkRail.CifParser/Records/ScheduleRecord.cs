@@ -4,7 +4,7 @@ namespace NetworkRail.CifParser.Records
 {
     public class ScheduleRecord
     {
-        public BasicScheduleRecord Schedule { get; set; }
-        public List<ICifRecord> LocationRecords { get; set; } 
+        public BasicScheduleRecord Schedule { get; set; } = new BasicScheduleRecord();
+        public List<ICifRecord> LocationRecords { get; set; } = new List<ICifRecord>();
     }
 }

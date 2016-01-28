@@ -3,25 +3,19 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class SeatingClassParser : ISeatingClassParser
+    public class SeatingClassParser : IRecordEnumPropertyParser
     {
-        public SeatingClass ParseSeatingClass(string seatingClass)
-        {
-            if (seatingClass == null)
-                throw new ArgumentNullException(nameof(seatingClass));
+        public string PropertyKey { get; } = "SeatingClass";
 
-            seatingClass = seatingClass.Trim();
+        public Enum ParseProperty(string propertyString)
+        {
+            if (propertyString == null)
+                throw new ArgumentNullException(nameof(propertyString));
             
-            switch (seatingClass)
-            {
-                case "S":
-                    return SeatingClass.StandardClassOnly;
-                case "B":
-                case "":
-                    return SeatingClass.FirstAndStandardClass;
-                default:
-                    throw new ArgumentException($"Unknown Seating Class: {seatingClass}");
-            }
+            if (propertyString.Trim() == string.Empty)
+                return SeatingClass.B;
+            
+            return (SeatingClass)Enum.Parse(typeof(SeatingClass), propertyString);
         }
     }
 }

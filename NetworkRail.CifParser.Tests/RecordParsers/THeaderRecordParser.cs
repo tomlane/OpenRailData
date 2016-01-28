@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
+using Moq;
 using NetworkRail.CifParser.IoC;
-using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordParsers;
+using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
@@ -13,19 +14,25 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
     public class THeaderRecordParser
     {
         private static IUnityContainer _container;
-        private static IHeaderRecordParserContainer _parserContainer;
+        private static IRecordEnumPropertyParser[] _enumPropertyParsers;
+        private static IDateTimeParser _dateTimeParser;
 
         [OneTimeSetUp]
         public void ContainerSetup()
         {
             _container = CifParserIocContainerBuilder.Build();
-            _parserContainer = _container.Resolve<IHeaderRecordParserContainer>();
+            _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
+            _dateTimeParser = _container.Resolve<IDateTimeParser>();
         }
 
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            Assert.Throws<ArgumentNullException>(() => new HeaderRecordParser(null));
+            var enumPropertyParsers = new IRecordEnumPropertyParser[0];
+            var datetimeParserMock = new Mock<IDateTimeParser>();
+
+            Assert.Throws<ArgumentNullException>(() => new HeaderRecordParser(null, datetimeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new HeaderRecordParser(enumPropertyParsers, null));
         }
 
         [TestFixture]
@@ -34,7 +41,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var recordParser = new HeaderRecordParser(_parserContainer);
+                var recordParser = new HeaderRecordParser(_enumPropertyParsers, _dateTimeParser);
 
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
@@ -44,7 +51,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void throws_when_mainframe_identity_is_invalid()
             {
-                var recordParser = new HeaderRecordParser(_parserContainer);
+                var recordParser = new HeaderRecordParser(_enumPropertyParsers, _dateTimeParser);
 
                 string record = "HD                    3012152116DFROC1EDFROC1DUA301215291216                    ";
 
@@ -54,7 +61,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
             [Test]
             public void returns_expected_result()
             {
-                var recordParser = new HeaderRecordParser(_parserContainer);
+                var recordParser = new HeaderRecordParser(_enumPropertyParsers, _dateTimeParser);
 
                 string record = "HDTPS.UDFROC1.PD1512303012152116DFROC1EDFROC1DUA301215291216                    ";
 
@@ -64,10 +71,10 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                 {
                     MainFrameIdentity = "TPS.UDFROC1.PD151230",
                     DateOfExtract = new DateTime(2015, 12, 30),
-                    TimeOfExtract = new TimeSpan(21, 16, 0),
+                    TimeOfExtract = "2116",
                     CurrentFileRef = "DFROC1E",
                     LastFileRef = "DFROC1D",
-                    ExtractUpdateType = ExtractUpdateType.UpdateExtract,
+                    ExtractUpdateType = ExtractUpdateType.U,
                     CifSoftwareVersion = "A",
                     UserExtractStartDate = new DateTime(2015, 12, 30),
                     UserExtractEndDate = new DateTime(2016, 12, 29),

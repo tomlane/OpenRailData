@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
+using Moq;
 using NetworkRail.CifParser.IoC;
-using NetworkRail.CifParser.ParserContainers;
 using NetworkRail.CifParser.RecordParsers;
+using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
@@ -15,26 +16,32 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            Assert.Throws<ArgumentNullException>(() => new OriginLocationRecordParser(null));
+            var enumPropertyParsers = new IRecordEnumPropertyParser[0];
+            var timingAllowanceParserMock = new Mock<ITimingAllowanceParser>();
+
+            Assert.Throws<ArgumentNullException>(() => new OriginLocationRecordParser(null, timingAllowanceParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new OriginLocationRecordParser(enumPropertyParsers, null));
         }
 
         [TestFixture]
         class BuildRecord
         {
             private static IUnityContainer _container;
-            private static ILocationRecordParserContainer _parserContainer;
+            private static IRecordEnumPropertyParser[] _enumPropertyParsers;
+            private static ITimingAllowanceParser _timingAllowanceParser;
 
             [OneTimeSetUp]
             public void OneTimeSetUp()
             {
                 _container = CifParserIocContainerBuilder.Build();
-                _parserContainer = _container.Resolve<ILocationRecordParserContainer>();
+                _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
+                _timingAllowanceParser = _container.Resolve<ITimingAllowanceParser>();
             }
 
             [Test]
             public void returns_expected_result()
             {
-                var recordParser = new OriginLocationRecordParser(_parserContainer);
+                var recordParser = new OriginLocationRecordParser(_enumPropertyParsers, _timingAllowanceParser);
 
                 string record = "LOSDON    1242 12422         TB                                                 ";
 
@@ -43,13 +50,12 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                 var expectedResult = new OriginLocationRecord
                 {
                     Tiploc = "SDON",
-                    WorkingDeparture = new TimeSpan(0, 12, 42, 0),
-                    PublicDeparture = new TimeSpan(0, 12, 42, 0),
+                    WorkingDeparture = "1242",
+                    PublicDeparture = "1242",
                     Platform = "2",
                     LocationActivity = LocationActivity.TB,
                     LocationActivityString = "TB          ",
-                    OrderTime = new TimeSpan(0, 12, 42, 0),
-                    
+                    OrderTime = "1242"
                 };
 
                 Assert.AreEqual(expectedResult, result);

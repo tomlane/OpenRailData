@@ -1,20 +1,26 @@
 ﻿using System;
-using NetworkRail.CifParser.ParserContainers;
+using System.Collections.Generic;
+using System.Linq;
 using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
+using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordParsers
 {
     public class AssociationRecordParser : ICifRecordParser
     {
-        private readonly IAssociationRecordParserContainer _recordParserContainer;
+        private readonly IDateTimeParser _dateTimeParser;
+        private readonly Dictionary<string, IRecordEnumPropertyParser> _enumPropertyParsers; 
 
-        public AssociationRecordParser(IAssociationRecordParserContainer recordParserContainer)
+        public AssociationRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers, IDateTimeParser dateTimeParser)
         {
-            if (recordParserContainer == null)
-                throw new ArgumentNullException(nameof(recordParserContainer));
+            if (enumPropertyParsers == null)
+                throw new ArgumentNullException(nameof(enumPropertyParsers));
+            if (dateTimeParser == null)
+                throw new ArgumentNullException(nameof(dateTimeParser));
 
-            _recordParserContainer = recordParserContainer;
+            _enumPropertyParsers = enumPropertyParsers.ToDictionary(x => x.PropertyKey, x => x);
+            _dateTimeParser = dateTimeParser;
         }
 
         public string RecordKey { get; } = "AA";
@@ -26,25 +32,25 @@ namespace NetworkRail.CifParser.RecordParsers
 
             AssociationRecord record = new AssociationRecord
             {
-                TransactionType = _recordParserContainer.TransactionTypeParser.ParseTransactionType(recordString.Substring(2, 1)),
+                TransactionType = (TransactionType)_enumPropertyParsers["TransactionType"].ParseProperty(recordString.Substring(2, 1)),
                 MainTrainUid = recordString.Substring(3, 6),
                 AssocTrainUid = recordString.Substring(9, 6),
-                DateTo = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
+                DateTo = _dateTimeParser.ParseDateTime(new DateTimeParserRequest
                 {
                     DateTimeFormat = "yyMMdd",
                     DateTimeString = recordString.Substring(21, 6)
                 }),
-                AssocDays = _recordParserContainer.RunningDaysParser.ParseRunningDays(recordString.Substring(27, 7)),
-                Category = _recordParserContainer.AssociationCategoryParser.ParseAssociationCategory(recordString.Substring(34, 2)),
-                DateIndicator = _recordParserContainer.DateIndicatorParser.ParseDateIndicator(recordString.Substring(36, 1)),
+                AssocDays = (Days)_enumPropertyParsers["RunningDays"].ParseProperty(recordString.Substring(27, 7)),
+                Category = (AssociationCategory)_enumPropertyParsers["AssociationCategory"].ParseProperty(recordString.Substring(34, 2)),
+                DateIndicator = (DateIndicator)_enumPropertyParsers["DateIndicator"].ParseProperty(recordString.Substring(36, 1)),
                 Location = recordString.Substring(37, 7).Trim(),
                 BaseLocationSuffix = recordString.Substring(44, 1).Trim(),
                 AssocLocationSuffix = recordString.Substring(45, 1).Trim(),
                 DiagramType = recordString.Substring(46, 1).Trim(),
-                StpIndicator = _recordParserContainer.StpIndicatorParser.ParseStpIndicator(recordString.Substring(79, 1))
+                StpIndicator = (StpIndicator)_enumPropertyParsers["StpIndicator"].ParseProperty(recordString.Substring(79, 1))
             };
 
-            var dateFromResult = _recordParserContainer.DateTimeParser.ParseDateTime(new DateTimeParserRequest
+            var dateFromResult = _dateTimeParser.ParseDateTime(new DateTimeParserRequest
             {
                 DateTimeFormat = "yyMMdd",
                 DateTimeString = recordString.Substring(15, 6)

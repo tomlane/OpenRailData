@@ -1,9 +1,16 @@
-﻿namespace NetworkRail.CifParser.Records.Enums
+﻿using System.ComponentModel;
+
+namespace NetworkRail.CifParser.Records.Enums
 {
     public enum TransactionType
     {
-        New = 1,
-        Revise = 2,
-        Delete = 3
+        [Description("New")]
+        N = 1,
+
+        [Description("Revise")]
+        R = 2,
+
+        [Description("Delete")]
+        D = 3
     }
 }

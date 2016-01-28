@@ -16,9 +16,9 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new TransactionTypeParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseTransactionType(null));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseTransactionType(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseTransactionType(" \t"));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(string.Empty));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(" \t"));
             }
 
             [Test]
@@ -26,14 +26,14 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new TransactionTypeParser();
 
-                var result = parser.ParseTransactionType("N");
-                Assert.AreEqual(TransactionType.New, result);
+                var result = parser.ParseProperty("N");
+                Assert.AreEqual(TransactionType.N, result);
 
-                result = parser.ParseTransactionType("R");
-                Assert.AreEqual(TransactionType.Revise, result);
+                result = parser.ParseProperty("R");
+                Assert.AreEqual(TransactionType.R, result);
 
-                result = parser.ParseTransactionType("D");
-                Assert.AreEqual(TransactionType.Delete, result);
+                result = parser.ParseProperty("D");
+                Assert.AreEqual(TransactionType.D, result);
             }
 
             [Test]
@@ -41,7 +41,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new TransactionTypeParser();
 
-                Assert.Throws<ArgumentException>(() => parser.ParseTransactionType("Z"));
+                Assert.Throws<ArgumentException>(() => parser.ParseProperty("Z"));
             }
         }
     }

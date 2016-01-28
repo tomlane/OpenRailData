@@ -64,15 +64,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ParserContainers\TAssociationRecordParserContainer.cs" />
-    <Compile Include="ParserContainers\TBasicScheduleRecordParserContainer.cs" />
-    <Compile Include="ParserContainers\TChangesEnRouteRecordParserContainer.cs" />
-    <Compile Include="ParserContainers\THeaderRecordParserContainer.cs" />
-    <Compile Include="ParserContainers\TLocationRecordParserContainer.cs" />
     <Compile Include="RecordParsers\TIntermediateLocationRecordParser.cs" />
     <Compile Include="RecordParsers\TTerminatingLocationRecordParser.cs" />
     <Compile Include="RecordParsers\TTiplocAmendRecordParser.cs" />
     <Compile Include="RecordPropertyParsers\TAssociationCategoryParser.cs" />
+    <Compile Include="RecordPropertyParsers\TAssociationTypeParser.cs" />
     <Compile Include="RecordPropertyParsers\TDateIndicatorParser.cs" />
     <Compile Include="RecordPropertyParsers\TDateTimeParser.cs" />
     <Compile Include="RecordPropertyParsers\TBankHolidayRunningParser.cs" />
@@ -97,6 +93,8 @@
     <Compile Include="RecordPropertyParsers\TLocationActivityParser.cs" />
     <Compile Include="RecordPropertyParsers\TOperatingCharacteristicsParser.cs" />
     <Compile Include="TCifScheduleManager.cs" />
+    <Compile Include="TCifScheduleParser.cs" />
+    <Compile Include="TFileScheduleReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

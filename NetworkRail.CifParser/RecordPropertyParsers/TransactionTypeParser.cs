@@ -3,24 +3,16 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class TransactionTypeParser : ITransactionTypeParser
+    public class TransactionTypeParser : IRecordEnumPropertyParser
     {
-        public TransactionType ParseTransactionType(string transactionType)
-        {
-            if (string.IsNullOrWhiteSpace(transactionType))
-                throw new ArgumentNullException(nameof(transactionType));
+        public string PropertyKey { get; } = "TransactionType";
 
-            switch (transactionType)
-            {
-                case "N":
-                    return TransactionType.New;
-                case "R":
-                    return TransactionType.Revise;
-                case "D":
-                    return TransactionType.Delete;
-                default:
-                    throw new ArgumentException($"Unknown transaction type: {transactionType}");
-            }
+        public Enum ParseProperty(string propertyString)
+        {
+            if (string.IsNullOrWhiteSpace(propertyString))
+                throw new ArgumentNullException(nameof(propertyString));
+            
+            return (TransactionType)Enum.Parse(typeof(TransactionType), propertyString);
         }
     }
 }

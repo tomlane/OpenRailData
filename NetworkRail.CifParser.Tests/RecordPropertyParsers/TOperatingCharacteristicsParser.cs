@@ -16,7 +16,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new OperatingCharacteristicsParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseOperatingCharacteristics(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
             }
 
             [Test]
@@ -26,7 +26,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
 
                 string characteristics = "BCDEGMPQRSYZ";
 
-                var result = parser.ParseOperatingCharacteristics(characteristics);
+                var result = parser.ParseProperty(characteristics);
 
                 Assert.IsTrue(result.HasFlag(OperatingCharacteristics.B));
                 Assert.IsTrue(result.HasFlag(OperatingCharacteristics.C));

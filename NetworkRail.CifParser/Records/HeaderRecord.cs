@@ -8,7 +8,7 @@ namespace NetworkRail.CifParser.Records
         public CifRecordType RecordIdentity { get; } = CifRecordType.Header;
         public string MainFrameIdentity { get; set; } = string.Empty;
         public DateTime DateOfExtract { get; set; }
-        public TimeSpan TimeOfExtract { get; set; }
+        public string TimeOfExtract { get; set; }
         public string CurrentFileRef { get; set; } = string.Empty;
         public string LastFileRef { get; set; } = string.Empty;
         public ExtractUpdateType ExtractUpdateType { get; set; }

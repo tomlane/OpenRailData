@@ -3,24 +3,20 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class AssociationCategoryParser : IAssociationCategoryParser
+    public class AssociationCategoryParser : IRecordEnumPropertyParser
     {
-        public AssociationCategory ParseAssociationCategory(string associationCategory)
-        {
-            if (associationCategory == null)
-                throw new ArgumentNullException(nameof(associationCategory));
+        public string PropertyKey { get; } = "AssociationCategory";
 
-            switch (associationCategory)
-            {
-                case "JJ":
-                    return AssociationCategory.Join;
-                case "VV":
-                    return AssociationCategory.Split;
-                case "NP":
-                    return AssociationCategory.Next;
-                default:
-                    return AssociationCategory.None;
-            }
+        public Enum ParseProperty(string propertyString)
+        {
+            if (propertyString == null)
+                throw new ArgumentNullException(nameof(propertyString));
+
+            AssociationCategory result;
+
+            bool successful = Enum.TryParse(propertyString, true, out result);
+
+            return successful ? result : AssociationCategory.None;
         }
     }
 }

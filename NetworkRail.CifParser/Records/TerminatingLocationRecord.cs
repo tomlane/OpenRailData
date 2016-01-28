@@ -1,5 +1,4 @@
-﻿using System;
-using NetworkRail.CifParser.Records.Enums;
+﻿using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.Records
 {
@@ -7,16 +6,16 @@ namespace NetworkRail.CifParser.Records
     {
         public CifRecordType RecordIdentity { get; } = CifRecordType.TerminatingLocation;
         public string Tiploc { get; set; } = string.Empty;
-        public string TiplocSuffix { get; set; } = string.Empty;
+        public string TiplocSuffix { private get; set; } = string.Empty;
         public string Location => $"{Tiploc}{TiplocSuffix}";
-        public TimeSpan? WorkingArrival { get; set; }
-        public TimeSpan? PublicArrival { get; set; }
+        public string WorkingArrival { get; set; }
+        public string PublicArrival { get; set; }
         public string Platform { get; set; } = string.Empty;
         public string Path { get; set; } = string.Empty;
         public string LocationActivityString { get; set; } = string.Empty;
         public LocationActivity LocationActivity { get; set; }
 
-        public TimeSpan? OrderTime { get; set; }
+        public string OrderTime { get; set; }
 
         public bool PublicCall => !LocationActivity.HasFlag(LocationActivity.N) && (PublicArrival != null);
         public bool ActualCall => WorkingArrival != null;

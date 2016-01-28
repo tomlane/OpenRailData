@@ -3,24 +3,20 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.RecordPropertyParsers
 {
-    public class SleeperDetailsParser : ISleeperDetailsParser
+    public class SleeperDetailsParser : IRecordEnumPropertyParser
     {
-        public SleeperDetails ParseTrainSleeperDetails(string sleeperDetails)
-        {
-            if (sleeperDetails == null)
-                throw new ArgumentNullException(nameof(sleeperDetails));
+        public string PropertyKey { get; } = "SleeperDetails";
 
-            switch (sleeperDetails)
-            {
-                case "B":
-                    return SleeperDetails.FirstAndStandard;
-                case "F":
-                    return SleeperDetails.FirstClassOnly;
-                case "S":
-                    return SleeperDetails.StandardClassOnly;
-                default:
-                    return SleeperDetails.NotAvailable;
-            }
+        public Enum ParseProperty(string propertyString)
+        {
+            if (propertyString == null)
+                throw new ArgumentNullException(nameof(propertyString));
+
+            SleeperDetails result;
+
+            bool successful = Enum.TryParse(propertyString, true, out result);
+
+            return successful ? result : SleeperDetails.NotAvailable;
         }
     }
 }

@@ -16,28 +16,28 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             {
                 var parser = new BankHolidayRunningParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseBankHolidayRunning(null));
+                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
             }
 
             [Test]
-            public void returns_false_when_string_is_falsey_value()
+            public void returns_expected_non_running_value()
             {
                 var parser = new BankHolidayRunningParser();
 
-                var result = parser.ParseBankHolidayRunning("X");
-                Assert.AreEqual(BankHolidayRunning.DoesNotRun, result);
+                var result = parser.ParseProperty("X");
+                Assert.AreEqual(BankHolidayRunning.X, result);
 
-                result = parser.ParseBankHolidayRunning("G");
-                Assert.AreEqual(BankHolidayRunning.DoesNotRunGlasgow, result);
+                result = parser.ParseProperty("G");
+                Assert.AreEqual(BankHolidayRunning.G, result);
             }
 
             [Test]
-            public void returns_true_when_string_is_truthy_value()
+            public void returns_expected_running_value()
             {
                 var parser = new BankHolidayRunningParser();
 
-                var result = parser.ParseBankHolidayRunning(string.Empty);
-                Assert.AreEqual(BankHolidayRunning.RunsOnBankHoliday, result);
+                var result = parser.ParseProperty(string.Empty);
+                Assert.AreEqual(BankHolidayRunning.R, result);
             }
         }
     }

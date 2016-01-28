@@ -5,12 +5,12 @@ namespace NetworkRail.CifParser.Records.Enums
     public enum BankHolidayRunning
     {
         [Description("Runs on bank holidays")]
-        RunsOnBankHoliday = 1,
+        R = 1,
 
         [Description("Does not run on Glasgow bank holidays")]
-        DoesNotRunGlasgow = 2,
+        G = 2,
 
         [Description("Does not run on bank holidays")]
-        DoesNotRun = 3
+        X = 3
     }
 }

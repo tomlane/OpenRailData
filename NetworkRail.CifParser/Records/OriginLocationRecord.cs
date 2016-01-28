@@ -7,10 +7,10 @@ namespace NetworkRail.CifParser.Records
     {
         public CifRecordType RecordIdentity { get; } = CifRecordType.OriginLocation;
         public string Tiploc { get; set; } = string.Empty;
-        public string TiplocSuffix { get; set; } = string.Empty;
+        public string TiplocSuffix { private get; set; } = string.Empty;
         public string Location => $"{Tiploc}{TiplocSuffix}";
-        public TimeSpan? WorkingDeparture { get; set; }
-        public TimeSpan? PublicDeparture { get; set; }
+        public string WorkingDeparture { get; set; }
+        public string PublicDeparture { get; set; }
         public string Platform { get; set; } = string.Empty;
         public string Line { get; set; } = string.Empty;
         public TimeSpan? EngineeringAllowance { get; set; }
@@ -19,7 +19,7 @@ namespace NetworkRail.CifParser.Records
         public LocationActivity LocationActivity { get; set; }
         public TimeSpan? PerformanceAllowance { get; set; }
 
-        public TimeSpan? OrderTime { get; set; }
+        public string OrderTime { get; set; }
         
         public bool PublicCall => !LocationActivity.HasFlag(LocationActivity.N) && (PublicDeparture != null);
         public bool ActualCall => WorkingDeparture != null;
