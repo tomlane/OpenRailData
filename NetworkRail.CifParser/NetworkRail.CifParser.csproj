@@ -49,9 +49,11 @@
     <Compile Include="RecordParsers\IntermediateLocationRecordParser.cs" />
     <Compile Include="RecordParsers\TerminatingLocationRecordParser.cs" />
     <Compile Include="RecordParsers\TiplocAmendRecordParser.cs" />
+    <Compile Include="RecordPropertyParsers\CateringCodeParser.cs" />
     <Compile Include="RecordPropertyParsers\IDateTimeParser.cs" />
     <Compile Include="RecordPropertyParsers\IRecordEnumPropertyParser.cs" />
     <Compile Include="RecordPropertyParsers\ITimingAllowanceParser.cs" />
+    <Compile Include="Records\Enums\CateringCode.cs" />
     <Compile Include="Records\IntermediateLocationRecord.cs" />
     <Compile Include="Records\ScheduleRecord.cs" />
     <Compile Include="RecordPropertyParsers\AssociationTypeParser.cs" />

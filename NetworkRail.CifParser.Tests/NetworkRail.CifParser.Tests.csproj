@@ -69,6 +69,7 @@
     <Compile Include="RecordParsers\TTiplocAmendRecordParser.cs" />
     <Compile Include="RecordPropertyParsers\TAssociationCategoryParser.cs" />
     <Compile Include="RecordPropertyParsers\TAssociationTypeParser.cs" />
+    <Compile Include="RecordPropertyParsers\TCateringCodeParser.cs" />
     <Compile Include="RecordPropertyParsers\TDateIndicatorParser.cs" />
     <Compile Include="RecordPropertyParsers\TDateTimeParser.cs" />
     <Compile Include="RecordPropertyParsers\TBankHolidayRunningParser.cs" />
