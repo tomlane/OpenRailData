@@ -73,6 +73,7 @@
     <Compile Include="RecordPropertyParsers\TDateIndicatorParser.cs" />
     <Compile Include="RecordPropertyParsers\TDateTimeParser.cs" />
     <Compile Include="RecordPropertyParsers\TBankHolidayRunningParser.cs" />
+    <Compile Include="RecordPropertyParsers\TLocationTypeParser.cs" />
     <Compile Include="RecordPropertyParsers\TRunningDaysParser.cs" />
     <Compile Include="RecordPropertyParsers\TSeatingClassParser.cs" />
     <Compile Include="RecordPropertyParsers\TServiceBrandingParser.cs" />

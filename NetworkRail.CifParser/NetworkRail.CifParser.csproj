@@ -53,6 +53,7 @@
     <Compile Include="RecordPropertyParsers\IDateTimeParser.cs" />
     <Compile Include="RecordPropertyParsers\IRecordEnumPropertyParser.cs" />
     <Compile Include="RecordPropertyParsers\ITimingAllowanceParser.cs" />
+    <Compile Include="RecordPropertyParsers\LocationTypeParser.cs" />
     <Compile Include="RecordPropertyParsers\ServiceBrandingParser.cs" />
     <Compile Include="Records\Enums\CateringCode.cs" />
     <Compile Include="Records\Enums\ServiceBranding.cs" />
