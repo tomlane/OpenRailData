@@ -22,7 +22,7 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             }
 
             [Test]
-            public void returns_expected_result_from_argument()
+            public void returns_correct_values_from_cif_records()
             {
                 var parser = new TransactionTypeParser();
 
@@ -33,6 +33,21 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
                 Assert.AreEqual(TransactionType.R, result);
 
                 result = parser.ParseProperty("D");
+                Assert.AreEqual(TransactionType.D, result);
+            }
+
+            [Test]
+            public void returns_correct_values_from_json_records()
+            {
+                var parser = new TransactionTypeParser();
+
+                var result = parser.ParseProperty("create");
+                Assert.AreEqual(TransactionType.N, result);
+
+                result = parser.ParseProperty("update");
+                Assert.AreEqual(TransactionType.R, result);
+
+                result = parser.ParseProperty("delete");
                 Assert.AreEqual(TransactionType.D, result);
             }
 
