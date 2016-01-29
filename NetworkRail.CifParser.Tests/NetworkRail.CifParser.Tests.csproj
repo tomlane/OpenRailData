@@ -75,6 +75,7 @@
     <Compile Include="RecordPropertyParsers\TBankHolidayRunningParser.cs" />
     <Compile Include="RecordPropertyParsers\TRunningDaysParser.cs" />
     <Compile Include="RecordPropertyParsers\TSeatingClassParser.cs" />
+    <Compile Include="RecordPropertyParsers\TServiceBrandingParser.cs" />
     <Compile Include="RecordPropertyParsers\TTrainSleeperDetailsParser.cs" />
     <Compile Include="RecordPropertyParsers\TReservationDetailsParser.cs" />
     <Compile Include="RecordPropertyParsers\TTimeParser.cs" />
