@@ -28,14 +28,7 @@ namespace NetworkRail.CifParser
             foreach (var record in recordsToParse)
             {
                 string recordType = record.Substring(0, 2);
-
-                // TODO: Implement end of file record parser
-                if (recordType == "ZZ")
-                {
-                    resultList.Add(new EndOfFileRecord());
-                    break;
-                }
-
+                
                 ICifRecordParser parser;
 
                 try

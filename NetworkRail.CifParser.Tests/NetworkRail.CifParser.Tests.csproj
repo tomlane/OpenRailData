@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RecordParsers\TEndOfFileRecordParser.cs" />
     <Compile Include="RecordParsers\TIntermediateLocationRecordParser.cs" />
     <Compile Include="RecordParsers\TTerminatingLocationRecordParser.cs" />
     <Compile Include="RecordParsers\TTiplocAmendRecordParser.cs" />

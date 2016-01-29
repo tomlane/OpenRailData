@@ -27,6 +27,7 @@ namespace NetworkRail.CifParser.IoC
             container.RegisterType<ICifRecordParser, TiplocDeleteRecordParser>("TiplocDeleteRecordParser");
             container.RegisterType<ICifRecordParser, TiplocInsertRecordParser>("TiplocInsertRecordParser");
             container.RegisterType<ICifRecordParser, TiplocAmendRecordParser>("TiplocAmendRecordParser");
+            container.RegisterType<ICifRecordParser, EndOfFileRecordParser>("EndOfFileRecordParser");
             
             container.RegisterType<IRecordEnumPropertyParser, AssociationCategoryParser>("AssociationCategoryParser");
             container.RegisterType<IRecordEnumPropertyParser, AssociationTypeParser>("AssociationTypeParser");

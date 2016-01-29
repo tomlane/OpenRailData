@@ -46,6 +46,7 @@
     <Compile Include="IScheduleParser.cs" />
     <Compile Include="IScheduleManager.cs" />
     <Compile Include="IScheduleReader.cs" />
+    <Compile Include="RecordParsers\EndOfFileRecordParser.cs" />
     <Compile Include="RecordParsers\IntermediateLocationRecordParser.cs" />
     <Compile Include="RecordParsers\TerminatingLocationRecordParser.cs" />
     <Compile Include="RecordParsers\TiplocAmendRecordParser.cs" />
