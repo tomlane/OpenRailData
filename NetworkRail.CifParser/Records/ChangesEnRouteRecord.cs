@@ -29,7 +29,7 @@ namespace NetworkRail.CifParser.Records
         protected bool Equals(ChangesEnRouteRecord other)
         {
             return string.Equals(Category, other.Category) && 
-                string.Equals(CateringCode, other.CateringCode) && 
+                CateringCode == other.CateringCode && 
                 string.Equals(ConnectionIndicator, other.ConnectionIndicator) && 
                 string.Equals(CourseIndicator, other.CourseIndicator) && 
                 string.Equals(HeadCode, other.HeadCode) && 
@@ -40,7 +40,7 @@ namespace NetworkRail.CifParser.Records
                 Reservations == other.Reservations && 
                 string.Equals(Rsid, other.Rsid) && 
                 SeatingClass == other.SeatingClass && 
-                string.Equals(ServiceBranding, other.ServiceBranding) && 
+                ServiceBranding == other.ServiceBranding && 
                 string.Equals(ServiceCode, other.ServiceCode) && 
                 Sleepers == other.Sleepers && 
                 Speed == other.Speed && 

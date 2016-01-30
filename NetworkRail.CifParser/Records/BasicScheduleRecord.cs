@@ -80,8 +80,8 @@ namespace NetworkRail.CifParser.Records
                 Sleepers == other.Sleepers && 
                 Reservations == other.Reservations && 
                 string.Equals(ConnectionIndicator, other.ConnectionIndicator) && 
-                string.Equals(CateringCode, other.CateringCode) && 
-                string.Equals(ServiceBranding, other.ServiceBranding) && 
+                CateringCode == other.CateringCode && 
+                ServiceBranding == other.ServiceBranding && 
                 StpIndicator == other.StpIndicator && 
                 ServiceTypeFlags == other.ServiceTypeFlags && 
                 string.Equals(UicCode, other.UicCode) && 
