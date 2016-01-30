@@ -64,9 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RecordParsers\TIntermediateLocationRecordParser.cs" />
-    <Compile Include="RecordParsers\TTerminatingLocationRecordParser.cs" />
-    <Compile Include="RecordParsers\TTiplocAmendRecordParser.cs" />
+    <Compile Include="CifRecordParsers\TIntermediateLocationRecordParser.cs" />
+    <Compile Include="CifRecordParsers\TTerminatingLocationRecordParser.cs" />
+    <Compile Include="CifRecordParsers\TTiplocAmendRecordParser.cs" />
     <Compile Include="RecordPropertyParsers\TAssociationCategoryParser.cs" />
     <Compile Include="RecordPropertyParsers\TAssociationTypeParser.cs" />
     <Compile Include="RecordPropertyParsers\TCateringCodeParser.cs" />
@@ -84,14 +84,14 @@
     <Compile Include="RecordPropertyParsers\TStpIndicatorParser.cs" />
     <Compile Include="RecordPropertyParsers\TTransactionTypeParser.cs" />
     <Compile Include="RecordPropertyParsers\TExtractUpdateTypeParser.cs" />
-    <Compile Include="RecordParsers\TAssociationRecordParser.cs" />
-    <Compile Include="RecordParsers\TBasicScheduleExtraDetailsRecordParser.cs" />
-    <Compile Include="RecordParsers\TBasicScheduleRecordParser.cs" />
-    <Compile Include="RecordParsers\TChangesEnRouteRecordParser.cs" />
-    <Compile Include="RecordParsers\THeaderRecordParser.cs" />
-    <Compile Include="RecordParsers\TOriginLocationRecordParser.cs" />
-    <Compile Include="RecordParsers\TTiplocDeleteRecordParser.cs" />
-    <Compile Include="RecordParsers\TTiplocInsertRecordParser.cs" />
+    <Compile Include="CifRecordParsers\TAssociationRecordParser.cs" />
+    <Compile Include="CifRecordParsers\TBasicScheduleExtraDetailsRecordParser.cs" />
+    <Compile Include="CifRecordParsers\TBasicScheduleRecordParser.cs" />
+    <Compile Include="CifRecordParsers\TChangesEnRouteRecordParser.cs" />
+    <Compile Include="CifRecordParsers\THeaderRecordParser.cs" />
+    <Compile Include="CifRecordParsers\TOriginLocationRecordParser.cs" />
+    <Compile Include="CifRecordParsers\TTiplocDeleteRecordParser.cs" />
+    <Compile Include="CifRecordParsers\TTiplocInsertRecordParser.cs" />
     <Compile Include="Records\TBasicScheduleRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecordPropertyParsers\TLocationActivityParser.cs" />

@@ -1,13 +1,13 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
+using NetworkRail.CifParser.CifRecordParsers;
 using NetworkRail.CifParser.IoC;
-using NetworkRail.CifParser.RecordParsers;
 using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 using NUnit.Framework;
 
-namespace NetworkRail.CifParser.Tests.RecordParsers
+namespace NetworkRail.CifParser.Tests.CifRecordParsers
 {
     [TestFixture]
     public class TChangesEnRouteRecordParser

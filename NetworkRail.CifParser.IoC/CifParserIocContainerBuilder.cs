@@ -1,5 +1,5 @@
 ﻿using Microsoft.Practices.Unity;
-using NetworkRail.CifParser.RecordParsers;
+using NetworkRail.CifParser.CifRecordParsers;
 using NetworkRail.CifParser.RecordPropertyParsers;
 
 namespace NetworkRail.CifParser.IoC

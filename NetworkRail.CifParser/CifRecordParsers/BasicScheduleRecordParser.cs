@@ -6,7 +6,7 @@ using NetworkRail.CifParser.RecordPropertyParsers;
 using NetworkRail.CifParser.Records;
 using NetworkRail.CifParser.Records.Enums;
 
-namespace NetworkRail.CifParser.RecordParsers
+namespace NetworkRail.CifParser.CifRecordParsers
 {
     public class BasicScheduleRecordParser : ICifRecordParser
     {
