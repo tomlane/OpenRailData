@@ -32,6 +32,7 @@ namespace NetworkRail.CifParser.IoC
             container.RegisterType<IRecordEnumPropertyParser, AssociationCategoryParser>("AssociationCategoryParser");
             container.RegisterType<IRecordEnumPropertyParser, AssociationTypeParser>("AssociationTypeParser");
             container.RegisterType<IRecordEnumPropertyParser, BankHolidayRunningParser>("BankHolidayRunningParser");
+            container.RegisterType<IRecordEnumPropertyParser, CateringCodeParser>("CateringCodeParser");
             container.RegisterType<IRecordEnumPropertyParser, DateIndicatorParser>("DateIndicatorParser");
             container.RegisterType<IRecordEnumPropertyParser, ExtractUpdateTypeParser>("ExtractUpdateTypeParser");
             container.RegisterType<IRecordEnumPropertyParser, LocationActivityParser>("LocationActivityParser");
@@ -39,6 +40,7 @@ namespace NetworkRail.CifParser.IoC
             container.RegisterType<IRecordEnumPropertyParser, ReservationDetailsParser>("ReservationDetailsParser");
             container.RegisterType<IRecordEnumPropertyParser, RunningDaysParser>("RunningDaysParser");
             container.RegisterType<IRecordEnumPropertyParser, SeatingClassParser>("SeatingClassParser");
+            container.RegisterType<IRecordEnumPropertyParser, ServiceBrandingParser>("ServiceBrandingParser");
             container.RegisterType<IRecordEnumPropertyParser, SleeperDetailsParser>("SleeperDetailsParser");
             container.RegisterType<IRecordEnumPropertyParser, StpIndicatorParser>("StpIndicatorParser");
             container.RegisterType<IRecordEnumPropertyParser, TransactionTypeParser>("TransactionTypeParser");

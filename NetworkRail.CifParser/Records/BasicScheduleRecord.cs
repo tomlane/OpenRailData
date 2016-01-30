@@ -30,8 +30,8 @@ namespace NetworkRail.CifParser.Records
         public SleeperDetails Sleepers { get; set; }
         public ReservationDetails Reservations { get; set; }
         public string ConnectionIndicator { get; set; } = string.Empty;
-        public string CateringCode { get; set; } = string.Empty;
-        public string ServiceBranding { get; set; } = string.Empty;
+        public CateringCode CateringCode { get; set; }
+        public ServiceBranding ServiceBranding { get; set; }
         public StpIndicator StpIndicator { get; set; }
 
         public ServiceTypeFlags ServiceTypeFlags { get; set; } = ServiceTypeFlags.Train;
