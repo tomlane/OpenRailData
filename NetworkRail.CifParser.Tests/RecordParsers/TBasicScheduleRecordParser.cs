@@ -73,7 +73,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                     CourseIndicator = "1",
                     TrainServiceCode = "21702001",
                     PortionId = string.Empty,
-                    PowerType = "E",
+                    PowerType = PowerType.E,
                     TimingLoad = "410",
                     Speed = 125,
                     OperatingCharacteristicsString = "EP    ",

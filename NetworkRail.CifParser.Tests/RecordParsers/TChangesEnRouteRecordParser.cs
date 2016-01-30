@@ -60,7 +60,7 @@ namespace NetworkRail.CifParser.Tests.RecordParsers
                     CourseIndicator = "1",
                     ServiceCode = "11808920",
                     PortionId = string.Empty,
-                    PowerType = "DMU",
+                    PowerType = PowerType.DMU,
                     TimingLoad = "S",
                     Speed = 075,
                     OperatingCharacteristics = string.Empty,

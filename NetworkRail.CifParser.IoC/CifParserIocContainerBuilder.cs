@@ -35,6 +35,7 @@ namespace NetworkRail.CifParser.IoC
             container.RegisterType<IRecordEnumPropertyParser, ExtractUpdateTypeParser>("ExtractUpdateTypeParser");
             container.RegisterType<IRecordEnumPropertyParser, LocationActivityParser>("LocationActivityParser");
             container.RegisterType<IRecordEnumPropertyParser, OperatingCharacteristicsParser>("OperatingCharacteristicsParser");
+            container.RegisterType<IRecordEnumPropertyParser, PowerTypeParser>("PowerTypeParser");
             container.RegisterType<IRecordEnumPropertyParser, ReservationDetailsParser>("ReservationDetailsParser");
             container.RegisterType<IRecordEnumPropertyParser, RunningDaysParser>("RunningDaysParser");
             container.RegisterType<IRecordEnumPropertyParser, SeatingClassParser>("SeatingClassParser");

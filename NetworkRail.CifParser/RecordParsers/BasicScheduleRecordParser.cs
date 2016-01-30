@@ -49,7 +49,7 @@ namespace NetworkRail.CifParser.RecordParsers
                 CourseIndicator = recordString.Substring(40, 1).Trim(),
                 TrainServiceCode = recordString.Substring(41, 8).Trim(),
                 PortionId = recordString.Substring(49, 1).Trim(),
-                PowerType = recordString.Substring(50, 3).Trim(),
+                PowerType = (PowerType)_enumPropertyParsers["PowerType"].ParseProperty(recordString.Substring(50, 3).Trim()),
                 TimingLoad = recordString.Substring(53, 4).Trim(),
                 OperatingCharacteristicsString = recordString.Substring(60, 6),
                 SeatingClass = (SeatingClass)_enumPropertyParsers["SeatingClass"].ParseProperty(recordString.Substring(66, 1)),

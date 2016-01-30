@@ -21,7 +21,7 @@ namespace NetworkRail.CifParser.Records
         public string CourseIndicator { get; set; } = string.Empty;
         public string TrainServiceCode { get; set; } = string.Empty;
         public string PortionId { get; set; } = string.Empty;
-        public string PowerType { get; set; } = string.Empty;
+        public PowerType PowerType { get; set; }
         public string TimingLoad { get; set; } = string.Empty;
         public int Speed { get; set; }
         public string OperatingCharacteristicsString { get; set; } = string.Empty;

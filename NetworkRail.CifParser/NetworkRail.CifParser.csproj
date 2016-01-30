@@ -54,8 +54,10 @@
     <Compile Include="RecordPropertyParsers\IRecordEnumPropertyParser.cs" />
     <Compile Include="RecordPropertyParsers\ITimingAllowanceParser.cs" />
     <Compile Include="RecordPropertyParsers\LocationTypeParser.cs" />
+    <Compile Include="RecordPropertyParsers\PowerTypeParser.cs" />
     <Compile Include="RecordPropertyParsers\ServiceBrandingParser.cs" />
     <Compile Include="Records\Enums\CateringCode.cs" />
+    <Compile Include="Records\Enums\PowerType.cs" />
     <Compile Include="Records\Enums\ServiceBranding.cs" />
     <Compile Include="Records\IntermediateLocationRecord.cs" />
     <Compile Include="Records\ScheduleRecord.cs" />
