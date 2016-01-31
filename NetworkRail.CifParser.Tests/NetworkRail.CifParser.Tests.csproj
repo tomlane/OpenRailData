@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CifRecordParsers\TEndOfFileRecordParser.cs" />
     <Compile Include="CifRecordParsers\TIntermediateLocationCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\TTerminatingLocationCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\TTiplocAmendCifRecordParser.cs" />

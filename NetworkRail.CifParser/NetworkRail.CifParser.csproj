@@ -50,6 +50,7 @@
     <Compile Include="IScheduleParser.cs" />
     <Compile Include="IScheduleManager.cs" />
     <Compile Include="IScheduleReader.cs" />
+    <Compile Include="CifRecordParsers\EndOfFileRecordParser.cs" />
     <Compile Include="CifRecordParsers\IntermediateLocationCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\TerminatingLocationCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\TiplocAmendCifRecordParser.cs" />
@@ -107,7 +108,6 @@
     <Compile Include="Records\Enums\AssociationType.cs" />
     <Compile Include="Records\Enums\BankHolidayRunning.cs" />
     <Compile Include="Records\Enums\DateIndicator.cs" />
-    <Compile Include="Records\Enums\LocationRecordType.cs" />
     <Compile Include="Records\Enums\LocationType.cs" />
     <Compile Include="Records\Enums\ServiceTypeFlags.cs" />
     <Compile Include="Records\Enums\SleeperDetails.cs" />

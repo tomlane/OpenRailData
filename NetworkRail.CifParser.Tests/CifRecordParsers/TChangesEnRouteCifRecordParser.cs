@@ -68,8 +68,8 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
                     Sleepers = SleeperDetails.NotAvailable,
                     Reservations = ReservationDetails.S,
                     ConnectionIndicator = string.Empty,
-                    CateringCode = string.Empty,
-                    ServiceBranding = string.Empty,
+                    CateringCode = 0,
+                    ServiceBranding = ServiceBranding.None,
                     UicCode = string.Empty,
                     Rsid = string.Empty
                 };

@@ -56,8 +56,8 @@ namespace NetworkRail.CifParser.CifRecordParsers
                 Sleepers = (SleeperDetails)_enumPropertyParsers["SleeperDetails"].ParseProperty(recordString.Substring(67, 1)),
                 Reservations = (ReservationDetails)_enumPropertyParsers["ReservationDetails"].ParseProperty(recordString.Substring(68, 1)),
                 ConnectionIndicator = recordString.Substring(69, 1).Trim(),
-                CateringCode = recordString.Substring(70, 4).Trim(),
-                ServiceBranding = recordString.Substring(74, 4).Trim(),
+                CateringCode = (CateringCode)_enumPropertyParsers["CateringCode"].ParseProperty(recordString.Substring(70, 4).Trim()),
+                ServiceBranding = (ServiceBranding)_enumPropertyParsers["ServiceBranding"].ParseProperty(recordString.Substring(74, 4).Trim()),
                 StpIndicator = (StpIndicator)_enumPropertyParsers["StpIndicator"].ParseProperty(recordString.Substring(79, 1))
             };
 

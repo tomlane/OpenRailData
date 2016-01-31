@@ -82,8 +82,8 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
                     Sleepers = SleeperDetails.NotAvailable,
                     Reservations = ReservationDetails.R,
                     ConnectionIndicator = string.Empty,
-                    CateringCode = "CM",
-                    ServiceBranding = string.Empty,
+                    CateringCode = CateringCode.C | CateringCode.M,
+                    ServiceBranding = 0,
                     StpIndicator = StpIndicator.P,
                     UniqueId = "Y80201151214P",
                     ServiceTypeFlags = ServiceTypeFlags.Passenger | ServiceTypeFlags.Train

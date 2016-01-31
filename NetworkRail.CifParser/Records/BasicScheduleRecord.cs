@@ -30,8 +30,8 @@ namespace NetworkRail.CifParser.Records
         public SleeperDetails Sleepers { get; set; }
         public ReservationDetails Reservations { get; set; }
         public string ConnectionIndicator { get; set; } = string.Empty;
-        public string CateringCode { get; set; } = string.Empty;
-        public string ServiceBranding { get; set; } = string.Empty;
+        public CateringCode CateringCode { get; set; }
+        public ServiceBranding ServiceBranding { get; set; }
         public StpIndicator StpIndicator { get; set; }
 
         public ServiceTypeFlags ServiceTypeFlags { get; set; } = ServiceTypeFlags.Train;
@@ -80,8 +80,8 @@ namespace NetworkRail.CifParser.Records
                 Sleepers == other.Sleepers && 
                 Reservations == other.Reservations && 
                 string.Equals(ConnectionIndicator, other.ConnectionIndicator) && 
-                string.Equals(CateringCode, other.CateringCode) && 
-                string.Equals(ServiceBranding, other.ServiceBranding) && 
+                CateringCode == other.CateringCode && 
+                ServiceBranding == other.ServiceBranding && 
                 StpIndicator == other.StpIndicator && 
                 ServiceTypeFlags == other.ServiceTypeFlags && 
                 string.Equals(UicCode, other.UicCode) && 
