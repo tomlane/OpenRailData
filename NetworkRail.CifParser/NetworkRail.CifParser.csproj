@@ -60,7 +60,6 @@
     <Compile Include="JsonRecordParsers\DeserializedRecords\DeserializedJsonScheduleSegment.cs" />
     <Compile Include="JsonRecordParsers\DeserializedRecords\DeserializedJsonTiploc.cs" />
     <Compile Include="JsonRecordParsers\DeserializedRecords\DeserilaizedJsonLocation.cs" />
-    <Compile Include="JsonRecordParsers\IJsonRecordParser.cs" />
     <Compile Include="RecordPropertyParsers\CateringCodeParser.cs" />
     <Compile Include="RecordPropertyParsers\IDateTimeParser.cs" />
     <Compile Include="RecordPropertyParsers\IRecordEnumPropertyParser.cs" />
@@ -72,6 +71,7 @@
     <Compile Include="Records\Enums\PowerType.cs" />
     <Compile Include="Records\Enums\ServiceBranding.cs" />
     <Compile Include="Records\IntermediateLocationRecord.cs" />
+    <Compile Include="Records\JsonHeaderRecord.cs" />
     <Compile Include="Records\ScheduleRecord.cs" />
     <Compile Include="RecordPropertyParsers\AssociationTypeParser.cs" />
     <Compile Include="RecordPropertyParsers\ExtractUpdateTypeParser.cs" />
@@ -93,7 +93,7 @@
     <Compile Include="CifRecordParsers\BasicScheduleCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\ChangesEnRouteCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\HeaderCifRecordParser.cs" />
-    <Compile Include="CifRecordParsers\ICifRecordParser.cs" />
+    <Compile Include="IScheduleRecordParser.cs" />
     <Compile Include="CifRecordParsers\OriginLocationCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\TiplocDeleteCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\TiplocInsertCifRecordParser.cs" />

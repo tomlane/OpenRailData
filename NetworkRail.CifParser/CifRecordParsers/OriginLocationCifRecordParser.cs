@@ -7,7 +7,7 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.CifRecordParsers
 {
-    public class OriginLocationCifRecordParser : ICifRecordParser
+    public class OriginLocationCifRecordParser : IScheduleRecordParser
     {
         private readonly ITimingAllowanceParser _timingAllowanceParser;
         private readonly Dictionary<string, IRecordEnumPropertyParser> _enumPropertyParsers; 

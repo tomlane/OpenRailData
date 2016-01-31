@@ -8,7 +8,7 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.CifRecordParsers
 {
-    public class BasicScheduleCifRecordParser : ICifRecordParser
+    public class BasicScheduleCifRecordParser : IScheduleRecordParser
     {
         private readonly Dictionary<string, IRecordEnumPropertyParser> _enumPropertyParsers;
         private readonly IDateTimeParser _dateTimeParser;

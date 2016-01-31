@@ -3,7 +3,7 @@ using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.CifRecordParsers
 {
-    public class TiplocDeleteCifRecordParser : ICifRecordParser
+    public class TiplocDeleteCifRecordParser : IScheduleRecordParser
     {
         public string RecordKey { get; } = "TD";
 

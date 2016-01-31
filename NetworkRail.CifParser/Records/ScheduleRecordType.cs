@@ -2,17 +2,18 @@
 {
     public enum ScheduleRecordType
     {
-        Header = 1,
-        TiplocInsert = 2,
-        TiplocAmend = 3,
-        TiplocDelete = 4,
-        Association = 5,
-        BasicSchedule = 6,
-        BasicScheduleExtraDetails = 7,
-        OriginLocation = 8,
-        IntermediateLocation = 9,
-        TerminatingLocation = 10,
-        ChangesEnRoute = 11,
-        EndOfFile = 12
+        CifHeader = 1,
+        JsonHeader = 2,
+        TiplocInsert = 3,
+        TiplocAmend = 4,
+        TiplocDelete = 5,
+        Association = 6,
+        BasicSchedule = 7,
+        BasicScheduleExtraDetails = 8,
+        OriginLocation = 9,
+        IntermediateLocation = 10,
+        TerminatingLocation = 11,
+        ChangesEnRoute = 12,
+        EndOfFile = 13
     }
 }

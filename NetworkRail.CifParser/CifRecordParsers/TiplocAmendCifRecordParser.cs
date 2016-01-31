@@ -4,7 +4,7 @@ using NetworkRail.CifParser.Utils;
 
 namespace NetworkRail.CifParser.CifRecordParsers
 {
-    public class TiplocAmendCifRecordParser : ICifRecordParser
+    public class TiplocAmendCifRecordParser : IScheduleRecordParser
     {
         public string RecordKey { get; } = "TA";
 

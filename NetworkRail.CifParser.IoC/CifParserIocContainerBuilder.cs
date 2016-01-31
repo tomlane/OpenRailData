@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 using NetworkRail.CifParser.CifRecordParsers;
+using NetworkRail.CifParser.JsonRecordParsers;
 using NetworkRail.CifParser.RecordPropertyParsers;
 
 namespace NetworkRail.CifParser.IoC
@@ -16,17 +17,18 @@ namespace NetworkRail.CifParser.IoC
             container.RegisterType<IScheduleReader, FileScheduleReader>();
             container.RegisterType<IScheduleParser, CifScheduleParser>();
 
-            container.RegisterType<ICifRecordParser, AssociationCifRecordParser>("AssociationCifRecordParser");
-            container.RegisterType<ICifRecordParser, BasicScheduleExtraDetailsCifRecordParser>("BasicScheduleExtraDetailsCifRecordParser");
-            container.RegisterType<ICifRecordParser, BasicScheduleCifRecordParser>("BasicScheduleCifRecordParser");
-            container.RegisterType<ICifRecordParser, ChangesEnRouteCifRecordParser>("ChangesEnRouteCifRecordParser");
-            container.RegisterType<ICifRecordParser, HeaderCifRecordParser>("HeaderCifRecordParser");
-            container.RegisterType<ICifRecordParser, OriginLocationCifRecordParser>("OriginLocationCifRecordParser");
-            container.RegisterType<ICifRecordParser, IntermediateLocationCifRecordParser>("IntermediateLocationCifRecordParser");
-            container.RegisterType<ICifRecordParser, TerminatingLocationCifRecordParser>("TerminatingLocationCifRecordParser");
-            container.RegisterType<ICifRecordParser, TiplocDeleteCifRecordParser>("TiplocDeleteCifRecordParser");
-            container.RegisterType<ICifRecordParser, TiplocInsertCifRecordParser>("TiplocInsertCifRecordParser");
-            container.RegisterType<ICifRecordParser, TiplocAmendCifRecordParser>("TiplocAmendCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, AssociationCifRecordParser>("AssociationCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, BasicScheduleExtraDetailsCifRecordParser>("BasicScheduleExtraDetailsCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, BasicScheduleCifRecordParser>("BasicScheduleCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, ChangesEnRouteCifRecordParser>("ChangesEnRouteCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, HeaderCifRecordParser>("HeaderCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, HeaderJsonRecordParser>("HeaderJsonRecordParser");
+            container.RegisterType<IScheduleRecordParser, OriginLocationCifRecordParser>("OriginLocationCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, IntermediateLocationCifRecordParser>("IntermediateLocationCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, TerminatingLocationCifRecordParser>("TerminatingLocationCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, TiplocDeleteCifRecordParser>("TiplocDeleteCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, TiplocInsertCifRecordParser>("TiplocInsertCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, TiplocAmendCifRecordParser>("TiplocAmendCifRecordParser");
             
             container.RegisterType<IRecordEnumPropertyParser, AssociationCategoryParser>("AssociationCategoryParser");
             container.RegisterType<IRecordEnumPropertyParser, AssociationTypeParser>("AssociationTypeParser");

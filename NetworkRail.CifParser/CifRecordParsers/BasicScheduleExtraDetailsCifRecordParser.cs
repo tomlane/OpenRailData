@@ -3,7 +3,7 @@ using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.CifRecordParsers
 {
-    public class BasicScheduleExtraDetailsCifRecordParser : ICifRecordParser
+    public class BasicScheduleExtraDetailsCifRecordParser : IScheduleRecordParser
     {
         public string RecordKey { get; } = "BX";
 

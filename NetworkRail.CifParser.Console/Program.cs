@@ -11,7 +11,7 @@ namespace NetworkRail.CifParser.Console
     {
         static void Main(string[] args)
         {
-            var path = @"C:\RailData\Cif\update-28122015";
+            var path = @"C:\RailData\Json\update-26012016";
 
             var start = Process.GetCurrentProcess().TotalProcessorTime;
 

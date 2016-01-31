@@ -8,9 +8,9 @@ namespace NetworkRail.CifParser
 {
     public class CifScheduleParser : IScheduleParser
     {
-        private readonly Dictionary<string, ICifRecordParser> _cifRecordParsers;
+        private readonly Dictionary<string, IScheduleRecordParser> _cifRecordParsers;
 
-        public CifScheduleParser(ICifRecordParser[] recordParsers)
+        public CifScheduleParser(IScheduleRecordParser[] recordParsers)
         {
             if (recordParsers == null)
                 throw new ArgumentNullException(nameof(recordParsers));
@@ -36,7 +36,7 @@ namespace NetworkRail.CifParser
                     break;
                 }
 
-                ICifRecordParser parser;
+                IScheduleRecordParser parser;
 
                 try
                 {
