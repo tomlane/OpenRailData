@@ -22,7 +22,6 @@ namespace NetworkRail.CifParser.IoC
             container.RegisterType<IScheduleRecordParser, BasicScheduleCifRecordParser>("BasicScheduleCifRecordParser");
             container.RegisterType<IScheduleRecordParser, ChangesEnRouteCifRecordParser>("ChangesEnRouteCifRecordParser");
             container.RegisterType<IScheduleRecordParser, HeaderCifRecordParser>("HeaderCifRecordParser");
-            container.RegisterType<IScheduleRecordParser, HeaderJsonRecordParser>("HeaderJsonRecordParser");
             container.RegisterType<IScheduleRecordParser, OriginLocationCifRecordParser>("OriginLocationCifRecordParser");
             container.RegisterType<IScheduleRecordParser, IntermediateLocationCifRecordParser>("IntermediateLocationCifRecordParser");
             container.RegisterType<IScheduleRecordParser, TerminatingLocationCifRecordParser>("TerminatingLocationCifRecordParser");
