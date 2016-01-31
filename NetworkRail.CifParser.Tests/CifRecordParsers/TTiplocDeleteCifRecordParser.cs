@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace NetworkRail.CifParser.Tests.CifRecordParsers
 {
     [TestFixture]
-    public class TTiplocInsertRecordParser
+    public class TTiplocDeleteCifRecordParser
     {
         [TestFixture]
         class BuildRecord
@@ -14,7 +14,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var recordParser = new TiplocInsertRecordParser();
+                var recordParser = new TiplocDeleteCifRecordParser();
 
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
@@ -24,23 +24,15 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result()
             {
-                var recordParser = new TiplocInsertRecordParser();
+                var recordParser = new TiplocDeleteCifRecordParser();
 
-                string record = "TIPURLSGB00537901JPURLEY DOWN SIDING GBRF   87807   0                           ";
+                string record = "TD1234567                                                                       ";
 
-                var result = recordParser.ParseRecord(record) as TiplocInsertRecord;
+                var result = recordParser.ParseRecord(record);
 
-                var expectedResult = new TiplocInsertRecord
+                var expectedResult = new TiplocDeleteRecord
                 {
-                    TiplocCode = "PURLSGB",
-                    CapitalsIdentification = "00",
-                    Nalco = "537901",
-                    Nlc = "J",
-                    TpsDescription = "PURLEY DOWN SIDING GBRF",
-                    Stanox = "87807",
-                    PoMcbCode = "0",
-                    CrsCode = string.Empty,
-                    CapriDescription = string.Empty
+                    TiplocCode = "1234567"
                 };
 
                 Assert.AreEqual(expectedResult, result);

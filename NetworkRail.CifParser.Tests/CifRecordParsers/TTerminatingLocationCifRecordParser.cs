@@ -10,12 +10,12 @@ using NUnit.Framework;
 namespace NetworkRail.CifParser.Tests.CifRecordParsers
 {
     [TestFixture]
-    public class TTerminatingLocationRecordParser
+    public class TTerminatingLocationCifRecordParser
     {
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            Assert.Throws<ArgumentNullException>(() => new TerminatingLocationRecordParser(null));
+            Assert.Throws<ArgumentNullException>(() => new TerminatingLocationCifRecordParser(null));
         }
 
         [TestFixture]
@@ -34,7 +34,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result()
             {
-                var recordParser = new TerminatingLocationRecordParser(_enumPropertyParsers);
+                var recordParser = new TerminatingLocationCifRecordParser(_enumPropertyParsers);
 
                 string record = "LTWSTBRYW 1323 13253     TF                                                     ";
 

@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace NetworkRail.CifParser.Tests.CifRecordParsers
 {
     [TestFixture]
-    public class TAssociationRecordParser
+    public class TAssociationCifRecordParser
     {
         private static IUnityContainer _container;
         private static IRecordEnumPropertyParser[] _enumPropertyParsers;
@@ -32,8 +32,8 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             var enumRecordParsers = new IRecordEnumPropertyParser[0];
             var dateTimeParserMock = new Mock<IDateTimeParser>();
 
-            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParser(null, dateTimeParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new AssociationRecordParser(enumRecordParsers, null));
+            Assert.Throws<ArgumentNullException>(() => new AssociationCifRecordParser(null, dateTimeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new AssociationCifRecordParser(enumRecordParsers, null));
         }
 
         [TestFixture]
@@ -42,7 +42,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var recordParser = new AssociationRecordParser(_enumPropertyParsers, _dateTimeParser);
+                var recordParser = new AssociationCifRecordParser(_enumPropertyParsers, _dateTimeParser);
 
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
@@ -52,7 +52,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result_with_revise_record()
             {
-                var recordParser = new AssociationRecordParser(_enumPropertyParsers, _dateTimeParser);
+                var recordParser = new AssociationCifRecordParser(_enumPropertyParsers, _dateTimeParser);
 
                 string recordToParse = "AARW01400W005701512131602070000001   ORPNGTN  T                                C";
 
@@ -82,7 +82,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result_with_new_record()
             {
-                var recordParser = new AssociationRecordParser(_enumPropertyParsers, _dateTimeParser);
+                var recordParser = new AssociationCifRecordParser(_enumPropertyParsers, _dateTimeParser);
 
                 string record = "AANL82468L839221512191601020000010   CLCHSTR  T                                C";
 
@@ -112,7 +112,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result_with_delete_record()
             {
-                var recordParser = new AssociationRecordParser(_enumPropertyParsers, _dateTimeParser);
+                var recordParser = new AssociationCifRecordParser(_enumPropertyParsers, _dateTimeParser);
 
                 string record = "AADL82468L83922151226                CLCHSTR  T                                C";
 

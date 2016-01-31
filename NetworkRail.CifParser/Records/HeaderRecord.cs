@@ -3,9 +3,9 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.Records
 {
-    public class HeaderRecord : ICifRecord
+    public class HeaderRecord : IScheduleRecord
     {
-        public CifRecordType RecordIdentity { get; } = CifRecordType.Header;
+        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.Header;
         public string MainFrameIdentity { get; set; } = string.Empty;
         public DateTime DateOfExtract { get; set; }
         public string TimeOfExtract { get; set; }

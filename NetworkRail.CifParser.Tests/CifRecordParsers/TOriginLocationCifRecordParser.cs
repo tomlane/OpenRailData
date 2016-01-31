@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace NetworkRail.CifParser.Tests.CifRecordParsers
 {
     [TestFixture]
-    public class TOriginLocationRecordParser
+    public class TOriginLocationCifRecordParser
     {
         [Test]
         public void throws_when_dependencies_are_null()
@@ -19,8 +19,8 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             var enumPropertyParsers = new IRecordEnumPropertyParser[0];
             var timingAllowanceParserMock = new Mock<ITimingAllowanceParser>();
 
-            Assert.Throws<ArgumentNullException>(() => new OriginLocationRecordParser(null, timingAllowanceParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new OriginLocationRecordParser(enumPropertyParsers, null));
+            Assert.Throws<ArgumentNullException>(() => new OriginLocationCifRecordParser(null, timingAllowanceParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new OriginLocationCifRecordParser(enumPropertyParsers, null));
         }
 
         [TestFixture]
@@ -41,7 +41,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result()
             {
-                var recordParser = new OriginLocationRecordParser(_enumPropertyParsers, _timingAllowanceParser);
+                var recordParser = new OriginLocationCifRecordParser(_enumPropertyParsers, _timingAllowanceParser);
 
                 string record = "LOSDON    1242 12422         TB                                                 ";
 

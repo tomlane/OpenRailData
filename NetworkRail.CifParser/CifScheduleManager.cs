@@ -20,7 +20,7 @@ namespace NetworkRail.CifParser
             _scheduleParser = scheduleParser;
         }
 
-        public IList<ICifRecord> ParseScheduleEntites(string scheduleFilePath)
+        public IList<IScheduleRecord> ParseScheduleEntites(string scheduleFilePath)
         {
             if (string.IsNullOrWhiteSpace(scheduleFilePath))
                 throw new ArgumentNullException(nameof(scheduleFilePath));
@@ -30,7 +30,7 @@ namespace NetworkRail.CifParser
             return _scheduleParser.ParseScheduleFile(recordsToParse);
         }
 
-        public void SaveScheduleEntities(IList<ICifRecord> entites)
+        public void SaveScheduleEntities(IList<IScheduleRecord> entites)
         {
             throw new NotImplementedException();
         }

@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace NetworkRail.CifParser.Tests.CifRecordParsers
 {
     [TestFixture]
-    public class TTiplocAmendRecordParser
+    public class TTiplocInsertCifRecordParser
     {
         [TestFixture]
         class BuildRecord
@@ -14,7 +14,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var recordParser = new TiplocAmendRecordParser();
+                var recordParser = new TiplocInsertCifRecordParser();
 
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
@@ -24,29 +24,26 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result()
             {
-                var recordParser = new TiplocAmendRecordParser();
+                var recordParser = new TiplocInsertCifRecordParser();
 
-                string record = "TAEBOUCS 08544815BEASTBOURNE C.S.           88253   0XEB                0111193 ";
+                string record = "TIPURLSGB00537901JPURLEY DOWN SIDING GBRF   87807   0                           ";
 
-                var result = recordParser.ParseRecord(record) as TiplocAmendRecord;
+                var result = recordParser.ParseRecord(record) as TiplocInsertRecord;
 
-                var expectedResult = new TiplocAmendRecord
+                var expectedResult = new TiplocInsertRecord
                 {
-                    TiplocCode = "0111193",
-                    CapitalsIdentification = "08",
-                    Nalco = "544815",
-                    Nlc = "B",
-                    TpsDescription = "EASTBOURNE C.S.",
-                    Stanox = "88253",
+                    TiplocCode = "PURLSGB",
+                    CapitalsIdentification = "00",
+                    Nalco = "537901",
+                    Nlc = "J",
+                    TpsDescription = "PURLEY DOWN SIDING GBRF",
+                    Stanox = "87807",
                     PoMcbCode = "0",
-                    CrsCode = "XEB",
-                    CapriDescription = string.Empty,
-                    OldTiploc = "EBOUCS"
+                    CrsCode = string.Empty,
+                    CapriDescription = string.Empty
                 };
 
                 Assert.AreEqual(expectedResult, result);
-
-                Assert.IsTrue(result.IsAmend);
             }
         }
     }

@@ -19,7 +19,7 @@ namespace NetworkRail.CifParser.Console
 
             var scheduleManager = container.Resolve<IScheduleManager>();
 
-            List<ICifRecord> entites = scheduleManager.ParseScheduleEntites(path).ToList();
+            List<IScheduleRecord> entites = scheduleManager.ParseScheduleEntites(path).ToList();
             
             var end = Process.GetCurrentProcess().TotalProcessorTime;
 

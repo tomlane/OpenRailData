@@ -6,6 +6,6 @@ namespace NetworkRail.CifParser.CifRecordParsers
     {
         string RecordKey { get; }
 
-        ICifRecord ParseRecord(string recordString);
+        IScheduleRecord ParseRecord(string recordString);
     }
 }

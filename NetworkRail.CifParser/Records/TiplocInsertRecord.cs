@@ -1,8 +1,8 @@
 ﻿namespace NetworkRail.CifParser.Records
 {
-    public class TiplocInsertRecord : ICifRecord
+    public class TiplocInsertRecord : IScheduleRecord
     {
-        public CifRecordType RecordIdentity { get; } = CifRecordType.TiplocInsert;
+        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.TiplocInsert;
         public string TiplocCode { get; set; } = string.Empty;
         public string CapitalsIdentification { get; set; } = string.Empty;
         public string Nalco { get; set; } = string.Empty;

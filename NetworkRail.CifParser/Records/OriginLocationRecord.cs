@@ -3,9 +3,9 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.Records
 {
-    public class OriginLocationRecord : ICifRecord
+    public class OriginLocationRecord : IScheduleRecord
     {
-        public CifRecordType RecordIdentity { get; } = CifRecordType.OriginLocation;
+        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.OriginLocation;
         public string Tiploc { get; set; } = string.Empty;
         public string TiplocSuffix { private get; set; } = string.Empty;
         public string Location => $"{Tiploc}{TiplocSuffix}";

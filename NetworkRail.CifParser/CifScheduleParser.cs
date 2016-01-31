@@ -18,12 +18,12 @@ namespace NetworkRail.CifParser
             _cifRecordParsers = recordParsers.ToDictionary(x => x.RecordKey, x => x);
         }
 
-        public IList<ICifRecord> ParseScheduleFile(IEnumerable<string> recordsToParse)
+        public IList<IScheduleRecord> ParseScheduleFile(IEnumerable<string> recordsToParse)
         {
             if (recordsToParse == null) 
                 throw new ArgumentNullException(nameof(recordsToParse));
 
-            var resultList = new List<ICifRecord>();
+            var resultList = new List<IScheduleRecord>();
 
             foreach (var record in recordsToParse)
             {

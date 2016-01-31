@@ -1,8 +1,8 @@
 ﻿namespace NetworkRail.CifParser.Records
 {
-    public class EndOfFileRecord : ICifRecord
+    public class EndOfFileRecord : IScheduleRecord
     {
-        public CifRecordType RecordIdentity { get; } = CifRecordType.EndOfFile;
+        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.EndOfFile;
 
         protected bool Equals(EndOfFileRecord other)
         {

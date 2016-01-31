@@ -2,9 +2,9 @@
 
 namespace NetworkRail.CifParser.Records
 {
-    public class ChangesEnRouteRecord : ICifRecord
+    public class ChangesEnRouteRecord : IScheduleRecord
     {
-        public CifRecordType RecordIdentity { get; } = CifRecordType.ChangesEnRoute;
+        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.ChangesEnRoute;
         public string Tiploc { get; set; } = string.Empty; 
         public string TiplocSuffix { get; set; } = string.Empty; 
         public string Category { get; set; } = string.Empty;

@@ -4,16 +4,16 @@ using NetworkRail.CifParser.Utils;
 
 namespace NetworkRail.CifParser.CifRecordParsers
 {
-    public class TiplocAmendRecordParser : ICifRecordParser
+    public class TiplocInsertCifRecordParser : ICifRecordParser
     {
-        public string RecordKey { get; } = "TA";
+        public string RecordKey { get; } = "TI";
 
-        public ICifRecord ParseRecord(string recordString)
+        public IScheduleRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
-            var record = new TiplocAmendRecord
+            return new TiplocInsertRecord
             {
                 TiplocCode = recordString.Substring(2, 7).Trim(),
                 CapitalsIdentification = recordString.Substring(9, 2).Trim(),
@@ -25,16 +25,6 @@ namespace NetworkRail.CifParser.CifRecordParsers
                 CrsCode = recordString.Substring(53, 3).Trim(),
                 CapriDescription = recordString.Substring(56, 16).Trim().LocationCasing()
             };
-
-            string newTiploc = recordString.Substring(72, 7).Trim();
-
-            if (newTiploc == string.Empty)
-                return record;
-
-            record.OldTiploc = record.TiplocCode;
-            record.TiplocCode = newTiploc;
-
-            return record;
         }
     }
 }

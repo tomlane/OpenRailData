@@ -3,11 +3,11 @@ using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser.CifRecordParsers
 {
-    public class TiplocDeleteRecordParser : ICifRecordParser
+    public class TiplocDeleteCifRecordParser : ICifRecordParser
     {
         public string RecordKey { get; } = "TD";
 
-        public ICifRecord ParseRecord(string recordString)
+        public IScheduleRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));

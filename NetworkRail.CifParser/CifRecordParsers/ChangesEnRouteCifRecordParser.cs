@@ -8,11 +8,11 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.CifRecordParsers
 {
-    public class ChangesEnRouteRecordParser : ICifRecordParser
+    public class ChangesEnRouteCifRecordParser : ICifRecordParser
     {
         private readonly Dictionary<string, IRecordEnumPropertyParser> _enumPropertyParsers;
 
-        public ChangesEnRouteRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers)
+        public ChangesEnRouteCifRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers)
         {
             if (enumPropertyParsers == null)
                 throw new ArgumentNullException(nameof(enumPropertyParsers));
@@ -22,7 +22,7 @@ namespace NetworkRail.CifParser.CifRecordParsers
 
         public string RecordKey { get; } = "CR";
 
-        public ICifRecord ParseRecord(string recordString)
+        public IScheduleRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));

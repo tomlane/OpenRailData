@@ -7,12 +7,12 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.CifRecordParsers
 {
-    public class OriginLocationRecordParser : ICifRecordParser
+    public class OriginLocationCifRecordParser : ICifRecordParser
     {
         private readonly ITimingAllowanceParser _timingAllowanceParser;
         private readonly Dictionary<string, IRecordEnumPropertyParser> _enumPropertyParsers; 
 
-        public OriginLocationRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers, ITimingAllowanceParser timingAllowanceParser)
+        public OriginLocationCifRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers, ITimingAllowanceParser timingAllowanceParser)
         {
             if (enumPropertyParsers == null)
                 throw new ArgumentNullException(nameof(enumPropertyParsers));
@@ -25,7 +25,7 @@ namespace NetworkRail.CifParser.CifRecordParsers
 
         public string RecordKey { get; } = "LO";
 
-        public ICifRecord ParseRecord(string recordString)
+        public IScheduleRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));

@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace NetworkRail.CifParser.Tests.CifRecordParsers
 {
     [TestFixture]
-    public class TChangesEnRouteRecordParser
+    public class TChangesEnRouteCifRecordParser
     {
         private static IUnityContainer _container;
         private static IRecordEnumPropertyParser[] _enumPropertyParsers;
@@ -25,7 +25,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
         [Test]
         public void throws_when_dependencies_are_null()
         {
-            Assert.Throws<ArgumentNullException>(() => new ChangesEnRouteRecordParser(null));
+            Assert.Throws<ArgumentNullException>(() => new ChangesEnRouteCifRecordParser(null));
         }
 
         [TestFixture]
@@ -34,7 +34,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void throws_when_argument_string_is_invalid()
             {
-                var recordParser = new ChangesEnRouteRecordParser(_enumPropertyParsers);
+                var recordParser = new ChangesEnRouteCifRecordParser(_enumPropertyParsers);
 
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
@@ -44,7 +44,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result()
             {
-                var recordParser = new ChangesEnRouteRecordParser(_enumPropertyParsers);
+                var recordParser = new ChangesEnRouteCifRecordParser(_enumPropertyParsers);
 
                 string record = "CRHULL    XX1J22    111808920 DMUS   075      S S                               ";
 

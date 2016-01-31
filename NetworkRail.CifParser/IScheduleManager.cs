@@ -5,7 +5,7 @@ namespace NetworkRail.CifParser
 {
     public interface IScheduleManager
     {
-        IList<ICifRecord> ParseScheduleEntites(string scheduleFilePath);
-        void SaveScheduleEntities(IList<ICifRecord> entites);
+        IList<IScheduleRecord> ParseScheduleEntites(string scheduleFilePath);
+        void SaveScheduleEntities(IList<IScheduleRecord> entites);
     }
 }

@@ -5,6 +5,6 @@ namespace NetworkRail.CifParser
 {
     public interface IScheduleParser
     {
-        IList<ICifRecord> ParseScheduleFile(IEnumerable<string> recordsToParse);
+        IList<IScheduleRecord> ParseScheduleFile(IEnumerable<string> recordsToParse);
     }
 }

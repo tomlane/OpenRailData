@@ -2,9 +2,9 @@
 
 namespace NetworkRail.CifParser.Records
 {
-    public class TerminatingLocationRecord : ICifRecord
+    public class TerminatingLocationRecord : IScheduleRecord
     {
-        public CifRecordType RecordIdentity { get; } = CifRecordType.TerminatingLocation;
+        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.TerminatingLocation;
         public string Tiploc { get; set; } = string.Empty;
         public string TiplocSuffix { private get; set; } = string.Empty;
         public string Location => $"{Tiploc}{TiplocSuffix}";

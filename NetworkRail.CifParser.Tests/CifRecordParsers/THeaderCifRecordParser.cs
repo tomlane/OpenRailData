@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace NetworkRail.CifParser.Tests.CifRecordParsers
 {
     [TestFixture]
-    public class THeaderRecordParser
+    public class THeaderCifRecordParser
     {
         private static IUnityContainer _container;
         private static IRecordEnumPropertyParser[] _enumPropertyParsers;
@@ -31,8 +31,8 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             var enumPropertyParsers = new IRecordEnumPropertyParser[0];
             var datetimeParserMock = new Mock<IDateTimeParser>();
 
-            Assert.Throws<ArgumentNullException>(() => new HeaderRecordParser(null, datetimeParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new HeaderRecordParser(enumPropertyParsers, null));
+            Assert.Throws<ArgumentNullException>(() => new HeaderCifRecordParser(null, datetimeParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new HeaderCifRecordParser(enumPropertyParsers, null));
         }
 
         [TestFixture]
@@ -41,7 +41,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var recordParser = new HeaderRecordParser(_enumPropertyParsers, _dateTimeParser);
+                var recordParser = new HeaderCifRecordParser(_enumPropertyParsers, _dateTimeParser);
 
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
@@ -51,7 +51,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void throws_when_mainframe_identity_is_invalid()
             {
-                var recordParser = new HeaderRecordParser(_enumPropertyParsers, _dateTimeParser);
+                var recordParser = new HeaderCifRecordParser(_enumPropertyParsers, _dateTimeParser);
 
                 string record = "HD                    3012152116DFROC1EDFROC1DUA301215291216                    ";
 
@@ -61,7 +61,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result()
             {
-                var recordParser = new HeaderRecordParser(_enumPropertyParsers, _dateTimeParser);
+                var recordParser = new HeaderCifRecordParser(_enumPropertyParsers, _dateTimeParser);
 
                 string record = "HDTPS.UDFROC1.PD1512303012152116DFROC1EDFROC1DUA301215291216                    ";
 

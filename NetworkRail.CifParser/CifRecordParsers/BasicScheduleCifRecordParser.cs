@@ -8,12 +8,12 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.CifRecordParsers
 {
-    public class BasicScheduleRecordParser : ICifRecordParser
+    public class BasicScheduleCifRecordParser : ICifRecordParser
     {
         private readonly Dictionary<string, IRecordEnumPropertyParser> _enumPropertyParsers;
         private readonly IDateTimeParser _dateTimeParser;
         
-        public BasicScheduleRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers, IDateTimeParser dateTimeParser)
+        public BasicScheduleCifRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers, IDateTimeParser dateTimeParser)
         {
             if (enumPropertyParsers == null)
                 throw new ArgumentNullException(nameof(enumPropertyParsers));
@@ -26,7 +26,7 @@ namespace NetworkRail.CifParser.CifRecordParsers
 
         public string RecordKey { get; } = "BS";
 
-        public ICifRecord ParseRecord(string recordString)
+        public IScheduleRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));

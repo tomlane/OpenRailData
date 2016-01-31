@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace NetworkRail.CifParser.Tests.CifRecordParsers
 {
     [TestFixture]
-    public class TBasicScheduleExtraDetailsRecordParser
+    public class TBasicScheduleExtraDetailsCifRecordParser
     {
         [TestFixture]
         class BuildRecord
@@ -14,7 +14,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void throws_when_argument_is_null()
             {
-                var recordParser = new BasicScheduleExtraDetailsRecordParser();
+                var recordParser = new BasicScheduleExtraDetailsCifRecordParser();
 
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
                 Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
@@ -24,7 +24,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result()
             {
-                var recordParser = new BasicScheduleExtraDetailsRecordParser();
+                var recordParser = new BasicScheduleExtraDetailsCifRecordParser();
 
                 string record = "BX         XCY                                                                  ";
 

@@ -3,9 +3,9 @@ using NetworkRail.CifParser.Records.Enums;
 
 namespace NetworkRail.CifParser.Records
 {
-    public class BasicScheduleRecord : ICifRecord
+    public class BasicScheduleRecord : IScheduleRecord
     {
-        public CifRecordType RecordIdentity { get; } = CifRecordType.BasicSchedule;
+        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.BasicSchedule;
         public TransactionType TransactionType { get; set; }
         public string TrainUid { get; set; } = string.Empty;
         public string UniqueId { get; set; } = string.Empty;

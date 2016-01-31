@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace NetworkRail.CifParser.Tests.CifRecordParsers
 {
     [TestFixture]
-    public class TIntermediateLocationRecordParser
+    public class TIntermediateLocationCifRecordParser
     {
         [Test]
         public void throws_when_dependencies_are_null()
@@ -19,8 +19,8 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             var enumPropertyParsers = new IRecordEnumPropertyParser[0];
             var timingAllowanceParserMock = new Mock<ITimingAllowanceParser>();
 
-            Assert.Throws<ArgumentNullException>(() => new IntermediateLocationRecordParser(null, timingAllowanceParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new IntermediateLocationRecordParser(enumPropertyParsers, null));
+            Assert.Throws<ArgumentNullException>(() => new IntermediateLocationCifRecordParser(null, timingAllowanceParserMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new IntermediateLocationCifRecordParser(enumPropertyParsers, null));
         }
 
         [TestFixture]
@@ -41,7 +41,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result_arrival_and_departure()
             {
-                var recordParser = new IntermediateLocationRecordParser(_enumPropertyParsers, _timingAllowanceParser);
+                var recordParser = new IntermediateLocationCifRecordParser(_enumPropertyParsers, _timingAllowanceParser);
 
                 string record = "LIMELKSHM 1307H1308      13081308         T                                     ";
 
@@ -66,7 +66,7 @@ namespace NetworkRail.CifParser.Tests.CifRecordParsers
             [Test]
             public void returns_expected_result_pass()
             {
-                var recordParser = new IntermediateLocationRecordParser(_enumPropertyParsers, _timingAllowanceParser);
+                var recordParser = new IntermediateLocationCifRecordParser(_enumPropertyParsers, _timingAllowanceParser);
 
                 string record = "LIBRDFDJN           1314 00000000                                               ";
 

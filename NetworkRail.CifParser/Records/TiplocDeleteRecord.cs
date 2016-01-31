@@ -1,8 +1,8 @@
 ﻿namespace NetworkRail.CifParser.Records
 {
-    public class TiplocDeleteRecord : ICifRecord
+    public class TiplocDeleteRecord : IScheduleRecord
     {
-        public CifRecordType RecordIdentity { get; } = CifRecordType.TiplocDelete;
+        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.TiplocDelete;
         public string TiplocCode { get; set; } = string.Empty;
 
         protected bool Equals(TiplocDeleteRecord other)
