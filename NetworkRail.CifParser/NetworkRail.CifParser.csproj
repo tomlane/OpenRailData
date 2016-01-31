@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +53,14 @@
     <Compile Include="CifRecordParsers\IntermediateLocationCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\TerminatingLocationCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\TiplocAmendCifRecordParser.cs" />
+    <Compile Include="JsonRecordParsers\DeserializedRecords\DeserializedJsonAssociation.cs" />
+    <Compile Include="JsonRecordParsers\DeserializedRecords\DeserializedJsonNewScheduleSegment.cs" />
+    <Compile Include="JsonRecordParsers\DeserializedRecords\DeserializedJsonScheduleHeader.cs" />
+    <Compile Include="JsonRecordParsers\DeserializedRecords\DeserializedJsonScheduleRecord.cs" />
+    <Compile Include="JsonRecordParsers\DeserializedRecords\DeserializedJsonScheduleSegment.cs" />
+    <Compile Include="JsonRecordParsers\DeserializedRecords\DeserializedJsonTiploc.cs" />
+    <Compile Include="JsonRecordParsers\DeserializedRecords\DeserilaizedJsonLocation.cs" />
+    <Compile Include="JsonRecordParsers\IJsonRecordParser.cs" />
     <Compile Include="RecordPropertyParsers\CateringCodeParser.cs" />
     <Compile Include="RecordPropertyParsers\IDateTimeParser.cs" />
     <Compile Include="RecordPropertyParsers\IRecordEnumPropertyParser.cs" />
@@ -118,6 +130,9 @@
     <Compile Include="Utils\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
