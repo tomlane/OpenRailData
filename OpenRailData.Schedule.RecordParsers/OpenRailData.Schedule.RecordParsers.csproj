@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{540AB9DC-93A3-4829-A125-173FA1681E91}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenRailData.Schedule.RecordParsers</RootNamespace>
+    <AssemblyName>OpenRailData.Schedule.RecordParsers</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NetworkRail\CifRecordParsers\AssociationCifRecordParser.cs" />
+    <Compile Include="NetworkRail\CifRecordParsers\BasicScheduleCifRecordParser.cs" />
+    <Compile Include="NetworkRail\CifRecordParsers\BasicScheduleExtraDetailsCifRecordParser.cs" />
+    <Compile Include="NetworkRail\CifRecordParsers\ChangesEnRouteCifRecordParser.cs" />
+    <Compile Include="NetworkRail\CifRecordParsers\EndOfFileRecordParser.cs" />
+    <Compile Include="NetworkRail\CifRecordParsers\HeaderCifRecordParser.cs" />
+    <Compile Include="NetworkRail\CifRecordParsers\IntermediateLocationCifRecordParser.cs" />
+    <Compile Include="NetworkRail\CifRecordParsers\OriginLocationCifRecordParser.cs" />
+    <Compile Include="NetworkRail\CifRecordParsers\TerminatingLocationCifRecordParser.cs" />
+    <Compile Include="NetworkRail\CifRecordParsers\TiplocAmendCifRecordParser.cs" />
+    <Compile Include="NetworkRail\CifRecordParsers\TiplocDeleteCifRecordParser.cs" />
+    <Compile Include="NetworkRail\CifRecordParsers\TiplocInsertCifRecordParser.cs" />
+    <Compile Include="NetworkRail\JsonRecordParsers\DeserializedRecords\DeserializedJsonAssociation.cs" />
+    <Compile Include="NetworkRail\JsonRecordParsers\DeserializedRecords\DeserializedJsonNewScheduleSegment.cs" />
+    <Compile Include="NetworkRail\JsonRecordParsers\DeserializedRecords\DeserializedJsonScheduleHeader.cs" />
+    <Compile Include="NetworkRail\JsonRecordParsers\DeserializedRecords\DeserializedJsonScheduleRecord.cs" />
+    <Compile Include="NetworkRail\JsonRecordParsers\DeserializedRecords\DeserializedJsonScheduleSegment.cs" />
+    <Compile Include="NetworkRail\JsonRecordParsers\DeserializedRecords\DeserializedJsonTiploc.cs" />
+    <Compile Include="NetworkRail\JsonRecordParsers\DeserializedRecords\DeserilaizedJsonLocation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenRailData.Schedule.NetworkRailScheduleParser\OpenRailData.Schedule.NetworkRailScheduleParser.csproj">
+      <Project>{42572685-90B5-430E-BE9D-D68FC2AE50CF}</Project>
+      <Name>OpenRailData.Schedule.NetworkRailScheduleParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Schedule.PropertyParsers\OpenRailData.Schedule.PropertyParsers.csproj">
+      <Project>{AB1D236D-BDE0-4C48-B42A-6FE932FE47AD}</Project>
+      <Name>OpenRailData.Schedule.PropertyParsers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Schedule.Records\OpenRailData.Schedule.Records.csproj">
+      <Project>{437A2085-E6EE-4AC1-A55F-80AFAD6D3B99}</Project>
+      <Name>OpenRailData.Schedule.Records</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
