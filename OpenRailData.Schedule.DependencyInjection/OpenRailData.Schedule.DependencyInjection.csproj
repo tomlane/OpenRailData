@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5AC483DF-FC63-4930-B640-DBDA47DBC9E0}</ProjectGuid>
+    <ProjectGuid>{448C8004-F8A6-4E8F-8213-68DD685D9305}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NetworkRail.CifParser.Tests</RootNamespace>
-    <AssemblyName>NetworkRail.CifParser.Tests</AssemblyName>
+    <RootNamespace>OpenRailData.Schedule.DependencyInjection</RootNamespace>
+    <AssemblyName>OpenRailData.Schedule.DependencyInjection</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,14 +46,6 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -64,53 +56,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CifRecordParsers\TEndOfFileRecordParser.cs" />
-    <Compile Include="CifRecordParsers\TIntermediateLocationCifRecordParser.cs" />
-    <Compile Include="CifRecordParsers\TTerminatingLocationCifRecordParser.cs" />
-    <Compile Include="CifRecordParsers\TTiplocAmendCifRecordParser.cs" />
-    <Compile Include="RecordPropertyParsers\TAssociationCategoryParser.cs" />
-    <Compile Include="RecordPropertyParsers\TAssociationTypeParser.cs" />
-    <Compile Include="RecordPropertyParsers\TCateringCodeParser.cs" />
-    <Compile Include="RecordPropertyParsers\TDateIndicatorParser.cs" />
-    <Compile Include="RecordPropertyParsers\TDateTimeParser.cs" />
-    <Compile Include="RecordPropertyParsers\TBankHolidayRunningParser.cs" />
-    <Compile Include="RecordPropertyParsers\TLocationTypeParser.cs" />
-    <Compile Include="RecordPropertyParsers\TPowerTypeParser.cs" />
-    <Compile Include="RecordPropertyParsers\TRunningDaysParser.cs" />
-    <Compile Include="RecordPropertyParsers\TSeatingClassParser.cs" />
-    <Compile Include="RecordPropertyParsers\TServiceBrandingParser.cs" />
-    <Compile Include="RecordPropertyParsers\TTrainSleeperDetailsParser.cs" />
-    <Compile Include="RecordPropertyParsers\TReservationDetailsParser.cs" />
-    <Compile Include="RecordPropertyParsers\TTimeParser.cs" />
-    <Compile Include="RecordPropertyParsers\TStpIndicatorParser.cs" />
-    <Compile Include="RecordPropertyParsers\TTransactionTypeParser.cs" />
-    <Compile Include="RecordPropertyParsers\TExtractUpdateTypeParser.cs" />
-    <Compile Include="CifRecordParsers\TAssociationCifRecordParser.cs" />
-    <Compile Include="CifRecordParsers\TBasicScheduleExtraDetailsCifRecordParser.cs" />
-    <Compile Include="CifRecordParsers\TBasicScheduleCifRecordParser.cs" />
-    <Compile Include="CifRecordParsers\TChangesEnRouteCifRecordParser.cs" />
-    <Compile Include="CifRecordParsers\THeaderCifRecordParser.cs" />
-    <Compile Include="CifRecordParsers\TOriginLocationCifRecordParser.cs" />
-    <Compile Include="CifRecordParsers\TTiplocDeleteCifRecordParser.cs" />
-    <Compile Include="CifRecordParsers\TTiplocInsertCifRecordParser.cs" />
-    <Compile Include="Records\TBasicScheduleRecord.cs" />
+    <Compile Include="CifParserIocContainerBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecordPropertyParsers\TLocationActivityParser.cs" />
-    <Compile Include="RecordPropertyParsers\TOperatingCharacteristicsParser.cs" />
-    <Compile Include="TCifScheduleManager.cs" />
-    <Compile Include="TCifScheduleParser.cs" />
-    <Compile Include="TFileScheduleReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NetworkRail.CifParser\NetworkRail.CifParser.csproj">
-      <Project>{413DD335-32B8-4013-9120-5C24C3B60D05}</Project>
-      <Name>NetworkRail.CifParser</Name>
+    <ProjectReference Include="..\OpenRailData.Schedule.NetworkRailScheduleParser\OpenRailData.Schedule.NetworkRailScheduleParser.csproj">
+      <Project>{42572685-90B5-430E-BE9D-D68FC2AE50CF}</Project>
+      <Name>OpenRailData.Schedule.NetworkRailScheduleParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Schedule.PropertyParsers\OpenRailData.Schedule.PropertyParsers.csproj">
+      <Project>{AB1D236D-BDE0-4C48-B42A-6FE932FE47AD}</Project>
+      <Name>OpenRailData.Schedule.PropertyParsers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Schedule.RecordParsers\OpenRailData.Schedule.RecordParsers.csproj">
+      <Project>{540AB9DC-93A3-4829-A125-173FA1681E91}</Project>
+      <Name>OpenRailData.Schedule.RecordParsers</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

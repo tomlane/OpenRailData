@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B1D7DDBC-C216-4527-BA29-87053D3D2AC5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{23819884-6772-49F3-BA2E-77DB60E6EFCC}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NetworkRail.CifParser.Console</RootNamespace>
-    <AssemblyName>NetworkRail.CifParser.Console</AssemblyName>
+    <RootNamespace>OpenRailData.Schedule.Tests</RootNamespace>
+    <AssemblyName>OpenRailData.Schedule.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,6 +46,14 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,11 +64,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="NetworkRailScheduleParser\TCifScheduleManager.cs" />
+    <Compile Include="NetworkRailScheduleParser\TCifScheduleParser.cs" />
+    <Compile Include="NetworkRailScheduleParser\TFileScheduleReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TAssociationCategoryParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TAssociationTypeParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TBankHolidayRunningParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TCateringCodeParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TDateIndicatorParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TDateTimeParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TExtractUpdateTypeParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TLocationActivityParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TLocationTypeParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TOperatingCharacteristicsParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TPowerTypeParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TReservationDetailsParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TRunningDaysParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TSeatingClassParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TServiceBrandingParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TStpIndicatorParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TTimeParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TTrainSleeperDetailsParser.cs" />
+    <Compile Include="PropertyParsers\NetworkRail\TTransactionTypeParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\TAssociationCifRecordParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\TBasicScheduleCifRecordParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\TBasicScheduleExtraDetailsCifRecordParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\TChangesEnRouteCifRecordParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\TEndOfFileRecordParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\THeaderCifRecordParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\TIntermediateLocationCifRecordParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\TOriginLocationCifRecordParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\TTerminatingLocationCifRecordParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\TTiplocAmendCifRecordParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\TTiplocDeleteCifRecordParser.cs" />
+    <Compile Include="RecordParsers\NetworkRail\CifRecordParsers\TTiplocInsertCifRecordParser.cs" />
+    <Compile Include="Records\NetworkRail\TBasicScheduleRecord.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +112,14 @@
     <ProjectReference Include="..\OpenRailData.Schedule.NetworkRailScheduleParser\OpenRailData.Schedule.NetworkRailScheduleParser.csproj">
       <Project>{42572685-90B5-430E-BE9D-D68FC2AE50CF}</Project>
       <Name>OpenRailData.Schedule.NetworkRailScheduleParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Schedule.PropertyParsers\OpenRailData.Schedule.PropertyParsers.csproj">
+      <Project>{AB1D236D-BDE0-4C48-B42A-6FE932FE47AD}</Project>
+      <Name>OpenRailData.Schedule.PropertyParsers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Schedule.RecordParsers\OpenRailData.Schedule.RecordParsers.csproj">
+      <Project>{540AB9DC-93A3-4829-A125-173FA1681E91}</Project>
+      <Name>OpenRailData.Schedule.RecordParsers</Name>
     </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Schedule.Records\OpenRailData.Schedule.Records.csproj">
       <Project>{437A2085-E6EE-4AC1-A55F-80AFAD6D3B99}</Project>

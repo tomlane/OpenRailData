@@ -2,8 +2,9 @@
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.Practices.Unity;
-using NetworkRail.CifParser.IoC;
-using NetworkRail.CifParser.Records;
+using OpenRailData.Schedule.DependencyInjection;
+using OpenRailData.Schedule.NetworkRailScheduleParser;
+using OpenRailData.Schedule.Records.NetworkRail;
 
 namespace NetworkRail.CifParser.Console
 {

@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B1D7DDBC-C216-4527-BA29-87053D3D2AC5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{AB1D236D-BDE0-4C48-B42A-6FE932FE47AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NetworkRail.CifParser.Console</RootNamespace>
-    <AssemblyName>NetworkRail.CifParser.Console</AssemblyName>
+    <RootNamespace>OpenRailData.Schedule.PropertyParsers</RootNamespace>
+    <AssemblyName>OpenRailData.Schedule.PropertyParsers</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,22 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,22 +40,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="NetworkRail\AssociationCategoryParser.cs" />
+    <Compile Include="NetworkRail\AssociationTypeParser.cs" />
+    <Compile Include="NetworkRail\BankHolidayRunningParser.cs" />
+    <Compile Include="NetworkRail\CateringCodeParser.cs" />
+    <Compile Include="NetworkRail\DateIndicatorParser.cs" />
+    <Compile Include="NetworkRail\DateTimeParser.cs" />
+    <Compile Include="NetworkRail\ExtractUpdateTypeParser.cs" />
+    <Compile Include="NetworkRail\IDateTimeParser.cs" />
+    <Compile Include="NetworkRail\IRecordEnumPropertyParser.cs" />
+    <Compile Include="NetworkRail\ITimingAllowanceParser.cs" />
+    <Compile Include="NetworkRail\LocationActivityParser.cs" />
+    <Compile Include="NetworkRail\LocationTypeParser.cs" />
+    <Compile Include="NetworkRail\OperatingCharacteristicsParser.cs" />
+    <Compile Include="NetworkRail\PowerTypeParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="NetworkRail\ReservationDetailsParser.cs" />
+    <Compile Include="NetworkRail\RunningDaysParser.cs" />
+    <Compile Include="NetworkRail\SeatingClassParser.cs" />
+    <Compile Include="NetworkRail\ServiceBrandingParser.cs" />
+    <Compile Include="NetworkRail\SleeperDetailsParser.cs" />
+    <Compile Include="NetworkRail\StpIndicatorParser.cs" />
+    <Compile Include="NetworkRail\TimingAllowanceParser.cs" />
+    <Compile Include="NetworkRail\TransactionTypeParser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OpenRailData.Schedule.DependencyInjection\OpenRailData.Schedule.DependencyInjection.csproj">
-      <Project>{448C8004-F8A6-4E8F-8213-68DD685D9305}</Project>
-      <Name>OpenRailData.Schedule.DependencyInjection</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenRailData.Schedule.NetworkRailScheduleParser\OpenRailData.Schedule.NetworkRailScheduleParser.csproj">
-      <Project>{42572685-90B5-430E-BE9D-D68FC2AE50CF}</Project>
-      <Name>OpenRailData.Schedule.NetworkRailScheduleParser</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Schedule.Records\OpenRailData.Schedule.Records.csproj">
       <Project>{437A2085-E6EE-4AC1-A55F-80AFAD6D3B99}</Project>
       <Name>OpenRailData.Schedule.Records</Name>
