@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NetworkRail.CifParser
+namespace OpenRailData.NetworkRailScheduleParser
 {
     public interface IScheduleReader
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NetworkRail.CifParser.Records
+namespace OpenRailData.ScheduleRecords.NetworkRail
 {
     public class JsonHeaderRecord : IScheduleRecord
     {

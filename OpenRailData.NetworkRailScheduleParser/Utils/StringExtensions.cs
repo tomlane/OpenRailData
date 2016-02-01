@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace NetworkRail.CifParser.Utils
+namespace OpenRailData.NetworkRailScheduleParser.Utils
 {
     public static class StringExtensions
     {

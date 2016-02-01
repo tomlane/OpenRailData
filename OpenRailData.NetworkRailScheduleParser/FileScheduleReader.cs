@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace NetworkRail.CifParser
+namespace OpenRailData.NetworkRailScheduleParser
 {
     public class FileScheduleReader : IScheduleReader
     {

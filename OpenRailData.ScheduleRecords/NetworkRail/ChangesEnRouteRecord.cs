@@ -1,6 +1,6 @@
-﻿using NetworkRail.CifParser.Records.Enums;
+﻿using OpenRailData.ScheduleRecords.NetworkRail.Enums;
 
-namespace NetworkRail.CifParser.Records
+namespace OpenRailData.ScheduleRecords.NetworkRail
 {
     public class ChangesEnRouteRecord : IScheduleRecord
     {

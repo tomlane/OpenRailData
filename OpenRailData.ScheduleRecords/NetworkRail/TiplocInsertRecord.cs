@@ -1,4 +1,4 @@
-﻿namespace NetworkRail.CifParser.Records
+﻿namespace OpenRailData.ScheduleRecords.NetworkRail
 {
     public class TiplocInsertRecord : IScheduleRecord
     {

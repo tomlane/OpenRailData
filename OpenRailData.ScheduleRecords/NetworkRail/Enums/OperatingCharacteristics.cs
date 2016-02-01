@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace NetworkRail.CifParser.Records.Enums
+namespace OpenRailData.ScheduleRecords.NetworkRail.Enums
 {
     [Flags]
     public enum OperatingCharacteristics

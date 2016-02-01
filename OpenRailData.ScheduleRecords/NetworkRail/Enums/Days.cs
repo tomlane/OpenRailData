@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NetworkRail.CifParser.Records.Enums
+namespace OpenRailData.ScheduleRecords.NetworkRail.Enums
 {
     [Flags]
     public enum Days

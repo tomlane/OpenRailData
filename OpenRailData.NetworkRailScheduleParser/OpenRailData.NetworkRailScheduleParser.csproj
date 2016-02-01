@@ -52,6 +52,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenRailData.Schedule.Records\OpenRailData.Schedule.Records.csproj">
+      <Project>{437A2085-E6EE-4AC1-A55F-80AFAD6D3B99}</Project>
+      <Name>OpenRailData.Schedule.Records</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

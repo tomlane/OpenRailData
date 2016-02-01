@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace NetworkRail.CifParser.Records.Enums
+namespace OpenRailData.ScheduleRecords.NetworkRail.Enums
 {
     public enum SeatingClass
     {

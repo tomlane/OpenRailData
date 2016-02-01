@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NetworkRail.CifParser.Records;
+using OpenRailData.Schedule.Records.NetworkRail;
 
-namespace NetworkRail.CifParser
+namespace OpenRailData.NetworkRailScheduleParser
 {
     public class CifScheduleParser : IScheduleParser
     {
