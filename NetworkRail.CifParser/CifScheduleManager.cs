@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser
@@ -8,19 +9,23 @@ namespace NetworkRail.CifParser
     {
         private readonly IScheduleReader _scheduleReader;
         private readonly IScheduleParser _scheduleParser;
+        private readonly IScheduleRecordMerger _scheduleRecordMerger;
 
-        public CifScheduleManager(IScheduleReader scheduleReader, IScheduleParser scheduleParser)
+        public CifScheduleManager(IScheduleReader scheduleReader, IScheduleParser scheduleParser, IScheduleRecordMerger scheduleRecordMerger)
         {
             if (scheduleReader == null)
                 throw new ArgumentNullException(nameof(scheduleReader));
             if (scheduleParser == null)
                 throw new ArgumentNullException(nameof(scheduleParser));
+            if (scheduleRecordMerger == null)
+                throw new ArgumentNullException(nameof(scheduleRecordMerger));
 
             _scheduleReader = scheduleReader;
             _scheduleParser = scheduleParser;
+            _scheduleRecordMerger = scheduleRecordMerger;
         }
 
-        public IList<IScheduleRecord> ParseScheduleEntites(string scheduleFilePath)
+        public IList<IScheduleRecord> ParseScheduleRecords(string scheduleFilePath)
         {
             if (string.IsNullOrWhiteSpace(scheduleFilePath))
                 throw new ArgumentNullException(nameof(scheduleFilePath));
@@ -30,9 +35,12 @@ namespace NetworkRail.CifParser
             return _scheduleParser.ParseScheduleFile(recordsToParse);
         }
 
-        public void SaveScheduleEntities(IList<IScheduleRecord> entites)
+        public IList<IScheduleRecord> MergeScheduleRecords(IList<IScheduleRecord> scheduleRecords)
         {
-            throw new NotImplementedException();
+            if (scheduleRecords == null || !scheduleRecords.Any())
+                throw new ArgumentNullException(nameof(scheduleRecords));
+
+            return _scheduleRecordMerger.MergeScheduleRecords(scheduleRecords);
         }
     }
 }

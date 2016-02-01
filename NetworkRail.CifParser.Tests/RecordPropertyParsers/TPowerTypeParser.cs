@@ -14,8 +14,6 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
             var parser = new PowerTypeParser();
 
             Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
-            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(string.Empty));
-            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(" \t"));
         }
 
         [Test]
@@ -55,11 +53,12 @@ namespace NetworkRail.CifParser.Tests.RecordPropertyParsers
         }
 
         [Test]
-        public void throws_when_argument_is_unknown()
+        public void returns_none_when_argument_is_unknown()
         {
             var parser = new PowerTypeParser();
 
-            Assert.Throws<ArgumentException>(() => parser.ParseProperty("Z"));
+            var result = parser.ParseProperty("XYZ");
+            Assert.AreEqual(PowerType.None, result);
         }
     }
 }

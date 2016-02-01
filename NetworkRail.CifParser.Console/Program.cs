@@ -11,7 +11,7 @@ namespace NetworkRail.CifParser.Console
     {
         static void Main(string[] args)
         {
-            var path = @"C:\RailData\Json\update-26012016";
+            var path = @"C:\RailData\Cif Schedule Extracts\weekly-150116";
 
             var start = Process.GetCurrentProcess().TotalProcessorTime;
 
@@ -19,12 +19,21 @@ namespace NetworkRail.CifParser.Console
 
             var scheduleManager = container.Resolve<IScheduleManager>();
 
-            List<IScheduleRecord> entites = scheduleManager.ParseScheduleEntites(path).ToList();
+            List<IScheduleRecord> entites = scheduleManager.ParseScheduleRecords(path).ToList();
             
             var end = Process.GetCurrentProcess().TotalProcessorTime;
 
-            System.Console.WriteLine("Measured Time: {0} ms.", (end - start).TotalMilliseconds);
-            System.Console.WriteLine("Records Processed: {0}", entites.Count);
+            System.Console.WriteLine("Record Parsing Time: {0} ms.", (end - start).TotalMilliseconds);
+            System.Console.WriteLine("Records Parsed: {0}", entites.Count);
+
+            start = Process.GetCurrentProcess().TotalProcessorTime;
+
+            entites = scheduleManager.MergeScheduleRecords(entites).ToList();
+
+            end = Process.GetCurrentProcess().TotalProcessorTime;
+
+            System.Console.WriteLine("Record Merging Time: {0} ms.", (end - start).TotalMilliseconds);
+            System.Console.WriteLine("Merged Records Count: {0}", entites.Count);
 
             System.Console.ReadLine();
         }

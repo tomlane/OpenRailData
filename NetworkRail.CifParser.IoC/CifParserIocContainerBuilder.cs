@@ -16,6 +16,7 @@ namespace NetworkRail.CifParser.IoC
 
             container.RegisterType<IScheduleReader, FileScheduleReader>();
             container.RegisterType<IScheduleParser, CifScheduleParser>();
+            container.RegisterType<IScheduleRecordMerger, CifScheduleRecordMerger>();
 
             container.RegisterType<IScheduleRecordParser, AssociationCifRecordParser>("AssociationCifRecordParser");
             container.RegisterType<IScheduleRecordParser, BasicScheduleExtraDetailsCifRecordParser>("BasicScheduleExtraDetailsCifRecordParser");

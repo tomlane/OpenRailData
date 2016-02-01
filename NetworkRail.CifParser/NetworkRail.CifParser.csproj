@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CifScheduleParser.cs" />
     <Compile Include="CifScheduleManager.cs" />
+    <Compile Include="CifScheduleRecordMerger.cs" />
     <Compile Include="FileScheduleReader.cs" />
     <Compile Include="IScheduleParser.cs" />
     <Compile Include="IScheduleManager.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="CifRecordParsers\IntermediateLocationCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\TerminatingLocationCifRecordParser.cs" />
     <Compile Include="CifRecordParsers\TiplocAmendCifRecordParser.cs" />
+    <Compile Include="IScheduleRecordMerger.cs" />
     <Compile Include="JsonRecordParsers\DeserializedRecords\DeserializedJsonAssociation.cs" />
     <Compile Include="JsonRecordParsers\DeserializedRecords\DeserializedJsonNewScheduleSegment.cs" />
     <Compile Include="JsonRecordParsers\DeserializedRecords\DeserializedJsonScheduleHeader.cs" />

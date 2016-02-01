@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NetworkRail.CifParser.CifRecordParsers;
 using NetworkRail.CifParser.Records;
 
 namespace NetworkRail.CifParser

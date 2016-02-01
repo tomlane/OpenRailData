@@ -9,10 +9,14 @@ namespace NetworkRail.CifParser.RecordPropertyParsers
 
         public Enum ParseProperty(string propertyString)
         {
-            if (string.IsNullOrWhiteSpace(propertyString))
+            if (propertyString == null)
                 throw new ArgumentNullException(nameof(propertyString));
 
-            return (PowerType)Enum.Parse(typeof(PowerType), propertyString);
+            PowerType result;
+
+            bool successful = Enum.TryParse(propertyString, true, out result);
+
+            return successful ? result : PowerType.None;
         }
     }
 }

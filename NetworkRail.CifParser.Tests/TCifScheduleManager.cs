@@ -12,9 +12,11 @@ namespace NetworkRail.CifParser.Tests
         {
             var scheduleReaderMock = new Mock<IScheduleReader>();
             var scheduleParserMock = new Mock<IScheduleParser>();
+            var scheduleRecordMergerMock = new Mock<IScheduleRecordMerger>();
 
-            Assert.Throws<ArgumentNullException>(() => new CifScheduleManager(null, scheduleParserMock.Object));
-            Assert.Throws<ArgumentNullException>(() => new CifScheduleManager(scheduleReaderMock.Object, null));
+            Assert.Throws<ArgumentNullException>(() => new CifScheduleManager(null, scheduleParserMock.Object, scheduleRecordMergerMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new CifScheduleManager(scheduleReaderMock.Object, null, scheduleRecordMergerMock.Object));
+            Assert.Throws<ArgumentNullException>(() => new CifScheduleManager(scheduleReaderMock.Object, scheduleParserMock.Object, null));
         }
 
         [TestFixture]
@@ -25,10 +27,11 @@ namespace NetworkRail.CifParser.Tests
             {
                 var scheduleReaderMock = new Mock<IScheduleReader>();
                 var scheduleParserMock = new Mock<IScheduleParser>();
+                var scheduleRecordMergerMock = new Mock<IScheduleRecordMerger>();
+                
+                var scheduleManager = new CifScheduleManager(scheduleReaderMock.Object, scheduleParserMock.Object, scheduleRecordMergerMock.Object);
 
-                var scheduleManager = new CifScheduleManager(scheduleReaderMock.Object, scheduleParserMock.Object);
-
-                Assert.Throws<ArgumentNullException>(() => scheduleManager.ParseScheduleEntites(null));
+                Assert.Throws<ArgumentNullException>(() => scheduleManager.ParseScheduleRecords(null));
             }
         }
     }

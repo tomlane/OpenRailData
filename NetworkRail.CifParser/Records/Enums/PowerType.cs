@@ -32,6 +32,9 @@ namespace NetworkRail.CifParser.Records.Enums
         HST = 9,
 
         [Description("Diesel Shunting Lococmotive")]
-        LDS = 10
+        LDS = 10,
+
+        [Description("None defined")]
+        None = 11
     }
 }

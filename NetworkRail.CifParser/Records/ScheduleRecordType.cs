@@ -8,12 +8,13 @@
         TiplocAmend = 4,
         TiplocDelete = 5,
         Association = 6,
-        BasicSchedule = 7,
-        BasicScheduleExtraDetails = 8,
-        OriginLocation = 9,
-        IntermediateLocation = 10,
-        TerminatingLocation = 11,
-        ChangesEnRoute = 12,
-        EndOfFile = 13
+        Schedule = 7,
+        BasicSchedule = 8,
+        BasicScheduleExtraDetails = 9,
+        OriginLocation = 10,
+        IntermediateLocation = 11,
+        TerminatingLocation = 12,
+        ChangesEnRoute = 13,
+        EndOfFile = 14
     }
 }
