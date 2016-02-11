@@ -40,7 +40,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
             foreach (var record in recordsToParse)
             {
-                string recordType = record.Substring(0, 2);
+                var recordType = record.Substring(0, 2);
 
                 IScheduleRecordParser parser;
 

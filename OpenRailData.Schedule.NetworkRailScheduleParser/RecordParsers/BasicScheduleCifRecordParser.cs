@@ -31,7 +31,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
-            BasicScheduleRecord record = new BasicScheduleRecord
+            var record = new BasicScheduleRecord
             {
                 TransactionType = (TransactionType)_enumPropertyParsers["TransactionType"].ParseProperty(recordString.Substring(2, 1)),
                 TrainUid = recordString.Substring(3, 6),
@@ -62,7 +62,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
             };
 
             int speed;
-            bool speedParsed = int.TryParse(recordString.Substring(57, 3).Trim(), NumberStyles.Any,
+            var speedParsed = int.TryParse(recordString.Substring(57, 3).Trim(), NumberStyles.Any,
                 new CultureInfo("en-gb"), out speed);
 
             if (speedParsed)

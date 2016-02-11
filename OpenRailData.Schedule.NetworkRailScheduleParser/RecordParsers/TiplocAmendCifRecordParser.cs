@@ -26,7 +26,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
                 CapriDescription = recordString.Substring(56, 16).Trim().LocationCasing()
             };
 
-            string newTiploc = recordString.Substring(72, 7).Trim();
+            var newTiploc = recordString.Substring(72, 7).Trim();
 
             if (newTiploc == string.Empty)
                 return record;

@@ -51,7 +51,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
             };
 
             int speed;
-            bool speedParsed = int.TryParse(recordString.Substring(37, 3).Trim(), NumberStyles.Any,
+            var speedParsed = int.TryParse(recordString.Substring(37, 3).Trim(), NumberStyles.Any,
                 new CultureInfo("en-gb"), out speed);
 
             if (speedParsed)

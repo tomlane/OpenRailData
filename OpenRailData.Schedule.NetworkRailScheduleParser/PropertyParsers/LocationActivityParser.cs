@@ -22,7 +22,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers
 
             var stringBuilder = new StringBuilder();
 
-            for (int i = 0; i < propertyString.Length; i = i + 2)
+            for (var i = 0; i < propertyString.Length; i = i + 2)
             {
                 string activity;
 
@@ -41,7 +41,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers
 
             var builderString = stringBuilder.ToString().Replace("-", "Minus").Trim().TrimEnd(',');
 
-            bool successful = Enum.TryParse(builderString, true, out result);
+            var successful = Enum.TryParse(builderString, true, out result);
 
             return successful ? result : 0;
         }

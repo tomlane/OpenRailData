@@ -11,8 +11,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers
             
             timeString = timeString.Trim();
 
-            TimeSpan result = new TimeSpan();
-            int minutes = 0;
+            var result = new TimeSpan();
+            var minutes = 0;
 
             if (timeString[timeString.Length - 1] == 'H')
             {

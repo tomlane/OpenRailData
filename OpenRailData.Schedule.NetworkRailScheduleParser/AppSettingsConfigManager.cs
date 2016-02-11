@@ -11,7 +11,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             if (string.IsNullOrWhiteSpace(key))
                 throw new ArgumentNullException(nameof(key));
 
-            string setting = ConfigurationManager.AppSettings[key];
+            var setting = ConfigurationManager.AppSettings[key];
 
             if (string.IsNullOrWhiteSpace(setting))
                 throw new KeyNotFoundException(key);

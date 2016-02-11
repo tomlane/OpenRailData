@@ -31,13 +31,13 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
-            HeaderRecord record = new HeaderRecord
+            var record = new HeaderRecord
             {
                 MainFrameIdentity = recordString.Substring(2, 20),
                 TimeOfExtract = recordString.Substring(28, 4)
             };
 
-            Regex mainFrameUserRegex = new Regex("TPS.U(.{6}).PD(.{6})");
+            var mainFrameUserRegex = new Regex("TPS.U(.{6}).PD(.{6})");
 
             if (!mainFrameUserRegex.IsMatch(record.MainFrameIdentity))
                 throw new InvalidOperationException("The main frame id is not valid in the header record.");

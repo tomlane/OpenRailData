@@ -14,7 +14,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers
 
             PowerType result;
 
-            bool successful = Enum.TryParse(propertyString, true, out result);
+            var successful = Enum.TryParse(propertyString, true, out result);
 
             return successful ? result : PowerType.None;
         }

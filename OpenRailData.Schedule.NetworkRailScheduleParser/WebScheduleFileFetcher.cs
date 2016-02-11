@@ -66,7 +66,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             using (var stream = new GZipStream(new MemoryStream(bytesToDecompress), CompressionMode.Decompress))
             {
                 const int size = 4096;
-                byte[] buffer = new byte[size];
+                var buffer = new byte[size];
                 using (var memory = new MemoryStream())
                 {
                     int count;

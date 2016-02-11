@@ -12,7 +12,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
-            BasicScheduleExtraDetailsRecord record = new BasicScheduleExtraDetailsRecord
+            var record = new BasicScheduleExtraDetailsRecord
             {
                 UicCode = recordString.Substring(6, 5).Trim(),
                 AtocCode = recordString.Substring(11, 2).Trim(),

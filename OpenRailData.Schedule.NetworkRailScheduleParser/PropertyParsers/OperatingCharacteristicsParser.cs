@@ -16,7 +16,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers
 
             OperatingCharacteristics result;
 
-            bool successful = Enum.TryParse(propertyString, true, out result);
+            var successful = Enum.TryParse(propertyString, true, out result);
 
             return successful ? result : 0;
         }

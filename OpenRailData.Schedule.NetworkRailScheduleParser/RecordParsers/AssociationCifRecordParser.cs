@@ -30,7 +30,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
-            AssociationRecord record = new AssociationRecord
+            var record = new AssociationRecord
             {
                 TransactionType = (TransactionType)_enumPropertyParsers["TransactionType"].ParseProperty(recordString.Substring(2, 1)),
                 MainTrainUid = recordString.Substring(3, 6),
