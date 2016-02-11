@@ -1,38 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using OpenRailData.Schedule.Records.NetworkRail;
+using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
     public class CifScheduleManager : IScheduleManager
     {
-        private readonly IScheduleReader _scheduleReader;
-        private readonly IScheduleParser _scheduleParser;
+        private readonly IScheduleFileFetcher _scheduleFileFetcher;
+        private readonly IScheduleFileParser _scheduleFileParser;
         private readonly IScheduleRecordMerger _scheduleRecordMerger;
 
-        public CifScheduleManager(IScheduleReader scheduleReader, IScheduleParser scheduleParser, IScheduleRecordMerger scheduleRecordMerger)
+        public CifScheduleManager(IScheduleFileFetcher scheduleFileFetcher, IScheduleFileParser scheduleFileParser, IScheduleRecordMerger scheduleRecordMerger)
         {
-            if (scheduleReader == null)
-                throw new ArgumentNullException(nameof(scheduleReader));
-            if (scheduleParser == null)
-                throw new ArgumentNullException(nameof(scheduleParser));
+            if (scheduleFileFetcher == null)
+                throw new ArgumentNullException(nameof(scheduleFileFetcher));
+            if (scheduleFileParser == null)
+                throw new ArgumentNullException(nameof(scheduleFileParser));
             if (scheduleRecordMerger == null)
                 throw new ArgumentNullException(nameof(scheduleRecordMerger));
 
-            _scheduleReader = scheduleReader;
-            _scheduleParser = scheduleParser;
+            _scheduleFileFetcher = scheduleFileFetcher;
+            _scheduleFileParser = scheduleFileParser;
             _scheduleRecordMerger = scheduleRecordMerger;
         }
 
-        public IList<IScheduleRecord> ParseScheduleRecords(string scheduleFilePath)
+        public IList<IScheduleRecord> GetDailyUpdateScheduleRecords()
         {
-            if (string.IsNullOrWhiteSpace(scheduleFilePath))
-                throw new ArgumentNullException(nameof(scheduleFilePath));
+            Trace.TraceInformation("GetDailyUpdateScheduleRecords called.");
 
-            var recordsToParse = _scheduleReader.ReadSchedule(scheduleFilePath);
+            return _scheduleFileParser.ParseScheduleFile(_scheduleFileFetcher.FetchDailyScheduleUpdateFile());
+        }
 
-            return _scheduleParser.ParseScheduleFile(recordsToParse);
+        public IList<IScheduleRecord> GetWeeklyScheduleRecords()
+        {
+            Trace.TraceInformation("GetWeeklyScheduleRecords called.");
+
+            return _scheduleFileParser.ParseScheduleFile(_scheduleFileFetcher.FetchWeeklyScheduleFile());
         }
 
         public IList<IScheduleRecord> MergeScheduleRecords(IList<IScheduleRecord> scheduleRecords)
@@ -40,6 +45,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             if (scheduleRecords == null || !scheduleRecords.Any())
                 throw new ArgumentNullException(nameof(scheduleRecords));
 
+            Trace.TraceInformation("MergeScheduleRecords called.");
+            
             return _scheduleRecordMerger.MergeScheduleRecords(scheduleRecords);
         }
     }

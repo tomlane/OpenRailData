@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.Practices.Unity;
-using OpenRailData.Schedule.DependencyInjection;
 using OpenRailData.Schedule.NetworkRailScheduleParser;
-using OpenRailData.Schedule.Records.NetworkRail;
 
 namespace OpenRailData.Schedule.NetworkRailParserConsole
 {
@@ -12,20 +10,22 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
     {
         static void Main(string[] args)
         {
-            var path = @"C:\RailData\Cif Schedule Extracts\weekly-150116";
+            Trace.Listeners.Add(new ConsoleTraceListener());
+            Trace.TraceInformation("Starting up...");
 
             var start = Process.GetCurrentProcess().TotalProcessorTime;
 
             var container = CifParserIocContainerBuilder.Build();
+            Trace.TraceInformation("Dependency Injection container built.");
 
             var scheduleManager = container.Resolve<IScheduleManager>();
 
-            List<IScheduleRecord> entites = scheduleManager.ParseScheduleRecords(path).ToList();
+            var entites = scheduleManager.GetWeeklyScheduleRecords().ToList();
 
             var end = Process.GetCurrentProcess().TotalProcessorTime;
 
-            System.Console.WriteLine("Record Parsing Time: {0} ms.", (end - start).TotalMilliseconds);
-            System.Console.WriteLine("Records Parsed: {0}", entites.Count);
+            Trace.TraceInformation("Record Parsing Time: {0} ms.", (end - start).TotalMilliseconds);
+            Trace.TraceInformation("Records Parsed: {0}", entites.Count);
 
             start = Process.GetCurrentProcess().TotalProcessorTime;
 
@@ -33,10 +33,12 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
 
             end = Process.GetCurrentProcess().TotalProcessorTime;
 
-            System.Console.WriteLine("Record Merging Time: {0} ms.", (end - start).TotalMilliseconds);
-            System.Console.WriteLine("Merged Records Count: {0}", entites.Count);
+            Trace.TraceInformation("Record Merging Time: {0} ms.", (end - start).TotalMilliseconds);
+            Trace.TraceInformation("Merged Records Count: {0}", entites.Count);
 
-            System.Console.ReadLine();
+            Trace.TraceInformation("Schedule record processing complete. Ready for storage.");
+
+            Console.ReadLine();
         }
     }
 }

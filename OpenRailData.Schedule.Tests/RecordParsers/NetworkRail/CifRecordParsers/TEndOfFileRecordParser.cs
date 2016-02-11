@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
-using OpenRailData.Schedule.RecordParsers.NetworkRail.CifRecordParsers;
-using OpenRailData.Schedule.Records.NetworkRail;
+using OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers;
+using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
 
 namespace OpenRailData.Schedule.Tests.RecordParsers.NetworkRail.CifRecordParsers
 {

@@ -3,23 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.NetworkRailScheduleParser", "OpenRailData.NetworkRailScheduleParser\OpenRailData.NetworkRailScheduleParser.csproj", "{C22D6E2E-977C-4A31-8EF5-FCEFDFFD87E8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.DependencyInjection", "OpenRailData.Schedule.DependencyInjection\OpenRailData.Schedule.DependencyInjection.csproj", "{448C8004-F8A6-4E8F-8213-68DD685D9305}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.NetworkRailParserConsole", "OpenRailData.Schedule.NetworkRailParserConsole\OpenRailData.Schedule.NetworkRailParserConsole.csproj", "{9334ADAB-1E1F-476D-A4E2-23588F3BF851}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.NetworkRailScheduleParser", "OpenRailData.Schedule.NetworkRailScheduleParser\OpenRailData.Schedule.NetworkRailScheduleParser.csproj", "{42572685-90B5-430E-BE9D-D68FC2AE50CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.PropertyParsers", "OpenRailData.Schedule.PropertyParsers\OpenRailData.Schedule.PropertyParsers.csproj", "{AB1D236D-BDE0-4C48-B42A-6FE932FE47AD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.RecordParsers", "OpenRailData.Schedule.RecordParsers\OpenRailData.Schedule.RecordParsers.csproj", "{540AB9DC-93A3-4829-A125-173FA1681E91}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.Records", "OpenRailData.Schedule.Records\OpenRailData.Schedule.Records.csproj", "{437A2085-E6EE-4AC1-A55F-80AFAD6D3B99}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.Tests", "OpenRailData.Schedule.Tests\OpenRailData.Schedule.Tests.csproj", "{23819884-6772-49F3-BA2E-77DB60E6EFCC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.ScheduleRecords", "OpenRailData.ScheduleRecords\OpenRailData.ScheduleRecords.csproj", "{A09367EC-FA70-4810-9F81-4B7464E3804B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,14 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C22D6E2E-977C-4A31-8EF5-FCEFDFFD87E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C22D6E2E-977C-4A31-8EF5-FCEFDFFD87E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C22D6E2E-977C-4A31-8EF5-FCEFDFFD87E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C22D6E2E-977C-4A31-8EF5-FCEFDFFD87E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{448C8004-F8A6-4E8F-8213-68DD685D9305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{448C8004-F8A6-4E8F-8213-68DD685D9305}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{448C8004-F8A6-4E8F-8213-68DD685D9305}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{448C8004-F8A6-4E8F-8213-68DD685D9305}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9334ADAB-1E1F-476D-A4E2-23588F3BF851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9334ADAB-1E1F-476D-A4E2-23588F3BF851}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9334ADAB-1E1F-476D-A4E2-23588F3BF851}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -43,26 +23,10 @@ Global
 		{42572685-90B5-430E-BE9D-D68FC2AE50CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42572685-90B5-430E-BE9D-D68FC2AE50CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42572685-90B5-430E-BE9D-D68FC2AE50CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB1D236D-BDE0-4C48-B42A-6FE932FE47AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB1D236D-BDE0-4C48-B42A-6FE932FE47AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB1D236D-BDE0-4C48-B42A-6FE932FE47AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB1D236D-BDE0-4C48-B42A-6FE932FE47AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{540AB9DC-93A3-4829-A125-173FA1681E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{540AB9DC-93A3-4829-A125-173FA1681E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{540AB9DC-93A3-4829-A125-173FA1681E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{540AB9DC-93A3-4829-A125-173FA1681E91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{437A2085-E6EE-4AC1-A55F-80AFAD6D3B99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{437A2085-E6EE-4AC1-A55F-80AFAD6D3B99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{437A2085-E6EE-4AC1-A55F-80AFAD6D3B99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{437A2085-E6EE-4AC1-A55F-80AFAD6D3B99}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23819884-6772-49F3-BA2E-77DB60E6EFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23819884-6772-49F3-BA2E-77DB60E6EFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23819884-6772-49F3-BA2E-77DB60E6EFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23819884-6772-49F3-BA2E-77DB60E6EFCC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A09367EC-FA70-4810-9F81-4B7464E3804B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A09367EC-FA70-4810-9F81-4B7464E3804B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A09367EC-FA70-4810-9F81-4B7464E3804B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A09367EC-FA70-4810-9F81-4B7464E3804B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

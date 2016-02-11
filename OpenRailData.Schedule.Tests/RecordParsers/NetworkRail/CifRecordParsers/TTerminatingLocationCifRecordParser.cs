@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
 using NUnit.Framework;
-using OpenRailData.Schedule.DependencyInjection;
-using OpenRailData.Schedule.PropertyParsers.NetworkRail;
-using OpenRailData.Schedule.RecordParsers.NetworkRail.CifRecordParsers;
-using OpenRailData.Schedule.Records.NetworkRail;
-using OpenRailData.Schedule.Records.NetworkRail.Enums;
+using OpenRailData.Schedule.NetworkRailScheduleParser;
+using OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers;
+using OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers;
+using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
+using OpenRailData.Schedule.NetworkRailScheduleParser.Records.Enums;
 
 namespace OpenRailData.Schedule.Tests.RecordParsers.NetworkRail.CifRecordParsers
 {

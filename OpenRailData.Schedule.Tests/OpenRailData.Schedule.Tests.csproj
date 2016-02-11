@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -64,7 +65,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NetworkRailScheduleParser\TCifScheduleManager.cs" />
     <Compile Include="NetworkRailScheduleParser\TCifScheduleParser.cs" />
     <Compile Include="NetworkRailScheduleParser\TFileScheduleReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,25 +105,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenRailData.Schedule.DependencyInjection\OpenRailData.Schedule.DependencyInjection.csproj">
-      <Project>{448C8004-F8A6-4E8F-8213-68DD685D9305}</Project>
-      <Name>OpenRailData.Schedule.DependencyInjection</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Schedule.NetworkRailScheduleParser\OpenRailData.Schedule.NetworkRailScheduleParser.csproj">
       <Project>{42572685-90B5-430E-BE9D-D68FC2AE50CF}</Project>
       <Name>OpenRailData.Schedule.NetworkRailScheduleParser</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenRailData.Schedule.PropertyParsers\OpenRailData.Schedule.PropertyParsers.csproj">
-      <Project>{AB1D236D-BDE0-4C48-B42A-6FE932FE47AD}</Project>
-      <Name>OpenRailData.Schedule.PropertyParsers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenRailData.Schedule.RecordParsers\OpenRailData.Schedule.RecordParsers.csproj">
-      <Project>{540AB9DC-93A3-4829-A125-173FA1681E91}</Project>
-      <Name>OpenRailData.Schedule.RecordParsers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenRailData.Schedule.Records\OpenRailData.Schedule.Records.csproj">
-      <Project>{437A2085-E6EE-4AC1-A55F-80AFAD6D3B99}</Project>
-      <Name>OpenRailData.Schedule.Records</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

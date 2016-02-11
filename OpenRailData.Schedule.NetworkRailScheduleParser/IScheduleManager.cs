@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using OpenRailData.Schedule.Records.NetworkRail;
+using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
     public interface IScheduleManager
     {
-        IList<IScheduleRecord> ParseScheduleRecords(string scheduleFilePath);
+        IList<IScheduleRecord> GetDailyUpdateScheduleRecords();
+        IList<IScheduleRecord> GetWeeklyScheduleRecords();
         IList<IScheduleRecord> MergeScheduleRecords(IList<IScheduleRecord> scheduleRecords); 
     }
 }
