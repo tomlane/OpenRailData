@@ -32,6 +32,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new BasicScheduleExtraDetailsRecord
                 {
+                    RecordIdentity = ScheduleRecordType.BX,
                     AtocCode = "XC",
                     AtsCode = "Y",
                     DataSource = string.Empty,

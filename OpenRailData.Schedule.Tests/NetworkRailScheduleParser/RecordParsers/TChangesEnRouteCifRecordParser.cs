@@ -52,6 +52,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new ChangesEnRouteRecord
                 {
+                    RecordIdentity = ScheduleRecordType.CR,
                     Tiploc = "HULL",
                     TiplocSuffix = string.Empty,
                     Category = "XX",

@@ -2,7 +2,7 @@
 {
     public class TiplocDeleteRecord : IScheduleRecord
     {
-        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.TiplocDelete;
+        public ScheduleRecordType RecordIdentity { get; set; }
         public string TiplocCode { get; set; } = string.Empty;
 
         protected bool Equals(TiplocDeleteRecord other)

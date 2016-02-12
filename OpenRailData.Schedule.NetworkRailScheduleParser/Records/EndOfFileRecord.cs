@@ -2,7 +2,7 @@
 {
     public class EndOfFileRecord : IScheduleRecord
     {
-        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.EndOfFile;
+        public ScheduleRecordType RecordIdentity { get; set; }
 
         protected bool Equals(EndOfFileRecord other)
         {

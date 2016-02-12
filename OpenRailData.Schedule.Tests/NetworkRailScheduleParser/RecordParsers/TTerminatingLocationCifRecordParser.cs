@@ -42,6 +42,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new TerminatingLocationRecord
                 {
+                    RecordIdentity = ScheduleRecordType.LT,
                     Tiploc = "WSTBRYW",
                     WorkingArrival = "1323",
                     PublicArrival = "1325",

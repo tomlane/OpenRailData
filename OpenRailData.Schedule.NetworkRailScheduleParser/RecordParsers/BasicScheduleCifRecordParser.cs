@@ -33,7 +33,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 
             var record = new BasicScheduleRecord
             {
-                TransactionType = (TransactionType)_enumPropertyParsers["TransactionType"].ParseProperty(recordString.Substring(2, 1)),
+                RecordIdentity = (ScheduleRecordType)_enumPropertyParsers["ScheduleRecordType"].ParseProperty(recordString.Substring(0, 3)),
                 TrainUid = recordString.Substring(3, 6),
                 DateRunsTo = _dateTimeParser.ParseDateTime(new DateTimeParserRequest
                 {

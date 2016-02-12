@@ -12,14 +12,5 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records.Enums
 
         [Description("Delete CIF Record")]
         D = 3,
-
-        [Description("JSON Create Record")]
-        create = 1,
-
-        [Description("JSON Update Record")]
-        update = 2,
-
-        [Description("Json Delete Record")]
-        delete = 3
     }
 }

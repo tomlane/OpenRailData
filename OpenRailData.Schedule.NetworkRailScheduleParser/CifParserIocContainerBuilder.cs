@@ -45,6 +45,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             container.RegisterType<IRecordEnumPropertyParser, PowerTypeParser>("PowerTypeParser");
             container.RegisterType<IRecordEnumPropertyParser, ReservationDetailsParser>("ReservationDetailsParser");
             container.RegisterType<IRecordEnumPropertyParser, RunningDaysParser>("RunningDaysParser");
+            container.RegisterType<IRecordEnumPropertyParser, ScheduleRecordTypeParser>("ScheduleRecordTypeParser");
             container.RegisterType<IRecordEnumPropertyParser, SeatingClassParser>("SeatingClassParser");
             container.RegisterType<IRecordEnumPropertyParser, ServiceBrandingParser>("ServiceBrandingParser");
             container.RegisterType<IRecordEnumPropertyParser, SleeperDetailsParser>("SleeperDetailsParser");

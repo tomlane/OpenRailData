@@ -33,6 +33,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 
             var record = new HeaderRecord
             {
+                RecordIdentity = ScheduleRecordType.HD,
                 MainFrameIdentity = recordString.Substring(2, 20),
                 TimeOfExtract = recordString.Substring(28, 4)
             };

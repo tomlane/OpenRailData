@@ -15,6 +15,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 
             var record = new TiplocAmendRecord
             {
+                RecordIdentity = ScheduleRecordType.TA,
                 TiplocCode = recordString.Substring(2, 7).Trim(),
                 CapitalsIdentification = recordString.Substring(9, 2).Trim(),
                 Nalco = recordString.Substring(11, 6).Trim(),

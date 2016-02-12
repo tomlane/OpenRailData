@@ -5,8 +5,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
     public class AssociationRecord : IScheduleRecord
     {
-        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.Association;
-        public TransactionType TransactionType { get; set; }
+        public ScheduleRecordType RecordIdentity { get; set; }
         public string MainTrainUid { get; set; } = string.Empty;
         public string AssocTrainUid { get; set; } = string.Empty;
         public DateTime DateFrom { get; set; }
@@ -23,21 +22,20 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 
         protected bool Equals(AssociationRecord other)
         {
-            return AssocDays == other.AssocDays && 
-                string.Equals(AssocLocationSuffix, other.AssocLocationSuffix) && 
-                string.Equals(AssocTrainUid, other.AssocTrainUid) && 
-                AssocType == other.AssocType && 
-                string.Equals(BaseLocationSuffix, other.BaseLocationSuffix) && 
-                Category == other.Category && 
-                DateFrom.Equals(other.DateFrom) && 
-                DateIndicator == other.DateIndicator && 
-                DateTo.Equals(other.DateTo) && 
-                string.Equals(DiagramType, other.DiagramType) && 
-                string.Equals(Location, other.Location) && 
-                string.Equals(MainTrainUid, other.MainTrainUid) && 
-                RecordIdentity == other.RecordIdentity && 
-                StpIndicator == other.StpIndicator && 
-                TransactionType == other.TransactionType;
+            return AssocDays == other.AssocDays &&
+                   string.Equals(AssocLocationSuffix, other.AssocLocationSuffix) &&
+                   string.Equals(AssocTrainUid, other.AssocTrainUid) &&
+                   AssocType == other.AssocType &&
+                   string.Equals(BaseLocationSuffix, other.BaseLocationSuffix) &&
+                   Category == other.Category &&
+                   DateFrom.Equals(other.DateFrom) &&
+                   DateIndicator == other.DateIndicator &&
+                   DateTo.Equals(other.DateTo) &&
+                   string.Equals(DiagramType, other.DiagramType) &&
+                   string.Equals(Location, other.Location) &&
+                   string.Equals(MainTrainUid, other.MainTrainUid) &&
+                   RecordIdentity == other.RecordIdentity &&
+                   StpIndicator == other.StpIndicator;
         }
 
         public override bool Equals(object obj)
@@ -70,7 +68,6 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
                 hashCode = (hashCode*397) ^ (MainTrainUid != null ? MainTrainUid.GetHashCode() : 0);
                 hashCode = (hashCode*397) ^ (int) RecordIdentity;
                 hashCode = (hashCode*397) ^ (int) StpIndicator;
-                hashCode = (hashCode*397) ^ (int) TransactionType;
                 return hashCode;
             }
         }

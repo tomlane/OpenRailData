@@ -2,7 +2,7 @@
 {
     public class TiplocInsertRecord : IScheduleRecord
     {
-        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.TiplocInsert;
+        public ScheduleRecordType RecordIdentity { get; set; }
         public string TiplocCode { get; set; } = string.Empty;
         public string CapitalsIdentification { get; set; } = string.Empty;
         public string Nalco { get; set; } = string.Empty;

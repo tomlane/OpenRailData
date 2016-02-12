@@ -14,6 +14,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 
             var record = new BasicScheduleExtraDetailsRecord
             {
+                RecordIdentity = ScheduleRecordType.BX,
+
                 UicCode = recordString.Substring(6, 5).Trim(),
                 AtocCode = recordString.Substring(11, 2).Trim(),
                 AtsCode = recordString.Substring(13, 1).Trim(),

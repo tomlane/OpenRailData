@@ -49,6 +49,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new IntermediateLocationRecord
                 {
+                    RecordIdentity = ScheduleRecordType.LI,
                     Tiploc = "MELKSHM",
                     WorkingArrival = "1307H",
                     PublicArrival = "1308",
@@ -74,6 +75,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new IntermediateLocationRecord
                 {
+                    RecordIdentity = ScheduleRecordType.LI,
                     Tiploc = "BRDFDJN",
                     Pass = "1314",
                     OrderTime = "1314",

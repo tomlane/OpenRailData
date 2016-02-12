@@ -2,6 +2,6 @@
 {
     public interface IScheduleRecord
     {
-        ScheduleRecordType RecordIdentity { get; }
+        ScheduleRecordType RecordIdentity { get; set; }
     }
 }

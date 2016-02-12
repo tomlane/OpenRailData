@@ -15,6 +15,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 
             return new TiplocInsertRecord
             {
+                RecordIdentity = ScheduleRecordType.TI,
                 TiplocCode = recordString.Substring(2, 7).Trim(),
                 CapitalsIdentification = recordString.Substring(9, 2).Trim(),
                 Nalco = recordString.Substring(11, 6).Trim(),

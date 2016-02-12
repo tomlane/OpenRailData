@@ -20,25 +20,24 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             {
                 switch (record.RecordIdentity)
                 {
-                    case ScheduleRecordType.CifHeader:
+                    case ScheduleRecordType.HD:
                         scheduleEntites.Add(record as HeaderRecord);
                         break;
-                    case ScheduleRecordType.TiplocInsert:
-                        scheduleEntites.Add(record as TiplocInsertRecord);
-                        break;
-                    case ScheduleRecordType.TiplocAmend:
-                        scheduleEntites.Add(record as TiplocAmendRecord);
-                        break;
-                    case ScheduleRecordType.TiplocDelete:
+                    case ScheduleRecordType.TI:
+                    case ScheduleRecordType.TA:
+                    case ScheduleRecordType.TD:
                         scheduleEntites.Add(record as TiplocDeleteRecord);
                         break;
-                    case ScheduleRecordType.Association:
+                    case ScheduleRecordType.AAN:
+                    case ScheduleRecordType.AAR:
+                    case ScheduleRecordType.AAD:
                         scheduleEntites.Add(record as AssociationRecord);
                         break;
-                    case ScheduleRecordType.EndOfFile:
+                    case ScheduleRecordType.ZZ:
                         break;
-
-                    case ScheduleRecordType.BasicSchedule:
+                    case ScheduleRecordType.BSN:
+                    case ScheduleRecordType.BSR:
+                    case ScheduleRecordType.BSD:
                         if (scheduleRecord != null)
                         {
                             scheduleEntites.Add(scheduleRecord);
@@ -50,19 +49,19 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                             Schedule = record as BasicScheduleRecord
                         };
                         break;
-                    case ScheduleRecordType.BasicScheduleExtraDetails:
+                    case ScheduleRecordType.BX:
                         scheduleRecord?.Schedule.MergeExtraScheduleDetails(record as BasicScheduleExtraDetailsRecord);
                         break;
-                    case ScheduleRecordType.OriginLocation:
+                    case ScheduleRecordType.LO:
                         scheduleRecord?.LocationRecords.Add(record as OriginLocationRecord);
                         break;
-                    case ScheduleRecordType.IntermediateLocation:
+                    case ScheduleRecordType.LI:
                         scheduleRecord?.LocationRecords.Add(record as IntermediateLocationRecord);
                         break;
-                    case ScheduleRecordType.TerminatingLocation:
+                    case ScheduleRecordType.LT:
                         scheduleRecord?.LocationRecords.Add(record as TerminatingLocationRecord);
                         break;
-                    case ScheduleRecordType.ChangesEnRoute:
+                    case ScheduleRecordType.CR:
                         scheduleRecord?.LocationRecords.Add(record as ChangesEnRouteRecord);
                         break;
                     default:

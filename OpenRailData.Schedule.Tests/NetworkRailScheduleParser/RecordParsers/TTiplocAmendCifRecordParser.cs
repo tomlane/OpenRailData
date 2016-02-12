@@ -32,6 +32,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new TiplocAmendRecord
                 {
+                    RecordIdentity = ScheduleRecordType.TA,
                     TiplocCode = "0111193",
                     CapitalsIdentification = "08",
                     Nalco = "544815",

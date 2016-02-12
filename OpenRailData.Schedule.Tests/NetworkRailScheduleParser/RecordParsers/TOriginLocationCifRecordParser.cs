@@ -49,6 +49,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new OriginLocationRecord
                 {
+                    RecordIdentity = ScheduleRecordType.LO,
                     Tiploc = "SDON",
                     WorkingDeparture = "1242",
                     PublicDeparture = "1242",

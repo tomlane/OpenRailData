@@ -5,7 +5,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
     public class IntermediateLocationRecord : IScheduleRecord
     {
-        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.IntermediateLocation;
+        public ScheduleRecordType RecordIdentity { get; set; }
         public string Tiploc { get; set; } = string.Empty;
         public string TiplocSuffix { get; set; } = string.Empty;
         public string Location => $"{Tiploc}{TiplocSuffix}";

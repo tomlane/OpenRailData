@@ -14,6 +14,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 
             var record = new TiplocDeleteRecord
             {
+                RecordIdentity = ScheduleRecordType.TD,
                 TiplocCode = recordString.Substring(2, 7).Trim()
             };
             

@@ -4,7 +4,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
     public class TerminatingLocationRecord : IScheduleRecord
     {
-        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.TerminatingLocation;
+        public ScheduleRecordType RecordIdentity { get; set; }
         public string Tiploc { get; set; } = string.Empty;
         public string TiplocSuffix { private get; set; } = string.Empty;
         public string Location => $"{Tiploc}{TiplocSuffix}";

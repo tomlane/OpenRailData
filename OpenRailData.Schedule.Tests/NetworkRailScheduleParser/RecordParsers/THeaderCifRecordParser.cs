@@ -69,6 +69,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new HeaderRecord
                 {
+                    RecordIdentity = ScheduleRecordType.HD,
                     MainFrameIdentity = "TPS.UDFROC1.PD151230",
                     DateOfExtract = new DateTime(2015, 12, 30),
                     TimeOfExtract = "2116",

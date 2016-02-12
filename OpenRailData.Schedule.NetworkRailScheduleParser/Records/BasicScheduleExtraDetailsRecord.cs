@@ -2,7 +2,7 @@
 {
     public class BasicScheduleExtraDetailsRecord : IScheduleRecord
     {
-        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.BasicScheduleExtraDetails;
+        public ScheduleRecordType RecordIdentity { get; set; }
         public string UicCode { get; set; } = string.Empty;
         public string AtocCode { get; set; } = string.Empty;
         public string AtsCode { get; set; } = string.Empty;

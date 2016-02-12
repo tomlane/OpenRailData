@@ -29,6 +29,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 
             var record = new ChangesEnRouteRecord
             {
+                RecordIdentity = ScheduleRecordType.CR,
                 Tiploc = recordString.Substring(2, 7).Trim(),
                 TiplocSuffix = recordString.Substring(9, 1).Trim(),
                 Category = recordString.Substring(10, 2).Trim(),

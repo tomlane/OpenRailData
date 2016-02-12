@@ -60,7 +60,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new AssociationRecord
                 {
-                    TransactionType = TransactionType.R,
+                    RecordIdentity = ScheduleRecordType.AAR,
                     MainTrainUid = "W01400",
                     AssocTrainUid = "W00570",
                     DateFrom = new DateTime(2015, 12, 13),
@@ -90,7 +90,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new AssociationRecord
                 {
-                    TransactionType = TransactionType.N,
+                    RecordIdentity = ScheduleRecordType.AAN,
                     MainTrainUid = "L82468",
                     AssocTrainUid = "L83922",
                     DateFrom = new DateTime(2015, 12, 19),
@@ -120,7 +120,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new AssociationRecord
                 {
-                    TransactionType = TransactionType.D,
+                    RecordIdentity = ScheduleRecordType.AAD,
                     MainTrainUid = "L82468",
                     AssocTrainUid = "L83922",
                     DateFrom = new DateTime(2015, 12, 26),

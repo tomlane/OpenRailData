@@ -5,7 +5,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
     public class HeaderRecord : IScheduleRecord
     {
-        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.CifHeader;
+        public ScheduleRecordType RecordIdentity { get; set; }
         public string MainFrameIdentity { get; set; } = string.Empty;
         public DateTime DateOfExtract { get; set; }
         public string TimeOfExtract { get; set; }

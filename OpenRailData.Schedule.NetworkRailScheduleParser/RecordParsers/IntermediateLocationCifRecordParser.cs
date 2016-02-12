@@ -32,6 +32,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 
             var record = new IntermediateLocationRecord
             {
+                RecordIdentity = ScheduleRecordType.LI,
                 Tiploc = recordString.Substring(2, 7).Trim(),
                 TiplocSuffix = recordString.Substring(9, 1).Trim(),
                 WorkingArrival = recordString.Substring(10, 5).Trim(),

@@ -60,8 +60,8 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new BasicScheduleRecord
                 {
+                    RecordIdentity = ScheduleRecordType.BSR,
                     BankHolidayRunning = BankHolidayRunning.R,
-                    TransactionType = TransactionType.R,
                     TrainUid = "Y80201",
                     DateRunsFrom = new DateTime(2015, 12, 14),
                     DateRunsTo = new DateTime(2016, 1, 1),
@@ -87,7 +87,6 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
                     StpIndicator = StpIndicator.P,
                     UniqueId = "Y80201151214P",
                     ServiceTypeFlags = ServiceTypeFlags.Passenger | ServiceTypeFlags.Train
-                    
                 };
 
                 Assert.AreEqual(expectedResult, result);

@@ -5,8 +5,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
     public class BasicScheduleRecord : IScheduleRecord
     {
-        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.BasicSchedule;
-        public TransactionType TransactionType { get; set; }
+        public ScheduleRecordType RecordIdentity { get; set; }
         public string TrainUid { get; set; } = string.Empty;
         public string UniqueId { get; set; } = string.Empty;
         public DateTime DateRunsFrom { get; set; }
@@ -57,7 +56,6 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
         protected bool Equals(BasicScheduleRecord other)
         {
             return RecordIdentity == other.RecordIdentity && 
-                TransactionType == other.TransactionType && 
                 string.Equals(TrainUid, other.TrainUid) && 
                 string.Equals(UniqueId, other.UniqueId) && 
                 DateRunsFrom.Equals(other.DateRunsFrom) && 
@@ -108,7 +106,6 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
             unchecked
             {
                 var hashCode = (int) RecordIdentity;
-                hashCode = (hashCode*397) ^ (int) TransactionType;
                 hashCode = (hashCode*397) ^ (TrainUid != null ? TrainUid.GetHashCode() : 0);
                 hashCode = (hashCode*397) ^ (UniqueId != null ? UniqueId.GetHashCode() : 0);
                 hashCode = (hashCode*397) ^ DateRunsFrom.GetHashCode();

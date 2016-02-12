@@ -4,7 +4,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
     public class ChangesEnRouteRecord : IScheduleRecord
     {
-        public ScheduleRecordType RecordIdentity { get; } = ScheduleRecordType.ChangesEnRoute;
+        public ScheduleRecordType RecordIdentity { get; set; }
         public string Tiploc { get; set; } = string.Empty; 
         public string TiplocSuffix { get; set; } = string.Empty; 
         public string Category { get; set; } = string.Empty;

@@ -32,6 +32,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 
                 var expectedResult = new TiplocDeleteRecord
                 {
+                    RecordIdentity = ScheduleRecordType.TD,
                     TiplocCode = "1234567"
                 };
 
