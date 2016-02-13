@@ -8,38 +8,39 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
     [TestFixture]
     public class TSeatingClassParser
     {
-        [TestFixture]
-        class ParseSeatingClass
+        private SeatingClassParser BuildParser()
         {
-            [Test]
-            public void throws_when_argument_is_null()
-            {
-                var parser = new SeatingClassParser();
+            return new SeatingClassParser();
+        }
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
-            }
+        [Test]
+        public void throws_when_argument_is_null()
+        {
+            var parser = BuildParser();
 
-            [Test]
-            public void returns_expected_result_when_argument_string_is_empty()
-            {
-                var parser = new SeatingClassParser();
+            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+        }
 
-                var result = parser.ParseProperty(string.Empty);
+        [Test]
+        public void returns_expected_result_when_argument_string_is_empty()
+        {
+            var parser = BuildParser();
 
-                Assert.AreEqual(SeatingClass.B, result);
-            }
+            var result = parser.ParseProperty(string.Empty);
 
-            [Test]
-            [TestCase("S", SeatingClass.S)]
-            [TestCase("B", SeatingClass.B)]
-            public void returns_expected_result_when_argument_is_not_empty(string value, SeatingClass expectedResult)
-            {
-                var parser = new SeatingClassParser();
+            Assert.AreEqual(SeatingClass.B, result);
+        }
 
-                var result = parser.ParseProperty(value);
+        [Test]
+        [TestCase("S", SeatingClass.S)]
+        [TestCase("B", SeatingClass.B)]
+        public void returns_expected_result_when_argument_is_not_empty(string value, SeatingClass expectedResult)
+        {
+            var parser = BuildParser();
 
-                Assert.AreEqual(expectedResult, result);
-            }
+            var result = parser.ParseProperty(value);
+
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }

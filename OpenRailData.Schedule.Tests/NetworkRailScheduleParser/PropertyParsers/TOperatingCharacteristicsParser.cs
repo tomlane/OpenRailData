@@ -8,29 +8,30 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
     [TestFixture]
     public class TOperatingCharacteristicsParser
     {
-        [TestFixture]
-        class ParseOperatingCharacteristics
+        private OperatingCharacteristicsParser BuildParser()
         {
-            [Test]
-            public void throws_when_argument_is_empty_string()
-            {
-                var parser = new OperatingCharacteristicsParser();
+            return new OperatingCharacteristicsParser();
+        }
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
-            }
+        [Test]
+        public void throws_when_argument_is_empty_string()
+        {
+            var parser = BuildParser();
 
-            [Test]
-            [TestCase("B", OperatingCharacteristics.B)]
-            [TestCase("G", OperatingCharacteristics.G)]
-            [TestCase("S", OperatingCharacteristics.S)]
-            public void returns_expected_result(string value, OperatingCharacteristics expectedResult)
-            {
-                var parser = new OperatingCharacteristicsParser();
+            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+        }
 
-                var result = parser.ParseProperty(value);
+        [Test]
+        [TestCase("B", OperatingCharacteristics.B)]
+        [TestCase("G", OperatingCharacteristics.G)]
+        [TestCase("S", OperatingCharacteristics.S)]
+        public void returns_expected_result(string value, OperatingCharacteristics expectedResult)
+        {
+            var parser = BuildParser();
 
-                Assert.IsTrue(result.HasFlag(expectedResult));
-            }
+            var result = parser.ParseProperty(value);
+
+            Assert.IsTrue(result.HasFlag(expectedResult));
         }
     }
 }

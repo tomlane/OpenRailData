@@ -8,39 +8,40 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
     [TestFixture]
     public class TTransactionTypeParser
     {
-        [TestFixture]
-        class ParseTransactionType
+        private TransactionTypeParser BuildParser()
         {
-            [Test]
-            public void throws_when_argument_is_invalid()
-            {
-                var parser = new TransactionTypeParser();
+            return new TransactionTypeParser();
+        }
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(" \t"));
-            }
+        [Test]
+        public void throws_when_argument_is_invalid()
+        {
+            var parser = BuildParser();
 
-            [Test]
-            [TestCase("N", TransactionType.N)]
-            [TestCase("R", TransactionType.R)]
-            [TestCase("D", TransactionType.D)]
-            public void returns_correct_values_from_cif_records(string value, TransactionType expectedResult)
-            {
-                var parser = new TransactionTypeParser();
+            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(" \t"));
+        }
 
-                var result = parser.ParseProperty(value);
+        [Test]
+        [TestCase("N", TransactionType.N)]
+        [TestCase("R", TransactionType.R)]
+        [TestCase("D", TransactionType.D)]
+        public void returns_correct_values_from_cif_records(string value, TransactionType expectedResult)
+        {
+            var parser = BuildParser();
 
-                Assert.AreEqual(expectedResult, result);
-            }
+            var result = parser.ParseProperty(value);
 
-            [Test]
-            public void returns_unknown_when_argument_is_unknown()
-            {
-                var parser = new TransactionTypeParser();
+            Assert.AreEqual(expectedResult, result);
+        }
 
-                Assert.Throws<ArgumentException>(() => parser.ParseProperty("Z"));
-            }
+        [Test]
+        public void returns_unknown_when_argument_is_unknown()
+        {
+            var parser = BuildParser();
+
+            Assert.Throws<ArgumentException>(() => parser.ParseProperty("Z"));
         }
     }
 }

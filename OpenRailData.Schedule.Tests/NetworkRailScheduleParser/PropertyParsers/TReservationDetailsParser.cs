@@ -8,40 +8,41 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
     [TestFixture]
     public class TReservationDetailsParser
     {
-        [TestFixture]
-        class ParseTrainReservationDetails
+        private ReservationDetailsParser BuildParser()
         {
-            [Test]
-            public void throws_when_string_is_null()
-            {
-                var parser = new ReservationDetailsParser();
+            return new ReservationDetailsParser();
+        }
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
-            }
+        [Test]
+        public void throws_when_string_is_null()
+        {
+            var parser = BuildParser();
 
-            [Test]
-            [TestCase("A", ReservationDetails.A)]
-            [TestCase("E", ReservationDetails.E)]
-            [TestCase("R", ReservationDetails.R)]
-            [TestCase("S", ReservationDetails.S)]
-            public void returns_expected_result_from_argument(string value, ReservationDetails expectedResult)
-            {
-                var parser = new ReservationDetailsParser();
+            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+        }
 
-                var result = parser.ParseProperty(value);
+        [Test]
+        [TestCase("A", ReservationDetails.A)]
+        [TestCase("E", ReservationDetails.E)]
+        [TestCase("R", ReservationDetails.R)]
+        [TestCase("S", ReservationDetails.S)]
+        public void returns_expected_result_from_argument(string value, ReservationDetails expectedResult)
+        {
+            var parser = BuildParser();
 
-                Assert.AreEqual(expectedResult, result);
-            }
+            var result = parser.ParseProperty(value);
 
-            [Test]
-            public void returns_none_when_argument_is_unknown()
-            {
-                var parser = new ReservationDetailsParser();
+            Assert.AreEqual(expectedResult, result);
+        }
 
-                var result = parser.ParseProperty(" ");
+        [Test]
+        public void returns_none_when_argument_is_unknown()
+        {
+            var parser = BuildParser();
 
-                Assert.AreEqual(ReservationDetails.None, result);
-            }
+            var result = parser.ParseProperty(" ");
+
+            Assert.AreEqual(ReservationDetails.None, result);
         }
     }
 }

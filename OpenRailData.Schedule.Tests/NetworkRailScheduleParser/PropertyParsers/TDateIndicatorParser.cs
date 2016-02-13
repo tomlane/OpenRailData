@@ -8,39 +8,40 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
     [TestFixture]
     public class TDateIndicatorParser
     {
-        [TestFixture]
-        class ParseDateIndicator
+        private DateIndicatorParser BuildParser()
         {
-            [Test]
-            public void throws_when_argument_is_invalid()
-            {
-                var parser = new DateIndicatorParser();
+            return new DateIndicatorParser();
+        }
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
-            }
+        [Test]
+        public void throws_when_argument_is_invalid()
+        {
+            var parser = BuildParser();
 
-            [Test]
-            [TestCase("S", DateIndicator.S)]
-            [TestCase("N", DateIndicator.N)]
-            [TestCase("P", DateIndicator.P)]
-            public void returns_expected_result_from_argument(string value, DateIndicator expectedResult)
-            {
-                var parser = new DateIndicatorParser();
+            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+        }
 
-                var result = parser.ParseProperty(value);
+        [Test]
+        [TestCase("S", DateIndicator.S)]
+        [TestCase("N", DateIndicator.N)]
+        [TestCase("P", DateIndicator.P)]
+        public void returns_expected_result_from_argument(string value, DateIndicator expectedResult)
+        {
+            var parser = BuildParser();
 
-                Assert.AreEqual(expectedResult, result);
-            }
+            var result = parser.ParseProperty(value);
 
-            [Test]
-            public void returns_none_when_argument_is_unknown()
-            {
-                var parser = new DateIndicatorParser();
+            Assert.AreEqual(expectedResult, result);
+        }
 
-                var result = parser.ParseProperty("ZZZ");
+        [Test]
+        public void returns_none_when_argument_is_unknown()
+        {
+            var parser = BuildParser();
 
-                Assert.AreEqual(DateIndicator.None, result);
-            }
+            var result = parser.ParseProperty("ZZZ");
+
+            Assert.AreEqual(DateIndicator.None, result);
         }
     }
 }

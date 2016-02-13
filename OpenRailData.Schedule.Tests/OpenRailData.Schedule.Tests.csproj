@@ -84,11 +84,11 @@
     <Compile Include="NetworkRailScheduleParser\PropertyParsers\TSeatingClassParser.cs" />
     <Compile Include="NetworkRailScheduleParser\PropertyParsers\TServiceBrandingParser.cs" />
     <Compile Include="NetworkRailScheduleParser\PropertyParsers\TStpIndicatorParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TTimeParser.cs" />
+    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TTimingAllowanceParser.cs" />
     <Compile Include="NetworkRailScheduleParser\PropertyParsers\TTrainSleeperDetailsParser.cs" />
     <Compile Include="NetworkRailScheduleParser\PropertyParsers\TTransactionTypeParser.cs" />
     <Compile Include="NetworkRailScheduleParser\RecordParsers\TAssociationCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TBasicScheduleCifRecordParser.cs" />
+    <Compile Include="NetworkRailScheduleParser\RecordParsers\TScheduleCifRecordParser.cs" />
     <Compile Include="NetworkRailScheduleParser\RecordParsers\TBasicScheduleExtraDetailsCifRecordParser.cs" />
     <Compile Include="NetworkRailScheduleParser\RecordParsers\TChangesEnRouteCifRecordParser.cs" />
     <Compile Include="NetworkRailScheduleParser\RecordParsers\TEndOfFileRecordParser.cs" />
@@ -99,7 +99,7 @@
     <Compile Include="NetworkRailScheduleParser\RecordParsers\TTiplocAmendCifRecordParser.cs" />
     <Compile Include="NetworkRailScheduleParser\RecordParsers\TTiplocDeleteCifRecordParser.cs" />
     <Compile Include="NetworkRailScheduleParser\RecordParsers\TTiplocInsertCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\Records\TBasicScheduleRecord.cs" />
+    <Compile Include="NetworkRailScheduleParser\Records\TScheduleRecord.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

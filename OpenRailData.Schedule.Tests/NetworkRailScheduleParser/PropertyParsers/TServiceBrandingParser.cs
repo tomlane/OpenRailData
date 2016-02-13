@@ -8,10 +8,15 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
     [TestFixture]
     public class TServiceBrandingParser
     {
+        private ServiceBrandingParser BuildParser()
+        {
+            return new ServiceBrandingParser();
+        }
+
         [Test]
         public void throws_when_argument_is_invalid()
         {
-            var parser = new ServiceBrandingParser();
+            var parser = BuildParser();
 
             Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
         }
@@ -20,7 +25,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
         [TestCase("E", ServiceBranding.E)]
         public void returns_expected_result_from_argument(string value, ServiceBranding expectedResult)
         {
-            var parser = new ServiceBrandingParser();
+            var parser = BuildParser();
 
             var result = parser.ParseProperty(value);
 
@@ -30,7 +35,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
         [Test]
         public void returns_none_when_argument_is_unknown()
         {
-            var parser = new ServiceBrandingParser();
+            var parser = BuildParser();
 
             var result = parser.ParseProperty("ZZZ");
 

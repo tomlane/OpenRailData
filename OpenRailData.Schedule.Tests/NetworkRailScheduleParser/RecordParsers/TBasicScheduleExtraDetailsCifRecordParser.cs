@@ -8,40 +8,39 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
     [TestFixture]
     public class TBasicScheduleExtraDetailsCifRecordParser
     {
-        [TestFixture]
-        class BuildRecord
+        private static BasicScheduleExtraDetailsCifRecordParser BuildParser()
         {
-            [Test]
-            public void throws_when_argument_is_null()
+            return new BasicScheduleExtraDetailsCifRecordParser();
+        }
+
+        [Test]
+        public void throws_when_argument_is_null()
+        {
+            var recordParser = BuildParser();
+
+            Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
+            Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(" \t"));
+        }
+
+        [Test]
+        public void returns_expected_result()
+        {
+            var recordParser = BuildParser();
+            var recordToParse = "BX         XCY                                                                  ";
+            var expectedResult = new BasicScheduleExtraDetailsRecord
             {
-                var recordParser = new BasicScheduleExtraDetailsCifRecordParser();
+                RecordIdentity = ScheduleRecordType.BX,
+                AtocCode = "XC",
+                AtsCode = "Y",
+                DataSource = string.Empty,
+                Rsid = string.Empty,
+                UicCode = string.Empty
+            };
 
-                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
-                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(" \t"));
-            }
-
-            [Test]
-            public void returns_expected_result()
-            {
-                var recordParser = new BasicScheduleExtraDetailsCifRecordParser();
-
-                var record = "BX         XCY                                                                  ";
-
-                var result = recordParser.ParseRecord(record);
-
-                var expectedResult = new BasicScheduleExtraDetailsRecord
-                {
-                    RecordIdentity = ScheduleRecordType.BX,
-                    AtocCode = "XC",
-                    AtsCode = "Y",
-                    DataSource = string.Empty,
-                    Rsid = string.Empty,
-                    UicCode = string.Empty
-                };
-
-                Assert.AreEqual(expectedResult, result);
-            }
+            var result = recordParser.ParseRecord(recordToParse);
+            
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }

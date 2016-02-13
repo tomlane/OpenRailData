@@ -83,7 +83,7 @@
     <Compile Include="PropertyParsers\TimingAllowanceParser.cs" />
     <Compile Include="PropertyParsers\TransactionTypeParser.cs" />
     <Compile Include="RecordParsers\AssociationCifRecordParser.cs" />
-    <Compile Include="RecordParsers\BasicScheduleCifRecordParser.cs" />
+    <Compile Include="RecordParsers\ScheduleCifRecordParser.cs" />
     <Compile Include="RecordParsers\BasicScheduleExtraDetailsCifRecordParser.cs" />
     <Compile Include="RecordParsers\ChangesEnRouteCifRecordParser.cs" />
     <Compile Include="RecordParsers\EndOfFileRecordParser.cs" />
@@ -108,7 +108,7 @@
     <Compile Include="RecordStorageProcessor\TiplocInsertRecordStorageProcessor.cs" />
     <Compile Include="Records\AssociationRecord.cs" />
     <Compile Include="Records\BasicScheduleExtraDetailsRecord.cs" />
-    <Compile Include="Records\BasicScheduleRecord.cs" />
+    <Compile Include="Records\ScheduleRecord.cs" />
     <Compile Include="Records\ChangesEnRouteRecord.cs" />
     <Compile Include="Records\EndOfFileRecord.cs" />
     <Compile Include="Records\Enums\AssociationCategory.cs" />
@@ -130,15 +130,10 @@
     <Compile Include="Records\Enums\StpIndicator.cs" />
     <Compile Include="Records\Enums\TransactionType.cs" />
     <Compile Include="Records\HeaderRecord.cs" />
-    <Compile Include="Records\IntermediateLocationRecord.cs" />
     <Compile Include="Records\IScheduleRecord.cs" />
-    <Compile Include="Records\OriginLocationRecord.cs" />
-    <Compile Include="Records\ScheduleRecord.cs" />
+    <Compile Include="Records\LocationRecord.cs" />
     <Compile Include="Records\ScheduleRecordType.cs" />
-    <Compile Include="Records\TerminatingLocationRecord.cs" />
-    <Compile Include="Records\TiplocAmendRecord.cs" />
-    <Compile Include="Records\TiplocDeleteRecord.cs" />
-    <Compile Include="Records\TiplocInsertRecord.cs" />
+    <Compile Include="Records\TiplocRecord.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="WebScheduleFileFetcher.cs" />
   </ItemGroup>

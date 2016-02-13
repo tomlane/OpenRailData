@@ -8,10 +8,15 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
     [TestFixture]
     public class TAssociationTypeParser
     {
+        private AssociationTypeParser BuildParser()
+        {
+            return new AssociationTypeParser();
+        }
+
         [Test]
         public void throws_when_argument_is_invalid()
         {
-            var parser = new AssociationTypeParser();
+            var parser = BuildParser();
 
             Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
         }
@@ -21,7 +26,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
         [TestCase("O", AssociationType.O)]
         public void returns_expected_result_when_valid(string value, AssociationType expectedResult)
         {
-            var parser = new AssociationTypeParser();
+            var parser = BuildParser();
 
             var result = parser.ParseProperty(value);
             Assert.AreEqual(expectedResult, result);
@@ -30,7 +35,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
         [Test]
         public void returns_none_when_argument_is_unknown()
         {
-            var parser = new AssociationTypeParser();
+            var parser = BuildParser();
 
             var result = parser.ParseProperty("XYZ");
             Assert.AreEqual(AssociationType.None, result);

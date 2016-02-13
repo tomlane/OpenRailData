@@ -8,12 +8,12 @@ using OpenRailData.Schedule.NetworkRailScheduleParser.Records.Enums;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 {
-    public class BasicScheduleCifRecordParser : IScheduleRecordParser
+    public class ScheduleCifRecordParser : IScheduleRecordParser
     {
         private readonly Dictionary<string, IRecordEnumPropertyParser> _enumPropertyParsers;
         private readonly IDateTimeParser _dateTimeParser;
         
-        public BasicScheduleCifRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers, IDateTimeParser dateTimeParser)
+        public ScheduleCifRecordParser(IRecordEnumPropertyParser[] enumPropertyParsers, IDateTimeParser dateTimeParser)
         {
             if (enumPropertyParsers == null)
                 throw new ArgumentNullException(nameof(enumPropertyParsers));
@@ -31,7 +31,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
-            var record = new BasicScheduleRecord
+            var record = new ScheduleRecord
             {
                 RecordIdentity = (ScheduleRecordType)_enumPropertyParsers["ScheduleRecordType"].ParseProperty(recordString.Substring(0, 3)),
                 TrainUid = recordString.Substring(3, 6),

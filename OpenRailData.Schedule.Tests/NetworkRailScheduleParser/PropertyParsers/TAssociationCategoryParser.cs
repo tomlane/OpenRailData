@@ -11,10 +11,15 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
         [TestFixture]
         class ParseAssociationCategory
         {
+            private AssociationCategoryParser BuildParser()
+            {
+                return new AssociationCategoryParser();
+            }
+
             [Test]
             public void throws_when_argument_is_invalid()
             {
-                var parser = new AssociationCategoryParser();
+                var parser = BuildParser();
 
                 Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
             }
@@ -25,18 +30,20 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
             [TestCase("NP", AssociationCategory.NP)]
             public void returns_expected_result_when_valid(string value, AssociationCategory expectedResult)
             {
-                var parser = new AssociationCategoryParser();
+                var parser = BuildParser();
 
                 var result = parser.ParseProperty(value);
+
                 Assert.AreEqual(expectedResult, result);
             }
 
             [Test]
             public void returns_none_when_argument_is_unknown()
             {
-                var parser = new AssociationCategoryParser();
+                var parser = BuildParser();
 
                 var result = parser.ParseProperty("XYZ");
+
                 Assert.AreEqual(AssociationCategory.None, result);
             }
         }

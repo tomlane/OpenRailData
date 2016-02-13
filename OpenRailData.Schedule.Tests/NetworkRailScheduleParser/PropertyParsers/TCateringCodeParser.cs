@@ -8,10 +8,15 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
     [TestFixture]
     public class TCateringCodeParser
     {
+        private CateringCodeParser BuildParser()
+        {
+            return new CateringCodeParser();
+        }
+
         [Test]
         public void throws_if_argument_string_is_null()
         {
-            var parser = new CateringCodeParser();
+            var parser = BuildParser();
 
             Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
         }
@@ -26,7 +31,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
         [TestCase("T", CateringCode.T)]
         public void returns_expected_result(string value, CateringCode expectedResult)
         {
-            var parser = new CateringCodeParser();
+            var parser = BuildParser();
             
             var result = parser.ParseProperty(value);
 

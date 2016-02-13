@@ -7,17 +7,23 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
     [TestFixture]
     public class TEndOfFileRecordParser
     {
+        private static EndOfFileRecordParser BuildParser()
+        {
+            return new EndOfFileRecordParser();
+        }
+
         [Test]
         public void returns_expected_result()
         {
-            var recordParser = new EndOfFileRecordParser();
+            var recordParser = BuildParser();
+            var recordToParse = "ZZ                                                                              ";
+            var expectedResult = new EndOfFileRecord
+            {
+                RecordIdentity = ScheduleRecordType.ZZ
+            };
 
-            var record = "ZZ                                                                              ";
-
-            var result = recordParser.ParseRecord(record);
-
-            var expectedResult = new EndOfFileRecord();
-
+            var result = recordParser.ParseRecord(recordToParse);
+            
             Assert.AreEqual(expectedResult, result);
         }
     }

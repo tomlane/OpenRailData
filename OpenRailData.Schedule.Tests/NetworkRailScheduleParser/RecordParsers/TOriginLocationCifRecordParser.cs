@@ -13,6 +13,10 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
     [TestFixture]
     public class TOriginLocationCifRecordParser
     {
+        private static IUnityContainer _container;
+        private static IRecordEnumPropertyParser[] _enumPropertyParsers;
+        private static ITimingAllowanceParser _timingAllowanceParser;
+
         [Test]
         public void throws_when_dependencies_are_null()
         {
@@ -23,44 +27,39 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
             Assert.Throws<ArgumentNullException>(() => new OriginLocationCifRecordParser(enumPropertyParsers, null));
         }
 
-        [TestFixture]
-        class BuildRecord
+        [SetUp]
+        public void Setup()
         {
-            private static IUnityContainer _container;
-            private static IRecordEnumPropertyParser[] _enumPropertyParsers;
-            private static ITimingAllowanceParser _timingAllowanceParser;
+            _container = CifParserIocContainerBuilder.Build();
+            _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
+            _timingAllowanceParser = _container.Resolve<ITimingAllowanceParser>();
+        }
 
-            [OneTimeSetUp]
-            public void OneTimeSetUp()
+        private static OriginLocationCifRecordParser BuildParser()
+        {
+            return new OriginLocationCifRecordParser(_enumPropertyParsers, _timingAllowanceParser);
+        }
+
+        [Test]
+        public void returns_expected_result()
+        {
+            var recordParser = BuildParser();
+            var recordToParse = "LOSDON    1242 12422         TB                                                 ";
+            var expectedResult = new LocationRecord
             {
-                _container = CifParserIocContainerBuilder.Build();
-                _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
-                _timingAllowanceParser = _container.Resolve<ITimingAllowanceParser>();
-            }
+                RecordIdentity = ScheduleRecordType.LO,
+                Tiploc = "SDON",
+                WorkingDeparture = "1242",
+                PublicDeparture = "1242",
+                Platform = "2",
+                LocationActivity = LocationActivity.TB,
+                LocationActivityString = "TB          ",
+                OrderTime = "1242"
+            };
 
-            [Test]
-            public void returns_expected_result()
-            {
-                var recordParser = new OriginLocationCifRecordParser(_enumPropertyParsers, _timingAllowanceParser);
-
-                var record = "LOSDON    1242 12422         TB                                                 ";
-
-                var result = recordParser.ParseRecord(record);
-
-                var expectedResult = new OriginLocationRecord
-                {
-                    RecordIdentity = ScheduleRecordType.LO,
-                    Tiploc = "SDON",
-                    WorkingDeparture = "1242",
-                    PublicDeparture = "1242",
-                    Platform = "2",
-                    LocationActivity = LocationActivity.TB,
-                    LocationActivityString = "TB          ",
-                    OrderTime = "1242"
-                };
-
-                Assert.AreEqual(expectedResult, result);
-            }
+            var result = recordParser.ParseRecord(recordToParse);
+            
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }

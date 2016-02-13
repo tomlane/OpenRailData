@@ -13,7 +13,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
-            var record = new TiplocAmendRecord
+            var record = new TiplocRecord
             {
                 RecordIdentity = ScheduleRecordType.TA,
                 TiplocCode = recordString.Substring(2, 7).Trim(),

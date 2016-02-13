@@ -8,36 +8,35 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
     [TestFixture]
     public class TTiplocDeleteCifRecordParser
     {
-        [TestFixture]
-        class BuildRecord
+        private static TiplocDeleteCifRecordParser BuildParser()
         {
-            [Test]
-            public void throws_when_argument_is_invalid()
+            return new TiplocDeleteCifRecordParser();
+        }
+
+        [Test]
+        public void throws_when_argument_is_invalid()
+        {
+            var recordParser = BuildParser();
+
+            Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
+            Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(" \t"));
+        }
+
+        [Test]
+        public void returns_expected_result()
+        {
+            var recordParser = BuildParser();
+            var recordToParse = "TD1234567                                                                       ";
+            var expectedResult = new TiplocRecord
             {
-                var recordParser = new TiplocDeleteCifRecordParser();
+                RecordIdentity = ScheduleRecordType.TD,
+                TiplocCode = "1234567"
+            };
 
-                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
-                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
-                Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(" \t"));
-            }
-
-            [Test]
-            public void returns_expected_result()
-            {
-                var recordParser = new TiplocDeleteCifRecordParser();
-
-                var record = "TD1234567                                                                       ";
-
-                var result = recordParser.ParseRecord(record);
-
-                var expectedResult = new TiplocDeleteRecord
-                {
-                    RecordIdentity = ScheduleRecordType.TD,
-                    TiplocCode = "1234567"
-                };
-
-                Assert.AreEqual(expectedResult, result);
-            }
+            var result = recordParser.ParseRecord(recordToParse);
+            
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }

@@ -8,30 +8,30 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
     [TestFixture]
     public class TLocationActivityParser
     {
-        [TestFixture]
-        class ParseLocationActivity
+        private LocationActivityParser BuildParser()
         {
-            [Test]
-            public void throws_if_argument_string_is_null()
-            {
-                var parser = new LocationActivityParser();
+            return new LocationActivityParser();
+        }
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
-            }
+        [Test]
+        public void throws_if_argument_string_is_null()
+        {
+            var parser = BuildParser();
 
-            [Test]
-            // an example of each for sanity...
-            [TestCase("A ", LocationActivity.A)]
-            [TestCase("BL", LocationActivity.BL)]
-            [TestCase("-D", LocationActivity.MinusD)]
-            public void returns_expected_result(string value, LocationActivity expectedResult)
-            {
-                var parser = new LocationActivityParser();
-                
-                var result = parser.ParseProperty(value);
-                
-                Assert.IsTrue(result.HasFlag(expectedResult));
-            }
+            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+        }
+
+        [Test]
+        [TestCase("A ", LocationActivity.A)]
+        [TestCase("BL", LocationActivity.BL)]
+        [TestCase("-D", LocationActivity.MinusD)]
+        public void returns_expected_result(string value, LocationActivity expectedResult)
+        {
+            var parser = BuildParser();
+
+            var result = parser.ParseProperty(value);
+
+            Assert.IsTrue(result.HasFlag(expectedResult));
         }
     }
 }

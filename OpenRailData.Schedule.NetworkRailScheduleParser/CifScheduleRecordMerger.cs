@@ -21,19 +21,17 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                 switch (record.RecordIdentity)
                 {
                     case ScheduleRecordType.HD:
-                        scheduleEntites.Add(record as HeaderRecord);
+                        scheduleEntites.Add(record);
                         break;
                     case ScheduleRecordType.TI:
                     case ScheduleRecordType.TA:
                     case ScheduleRecordType.TD:
-                        scheduleEntites.Add(record as TiplocDeleteRecord);
+                        scheduleEntites.Add(record);
                         break;
                     case ScheduleRecordType.AAN:
                     case ScheduleRecordType.AAR:
                     case ScheduleRecordType.AAD:
-                        scheduleEntites.Add(record as AssociationRecord);
-                        break;
-                    case ScheduleRecordType.ZZ:
+                        scheduleEntites.Add(record);
                         break;
                     case ScheduleRecordType.BSN:
                     case ScheduleRecordType.BSR:
@@ -44,25 +42,18 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                             scheduleRecord = null;
                         }
 
-                        scheduleRecord = new ScheduleRecord
-                        {
-                            Schedule = record as BasicScheduleRecord
-                        };
+                        scheduleRecord = record as ScheduleRecord;
                         break;
                     case ScheduleRecordType.BX:
-                        scheduleRecord?.Schedule.MergeExtraScheduleDetails(record as BasicScheduleExtraDetailsRecord);
+                        scheduleRecord?.MergeExtraScheduleDetails(record as BasicScheduleExtraDetailsRecord);
                         break;
                     case ScheduleRecordType.LO:
-                        scheduleRecord?.LocationRecords.Add(record as OriginLocationRecord);
-                        break;
                     case ScheduleRecordType.LI:
-                        scheduleRecord?.LocationRecords.Add(record as IntermediateLocationRecord);
-                        break;
                     case ScheduleRecordType.LT:
-                        scheduleRecord?.LocationRecords.Add(record as TerminatingLocationRecord);
+                        scheduleRecord?.ScheduleLocations.Add(record as LocationRecord);
                         break;
                     case ScheduleRecordType.CR:
-                        scheduleRecord?.LocationRecords.Add(record as ChangesEnRouteRecord);
+                    case ScheduleRecordType.ZZ:
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

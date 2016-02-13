@@ -23,7 +23,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
             container.RegisterType<IScheduleRecordParser, AssociationCifRecordParser>("AssociationCifRecordParser");
             container.RegisterType<IScheduleRecordParser, BasicScheduleExtraDetailsCifRecordParser>("BasicScheduleExtraDetailsCifRecordParser");
-            container.RegisterType<IScheduleRecordParser, BasicScheduleCifRecordParser>("BasicScheduleCifRecordParser");
+            container.RegisterType<IScheduleRecordParser, ScheduleCifRecordParser>("ScheduleCifRecordParser");
             container.RegisterType<IScheduleRecordParser, ChangesEnRouteCifRecordParser>("ChangesEnRouteCifRecordParser");
             container.RegisterType<IScheduleRecordParser, HeaderCifRecordParser>("HeaderCifRecordParser");
             container.RegisterType<IScheduleRecordParser, OriginLocationCifRecordParser>("OriginLocationCifRecordParser");

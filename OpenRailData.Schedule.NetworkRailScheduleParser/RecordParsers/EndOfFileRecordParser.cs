@@ -8,7 +8,10 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 
         public IScheduleRecord ParseRecord(string recordString)
         {
-            return new EndOfFileRecord();
+            return new EndOfFileRecord
+            {
+                RecordIdentity = ScheduleRecordType.ZZ
+            };
         }
     }
 }
