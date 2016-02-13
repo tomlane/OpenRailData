@@ -2,6 +2,7 @@
 {
     public class TiplocRecord : IScheduleRecord
     {
+        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string TiplocCode { get; set; } = string.Empty;
         public string CapitalsIdentification { get; set; } = string.Empty;
@@ -16,7 +17,8 @@
 
         protected bool Equals(TiplocRecord other)
         {
-            return RecordIdentity == other.RecordIdentity && 
+            return Id == other.Id &&
+                RecordIdentity == other.RecordIdentity && 
                 string.Equals(TiplocCode, other.TiplocCode) && 
                 string.Equals(CapitalsIdentification, other.CapitalsIdentification) && 
                 string.Equals(Nalco, other.Nalco) && 

@@ -1,6 +1,6 @@
 ﻿namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
-    public interface IScheduleRecord
+    public interface IScheduleRecord : IIdentifyable
     {
         ScheduleRecordType RecordIdentity { get; set; }
     }

@@ -2,11 +2,13 @@
 {
     public class EndOfFileRecord : IScheduleRecord
     {
+        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
 
         protected bool Equals(EndOfFileRecord other)
         {
-            return RecordIdentity == other.RecordIdentity;
+            return Id == other.Id &&
+                RecordIdentity == other.RecordIdentity;
         }
 
         public override bool Equals(object obj)

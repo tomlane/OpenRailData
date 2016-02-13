@@ -2,6 +2,7 @@
 {
     public class BasicScheduleExtraDetailsRecord : IScheduleRecord
     {
+        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string UicCode { get; set; } = string.Empty;
         public string AtocCode { get; set; } = string.Empty;
@@ -11,7 +12,8 @@
 
         protected bool Equals(BasicScheduleExtraDetailsRecord other)
         {
-            return RecordIdentity == other.RecordIdentity && 
+            return Id == other.Id &&
+                RecordIdentity == other.RecordIdentity && 
                 string.Equals(UicCode, other.UicCode) && 
                 string.Equals(AtocCode, other.AtocCode) && 
                 string.Equals(AtsCode, other.AtsCode) && 

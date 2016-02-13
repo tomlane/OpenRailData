@@ -6,6 +6,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
     public class ScheduleRecord : IScheduleRecord
     {
+        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string TrainUid { get; set; } = string.Empty;
         public string UniqueId { get; set; } = string.Empty;
@@ -58,7 +59,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 
         protected bool Equals(ScheduleRecord other)
         {
-            return string.Equals(AtocCode, other.AtocCode) && 
+            return Id == other.Id &&
+                string.Equals(AtocCode, other.AtocCode) && 
                 string.Equals(AtsCode, other.AtsCode) && 
                 BankHolidayRunning == other.BankHolidayRunning && 
                 CateringCode == other.CateringCode && 

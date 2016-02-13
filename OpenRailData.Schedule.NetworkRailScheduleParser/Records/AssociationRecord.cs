@@ -5,6 +5,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
     public class AssociationRecord : IScheduleRecord
     {
+        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string MainTrainUid { get; set; } = string.Empty;
         public string AssocTrainUid { get; set; } = string.Empty;
@@ -22,7 +23,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 
         protected bool Equals(AssociationRecord other)
         {
-            return AssocDays == other.AssocDays &&
+            return Id == other.Id &&
+                   AssocDays == other.AssocDays &&
                    string.Equals(AssocLocationSuffix, other.AssocLocationSuffix) &&
                    string.Equals(AssocTrainUid, other.AssocTrainUid) &&
                    AssocType == other.AssocType &&
@@ -47,27 +49,27 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
             if (obj.GetType() != GetType())
                 return false;
 
-            return Equals((AssociationRecord) obj);
+            return Equals((AssociationRecord)obj);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                var hashCode = (int) AssocDays;
-                hashCode = (hashCode*397) ^ (AssocLocationSuffix != null ? AssocLocationSuffix.GetHashCode() : 0);
-                hashCode = (hashCode*397) ^ (AssocTrainUid != null ? AssocTrainUid.GetHashCode() : 0);
-                hashCode = (hashCode*397) ^ (int) AssocType;
-                hashCode = (hashCode*397) ^ (BaseLocationSuffix != null ? BaseLocationSuffix.GetHashCode() : 0);
-                hashCode = (hashCode*397) ^ (int) Category;
-                hashCode = (hashCode*397) ^ DateFrom.GetHashCode();
-                hashCode = (hashCode*397) ^ (int) DateIndicator;
-                hashCode = (hashCode*397) ^ DateTo.GetHashCode();
-                hashCode = (hashCode*397) ^ (DiagramType != null ? DiagramType.GetHashCode() : 0);
-                hashCode = (hashCode*397) ^ (Location != null ? Location.GetHashCode() : 0);
-                hashCode = (hashCode*397) ^ (MainTrainUid != null ? MainTrainUid.GetHashCode() : 0);
-                hashCode = (hashCode*397) ^ (int) RecordIdentity;
-                hashCode = (hashCode*397) ^ (int) StpIndicator;
+                var hashCode = (int)AssocDays;
+                hashCode = (hashCode * 397) ^ (AssocLocationSuffix != null ? AssocLocationSuffix.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (AssocTrainUid != null ? AssocTrainUid.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (int)AssocType;
+                hashCode = (hashCode * 397) ^ (BaseLocationSuffix != null ? BaseLocationSuffix.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (int)Category;
+                hashCode = (hashCode * 397) ^ DateFrom.GetHashCode();
+                hashCode = (hashCode * 397) ^ (int)DateIndicator;
+                hashCode = (hashCode * 397) ^ DateTo.GetHashCode();
+                hashCode = (hashCode * 397) ^ (DiagramType != null ? DiagramType.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Location != null ? Location.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (MainTrainUid != null ? MainTrainUid.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (int)RecordIdentity;
+                hashCode = (hashCode * 397) ^ (int)StpIndicator;
                 return hashCode;
             }
         }

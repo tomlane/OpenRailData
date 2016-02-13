@@ -108,6 +108,7 @@
     <Compile Include="RecordStorageProcessor\TiplocInsertRecordStorageProcessor.cs" />
     <Compile Include="Records\AssociationRecord.cs" />
     <Compile Include="Records\BasicScheduleExtraDetailsRecord.cs" />
+    <Compile Include="Records\IIdentifyable.cs" />
     <Compile Include="Records\ScheduleRecord.cs" />
     <Compile Include="Records\ChangesEnRouteRecord.cs" />
     <Compile Include="Records\EndOfFileRecord.cs" />

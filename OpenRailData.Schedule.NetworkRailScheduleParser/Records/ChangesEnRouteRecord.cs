@@ -4,6 +4,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
     public class ChangesEnRouteRecord : IScheduleRecord
     {
+        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string Tiploc { get; set; } = string.Empty; 
         public string TiplocSuffix { get; set; } = string.Empty; 
@@ -28,14 +29,15 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 
         protected bool Equals(ChangesEnRouteRecord other)
         {
-            return string.Equals(Category, other.Category) && 
+            return Id == other.Id &&
+                string.Equals(Category, other.Category) && 
                 CateringCode == other.CateringCode && 
                 string.Equals(ConnectionIndicator, other.ConnectionIndicator) && 
                 string.Equals(CourseIndicator, other.CourseIndicator) && 
                 string.Equals(HeadCode, other.HeadCode) && 
                 string.Equals(OperatingCharacteristics, other.OperatingCharacteristics) && 
                 string.Equals(PortionId, other.PortionId) && 
-                string.Equals(PowerType, other.PowerType) && 
+                PowerType == other.PowerType && 
                 RecordIdentity == other.RecordIdentity && 
                 Reservations == other.Reservations && 
                 string.Equals(Rsid, other.Rsid) && 

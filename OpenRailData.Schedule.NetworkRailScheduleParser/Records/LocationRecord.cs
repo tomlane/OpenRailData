@@ -5,6 +5,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
     public class LocationRecord : IScheduleRecord
     {
+        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string Tiploc { get; set; } = string.Empty;
         public string TiplocSuffix { private get; set; } = string.Empty;
@@ -30,7 +31,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 
         protected bool Equals(LocationRecord other)
         {
-            return EngineeringAllowance.Equals(other.EngineeringAllowance) && 
+            return Id == other.Id &&
+                EngineeringAllowance.Equals(other.EngineeringAllowance) && 
                 string.Equals(Line, other.Line) && 
                 LocationActivity == other.LocationActivity && 
                 string.Equals(LocationActivityString, other.LocationActivityString) && 

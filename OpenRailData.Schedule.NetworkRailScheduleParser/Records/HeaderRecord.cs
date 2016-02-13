@@ -5,6 +5,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 {
     public class HeaderRecord : IScheduleRecord
     {
+        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string MainFrameIdentity { get; set; } = string.Empty;
         public DateTime DateOfExtract { get; set; }
@@ -20,7 +21,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
 
         protected bool Equals(HeaderRecord other)
         {
-            return RecordIdentity == other.RecordIdentity && 
+            return Id == other.Id &&
+                RecordIdentity == other.RecordIdentity && 
                 string.Equals(MainFrameIdentity, other.MainFrameIdentity) && 
                 DateOfExtract.Equals(other.DateOfExtract) && 
                 TimeOfExtract.Equals(other.TimeOfExtract) && 
