@@ -25,33 +25,31 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
         [Description("Association Delete Record")]
         AAD = 8,
 
-        Schedule = 9,
-
         [Description("Basic Schedule Insert Record")]
-        BSN = 10,
+        BSN = 9,
 
         [Description("Basic Schedule Amend Record")]
-        BSR = 11,
+        BSR = 10,
 
         [Description("Basic Schedule Delete Record")]
-        BSD = 12,
+        BSD = 11,
 
         [Description("Basic Schedule Extra Details Record")]
-        BX = 13,
+        BX = 12,
 
         [Description("Origin Location Record")]
-        LO = 14,
+        LO = 13,
 
         [Description("Intermediate Location Record")]
-        LI = 15,
+        LI = 14,
 
         [Description("Changes en Route Record")]
-        CR = 16,
+        CR = 15,
 
         [Description("Terminating Location Record")]
-        LT = 17,
+        LT = 16,
         
         [Description("End of File Record")]
-        ZZ = 18
+        ZZ = 17
     }
 }
