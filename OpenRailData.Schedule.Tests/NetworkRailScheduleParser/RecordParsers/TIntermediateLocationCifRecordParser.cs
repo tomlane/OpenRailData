@@ -2,11 +2,11 @@
 using Microsoft.Practices.Unity;
 using Moq;
 using NUnit.Framework;
+using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
 using OpenRailData.Schedule.NetworkRailScheduleParser;
 using OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers;
 using OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records.Enums;
 
 namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 {
@@ -45,7 +45,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
         {
             var recordParser = BuildParser();
             var recordToParse = "LIMELKSHM 1307H1308      13081308         T                                     ";
-            var expectedResult = new LocationRecord
+            var expectedResult = new ScheduleLocationRecord
             {
                 RecordIdentity = ScheduleRecordType.LI,
                 Tiploc = "MELKSHM",
@@ -69,7 +69,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
         {
             var recordParser = BuildParser();
             var recordToParse = "LIBRDFDJN           1314 00000000                                               ";
-            var expectedResult = new LocationRecord
+            var expectedResult = new ScheduleLocationRecord
             {
                 RecordIdentity = ScheduleRecordType.LI,
                 Tiploc = "BRDFDJN",

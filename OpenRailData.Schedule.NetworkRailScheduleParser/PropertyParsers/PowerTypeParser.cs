@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records.Enums;
+using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers
 {

@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
 using NUnit.Framework;
+using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
 using OpenRailData.Schedule.NetworkRailScheduleParser;
 using OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers;
 using OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records.Enums;
 
 namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 {
@@ -38,7 +38,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
         {
             var recordParser = BuildParser();
             var recordToParse = "LTWSTBRYW 1323 13253     TF                                                     ";
-            var expectedResult = new LocationRecord
+            var expectedResult = new ScheduleLocationRecord
             {
                 RecordIdentity = ScheduleRecordType.LT,
                 Tiploc = "WSTBRYW",

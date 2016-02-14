@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
+using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleParser.Utils;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers

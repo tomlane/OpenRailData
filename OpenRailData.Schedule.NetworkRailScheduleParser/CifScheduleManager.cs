@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
+using OpenRailData.Schedule.NetworkRailEntites.Records;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
@@ -11,8 +11,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
         private readonly IScheduleFileFetcher _scheduleFileFetcher;
         private readonly IScheduleFileParser _scheduleFileParser;
         private readonly IScheduleRecordMerger _scheduleRecordMerger;
+        private readonly IScheduleRecordStorer _scheduleRecordStorer;
 
-        public CifScheduleManager(IScheduleFileFetcher scheduleFileFetcher, IScheduleFileParser scheduleFileParser, IScheduleRecordMerger scheduleRecordMerger)
+        public CifScheduleManager(IScheduleFileFetcher scheduleFileFetcher, IScheduleFileParser scheduleFileParser, IScheduleRecordMerger scheduleRecordMerger, IScheduleRecordStorer scheduleRecordStorer)
         {
             if (scheduleFileFetcher == null)
                 throw new ArgumentNullException(nameof(scheduleFileFetcher));
@@ -20,10 +21,13 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                 throw new ArgumentNullException(nameof(scheduleFileParser));
             if (scheduleRecordMerger == null)
                 throw new ArgumentNullException(nameof(scheduleRecordMerger));
+            if (scheduleRecordStorer == null)
+                throw new ArgumentNullException(nameof(scheduleRecordStorer));
 
             _scheduleFileFetcher = scheduleFileFetcher;
             _scheduleFileParser = scheduleFileParser;
             _scheduleRecordMerger = scheduleRecordMerger;
+            _scheduleRecordStorer = scheduleRecordStorer;
         }
 
         public IList<IScheduleRecord> GetDailyUpdateScheduleRecords()
@@ -48,6 +52,14 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             Trace.TraceInformation("MergeScheduleRecords called.");
             
             return _scheduleRecordMerger.MergeScheduleRecords(scheduleRecords);
+        }
+
+        public void SaveScheduleRecords(IList<IScheduleRecord> scheduleRecordsToSave)
+        {
+            if (scheduleRecordsToSave == null || !scheduleRecordsToSave.Any())
+                throw new ArgumentNullException(nameof(scheduleRecordsToSave));
+
+            _scheduleRecordStorer.StoreScheduleRecords(scheduleRecordsToSave);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
+using OpenRailData.Schedule.NetworkRailEntites.Records;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {

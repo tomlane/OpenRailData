@@ -1,4 +1,4 @@
-﻿using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
+﻿using OpenRailData.Schedule.NetworkRailEntites.Records;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 {

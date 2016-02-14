@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
+using OpenRailData.Schedule.NetworkRailEntites.Records;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
@@ -7,6 +7,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
     {
         IList<IScheduleRecord> GetDailyUpdateScheduleRecords();
         IList<IScheduleRecord> GetWeeklyScheduleRecords();
-        IList<IScheduleRecord> MergeScheduleRecords(IList<IScheduleRecord> scheduleRecords); 
+
+        IList<IScheduleRecord> MergeScheduleRecords(IList<IScheduleRecord> scheduleRecords);
+
+        void SaveScheduleRecords(IList<IScheduleRecord> scheduleRecordsToSave);
     }
 }

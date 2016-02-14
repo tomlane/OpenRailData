@@ -1,6 +1,10 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System.Data.Entity.Infrastructure;
+using Microsoft.Practices.Unity;
+using OpenRailData.Schedule.NetworkRailScheduleDatabase;
+using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
 using OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers;
 using OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers;
+using OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
@@ -16,6 +20,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             container.RegisterType<IScheduleReader, FileScheduleReader>();
             container.RegisterType<IScheduleFileParser, CifScheduleFileParser>();
             container.RegisterType<IScheduleRecordMerger, CifScheduleRecordMerger>();
+            container.RegisterType<IScheduleRecordStorer, CifScheduleRecordStorer>();
 
             container.RegisterType<IFetchScheduleUrlProvider, CifFetchScheduleUrlProvider>();
             container.RegisterType<IConfigManager, AppSettingsConfigManager>();
@@ -54,6 +59,21 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
             container.RegisterType<ITimingAllowanceParser, TimingAllowanceParser>();
             container.RegisterType<IDateTimeParser, DateTimeParser>();
+
+            container.RegisterType<IScheduleRecordStorageProcessor, AssociationAmendScheduleRecordStorageProcessor>("AssociationAmendScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, AssociationDeleteScheduleRecordStorageProcessor>("AssociationDeleteScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, AssociationInsertScheduleRecordStorageProcessor>("AssociationInsertScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, BasicScheduleAmendScheduleRecordStorageProcessor>("BasicScheduleAmendScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, BasicScheduleDeleteScheduleRecordStorageProcessor>("BasicScheduleDeleteScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, BasicScheduleInsertScheduleRecordStorageProcessor>("BasicScheduleInsertScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, TiplocAmendScheduleRecordStorageProcessor>("TiplocAmendScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, TiplocDeleteScheduleRecordStorageProcessor>("TiplocDeleteScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, TiplocInsertScheduleRecordStorageProcessor>("TiplocInsertScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, HeaderScheduleRecordStorageProcessor>("HeaderScheduleRecordStorageProcessor");
+
+            container.RegisterType<IScheduleUnitOfWork, ScheduleUnitOfWork>();
+
+            container.RegisterType<IDbContextFactory<ScheduleContext>, ScheduleContextFactory>();
             
             return container;
         }

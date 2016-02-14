@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
+using OpenRailData.Schedule.NetworkRailEntites.Records;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
@@ -50,7 +50,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                     case ScheduleRecordType.LO:
                     case ScheduleRecordType.LI:
                     case ScheduleRecordType.LT:
-                        scheduleRecord?.ScheduleLocations.Add(record as LocationRecord);
+                        scheduleRecord?.ScheduleLocations.Add(record as ScheduleLocationRecord);
                         break;
                     case ScheduleRecordType.CR:
                     case ScheduleRecordType.ZZ:

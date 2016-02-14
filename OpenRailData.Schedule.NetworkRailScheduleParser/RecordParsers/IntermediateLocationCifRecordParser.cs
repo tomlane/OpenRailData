@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
 using OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records;
-using OpenRailData.Schedule.NetworkRailScheduleParser.Records.Enums;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 {
@@ -30,7 +30,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
             if (string.IsNullOrWhiteSpace(recordString))
                 throw new ArgumentNullException(nameof(recordString));
 
-            var record = new LocationRecord
+            var record = new ScheduleLocationRecord
             {
                 RecordIdentity = ScheduleRecordType.LI,
                 Tiploc = recordString.Substring(2, 7).Trim(),
