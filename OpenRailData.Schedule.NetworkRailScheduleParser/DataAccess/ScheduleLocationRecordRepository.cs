@@ -1,4 +1,5 @@
-﻿using OpenRailData.Schedule.NetworkRailEntites.Records;
+﻿using System;
+using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
@@ -7,6 +8,14 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
     {
         public ScheduleLocationRecordRepository(IScheduleContext context) : base(context)
         {
+        }
+
+        public void SaveRecord(ScheduleLocationRecord record)
+        {
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            Add(record);
         }
     }
 }

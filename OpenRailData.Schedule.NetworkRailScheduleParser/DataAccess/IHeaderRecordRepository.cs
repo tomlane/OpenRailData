@@ -4,5 +4,6 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
 {
     public interface IHeaderRecordRepository : IBaseRepository<HeaderRecord>
     {
+        void InsertRecord(HeaderRecord record);
     }
 }

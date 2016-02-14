@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity.Infrastructure;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
@@ -28,10 +27,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
         public IScheduleRecordRepository ScheduleRecords { get; }
         public IScheduleLocationRecordRepository ScheduleLocationRecords { get; }
 
-        public int Complete()
-        {
-            return _context.SaveChanges();
-        }
+        public int Complete() => _context.SaveChanges();
 
         public void Dispose() => _context?.Dispose();
     }

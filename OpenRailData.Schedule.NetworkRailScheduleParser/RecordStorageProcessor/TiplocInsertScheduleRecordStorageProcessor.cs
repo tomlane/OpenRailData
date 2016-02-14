@@ -26,14 +26,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var recordToSave = record as TiplocRecord;
-
-            if (recordToSave == null)
-                throw new ArgumentException("Failed to cast entity for saving.");
-
             using (var unitOfWork = new ScheduleUnitOfWork(_contextFactory.Create()))
             {
-                unitOfWork.TiplocRecords.Add(recordToSave);
+                unitOfWork.TiplocRecords.InsertRecord(record as TiplocRecord);
 
                 unitOfWork.Complete();
             }

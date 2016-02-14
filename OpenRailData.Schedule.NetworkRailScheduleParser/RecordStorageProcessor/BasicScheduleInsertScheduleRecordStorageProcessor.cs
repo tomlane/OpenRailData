@@ -15,8 +15,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
         {
             if (contextFactory == null)
                 throw new ArgumentNullException(nameof(contextFactory));
-            _contextFactory = contextFactory;
 
+            _contextFactory = contextFactory;
         }
 
         public ScheduleRecordType RecordKey { get; } = ScheduleRecordType.BSN;
@@ -26,11 +26,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var recordToSave = record as ScheduleRecord;
-
             using (var unitOfWork = new ScheduleUnitOfWork(_contextFactory.Create()))
             {
-                unitOfWork.ScheduleRecords.Add(recordToSave);
+                unitOfWork.ScheduleRecords.InsertRecord(record as ScheduleRecord);
 
                 unitOfWork.Complete();
             }

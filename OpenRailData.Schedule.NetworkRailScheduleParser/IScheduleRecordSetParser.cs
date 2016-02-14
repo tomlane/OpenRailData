@@ -3,8 +3,8 @@ using OpenRailData.Schedule.NetworkRailEntites.Records;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
-    public interface IScheduleFileParser
+    public interface IScheduleRecordSetParser
     {
-        IList<IScheduleRecord> ParseScheduleFile(byte[] scheduleFile);
+        IEnumerable<IScheduleRecord> ParseScheduleRecordSet(IEnumerable<string> recordsToParse);
     }
 }

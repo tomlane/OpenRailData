@@ -9,39 +9,51 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
     public class CifScheduleManager : IScheduleManager
     {
         private readonly IScheduleFileFetcher _scheduleFileFetcher;
-        private readonly IScheduleFileParser _scheduleFileParser;
+        private readonly IScheduleFileRecordExtractor _scheduleFileRecordExtractor;
         private readonly IScheduleRecordMerger _scheduleRecordMerger;
         private readonly IScheduleRecordStorer _scheduleRecordStorer;
+        private readonly IScheduleRecordSetParser _scheduleRecordSetParser;
 
-        public CifScheduleManager(IScheduleFileFetcher scheduleFileFetcher, IScheduleFileParser scheduleFileParser, IScheduleRecordMerger scheduleRecordMerger, IScheduleRecordStorer scheduleRecordStorer)
+        public CifScheduleManager(IScheduleFileFetcher scheduleFileFetcher, IScheduleFileRecordExtractor scheduleFileRecordExtractor, IScheduleRecordMerger scheduleRecordMerger, IScheduleRecordStorer scheduleRecordStorer, IScheduleRecordSetParser scheduleRecordSetParser)
         {
             if (scheduleFileFetcher == null)
                 throw new ArgumentNullException(nameof(scheduleFileFetcher));
-            if (scheduleFileParser == null)
-                throw new ArgumentNullException(nameof(scheduleFileParser));
+            if (scheduleFileRecordExtractor == null)
+                throw new ArgumentNullException(nameof(scheduleFileRecordExtractor));
             if (scheduleRecordMerger == null)
                 throw new ArgumentNullException(nameof(scheduleRecordMerger));
             if (scheduleRecordStorer == null)
                 throw new ArgumentNullException(nameof(scheduleRecordStorer));
+            if (scheduleRecordSetParser == null)
+                throw new ArgumentNullException(nameof(scheduleRecordSetParser));
 
             _scheduleFileFetcher = scheduleFileFetcher;
-            _scheduleFileParser = scheduleFileParser;
+            _scheduleFileRecordExtractor = scheduleFileRecordExtractor;
             _scheduleRecordMerger = scheduleRecordMerger;
             _scheduleRecordStorer = scheduleRecordStorer;
+            _scheduleRecordSetParser = scheduleRecordSetParser;
         }
 
         public IList<IScheduleRecord> GetDailyUpdateScheduleRecords()
         {
             Trace.TraceInformation("GetDailyUpdateScheduleRecords called.");
 
-            return _scheduleFileParser.ParseScheduleFile(_scheduleFileFetcher.FetchDailyScheduleUpdateFile());
+            var scheduleFile = _scheduleFileFetcher.FetchDailyScheduleUpdateFile();
+
+            var recordsToParse = _scheduleFileRecordExtractor.ExtractScheduleFileRecords(scheduleFile);
+
+            return _scheduleRecordSetParser.ParseScheduleRecordSet(recordsToParse).ToList();
         }
 
         public IList<IScheduleRecord> GetWeeklyScheduleRecords()
         {
             Trace.TraceInformation("GetWeeklyScheduleRecords called.");
 
-            return _scheduleFileParser.ParseScheduleFile(_scheduleFileFetcher.FetchWeeklyScheduleFile());
+            var scheduleFile = _scheduleFileFetcher.FetchWeeklyScheduleFile();
+
+            var recordsToParse = _scheduleFileRecordExtractor.ExtractScheduleFileRecords(scheduleFile);
+
+            return _scheduleRecordSetParser.ParseScheduleRecordSet(recordsToParse).ToList();
         }
 
         public IList<IScheduleRecord> MergeScheduleRecords(IList<IScheduleRecord> scheduleRecords)

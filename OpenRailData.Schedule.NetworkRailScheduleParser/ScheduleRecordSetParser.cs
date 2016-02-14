@@ -1,17 +1,16 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
-    public class CifScheduleFileParser : IScheduleFileParser
+    public class ScheduleRecordSetParser : IScheduleRecordSetParser
     {
         private readonly Dictionary<string, IScheduleRecordParser> _cifRecordParsers;
 
-        public CifScheduleFileParser(IScheduleRecordParser[] recordParsers)
+        public ScheduleRecordSetParser(IScheduleRecordParser[] recordParsers)
         {
             if (recordParsers == null)
                 throw new ArgumentNullException(nameof(recordParsers));
@@ -19,24 +18,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             _cifRecordParsers = recordParsers.ToDictionary(x => x.RecordKey, x => x);
         }
 
-        public IList<IScheduleRecord> ParseScheduleFile(byte[] scheduleFile)
+        public IEnumerable<IScheduleRecord> ParseScheduleRecordSet(IEnumerable<string> recordsToParse)
         {
-            if (scheduleFile == null) 
-                throw new ArgumentNullException(nameof(scheduleFile));
+            if (recordsToParse == null)
+                throw new ArgumentNullException(nameof(recordsToParse));
 
-            var recordsToParse = new List<string>();
             var resultList = new List<IScheduleRecord>();
-
-            using (var streamReader = new StreamReader(new MemoryStream(scheduleFile)))
-            {
-                string record;
-                while ((record = streamReader.ReadLine()) != null)
-                {
-                    recordsToParse.Add(record);
-                }
-            }
-
-            Trace.TraceInformation("Starting to parse schedule records...");
 
             foreach (var record in recordsToParse)
             {

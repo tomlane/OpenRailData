@@ -26,14 +26,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var recordToSave = record as HeaderRecord;
-
-            if (recordToSave == null)
-                throw new ArgumentException("Failed to cast record for saving");
-
             using (var unitOfWork = new ScheduleUnitOfWork(_contextFactory.Create()))
             {
-                unitOfWork.HeaderRecords.Add(recordToSave);
+                unitOfWork.HeaderRecords.InsertRecord(record as HeaderRecord);
 
                 unitOfWork.Complete();
             }

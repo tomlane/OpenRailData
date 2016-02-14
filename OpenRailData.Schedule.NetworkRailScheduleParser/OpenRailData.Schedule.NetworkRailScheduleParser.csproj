@@ -48,7 +48,8 @@
     <Compile Include="CifFetchScheduleUrlProvider.cs" />
     <Compile Include="CifParserIocContainerBuilder.cs" />
     <Compile Include="CifScheduleManager.cs" />
-    <Compile Include="CifScheduleFileParser.cs" />
+    <Compile Include="IScheduleRecordSetParser.cs" />
+    <Compile Include="ScheduleFileRecordExtractor.cs" />
     <Compile Include="CifScheduleRecordMerger.cs" />
     <Compile Include="CifScheduleRecordStorer.cs" />
     <Compile Include="DataAccess\AssociationRecordRepository.cs" />
@@ -70,7 +71,7 @@
     <Compile Include="IFetchScheduleUrlProvider.cs" />
     <Compile Include="IScheduleFileFetcher.cs" />
     <Compile Include="IScheduleManager.cs" />
-    <Compile Include="IScheduleFileParser.cs" />
+    <Compile Include="IScheduleFileRecordExtractor.cs" />
     <Compile Include="IScheduleReader.cs" />
     <Compile Include="IScheduleRecordMerger.cs" />
     <Compile Include="IScheduleRecordParser.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="RecordStorageProcessor\TiplocAmendScheduleRecordStorageProcessor.cs" />
     <Compile Include="RecordStorageProcessor\TiplocDeleteScheduleRecordStorageProcessor.cs" />
     <Compile Include="RecordStorageProcessor\TiplocInsertScheduleRecordStorageProcessor.cs" />
+    <Compile Include="ScheduleRecordSetParser.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
     <Compile Include="WebScheduleFileFetcher.cs" />
   </ItemGroup>

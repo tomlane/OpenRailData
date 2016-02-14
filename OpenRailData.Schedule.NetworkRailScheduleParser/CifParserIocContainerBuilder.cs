@@ -18,7 +18,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             container.RegisterType<IScheduleManager, CifScheduleManager>();
 
             container.RegisterType<IScheduleReader, FileScheduleReader>();
-            container.RegisterType<IScheduleFileParser, CifScheduleFileParser>();
+            container.RegisterType<IScheduleFileRecordExtractor, ScheduleFileRecordExtractor>();
             container.RegisterType<IScheduleRecordMerger, CifScheduleRecordMerger>();
             container.RegisterType<IScheduleRecordStorer, CifScheduleRecordStorer>();
 
