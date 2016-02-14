@@ -18,7 +18,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
         }
 
         public ScheduleRecordType RecordKey { get; } = ScheduleRecordType.TI;
-        
+
         public void StoreRecord(IScheduleRecord record)
         {
             if (record == null)
@@ -29,12 +29,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
             if (recordToSave == null)
                 throw new ArgumentException("Failed to cast entity for saving.");
 
-            using (_unitOfWork)
-            {
-                _unitOfWork.TiplocRecords.Add(recordToSave);
+            _unitOfWork.TiplocRecords.Add(recordToSave);
 
-                _unitOfWork.Complete();
-            }
+            _unitOfWork.Complete();
 
             Trace.TraceInformation("Processed a Tiploc Insert Record.");
         }

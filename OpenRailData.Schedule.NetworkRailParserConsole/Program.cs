@@ -38,6 +38,17 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
 
             Trace.TraceInformation("Schedule record processing complete. Ready for storage.");
 
+            start = Process.GetCurrentProcess().TotalProcessorTime;
+
+            scheduleManager.SaveScheduleRecords(entites);
+
+            end = Process.GetCurrentProcess().TotalProcessorTime;
+
+            Trace.TraceInformation("Schedule storage complete.");
+            Trace.TraceInformation("Storage Processing Time: {0} ms.", (end - start).TotalMilliseconds);
+
+            Trace.TraceInformation("Press any key to close...");
+
             Console.ReadLine();
         }
     }

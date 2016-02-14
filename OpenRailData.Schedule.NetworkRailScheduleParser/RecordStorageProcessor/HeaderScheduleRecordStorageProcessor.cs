@@ -25,16 +25,13 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
                 throw new ArgumentNullException(nameof(record));
 
             var recordToSave = record as HeaderRecord;
-            
+
             if (recordToSave == null)
                 throw new ArgumentException("Failed to cast record for saving");
 
-            using (_unitOfWork)
-            {
-                _unitOfWork.HeaderRecords.Add(recordToSave);
+            _unitOfWork.HeaderRecords.Add(recordToSave);
 
-                _unitOfWork.Complete();
-            }
+            _unitOfWork.Complete();
 
             Trace.TraceInformation("Processed a CIF Header Record.");
         }

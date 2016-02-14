@@ -26,12 +26,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
 
             var recordToSave = record as ScheduleRecord;
 
-            using (_unitOfWork)
-            {
-                _unitOfWork.ScheduleRecords.Add(recordToSave);
+            _unitOfWork.ScheduleRecords.Add(recordToSave);
 
-                _unitOfWork.Complete();
-            }
+            _unitOfWork.Complete();
 
             Trace.TraceInformation("Processed a Basic Schedule Insert Record.");
         }
