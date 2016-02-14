@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor;
 
@@ -24,23 +25,25 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             if (recordsToStore == null || !recordsToStore.Any())
                 throw new ArgumentNullException(nameof(recordsToStore));
 
-            foreach (var record in recordsToStore)
-            {
-                IScheduleRecordStorageProcessor scheduleRecordStorageProcessor;
-
-                try
-                {
-                    scheduleRecordStorageProcessor = _storageProcessors[record.RecordIdentity];
-                }
-                catch (KeyNotFoundException exception)
-                {
-                    throw new ArgumentException($"No storage processor found for record type {record.RecordIdentity}", exception);
-                }
-
-                scheduleRecordStorageProcessor.StoreRecord(record);
-            }
+            Parallel.ForEach(recordsToStore, StoreRecord);
 
             Trace.TraceInformation("Finished storing schedule records.");
+        }
+
+        private void StoreRecord(IScheduleRecord record)
+        {
+            IScheduleRecordStorageProcessor scheduleRecordStorageProcessor;
+
+            try
+            {
+                scheduleRecordStorageProcessor = _storageProcessors[record.RecordIdentity];
+            }
+            catch (KeyNotFoundException exception)
+            {
+                throw new ArgumentException($"No storage processor found for record type {record.RecordIdentity}", exception);
+            }
+
+            scheduleRecordStorageProcessor.StoreRecord(record);
         }
     }
 }

@@ -1,20 +1,22 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
 {
     public class TiplocInsertScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
     {
-        private readonly IScheduleUnitOfWork _unitOfWork;
+        private readonly IDbContextFactory<ScheduleContext> _contextFactory;
 
-        public TiplocInsertScheduleRecordStorageProcessor(IScheduleUnitOfWork unitOfWork)
+        public TiplocInsertScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
         {
-            if (unitOfWork == null)
-                throw new ArgumentNullException(nameof(unitOfWork));
+            if (contextFactory == null)
+                throw new ArgumentNullException(nameof(contextFactory));
 
-            _unitOfWork = unitOfWork;
+            _contextFactory = contextFactory;
         }
 
         public ScheduleRecordType RecordKey { get; } = ScheduleRecordType.TI;
@@ -29,9 +31,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
             if (recordToSave == null)
                 throw new ArgumentException("Failed to cast entity for saving.");
 
-            _unitOfWork.TiplocRecords.Add(recordToSave);
+            using (var unitOfWork = new ScheduleUnitOfWork(_contextFactory.Create()))
+            {
+                unitOfWork.TiplocRecords.Add(recordToSave);
 
-            _unitOfWork.Complete();
+                unitOfWork.Complete();
+            }
 
             Trace.TraceInformation("Processed a Tiploc Insert Record.");
         }

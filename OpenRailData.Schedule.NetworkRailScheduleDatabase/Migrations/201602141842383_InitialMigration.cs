@@ -1,5 +1,6 @@
 namespace OpenRailData.Schedule.NetworkRailScheduleDatabase.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     
     public partial class InitialMigration : DbMigration
@@ -63,11 +64,11 @@ namespace OpenRailData.Schedule.NetworkRailScheduleDatabase.Migrations
                         Platform = c.String(),
                         Line = c.String(),
                         Path = c.String(),
-                        EngineeringAllowance = c.Time(precision: 7),
-                        PathingAllowance = c.Time(precision: 7),
+                        EngineeringAllowance = c.Time(nullable: false, precision: 7),
+                        PathingAllowance = c.Time(nullable: false, precision: 7),
                         LocationActivityString = c.String(),
                         LocationActivity = c.Int(nullable: false),
-                        PerformanceAllowance = c.Time(precision: 7),
+                        PerformanceAllowance = c.Time(nullable: false, precision: 7),
                         OrderTime = c.String(),
                         ScheduleRecord_Id = c.Int(),
                     })

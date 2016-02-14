@@ -4,15 +4,15 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers
 {
     public class TimingAllowanceParser : ITimingAllowanceParser
     {
-        public TimeSpan? ParseTime(string timeString)
+        public TimeSpan ParseTime(string timeString)
         {
             if (string.IsNullOrWhiteSpace(timeString) || timeString == "0000")
-                return null;
+                return new TimeSpan(0);
             
             timeString = timeString.Trim();
 
             var result = new TimeSpan();
-            var minutes = 0;
+            int minutes;
 
             if (timeString[timeString.Length - 1] == 'H')
             {
@@ -31,7 +31,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers
                 }
                 catch (FormatException)
                 {
-                    return null;
+                    return new TimeSpan(0);
                 }
 
                 return result.Add(TimeSpan.FromMinutes(minutes));
@@ -49,7 +49,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers
                 }
                 catch (FormatException)
                 {
-                    return null;
+                    return new TimeSpan(0);
                 }
             }
             

@@ -52,6 +52,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
             record.LocationActivity = (LocationActivity)_enumPropertyParsers["LocationActivity"].ParseProperty(record.LocationActivityString);
 
             record.OrderTime = !string.IsNullOrWhiteSpace(record.Pass) ? record.Pass : record.WorkingDeparture;
+
+            if (record.PublicArrival == "0000")
+                record.PublicArrival = string.Empty;
+
+            if (record.PublicDeparture == "0000")
+                record.PublicDeparture = string.Empty;
             
             return record;
         }

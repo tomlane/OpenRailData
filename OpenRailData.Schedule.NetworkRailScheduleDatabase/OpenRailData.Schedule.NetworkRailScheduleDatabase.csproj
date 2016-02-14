@@ -46,9 +46,9 @@
   <ItemGroup>
     <Compile Include="IScheduleContext.cs" />
     <Compile Include="IScheduleDatabase.cs" />
-    <Compile Include="Migrations\201602132218558_InitialMigration.cs" />
-    <Compile Include="Migrations\201602132218558_InitialMigration.Designer.cs">
-      <DependentUpon>201602132218558_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201602141842383_InitialMigration.cs" />
+    <Compile Include="Migrations\201602141842383_InitialMigration.Designer.cs">
+      <DependentUpon>201602141842383_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,8 +71,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602132218558_InitialMigration.resx">
-      <DependentUpon>201602132218558_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602141842383_InitialMigration.resx">
+      <DependentUpon>201602141842383_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -41,7 +41,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
         {
             foreach (var entity in entities)
             {
-                _context.GetSet<TEntity>().Add(entity);
+                _context.GetSet<TEntity>().Remove(entity);
             }
         }
 

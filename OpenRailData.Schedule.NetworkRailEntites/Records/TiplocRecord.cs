@@ -13,7 +13,7 @@
         public string PoMcbCode { get; set; } = string.Empty;
         public string CrsCode { get; set; } = string.Empty;
         public string CapriDescription { get; set; } = string.Empty;
-        public string OldTiploc { get; set; }
+        public string OldTiploc { get; set; } = string.Empty;
 
         protected bool Equals(TiplocRecord other)
         {

@@ -42,6 +42,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers
 
             record.OrderTime = record.WorkingArrival;
 
+            if (record.PublicArrival == "0000")
+                record.PublicArrival = string.Empty;
+
+            if (record.PublicDeparture == "0000")
+                record.PublicDeparture = string.Empty;
+
             return record;
         }
     }

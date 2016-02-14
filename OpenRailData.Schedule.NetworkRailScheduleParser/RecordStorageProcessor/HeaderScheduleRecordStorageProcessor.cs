@@ -1,20 +1,22 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
 {
     public class HeaderScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
     {
-        private readonly IScheduleUnitOfWork _unitOfWork;
+        private readonly IDbContextFactory<ScheduleContext> _contextFactory;
 
-        public HeaderScheduleRecordStorageProcessor(IScheduleUnitOfWork unitOfWork)
+        public HeaderScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
         {
-            if (unitOfWork == null)
-                throw new ArgumentNullException(nameof(unitOfWork));
+            if (contextFactory == null)
+                throw new ArgumentNullException(nameof(contextFactory));
 
-            _unitOfWork = unitOfWork;
+            _contextFactory = contextFactory;
         }
 
         public ScheduleRecordType RecordKey { get; } = ScheduleRecordType.HD;
@@ -29,9 +31,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
             if (recordToSave == null)
                 throw new ArgumentException("Failed to cast record for saving");
 
-            _unitOfWork.HeaderRecords.Add(recordToSave);
+            using (var unitOfWork = new ScheduleUnitOfWork(_contextFactory.Create()))
+            {
+                unitOfWork.HeaderRecords.Add(recordToSave);
 
-            _unitOfWork.Complete();
+                unitOfWork.Complete();
+            }
 
             Trace.TraceInformation("Processed a CIF Header Record.");
         }

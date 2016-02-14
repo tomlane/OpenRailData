@@ -1,20 +1,22 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
 {
     public class BasicScheduleInsertScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
     {
-        private readonly IScheduleUnitOfWork _unitOfWork;
+        private readonly IDbContextFactory<ScheduleContext> _contextFactory;
 
-        public BasicScheduleInsertScheduleRecordStorageProcessor(IScheduleUnitOfWork unitOfWork)
+        public BasicScheduleInsertScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
         {
-            if (unitOfWork == null)
-                throw new ArgumentNullException(nameof(unitOfWork));
+            if (contextFactory == null)
+                throw new ArgumentNullException(nameof(contextFactory));
+            _contextFactory = contextFactory;
 
-            _unitOfWork = unitOfWork;
         }
 
         public ScheduleRecordType RecordKey { get; } = ScheduleRecordType.BSN;
@@ -26,9 +28,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
 
             var recordToSave = record as ScheduleRecord;
 
-            _unitOfWork.ScheduleRecords.Add(recordToSave);
+            using (var unitOfWork = new ScheduleUnitOfWork(_contextFactory.Create()))
+            {
+                unitOfWork.ScheduleRecords.Add(recordToSave);
 
-            _unitOfWork.Complete();
+                unitOfWork.Complete();
+            }
 
             Trace.TraceInformation("Processed a Basic Schedule Insert Record.");
         }

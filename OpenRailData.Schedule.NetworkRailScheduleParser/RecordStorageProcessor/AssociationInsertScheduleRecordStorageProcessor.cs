@@ -1,20 +1,22 @@
 ﻿using System;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
 {
     public class AssociationInsertScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
     {
-        private readonly IScheduleUnitOfWork _unitOfWork;
+        private readonly IDbContextFactory<ScheduleContext> _contextFactory;
 
-        public AssociationInsertScheduleRecordStorageProcessor(IScheduleUnitOfWork unitOfWork)
+        public AssociationInsertScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
         {
-            if (unitOfWork == null)
-                throw new ArgumentNullException(nameof(unitOfWork));
+            if (contextFactory == null)
+                throw new ArgumentNullException(nameof(contextFactory));
 
-            _unitOfWork = unitOfWork;
+            _contextFactory = contextFactory;
         }
 
         public ScheduleRecordType RecordKey { get; } = ScheduleRecordType.AAN;
@@ -29,9 +31,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
             if (recordToSave == null)
                 throw new ArgumentException("Failed to cast record for saving.");
 
-            _unitOfWork.AssociationRecords.Add(recordToSave);
+            using (var unitOfWork = new ScheduleUnitOfWork(_contextFactory.Create()))
+            {
+                unitOfWork.AssociationRecords.Add(recordToSave);
 
-            _unitOfWork.Complete();
+                unitOfWork.Complete();
+            }
 
             Trace.TraceInformation("Processed a Association Insert Record.");
         }

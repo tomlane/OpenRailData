@@ -8,12 +8,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
     {
         private readonly IScheduleContext _context;
 
-        public ScheduleUnitOfWork(IDbContextFactory<ScheduleContext> contextFactory)
+        public ScheduleUnitOfWork(IScheduleContext context)
         {
-            if (contextFactory == null)
-                throw new ArgumentNullException(nameof(contextFactory));
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
 
-            _context = contextFactory.Create();
+            _context = context;
 
             HeaderRecords = new HeaderRecordRepository(_context);
             TiplocRecords = new TiplocRecordRepository(_context);

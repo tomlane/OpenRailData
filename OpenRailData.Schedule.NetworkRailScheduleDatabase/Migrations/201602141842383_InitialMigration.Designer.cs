@@ -13,7 +13,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleDatabase.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201602132218558_InitialMigration"; }
+            get { return "201602141842383_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

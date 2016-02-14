@@ -20,7 +20,7 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
 
             var scheduleManager = container.Resolve<IScheduleManager>();
 
-            var entites = scheduleManager.GetDailyUpdateScheduleRecords().ToList();
+            var entites = scheduleManager.GetWeeklyScheduleRecords().ToList();
             
             var end = Process.GetCurrentProcess().TotalProcessorTime;
 

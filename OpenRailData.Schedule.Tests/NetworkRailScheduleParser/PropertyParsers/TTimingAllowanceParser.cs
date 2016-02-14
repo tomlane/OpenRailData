@@ -13,21 +13,27 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
         }
 
         [Test]
-        public void returns_null_when_argument_is_null_or_empty()
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" \t ")]
+        public void returns_null_when_argument_is_null_or_empty(string value)
         {
             var parser = BuildParser();
+            var expectedResult = new TimeSpan(0);
 
-            Assert.IsNull(parser.ParseTime(null));
-            Assert.IsNull(parser.ParseTime(string.Empty));
-            Assert.IsNull(parser.ParseTime(" \t "));
+            var result = parser.ParseTime(value);
+
+            Assert.AreEqual(expectedResult, result);
         }
 
         [Test]
-        public void returns_null_when_argument_is_four_zeros()
+        public void returns_zero_span_when_argument_is_four_zeros()
         {
             var parser = BuildParser();
 
-            Assert.IsNull(parser.ParseTime("0000"));
+            var result = parser.ParseTime("0000");
+
+            Assert.AreEqual(new TimeSpan(0), result);
         }
 
         [Test]
@@ -73,15 +79,16 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
         }
 
         [Test]
-        public void returns_null_when_argument_is_invalid()
+        [TestCase("Y")]
+        [TestCase("XYZ|")]
+        public void returns_null_when_argument_is_invalid(string value)
         {
             var parser = BuildParser();
+            var expectedResult = new TimeSpan(0);
 
-            var result = parser.ParseTime("Y");
-            Assert.IsNull(result);
+            var result = parser.ParseTime(value);
 
-            result = parser.ParseTime("XYZ|");
-            Assert.IsNull(result);
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }
