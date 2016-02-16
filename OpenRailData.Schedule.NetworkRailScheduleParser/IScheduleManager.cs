@@ -5,8 +5,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
     public interface IScheduleManager
     {
-        IList<IScheduleRecord> GetDailyUpdateScheduleRecords();
-        IList<IScheduleRecord> GetWeeklyScheduleRecords();
+        IList<IScheduleRecord> GetRecordsByScheduleFileUrl(string url);
 
         IList<IScheduleRecord> MergeScheduleRecords(IList<IScheduleRecord> scheduleRecords);
 

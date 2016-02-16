@@ -25,6 +25,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             container.RegisterType<IFetchScheduleUrlProvider, CifFetchScheduleUrlProvider>();
             container.RegisterType<IConfigManager, AppSettingsConfigManager>();
             container.RegisterType<IScheduleFileFetcher, WebScheduleFileFetcher>();
+            container.RegisterType<IScheduleRecordSetParser, ScheduleRecordSetParser>();
 
             container.RegisterType<IScheduleRecordParser, AssociationCifRecordParser>("AssociationCifRecordParser");
             container.RegisterType<IScheduleRecordParser, BasicScheduleExtraDetailsCifRecordParser>("BasicScheduleExtraDetailsCifRecordParser");

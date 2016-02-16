@@ -28,7 +28,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
             
             using (var unitOfWork = new ScheduleUnitOfWork(_contextFactory.Create()))
             {
-                unitOfWork.ScheduleRecords.DeleteRecord(record as ScheduleRecord);
+                var recordToDelete = record as ScheduleRecord;
+
+                unitOfWork.ScheduleRecords.DeleteRecord(recordToDelete);
 
                 unitOfWork.Complete();
             }

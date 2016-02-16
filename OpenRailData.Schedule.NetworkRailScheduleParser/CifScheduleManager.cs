@@ -34,22 +34,11 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             _scheduleRecordSetParser = scheduleRecordSetParser;
         }
 
-        public IList<IScheduleRecord> GetDailyUpdateScheduleRecords()
+        public IList<IScheduleRecord> GetRecordsByScheduleFileUrl(string url)
         {
-            Trace.TraceInformation("GetDailyUpdateScheduleRecords called.");
+            Trace.TraceInformation("GetRecordsByScheduleFileUrl called.");
 
-            var scheduleFile = _scheduleFileFetcher.FetchDailyScheduleUpdateFile();
-
-            var recordsToParse = _scheduleFileRecordExtractor.ExtractScheduleFileRecords(scheduleFile);
-
-            return _scheduleRecordSetParser.ParseScheduleRecordSet(recordsToParse).ToList();
-        }
-
-        public IList<IScheduleRecord> GetWeeklyScheduleRecords()
-        {
-            Trace.TraceInformation("GetWeeklyScheduleRecords called.");
-
-            var scheduleFile = _scheduleFileFetcher.FetchWeeklyScheduleFile();
+            var scheduleFile = _scheduleFileFetcher.FetchScheduleFileFromUrl(url);
 
             var recordsToParse = _scheduleFileRecordExtractor.ExtractScheduleFileRecords(scheduleFile);
 
