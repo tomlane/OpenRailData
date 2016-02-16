@@ -33,6 +33,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleDatabase
             modelBuilder.Entity<TiplocRecord>().ToTable("Tiploc", schema);
             modelBuilder.Entity<ScheduleRecord>().ToTable("Record", schema);
             modelBuilder.Entity<ScheduleLocationRecord>().ToTable("Location", schema);
+
+            //setting cascade delete on schedule record locations
+            modelBuilder.Entity<ScheduleRecord>()
+                .HasMany(r => r.ScheduleLocations)
+                .WithOptional()
+                .WillCascadeOnDelete(true);
         }
     }
 

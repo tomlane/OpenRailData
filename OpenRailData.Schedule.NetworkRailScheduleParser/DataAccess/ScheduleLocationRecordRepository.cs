@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
@@ -10,12 +11,20 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
         {
         }
 
-        public void SaveRecord(ScheduleLocationRecord record)
+        public void InsertRecords(IEnumerable<ScheduleLocationRecord> records)
         {
-            if (record == null)
-                throw new ArgumentNullException(nameof(record));
+            if (records == null)
+                throw new ArgumentNullException(nameof(records));
 
-            Add(record);
+            AddRange(records);
+        }
+
+        public void DeleteRecords(IEnumerable<ScheduleLocationRecord> records)
+        {
+            if (records == null)
+                throw new ArgumentNullException(nameof(records));
+
+            RemoveRange(records);
         }
     }
 }

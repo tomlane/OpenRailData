@@ -24,14 +24,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             _scheduleUrlProvider = scheduleUrlProvider;
         }
 
-        public byte[] FetchDailyScheduleUpdateFile()
+        public byte[] FetchScheduleFileFromUrl(string url)
         {
-            return GetScheduleFile(_scheduleUrlProvider.GetDailyUpdateScheduleUrl());
-        }
+            if (string.IsNullOrWhiteSpace(url))
+                throw new ArgumentNullException(nameof(url));
 
-        public byte[] FetchWeeklyScheduleFile()
-        {
-            return GetScheduleFile(_scheduleUrlProvider.GetWeeklyScheduleUrl());
+            return GetScheduleFile(url);
         }
 
         private byte[] GetScheduleFile(string url)

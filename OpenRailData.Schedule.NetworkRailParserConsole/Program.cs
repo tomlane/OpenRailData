@@ -13,6 +13,8 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
             Trace.Listeners.Add(new ConsoleTraceListener());
             Trace.TraceInformation("Starting up...");
 
+            const string url = "https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&day=toc-update-mon.CIF.gz";
+
             var start = Process.GetCurrentProcess().TotalProcessorTime;
 
             var container = CifParserIocContainerBuilder.Build();
@@ -20,7 +22,7 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
 
             var scheduleManager = container.Resolve<IScheduleManager>();
 
-            var entites = scheduleManager.GetWeeklyScheduleRecords().ToList();
+            var entites = scheduleManager.GetRecordsByScheduleFileUrl(url).ToList();
             
             var end = Process.GetCurrentProcess().TotalProcessorTime;
 
