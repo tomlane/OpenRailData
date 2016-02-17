@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using Common.Logging;
+using Common.Logging.Configuration;
+using Common.Logging.NLog;
 using Microsoft.Practices.Unity;
 using OpenRailData.Schedule.NetworkRailScheduleParser;
 
@@ -8,17 +11,31 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
 {
     class Program
     {
+        private static ILog Logger; 
+
         static void Main(string[] args)
         {
-            Trace.Listeners.Add(new ConsoleTraceListener());
-            Trace.TraceInformation("Starting up...");
+            var loggingSettings = new NameValueCollection
+            {
+                ["configType"] = "FILE",
+                ["configFile"] = "NLog.config"
+            };
 
-            const string url = "https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&day=toc-update-mon.CIF.gz";
+            LogManager.Adapter = new NLogLoggerFactoryAdapter(loggingSettings);
+
+            Logger = LogManager.GetLogger("NetworkRail.ScheduleParser.Console");
+            
+            if (Logger.IsTraceEnabled)
+                Logger.Trace("Starting up...");
+
+            const string url = "https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&day=toc-update-tue.CIF.gz";
 
             var start = Process.GetCurrentProcess().TotalProcessorTime;
 
             var container = CifParserIocContainerBuilder.Build();
-            Trace.TraceInformation("Dependency Injection container built.");
+
+            if (Logger.IsTraceEnabled)
+                Logger.Trace("Dependency Injection container built.");
 
             var scheduleManager = container.Resolve<IScheduleManager>();
 
@@ -26,8 +43,10 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
             
             var end = Process.GetCurrentProcess().TotalProcessorTime;
 
-            Trace.TraceInformation("Record Parsing Time: {0} ms.", (end - start).TotalMilliseconds);
-            Trace.TraceInformation("Records Parsed: {0}", entites.Count);
+            if (Logger.IsTraceEnabled)
+                Logger.Trace($"Record Parsing Time: {(end - start).TotalMilliseconds} ms.");
+                Logger.Trace($"Records Parsed: {entites.Count}");
+                
 
             start = Process.GetCurrentProcess().TotalProcessorTime;
 
@@ -35,10 +54,10 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
 
             end = Process.GetCurrentProcess().TotalProcessorTime;
 
-            Trace.TraceInformation("Record Merging Time: {0} ms.", (end - start).TotalMilliseconds);
-            Trace.TraceInformation("Merged Records Count: {0}", entites.Count);
-
-            Trace.TraceInformation("Schedule record processing complete. Ready for storage.");
+            if (Logger.IsTraceEnabled)
+                Logger.Trace($"Record Merging Time: {(end - start).TotalMilliseconds} ms.");
+                Logger.Trace($"Merged Records Count: {entites.Count}");
+                Logger.Trace("Schedule record processing complete. Ready for storage.");
 
             start = Process.GetCurrentProcess().TotalProcessorTime;
 
@@ -46,11 +65,11 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
 
             end = Process.GetCurrentProcess().TotalProcessorTime;
 
-            Trace.TraceInformation("Schedule storage complete.");
-            Trace.TraceInformation("Storage Processing Time: {0} ms.", (end - start).TotalMilliseconds);
+            if (Logger.IsTraceEnabled)
+                Logger.Trace("Schedule storage complete.");
+                Logger.Trace($"Storage Processing Time: {(end - start).TotalMilliseconds} ms.");
 
-            Trace.TraceInformation("Press any key to close...");
-
+            Console.WriteLine("Press any key to close...");
             Console.ReadLine();
         }
     }

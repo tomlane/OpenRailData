@@ -1,6 +1,5 @@
 namespace OpenRailData.Schedule.NetworkRailScheduleDatabase.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     
     public partial class ScheduleLocationCascadeDelete : DbMigration

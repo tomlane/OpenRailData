@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 
@@ -36,7 +35,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
         public IList<IScheduleRecord> GetRecordsByScheduleFileUrl(string url)
         {
-            Trace.TraceInformation("GetRecordsByScheduleFileUrl called.");
+            Console.WriteLine("GetRecordsByScheduleFileUrl called.");
 
             var scheduleFile = _scheduleFileFetcher.FetchScheduleFileFromUrl(url);
 
@@ -50,7 +49,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             if (scheduleRecords == null || !scheduleRecords.Any())
                 throw new ArgumentNullException(nameof(scheduleRecords));
 
-            Trace.TraceInformation("MergeScheduleRecords called.");
+            Console.WriteLine("MergeScheduleRecords called.");
             
             return _scheduleRecordMerger.MergeScheduleRecords(scheduleRecords);
         }

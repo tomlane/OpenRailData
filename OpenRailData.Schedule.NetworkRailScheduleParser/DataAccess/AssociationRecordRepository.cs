@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
@@ -7,6 +8,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
 {
     public class AssociationRecordRepository : BaseRepository<AssociationRecord>, IAssociationRecordRepository
     {
+        private readonly ILog Logger = LogManager.GetLogger("Repository.AssociationRecord");
+
         public AssociationRecordRepository(IScheduleContext context) : base(context)
         {
         }
@@ -16,6 +19,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
+            if (Logger.IsTraceEnabled)
+                Logger.Trace($"Inserting new Association record: {record} ");
+
             Add(record);
         }
 
@@ -24,15 +30,27 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var currentRecord =
-                Find(x => x.MainTrainUid == record.MainTrainUid && x.AssocTrainUid == record.AssocTrainUid).FirstOrDefault();
+            var currentRecord = Find(x =>
+                x.MainTrainUid == record.MainTrainUid &&
+                x.AssocTrainUid == record.AssocTrainUid &&
+                x.DateFrom == record.DateFrom &&
+                x.StpIndicator == record.StpIndicator)
+                .FirstOrDefault();
 
             if (currentRecord == null)
-                throw new ArgumentException("Could not find Association Record to amend.");
+            {
+                if (Logger.IsWarnEnabled)
+                    Logger.Warn($"Failed to find Assocation record to amend. Criteria: {record}");
+            }
+            else
+            {
+                if (Logger.IsTraceEnabled)
+                    Logger.Trace($"Amending Association record: {currentRecord}. New record: {record}");
 
-            currentRecord = record;
+                currentRecord = record;
 
-            Add(currentRecord);
+                Add(currentRecord);
+            }
         }
 
         public void DeleteRecord(AssociationRecord record)
@@ -48,9 +66,17 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
                 .FirstOrDefault();
 
             if (recordToDelete == null)
-                throw new ArgumentException("Could not find Association Record to delete.");
+            {
+                if (Logger.IsWarnEnabled)
+                    Logger.Warn($"Failed to find Assocation record to delete. Criteria: {record}");
+            }
+            else
+            {
+                if (Logger.IsTraceEnabled)
+                    Logger.Trace($"Deleting Association record: {recordToDelete}. Criteria: {record}");
 
-            Remove(recordToDelete);
+                Remove(recordToDelete);
+            }
         }
     }
 }

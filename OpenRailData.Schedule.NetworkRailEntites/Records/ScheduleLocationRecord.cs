@@ -83,5 +83,10 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
                 return hashCode;
             }
         }
+
+        public override string ToString()
+        {
+            return $"ActualCall: {ActualCall}, EngineeringAllowance: {EngineeringAllowance}, Id: {Id}, Line: {Line}, Location: {Location}, LocationActivity: {LocationActivity}, LocationActivityString: {LocationActivityString}, OrderTime: {OrderTime}, Pass: {Pass}, Path: {Path}, PathingAllowance: {PathingAllowance}, PerformanceAllowance: {PerformanceAllowance}, Platform: {Platform}, PublicArrival: {PublicArrival}, PublicCall: {PublicCall}, PublicDeparture: {PublicDeparture}, RecordIdentity: {RecordIdentity}, Tiploc: {Tiploc}, TiplocSuffix: {TiplocSuffix}, WorkingArrival: {WorkingArrival}, WorkingDeparture: {WorkingDeparture}";
+        }
     }
 }

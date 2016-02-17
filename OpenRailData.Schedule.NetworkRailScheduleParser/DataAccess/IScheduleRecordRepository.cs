@@ -2,7 +2,7 @@
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
 {
-    public interface IScheduleRecordRepository : IBaseRepository<ScheduleRecord>
+    public interface IScheduleRecordRepository
     {
         void InsertRecord(ScheduleRecord record);
 

@@ -27,5 +27,10 @@
         {
             return (int) RecordIdentity;
         }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, RecordIdentity: {RecordIdentity}";
+        }
     }
 }

@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Data.Entity.Infrastructure;
-using System.Diagnostics;
+using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
 {
-    public class BasicScheduleDeleteScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
+    public class ScheduleDeleteScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
     {
         private readonly IDbContextFactory<ScheduleContext> _contextFactory;
-
-        public BasicScheduleDeleteScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
+        private readonly ILog Logger = LogManager.GetLogger("RecordStorage.Schedule.Delete");
+        
+        public ScheduleDeleteScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
         {
             if (contextFactory == null)
                 throw new ArgumentNullException(nameof(contextFactory));
@@ -35,7 +36,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
                 unitOfWork.Complete();
             }
 
-            Trace.TraceInformation("Processed a Basic Schedule Delete Record.");
+            if (Logger.IsTraceEnabled)
+                Logger.Trace("Processed a Schedule Delete Record.");
         }
     }
 }

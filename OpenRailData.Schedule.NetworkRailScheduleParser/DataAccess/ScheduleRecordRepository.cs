@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
@@ -7,6 +8,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
 {
     public class ScheduleRecordRepository : BaseRepository<ScheduleRecord>, IScheduleRecordRepository
     {
+        private readonly ILog Logger = LogManager.GetLogger("Repository.ScheduleRecord");
+
         public ScheduleRecordRepository(IScheduleContext context) : base(context)
         {
         }
@@ -16,6 +19,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
+            if (Logger.IsTraceEnabled)
+                Logger.Trace($"Inserting new Schedule record: {record}");
+
             Add(record);
         }
 
@@ -24,26 +30,32 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var currentRecord = Find(x => x.TrainUid == record.TrainUid).FirstOrDefault();
+            var currentRecord = Find(x =>
+                x.TrainUid == record.TrainUid &&
+                x.DateRunsFrom == record.DateRunsFrom &&
+                x.StpIndicator == record.StpIndicator)
+                .FirstOrDefault();
 
             if (currentRecord == null)
-                throw new ArgumentException("Could not find Schedule Record to amend.");
+            {
+                if (Logger.IsWarnEnabled)
+                    Logger.Warn($"Failed to find Schedule record to amend. Criteria: {record}");
+            }
+            else
+            {
+                if (Logger.IsTraceEnabled)
+                    Logger.Trace($"Amending Schedule record: {currentRecord}. New record: {record}");
 
-            currentRecord = record;
+                currentRecord = record;
 
-            Add(currentRecord);
+                Add(currentRecord);
+            }
         }
 
         public void DeleteRecord(ScheduleRecord record)
         {
-            if (string.IsNullOrWhiteSpace(record.TrainUid))
-                throw new ArgumentNullException(nameof(record.TrainUid));
-
-            if (record.DateRunsFrom == null)
-                throw new ArgumentNullException(nameof(record.DateRunsFrom));
-
-            if (record.StpIndicator == 0)
-                throw new ArgumentNullException(nameof(record.StpIndicator));
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
 
             var recordToDelete = Find(x => 
                 x.TrainUid == record.TrainUid && 
@@ -52,9 +64,17 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
                 .FirstOrDefault();
 
             if (recordToDelete == null)
-                throw new ArgumentException("Could not find Schedule Record to delete.");
+            {
+                if (Logger.IsWarnEnabled)
+                    Logger.Warn($"Failed to find Schedule record to delete. Criteria: {record}");
+            }
+            else
+            {
+                if (Logger.IsTraceEnabled)
+                    Logger.Trace($"Deleting Schedule record: {recordToDelete}. Criteria: {record}");
 
-            Remove(recordToDelete);
+                Remove(recordToDelete);
+            }
         }
     }
 }

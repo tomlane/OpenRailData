@@ -7,7 +7,7 @@ using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, IIdentifyable
+    public class BaseRepository<TEntity> where TEntity : class, IIdentifyable
     {
         private readonly IScheduleContext _context;
 
@@ -19,12 +19,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
             _context = context;
         }
 
-        public void Add(TEntity entity)
+        protected void Add(TEntity entity)
         {
             _context.GetSet<TEntity>().Add(entity);
         }
 
-        public void AddRange(IEnumerable<TEntity> entities)
+        protected void AddRange(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
@@ -32,12 +32,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
             }
         }
 
-        public void Remove(TEntity entity)
+        protected void Remove(TEntity entity)
         {
             _context.GetSet<TEntity>().Remove(entity);
         }
 
-        public void RemoveRange(IEnumerable<TEntity> entities)
+        protected void RemoveRange(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
@@ -45,12 +45,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
             }
         }
 
-        public TEntity Get(int id)
+        protected TEntity Get(int id)
         {
             return _context.GetSet<TEntity>().FirstOrDefault(x => x.Id == id);
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        protected IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return _context.GetSet<TEntity>().Where(predicate).ToList();
         }

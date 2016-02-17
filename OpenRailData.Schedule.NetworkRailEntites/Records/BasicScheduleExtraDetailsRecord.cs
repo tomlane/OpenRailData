@@ -46,5 +46,10 @@
                 return hashCode;
             }
         }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, RecordIdentity: {RecordIdentity}, UicCode: {UicCode}, AtocCode: {AtocCode}, AtsCode: {AtsCode}, Rsid: {Rsid}, DataSource: {DataSource}";
+        }
     }
 }

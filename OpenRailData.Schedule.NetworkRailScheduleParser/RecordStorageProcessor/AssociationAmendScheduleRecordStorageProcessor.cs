@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.Entity.Infrastructure;
-using System.Diagnostics;
+using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
@@ -10,6 +10,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
     public class AssociationAmendScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
     {
         private readonly IDbContextFactory<ScheduleContext> _contextFactory;
+        private readonly ILog Logger = LogManager.GetLogger("RecordStorage.Association.Amend");
 
         public AssociationAmendScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
         {
@@ -33,7 +34,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
                 unitOfWork.Complete();
             }
 
-            Trace.TraceInformation("Processed a Association Amend Record.");
+            if (Logger.IsTraceEnabled)
+                Logger.Trace("Processed an Association Amend Record.");
         }
     }
 }

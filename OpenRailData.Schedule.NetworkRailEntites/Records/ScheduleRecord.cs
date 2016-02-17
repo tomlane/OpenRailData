@@ -143,5 +143,10 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
                 return hashCode;
             }
         }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, RecordIdentity: {RecordIdentity}, TrainUid: {TrainUid}, UniqueId: {UniqueId}, DateRunsFrom: {DateRunsFrom}, DateRunsTo: {DateRunsTo}, RunningDays: {RunningDays}, BankHolidayRunning: {BankHolidayRunning}, TrainStatus: {TrainStatus}, TrainCategory: {TrainCategory}, TrainIdentity: {TrainIdentity}, HeadCode: {HeadCode}, CourseIndicator: {CourseIndicator}, TrainServiceCode: {TrainServiceCode}, PortionId: {PortionId}, PowerType: {PowerType}, TimingLoad: {TimingLoad}, Speed: {Speed}, OperatingCharacteristicsString: {OperatingCharacteristicsString}, OperatingCharacteristics: {OperatingCharacteristics}, SeatingClass: {SeatingClass}, Sleepers: {Sleepers}, Reservations: {Reservations}, ConnectionIndicator: {ConnectionIndicator}, CateringCode: {CateringCode}, ServiceBranding: {ServiceBranding}, StpIndicator: {StpIndicator}, ServiceTypeFlags: {ServiceTypeFlags}, UicCode: {UicCode}, AtocCode: {AtocCode}, AtsCode: {AtsCode}, Rsid: {Rsid}, DataSource: {DataSource}, ScheduleLocations: {ScheduleLocations}";
+        }
     }
 }

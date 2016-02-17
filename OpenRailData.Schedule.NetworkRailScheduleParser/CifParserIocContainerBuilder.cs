@@ -64,9 +64,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             container.RegisterType<IScheduleRecordStorageProcessor, AssociationAmendScheduleRecordStorageProcessor>("AssociationAmendScheduleRecordStorageProcessor");
             container.RegisterType<IScheduleRecordStorageProcessor, AssociationDeleteScheduleRecordStorageProcessor>("AssociationDeleteScheduleRecordStorageProcessor");
             container.RegisterType<IScheduleRecordStorageProcessor, AssociationInsertScheduleRecordStorageProcessor>("AssociationInsertScheduleRecordStorageProcessor");
-            container.RegisterType<IScheduleRecordStorageProcessor, BasicScheduleAmendScheduleRecordStorageProcessor>("BasicScheduleAmendScheduleRecordStorageProcessor");
-            container.RegisterType<IScheduleRecordStorageProcessor, BasicScheduleDeleteScheduleRecordStorageProcessor>("BasicScheduleDeleteScheduleRecordStorageProcessor");
-            container.RegisterType<IScheduleRecordStorageProcessor, BasicScheduleInsertScheduleRecordStorageProcessor>("BasicScheduleInsertScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, ScheduleAmendScheduleRecordStorageProcessor>("ScheduleAmendScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, ScheduleDeleteScheduleRecordStorageProcessor>("ScheduleDeleteScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, ScheduleInsertScheduleRecordStorageProcessor>("ScheduleInsertScheduleRecordStorageProcessor");
             container.RegisterType<IScheduleRecordStorageProcessor, TiplocAmendScheduleRecordStorageProcessor>("TiplocAmendScheduleRecordStorageProcessor");
             container.RegisterType<IScheduleRecordStorageProcessor, TiplocDeleteScheduleRecordStorageProcessor>("TiplocDeleteScheduleRecordStorageProcessor");
             container.RegisterType<IScheduleRecordStorageProcessor, TiplocInsertScheduleRecordStorageProcessor>("TiplocInsertScheduleRecordStorageProcessor");

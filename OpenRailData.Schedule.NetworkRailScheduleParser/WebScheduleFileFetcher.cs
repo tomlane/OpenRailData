@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
@@ -34,7 +33,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
         private byte[] GetScheduleFile(string url)
         {
-            Trace.TraceInformation("Preparing web request for the following url: {0}", url);
+            Console.WriteLine("Preparing web request for the following url: {0}", url);
 
             var request = (HttpWebRequest)WebRequest.Create(url);
 
@@ -43,7 +42,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
             var response = (HttpWebResponse)request.GetResponse();
 
-            Trace.TraceInformation("Response received for web request.");
+            Console.WriteLine("Response received for web request.");
 
             if (response.StatusCode != HttpStatusCode.OK)
                 throw new HttpRequestException("Failed to fetch daily schedule update");

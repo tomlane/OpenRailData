@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.Entity.Infrastructure;
-using System.Diagnostics;
+using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
@@ -10,7 +10,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
     public class TiplocInsertScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
     {
         private readonly IDbContextFactory<ScheduleContext> _contextFactory;
-
+        private readonly ILog Logger = LogManager.GetLogger("RecordStorage.Tiploc.Insert");
+        
         public TiplocInsertScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
         {
             if (contextFactory == null)
@@ -33,7 +34,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
                 unitOfWork.Complete();
             }
 
-            Trace.TraceInformation("Processed a Tiploc Insert Record.");
+            if (Logger.IsTraceEnabled)
+                Logger.Trace("Processed a Tiploc Insert Record.");
         }
     }
 }

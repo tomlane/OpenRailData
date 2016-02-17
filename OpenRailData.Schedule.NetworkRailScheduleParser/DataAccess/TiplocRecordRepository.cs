@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
@@ -7,6 +8,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
 {
     public class TiplocRecordRepository : BaseRepository<TiplocRecord>, ITiplocRecordRepository 
     {
+        private readonly ILog Logger = LogManager.GetLogger("Repository.TiplocRecord");
+
         public TiplocRecordRepository(IScheduleContext context) : base(context)
         {
         }
@@ -16,22 +19,33 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
+            if (Logger.IsTraceEnabled)
+                Logger.Trace($"Inserting new Tiploc record: {record}");
+
             Add(record);
         }
 
-        public void AmendRecord(TiplocRecord newRecord)
+        public void AmendRecord(TiplocRecord record)
         {
-            if (newRecord == null)
-                throw new ArgumentNullException(nameof(newRecord));
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
 
-            var currentRecord = Find(x => x.TiplocCode == newRecord.TiplocCode).FirstOrDefault();
+            var currentRecord = Find(x => x.TiplocCode == record.TiplocCode).FirstOrDefault();
 
             if (currentRecord == null)
-                throw new ArgumentException("Could not find a Tiploc Record to update.");
+            {
+                if (Logger.IsWarnEnabled)
+                    Logger.Warn($"Failed to find Tiploc record to amend. Criteria: {record}");
+            }
+            else
+            {
+                if (Logger.IsTraceEnabled)
+                    Logger.Trace($"Amending Tiploc record: {currentRecord}. New record: {record}");
 
-            currentRecord = newRecord;
+                currentRecord = record;
 
-            Add(currentRecord);
+                Add(currentRecord);
+            }
         }
 
         public void DeleteRecord(TiplocRecord record)
@@ -42,9 +56,17 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
             var recordToDelete = Find(x => x.TiplocCode == record.TiplocCode).FirstOrDefault();
 
             if (recordToDelete == null)
-                throw new ArgumentException("Could not find Tiploc Record to delete.");
+            {
+                if (Logger.IsWarnEnabled)
+                    Logger.Warn($"Failed to find Tiploc record to delete. Criteria: {record}");
+            }
+            else
+            {
+                if (Logger.IsTraceEnabled)
+                    Logger.Trace($"Deleting Tiploc record: {recordToDelete}. Criteria: {record}");
 
-            Remove(recordToDelete);
+                Remove(recordToDelete);
+            }
         }
     }
 }

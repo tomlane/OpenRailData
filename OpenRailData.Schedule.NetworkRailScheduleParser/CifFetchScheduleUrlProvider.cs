@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
@@ -15,14 +14,14 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
         public string GetWeeklyScheduleUrl()
         {
-            Trace.TraceInformation("Fetching URL for the weekly schedule.");
+            Console.WriteLine("Fetching URL for the weekly schedule.");
             
             return "https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&day=toc-full.CIF.gz";
         }
 
         public string GetDailyUpdateScheduleUrl()
         {
-            Trace.TraceInformation("Fetching URL for the daily schedule update.");
+            Console.WriteLine("Fetching URL for the daily schedule update.");
 
             return _dailyUrlDictionary[DateTime.Now.DayOfWeek];
         }

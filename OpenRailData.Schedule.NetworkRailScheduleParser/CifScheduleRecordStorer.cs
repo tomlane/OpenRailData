@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor;
 
@@ -25,9 +23,12 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             if (recordsToStore == null || !recordsToStore.Any())
                 throw new ArgumentNullException(nameof(recordsToStore));
 
-            Parallel.ForEach(recordsToStore, StoreRecord);
+            foreach (var scheduleRecord in recordsToStore)
+            {
+                StoreRecord(scheduleRecord);
+            }
 
-            Trace.TraceInformation("Finished storing schedule records.");
+            Console.WriteLine("Finished storing schedule records.");
         }
 
         private void StoreRecord(IScheduleRecord record)

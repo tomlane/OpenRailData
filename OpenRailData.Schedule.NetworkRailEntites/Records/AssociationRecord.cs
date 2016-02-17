@@ -73,5 +73,10 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
                 return hashCode;
             }
         }
+
+        public override string ToString()
+        {
+            return $"AssocDays: {AssocDays}, AssocLocationSuffix: {AssocLocationSuffix}, AssocTrainUid: {AssocTrainUid}, AssocType: {AssocType}, BaseLocationSuffix: {BaseLocationSuffix}, Category: {Category}, DateFrom: {DateFrom}, DateIndicator: {DateIndicator}, DateTo: {DateTo}, DiagramType: {DiagramType}, Id: {Id}, Location: {Location}, MainTrainUid: {MainTrainUid}, RecordIdentity: {RecordIdentity}, StpIndicator: {StpIndicator}";
+        }
     }
 }

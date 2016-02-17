@@ -3,7 +3,7 @@ using OpenRailData.Schedule.NetworkRailEntites.Records;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
 {
-    public interface IScheduleLocationRecordRepository : IBaseRepository<ScheduleLocationRecord>
+    public interface IScheduleLocationRecordRepository
     {
         void InsertRecords(IEnumerable<ScheduleLocationRecord> records);
 

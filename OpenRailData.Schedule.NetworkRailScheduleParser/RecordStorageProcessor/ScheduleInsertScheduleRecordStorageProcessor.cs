@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Data.Entity.Infrastructure;
-using System.Diagnostics;
+using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
 {
-    public class BasicScheduleInsertScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
+    public class ScheduleInsertScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
     {
         private readonly IDbContextFactory<ScheduleContext> _contextFactory;
+        private readonly ILog Logger = LogManager.GetLogger("RecordStorage.Schedule.Insert");
 
-        public BasicScheduleInsertScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
+
+        public ScheduleInsertScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
         {
             if (contextFactory == null)
                 throw new ArgumentNullException(nameof(contextFactory));
@@ -33,7 +35,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
                 unitOfWork.Complete();
             }
 
-            Trace.TraceInformation("Processed a Basic Schedule Insert Record.");
+            if (Logger.IsTraceEnabled)
+                Logger.Trace("Processed a Schedule Insert Record.");
         }
     }
 }

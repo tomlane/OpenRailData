@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.Entity.Infrastructure;
-using System.Diagnostics;
+using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
@@ -10,6 +10,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
     public class TiplocDeleteScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
     {
         private readonly IDbContextFactory<ScheduleContext> _contextFactory;
+        private readonly ILog Logger = LogManager.GetLogger("RecordStorage.Tiploc.Delete");
 
         public TiplocDeleteScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
         {
@@ -33,7 +34,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
                 unitOfWork.Complete();
             }
 
-            Trace.TraceInformation("Processed a Tiploc Delete Record.");
+            if (Logger.IsTraceEnabled)
+                Logger.Trace("Processed a Tiploc Delete Record.");
         }
     }
 }

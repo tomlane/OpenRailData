@@ -57,5 +57,10 @@
                 return hashCode;
             }
         }
+
+        public override string ToString()
+        {
+            return $"CapitalsIdentification: {CapitalsIdentification}, CapriDescription: {CapriDescription}, CrsCode: {CrsCode}, Id: {Id}, Nalco: {Nalco}, Nlc: {Nlc}, OldTiploc: {OldTiploc}, PoMcbCode: {PoMcbCode}, RecordIdentity: {RecordIdentity}, Stanox: {Stanox}, TiplocCode: {TiplocCode}, TpsDescription: {TpsDescription}";
+        }
     }
 }

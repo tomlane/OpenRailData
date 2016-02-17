@@ -67,5 +67,10 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
                 return hashCode;
             }
         }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, RecordIdentity: {RecordIdentity}, MainFrameIdentity: {MainFrameIdentity}, DateOfExtract: {DateOfExtract}, TimeOfExtract: {TimeOfExtract}, CurrentFileRef: {CurrentFileRef}, LastFileRef: {LastFileRef}, ExtractUpdateType: {ExtractUpdateType}, CifSoftwareVersion: {CifSoftwareVersion}, UserExtractStartDate: {UserExtractStartDate}, UserExtractEndDate: {UserExtractEndDate}, MainFrameUser: {MainFrameUser}, MainFrameExtractDate: {MainFrameExtractDate}";
+        }
     }
 }
