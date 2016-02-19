@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Common.Logging;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
     public class CifFetchScheduleUrlProvider : IFetchScheduleUrlProvider
     {
-        private Dictionary<DayOfWeek, string> _dailyUrlDictionary; 
+        private Dictionary<DayOfWeek, string> _dailyUrlDictionary;
+        private readonly ILog Logger = LogManager.GetLogger("Schedule.Util.CifUrlFetcher");
 
         public CifFetchScheduleUrlProvider()
         {
@@ -14,14 +16,16 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
         public string GetWeeklyScheduleUrl()
         {
-            Console.WriteLine("Fetching URL for the weekly schedule.");
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Fetching URL for thr weekly schedule.");
             
             return "https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&day=toc-full.CIF.gz";
         }
 
         public string GetDailyUpdateScheduleUrl()
         {
-            Console.WriteLine("Fetching URL for the daily schedule update.");
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Fetching URL for the daily schedule update.");
 
             return _dailyUrlDictionary[DateTime.Now.DayOfWeek];
         }

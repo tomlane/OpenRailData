@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
@@ -13,7 +14,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
     {
         private readonly IDbContextFactory<ScheduleContext> _contextFactory;
         private readonly Dictionary<string, IScheduleRecordParser> _cifRecordParsers;
-
+        private readonly ILog Logger = LogManager.GetLogger("Schedule.Util.CifRecordSetParser");
+        
         public ScheduleRecordSetParser(IScheduleRecordParser[] recordParsers, IDbContextFactory<ScheduleContext> contextFactory)
         {
             
@@ -28,6 +30,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
         public IEnumerable<IScheduleRecord> ParseScheduleRecordSet(IEnumerable<string> recordsToParse)
         {
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Starting to parse Schedule record set.");
+
             if (recordsToParse == null)
                 throw new ArgumentNullException(nameof(recordsToParse));
 
@@ -56,13 +61,17 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                 resultList.Add(result);
             }
 
-            Console.WriteLine("Finished parsing schedule records.");
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Finished parsing schedule record set.");
 
             return resultList;
         }
 
         private void ValidateHeaderRecord(HeaderRecord headerRecord)
         {
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Validating Schedule Header Record.");
+
             if (headerRecord == null)
                 throw new ArgumentNullException(nameof(headerRecord));
 
@@ -79,6 +88,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                 if (previousUpdate.CurrentFileRef != headerRecord.LastFileRef)
                     throw new InvalidOperationException($"The schedule file is out of order. Last file reference: {previousUpdate.CurrentFileRef}. Expected Last file reference: {headerRecord.LastFileRef}");
             }
+
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Finished validating Schedule Header Record. Header is valid.");
         }
     }
 }

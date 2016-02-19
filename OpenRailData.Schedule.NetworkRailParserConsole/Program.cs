@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using Common.Logging;
 using Common.Logging.Configuration;
@@ -25,49 +24,23 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
 
             Logger = LogManager.GetLogger("NetworkRail.ScheduleParser.Console");
             
-            if (Logger.IsTraceEnabled)
-                Logger.Trace("Starting up...");
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Starting up...");
 
-            const string url = "https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&day=toc-update-tue.CIF.gz";
-
-            var start = Process.GetCurrentProcess().TotalProcessorTime;
+            const string url = "https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&day=toc-update-thu.CIF.gz";
 
             var container = CifParserIocContainerBuilder.Build();
 
-            if (Logger.IsTraceEnabled)
-                Logger.Trace("Dependency Injection container built.");
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Dependency Injection container built.");
 
             var scheduleManager = container.Resolve<IScheduleManager>();
 
             var entites = scheduleManager.GetRecordsByScheduleFileUrl(url).ToList();
             
-            var end = Process.GetCurrentProcess().TotalProcessorTime;
-
-            if (Logger.IsTraceEnabled)
-                Logger.Trace($"Record Parsing Time: {(end - start).TotalMilliseconds} ms.");
-                Logger.Trace($"Records Parsed: {entites.Count}");
-                
-
-            start = Process.GetCurrentProcess().TotalProcessorTime;
-
             entites = scheduleManager.MergeScheduleRecords(entites).ToList();
 
-            end = Process.GetCurrentProcess().TotalProcessorTime;
-
-            if (Logger.IsTraceEnabled)
-                Logger.Trace($"Record Merging Time: {(end - start).TotalMilliseconds} ms.");
-                Logger.Trace($"Merged Records Count: {entites.Count}");
-                Logger.Trace("Schedule record processing complete. Ready for storage.");
-
-            start = Process.GetCurrentProcess().TotalProcessorTime;
-
             scheduleManager.SaveScheduleRecords(entites);
-
-            end = Process.GetCurrentProcess().TotalProcessorTime;
-
-            if (Logger.IsTraceEnabled)
-                Logger.Trace("Schedule storage complete.");
-                Logger.Trace($"Storage Processing Time: {(end - start).TotalMilliseconds} ms.");
 
             Console.WriteLine("Press any key to close...");
             Console.ReadLine();

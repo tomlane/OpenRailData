@@ -4,6 +4,7 @@ using System.IO.Compression;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using Common.Logging;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
@@ -11,7 +12,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
     {
         private readonly IConfigManager _configManager;
         private readonly IFetchScheduleUrlProvider _scheduleUrlProvider;
-
+        private readonly ILog Logger = LogManager.GetLogger("Schedule.Util.CifScheduleFileFetcher");
+        
         public WebScheduleFileFetcher(IConfigManager configManager, IFetchScheduleUrlProvider scheduleUrlProvider)
         {
             if (configManager == null)
@@ -33,7 +35,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
         private byte[] GetScheduleFile(string url)
         {
-            Console.WriteLine("Preparing web request for the following url: {0}", url);
+            if (Logger.IsInfoEnabled)
+                Logger.Info($"Preparing web request for the following url: {url}");
 
             var request = (HttpWebRequest)WebRequest.Create(url);
 
@@ -42,7 +45,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
             var response = (HttpWebResponse)request.GetResponse();
 
-            Console.WriteLine("Response received for web request.");
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Response received for web request.");
 
             if (response.StatusCode != HttpStatusCode.OK)
                 throw new HttpRequestException("Failed to fetch daily schedule update");

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor;
 
@@ -8,7 +9,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
     public class CifScheduleRecordStorer : IScheduleRecordStorer
     {
-        private readonly Dictionary<ScheduleRecordType, IScheduleRecordStorageProcessor> _storageProcessors; 
+        private readonly Dictionary<ScheduleRecordType, IScheduleRecordStorageProcessor> _storageProcessors;
+        private readonly ILog Logger = LogManager.GetLogger("Schedule.Util.CifRecordStorer");
+
 
         public CifScheduleRecordStorer(IScheduleRecordStorageProcessor[] scheduleRecordStorageProcessors)
         {
@@ -20,6 +23,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
         public void StoreScheduleRecords(IList<IScheduleRecord> recordsToStore)
         {
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Starting to store schedule records.");
+
             if (recordsToStore == null || !recordsToStore.Any())
                 throw new ArgumentNullException(nameof(recordsToStore));
 
@@ -28,7 +34,8 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                 StoreRecord(scheduleRecord);
             }
 
-            Console.WriteLine("Finished storing schedule records.");
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Finished storing schedule records.");
         }
 
         private void StoreRecord(IScheduleRecord record)

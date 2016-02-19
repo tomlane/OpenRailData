@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
     public class CifScheduleManager : IScheduleManager
     {
+        private readonly ILog Logger = LogManager.GetLogger("Schedule.CifScheduleManager");
+        
         private readonly IScheduleFileFetcher _scheduleFileFetcher;
         private readonly IScheduleFileRecordExtractor _scheduleFileRecordExtractor;
         private readonly IScheduleRecordMerger _scheduleRecordMerger;
@@ -35,13 +38,17 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
         public IList<IScheduleRecord> GetRecordsByScheduleFileUrl(string url)
         {
-            Console.WriteLine("GetRecordsByScheduleFileUrl called.");
-
             var scheduleFile = _scheduleFileFetcher.FetchScheduleFileFromUrl(url);
 
             var recordsToParse = _scheduleFileRecordExtractor.ExtractScheduleFileRecords(scheduleFile);
 
-            return _scheduleRecordSetParser.ParseScheduleRecordSet(recordsToParse).ToList();
+            var result = _scheduleRecordSetParser.ParseScheduleRecordSet(recordsToParse).ToList();
+
+            if (Logger.IsTraceEnabled)
+                Logger.Info($"Records Parsed: {result.Count}");
+                Logger.Info("Schedule record fetching complete. Ready for parsing.");
+
+            return result;
         }
 
         public IList<IScheduleRecord> MergeScheduleRecords(IList<IScheduleRecord> scheduleRecords)
@@ -49,9 +56,13 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             if (scheduleRecords == null || !scheduleRecords.Any())
                 throw new ArgumentNullException(nameof(scheduleRecords));
 
-            Console.WriteLine("MergeScheduleRecords called.");
+            var result = _scheduleRecordMerger.MergeScheduleRecords(scheduleRecords);
             
-            return _scheduleRecordMerger.MergeScheduleRecords(scheduleRecords);
+            if (Logger.IsInfoEnabled)
+                Logger.Info($"Merged Records Count: {result.Count}");
+                Logger.Info("Schedule record parsing complete. Ready for storage.");
+
+            return result;
         }
 
         public void SaveScheduleRecords(IList<IScheduleRecord> scheduleRecordsToSave)
@@ -60,6 +71,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                 throw new ArgumentNullException(nameof(scheduleRecordsToSave));
 
             _scheduleRecordStorer.StoreScheduleRecords(scheduleRecordsToSave);
+
+            if (Logger.IsInfoEnabled)
+                Logger.Info("Schedule storage operation complete.");
         }
     }
 }
