@@ -64,6 +64,8 @@
     <Compile Include="CifFetchScheduleUrlProvider.cs" />
     <Compile Include="CifParserIocContainerBuilder.cs" />
     <Compile Include="CifScheduleManager.cs" />
+    <Compile Include="HeaderRecordValidator.cs" />
+    <Compile Include="IHeaderRecordValidator.cs" />
     <Compile Include="IScheduleRecordSetParser.cs" />
     <Compile Include="ScheduleFileRecordExtractor.cs" />
     <Compile Include="CifScheduleRecordMerger.cs" />

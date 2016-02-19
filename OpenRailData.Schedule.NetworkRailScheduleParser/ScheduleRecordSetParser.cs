@@ -1,31 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
-using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
-using OpenRailData.Schedule.NetworkRailScheduleDatabase;
-using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
     public class ScheduleRecordSetParser : IScheduleRecordSetParser
     {
-        private readonly IDbContextFactory<ScheduleContext> _contextFactory;
+        private readonly IHeaderRecordValidator _headerRecordValidator;
         private readonly Dictionary<string, IScheduleRecordParser> _cifRecordParsers;
+
         private readonly ILog Logger = LogManager.GetLogger("Schedule.Util.CifRecordSetParser");
-        
-        public ScheduleRecordSetParser(IScheduleRecordParser[] recordParsers, IDbContextFactory<ScheduleContext> contextFactory)
+
+        public ScheduleRecordSetParser(IScheduleRecordParser[] recordParsers, IHeaderRecordValidator headerRecordValidator)
         {
-            
             if (recordParsers == null)
                 throw new ArgumentNullException(nameof(recordParsers));
-            if (contextFactory == null)
-                throw new ArgumentNullException(nameof(contextFactory));
+            if (headerRecordValidator == null)
+                throw new ArgumentNullException(nameof(headerRecordValidator));
 
             _cifRecordParsers = recordParsers.ToDictionary(x => x.RecordKey, x => x);
-            _contextFactory = contextFactory;
+            _headerRecordValidator = headerRecordValidator;
         }
 
         public IEnumerable<IScheduleRecord> ParseScheduleRecordSet(IEnumerable<string> recordsToParse)
@@ -56,7 +52,10 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                 var result = parser.ParseRecord(record);
 
                 if (result.RecordIdentity == ScheduleRecordType.HD)
-                    ValidateHeaderRecord(result as HeaderRecord);
+                    _headerRecordValidator.ValidateHeaderRecord(new HeaderRecordValidationRequest
+                    {
+                        RecordToCheck = result as HeaderRecord
+                    });
 
                 resultList.Add(result);
             }
@@ -65,32 +64,6 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                 Logger.Info("Finished parsing schedule record set.");
 
             return resultList;
-        }
-
-        private void ValidateHeaderRecord(HeaderRecord headerRecord)
-        {
-            if (Logger.IsInfoEnabled)
-                Logger.Info("Validating Schedule Header Record.");
-
-            if (headerRecord == null)
-                throw new ArgumentNullException(nameof(headerRecord));
-
-            using (var unitOfWork = new ScheduleUnitOfWork(_contextFactory.Create()))
-            {
-                var previousUpdate = unitOfWork.HeaderRecords.GetRecentUpdates().FirstOrDefault();
-
-                if (headerRecord.DateOfExtract <= previousUpdate.DateOfExtract)
-                    throw new InvalidOperationException(
-                        $"The schedule file is out of order. Previous update date: {previousUpdate.DateOfExtract}. Attempted update date: {headerRecord.DateOfExtract}");
-
-                if (previousUpdate.ExtractUpdateType != ExtractUpdateType.U) return;
-
-                if (previousUpdate.CurrentFileRef != headerRecord.LastFileRef)
-                    throw new InvalidOperationException($"The schedule file is out of order. Last file reference: {previousUpdate.CurrentFileRef}. Expected Last file reference: {headerRecord.LastFileRef}");
-            }
-
-            if (Logger.IsInfoEnabled)
-                Logger.Info("Finished validating Schedule Header Record. Header is valid.");
         }
     }
 }
