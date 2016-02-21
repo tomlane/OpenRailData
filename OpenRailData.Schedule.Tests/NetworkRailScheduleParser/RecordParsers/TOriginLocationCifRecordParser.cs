@@ -41,6 +41,24 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
         }
 
         [Test]
+        public void throws_when_argument_is_null()
+        {
+            var parser = BuildParser();
+
+            Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(null));
+            Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => parser.ParseRecord(" \t "));
+        }
+
+        [Test]
+        public void returns_correct_record_key()
+        {
+            var parser = BuildParser();
+
+            Assert.AreEqual("LO", parser.RecordKey);
+        }
+
+        [Test]
         public void returns_expected_result()
         {
             var recordParser = BuildParser();

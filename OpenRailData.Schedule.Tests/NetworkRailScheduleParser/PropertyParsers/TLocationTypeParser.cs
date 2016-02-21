@@ -13,6 +13,14 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
         }
 
         [Test]
+        public void returns_correct_property_key()
+        {
+            var parser = BuildParser();
+
+            Assert.AreEqual("LocationType", parser.PropertyKey);
+        }
+
+        [Test]
         public void throws_when_argument_is_null_or_invalid()
         {
             var parser = BuildParser();

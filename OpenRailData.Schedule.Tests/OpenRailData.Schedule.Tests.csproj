@@ -47,8 +47,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NetworkRailScheduleParser\TCifScheduleParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\TFileScheduleReader.cs" />
+    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TScheduleRecordTypeParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NetworkRailScheduleParser\PropertyParsers\TAssociationCategoryParser.cs" />
     <Compile Include="NetworkRailScheduleParser\PropertyParsers\TAssociationTypeParser.cs" />

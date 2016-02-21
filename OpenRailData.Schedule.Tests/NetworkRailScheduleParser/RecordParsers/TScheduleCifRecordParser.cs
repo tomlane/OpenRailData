@@ -44,7 +44,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
         [Test]
         public void throws_when_argument_is_invalid()
         {
-            var recordParser = new ScheduleCifRecordParser(_enumPropertyParsers, _dateTimeParser);
+            var recordParser = BuildParser();
 
             Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
             Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
@@ -54,7 +54,7 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
         [Test]
         public void returns_expected_result_with_permanent_record()
         {
-            var recordParser = new ScheduleCifRecordParser(_enumPropertyParsers, _dateTimeParser);
+            var recordParser = BuildParser();
             var recordToParse = "BSRY802011512141601011111100 PXX1A521780121702001 E  410 125EP    B R CM       P";
             var expectedResult = new ScheduleRecord
             {
