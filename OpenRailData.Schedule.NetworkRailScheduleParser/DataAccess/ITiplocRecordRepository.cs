@@ -9,5 +9,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
         void AmendRecord(TiplocRecord record);
 
         void DeleteRecord(TiplocRecord record);
+
+        void AmendLocationName(string locationName, string tiplocCode);
     }
 }

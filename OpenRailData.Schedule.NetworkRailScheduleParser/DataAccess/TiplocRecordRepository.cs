@@ -68,5 +68,28 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
                 Remove(recordToDelete);
             }
         }
+
+        public void AmendLocationName(string locationName, string tiplocCode)
+        {
+            if (string.IsNullOrWhiteSpace(locationName))
+                throw new ArgumentNullException(nameof(locationName));
+
+            if (string.IsNullOrWhiteSpace(tiplocCode))
+                throw new ArgumentNullException(nameof(tiplocCode));
+
+            var recordToAmend = Find(x => x.TiplocCode == tiplocCode).FirstOrDefault();
+
+            if (recordToAmend == null)
+            {
+                if (Logger.IsWarnEnabled)
+                    Logger.Warn($"Could not find Tiploc record to amend. Criteria: {tiplocCode}");
+
+                return;
+            }
+
+            recordToAmend.LocationName = locationName;
+
+            Add(recordToAmend);
+        }
     }
 }
