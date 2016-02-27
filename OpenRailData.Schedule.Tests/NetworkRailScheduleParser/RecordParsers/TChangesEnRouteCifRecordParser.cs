@@ -28,6 +28,14 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
         }
 
         [Test]
+        public void returns_correct_property_key()
+        {
+            var parser = BuildParser();
+
+            Assert.AreEqual("CR", parser.RecordKey);
+        }
+
+        [Test]
         public void throws_when_dependencies_are_null()
         {
             Assert.Throws<ArgumentNullException>(() => new ChangesEnRouteCifRecordParser(null));

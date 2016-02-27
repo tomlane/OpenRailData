@@ -53,6 +53,14 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
         }
 
         [Test]
+        public void returns_correct_property_key()
+        {
+            var parser = BuildParser();
+
+            Assert.AreEqual("AA", parser.RecordKey);
+        }
+
+        [Test]
         public void returns_expected_result_with_revise_record()
         {
             var recordParser = BuildParser();

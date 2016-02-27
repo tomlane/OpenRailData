@@ -41,6 +41,24 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
         }
 
         [Test]
+        public void throws_when_argument_is_null()
+        {
+            var recordParser = BuildParser();
+
+            Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(null));
+            Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => recordParser.ParseRecord(" \t "));
+        }
+
+        [Test]
+        public void returns_correct_property_key()
+        {
+            var recordParser = BuildParser();
+
+            Assert.AreEqual("LI", recordParser.RecordKey);
+        }
+
+        [Test]
         public void returns_expected_result_arrival_and_departure()
         {
             var recordParser = BuildParser();
@@ -76,8 +94,8 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
                 Pass = "1314",
                 OrderTime = "1314",
                 LocationActivityString = "            ",
-                PublicArrival = "0000",
-                PublicDeparture = "0000",
+                PublicArrival = string.Empty,
+                PublicDeparture = string.Empty,
                 WorkingDeparture = string.Empty,
                 WorkingArrival = string.Empty
             };
