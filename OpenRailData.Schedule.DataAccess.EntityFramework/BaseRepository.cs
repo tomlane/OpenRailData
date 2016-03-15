@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
-namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
+namespace OpenRailData.Schedule.DataAccess.EntityFramework
 {
     public class BaseRepository<TEntity> where TEntity : class, IIdentifyable
     {

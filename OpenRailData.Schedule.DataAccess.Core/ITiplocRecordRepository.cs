@@ -1,6 +1,6 @@
 ﻿using OpenRailData.Schedule.NetworkRailEntites.Records;
 
-namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
+namespace OpenRailData.Schedule.DataAccess.Core
 {
     public interface ITiplocRecordRepository
     {

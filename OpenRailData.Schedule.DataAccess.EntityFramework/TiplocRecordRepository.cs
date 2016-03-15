@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
 using Common.Logging;
+using OpenRailData.Schedule.DataAccess.Core;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
-namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
+namespace OpenRailData.Schedule.DataAccess.EntityFramework
 {
     public class TiplocRecordRepository : BaseRepository<TiplocRecord>, ITiplocRecordRepository 
     {

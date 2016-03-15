@@ -70,19 +70,6 @@
     <Compile Include="ScheduleFileRecordExtractor.cs" />
     <Compile Include="CifScheduleRecordMerger.cs" />
     <Compile Include="CifScheduleRecordStorer.cs" />
-    <Compile Include="DataAccess\AssociationRecordRepository.cs" />
-    <Compile Include="DataAccess\BaseRepository.cs" />
-    <Compile Include="DataAccess\HeaderRecordRepository.cs" />
-    <Compile Include="DataAccess\IAssociationRecordRepository.cs" />
-    <Compile Include="DataAccess\IHeaderRecordRepository.cs" />
-    <Compile Include="DataAccess\IScheduleLocationRecordRepository.cs" />
-    <Compile Include="DataAccess\IScheduleRecordRepository.cs" />
-    <Compile Include="DataAccess\ITiplocRecordRepository.cs" />
-    <Compile Include="DataAccess\IScheduleUnitOfWork.cs" />
-    <Compile Include="DataAccess\ScheduleLocationRecordRepository.cs" />
-    <Compile Include="DataAccess\ScheduleRecordRepository.cs" />
-    <Compile Include="DataAccess\TiplocRecordRepository.cs" />
-    <Compile Include="DataAccess\ScheduleUnitOfWork.cs" />
     <Compile Include="FileScheduleReader.cs" />
     <Compile Include="IConfigManager.cs" />
     <Compile Include="IFetchScheduleUrlProvider.cs" />
@@ -152,6 +139,14 @@
     <ProjectReference Include="..\OpenRailData.Schedule.CommonDatabase\OpenRailData.Schedule.CommonDatabase.csproj">
       <Project>{dbf09618-423d-4a73-bbec-36598e5b2fdf}</Project>
       <Name>OpenRailData.Schedule.CommonDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Schedule.DataAccess.Core\OpenRailData.Schedule.DataAccess.Core.csproj">
+      <Project>{77CC1BEC-8502-4070-AFD3-91DF09FBF168}</Project>
+      <Name>OpenRailData.Schedule.DataAccess.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Schedule.DataAccess.EntityFramework\OpenRailData.Schedule.DataAccess.EntityFramework.csproj">
+      <Project>{7819945F-2467-48D3-BF48-48F3A671BCB7}</Project>
+      <Name>OpenRailData.Schedule.DataAccess.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Schedule.NetworkRailEntites\OpenRailData.Schedule.NetworkRailEntites.csproj">
       <Project>{3EAE81B6-D973-4D00-9DF7-87EA39550701}</Project>

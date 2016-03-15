@@ -1,51 +1,51 @@
 ﻿using System;
 using System.Linq;
 using Common.Logging;
+using OpenRailData.Schedule.DataAccess.Core;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
-namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
+namespace OpenRailData.Schedule.DataAccess.EntityFramework
 {
-    public class AssociationRecordRepository : BaseRepository<AssociationRecord>, IAssociationRecordRepository
+    public class ScheduleRecordRepository : BaseRepository<ScheduleRecord>, IScheduleRecordRepository
     {
-        private readonly ILog Logger = LogManager.GetLogger("Repository.AssociationRecord");
+        private readonly ILog Logger = LogManager.GetLogger("Repository.ScheduleRecord");
 
-        public AssociationRecordRepository(IScheduleContext context) : base(context)
+        public ScheduleRecordRepository(IScheduleContext context) : base(context)
         {
         }
 
-        public void InsertRecord(AssociationRecord record)
+        public void InsertRecord(ScheduleRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             if (Logger.IsTraceEnabled)
-                Logger.Trace($"Inserting new Association record: {record} ");
+                Logger.Trace($"Inserting new Schedule record: {record}");
 
             Add(record);
         }
 
-        public void AmendRecord(AssociationRecord record)
+        public void AmendRecord(ScheduleRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             var currentRecord = Find(x =>
-                x.MainTrainUid == record.MainTrainUid &&
-                x.AssocTrainUid == record.AssocTrainUid &&
-                x.DateFrom == record.DateFrom &&
+                x.TrainUid == record.TrainUid &&
+                x.DateRunsFrom == record.DateRunsFrom &&
                 x.StpIndicator == record.StpIndicator)
                 .FirstOrDefault();
 
             if (currentRecord == null)
             {
                 if (Logger.IsWarnEnabled)
-                    Logger.Warn($"Failed to find Assocation record to amend. Criteria: {record}");
+                    Logger.Warn($"Failed to find Schedule record to amend. Criteria: {record}");
             }
             else
             {
                 if (Logger.IsTraceEnabled)
-                    Logger.Trace($"Amending Association record: {currentRecord}. New record: {record}");
+                    Logger.Trace($"Amending Schedule record: {currentRecord}. New record: {record}");
 
                 currentRecord = record;
 
@@ -53,27 +53,26 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
             }
         }
 
-        public void DeleteRecord(AssociationRecord record)
+        public void DeleteRecord(ScheduleRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             var recordToDelete = Find(x => 
-                x.MainTrainUid == record.MainTrainUid && 
-                x.AssocTrainUid == record.AssocTrainUid &&
-                x.DateFrom == record.DateFrom && 
+                x.TrainUid == record.TrainUid && 
+                x.DateRunsFrom == record.DateRunsFrom && 
                 x.StpIndicator == record.StpIndicator)
                 .FirstOrDefault();
 
             if (recordToDelete == null)
             {
                 if (Logger.IsWarnEnabled)
-                    Logger.Warn($"Failed to find Assocation record to delete. Criteria: {record}");
+                    Logger.Warn($"Failed to find Schedule record to delete. Criteria: {record}");
             }
             else
             {
                 if (Logger.IsTraceEnabled)
-                    Logger.Trace($"Deleting Association record: {recordToDelete}. Criteria: {record}");
+                    Logger.Trace($"Deleting Schedule record: {recordToDelete}. Criteria: {record}");
 
                 Remove(recordToDelete);
             }

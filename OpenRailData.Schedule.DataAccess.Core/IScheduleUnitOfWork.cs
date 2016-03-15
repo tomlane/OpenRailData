@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
+namespace OpenRailData.Schedule.DataAccess.Core
 {
     public interface IScheduleUnitOfWork : IDisposable
     {

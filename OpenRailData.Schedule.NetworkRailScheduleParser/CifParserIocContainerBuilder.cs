@@ -1,7 +1,8 @@
 ﻿using System.Data.Entity.Infrastructure;
 using Microsoft.Practices.Unity;
+using OpenRailData.Schedule.DataAccess.Core;
+using OpenRailData.Schedule.DataAccess.EntityFramework;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
-using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
 using OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers;
 using OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers;
 using OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor;

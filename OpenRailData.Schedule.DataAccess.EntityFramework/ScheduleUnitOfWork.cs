@@ -1,7 +1,8 @@
 ﻿using System;
+using OpenRailData.Schedule.DataAccess.Core;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
-namespace OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess
+namespace OpenRailData.Schedule.DataAccess.EntityFramework
 {
     public class ScheduleUnitOfWork : IScheduleUnitOfWork
     {

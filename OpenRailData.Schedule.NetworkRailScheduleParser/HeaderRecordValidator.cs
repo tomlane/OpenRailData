@@ -2,9 +2,9 @@ using System;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using Common.Logging;
+using OpenRailData.Schedule.DataAccess.EntityFramework;
 using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
 using OpenRailData.Schedule.NetworkRailScheduleDatabase;
-using OpenRailData.Schedule.NetworkRailScheduleParser.DataAccess;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {

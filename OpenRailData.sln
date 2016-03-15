@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.Commo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.NetworkRailEntites", "OpenRailData.Schedule.NetworkRailEntites\OpenRailData.Schedule.NetworkRailEntites.csproj", "{3EAE81B6-D973-4D00-9DF7-87EA39550701}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.DataAccess.Core", "OpenRailData.Schedule.DataAccess.Core\OpenRailData.Schedule.DataAccess.Core.csproj", "{77CC1BEC-8502-4070-AFD3-91DF09FBF168}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.DataAccess.EntityFramework", "OpenRailData.Schedule.DataAccess.EntityFramework\OpenRailData.Schedule.DataAccess.EntityFramework.csproj", "{7819945F-2467-48D3-BF48-48F3A671BCB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{3EAE81B6-D973-4D00-9DF7-87EA39550701}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EAE81B6-D973-4D00-9DF7-87EA39550701}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EAE81B6-D973-4D00-9DF7-87EA39550701}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77CC1BEC-8502-4070-AFD3-91DF09FBF168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77CC1BEC-8502-4070-AFD3-91DF09FBF168}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77CC1BEC-8502-4070-AFD3-91DF09FBF168}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77CC1BEC-8502-4070-AFD3-91DF09FBF168}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7819945F-2467-48D3-BF48-48F3A671BCB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7819945F-2467-48D3-BF48-48F3A671BCB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7819945F-2467-48D3-BF48-48F3A671BCB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7819945F-2467-48D3-BF48-48F3A671BCB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
