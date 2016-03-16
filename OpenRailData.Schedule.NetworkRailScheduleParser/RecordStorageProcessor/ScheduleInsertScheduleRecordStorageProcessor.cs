@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Data.Entity.Infrastructure;
 using Common.Logging;
-using OpenRailData.Schedule.DataAccess.EntityFramework;
+using OpenRailData.Schedule.DataAccess.Core;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
-using OpenRailData.Schedule.NetworkRailScheduleDatabase;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
 {
     public class ScheduleInsertScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
     {
-        private readonly IDbContextFactory<ScheduleContext> _contextFactory;
+        private readonly IScheduleUnitOfWorkFactory _unitOfWorkFactory;
         private readonly ILog Logger = LogManager.GetLogger("RecordStorage.Schedule.Insert");
 
 
-        public ScheduleInsertScheduleRecordStorageProcessor(IDbContextFactory<ScheduleContext> contextFactory)
+        public ScheduleInsertScheduleRecordStorageProcessor(IScheduleUnitOfWorkFactory unitOfWorkFactory)
         {
-            if (contextFactory == null)
-                throw new ArgumentNullException(nameof(contextFactory));
+            if (unitOfWorkFactory == null)
+                throw new ArgumentNullException(nameof(unitOfWorkFactory));
 
-            _contextFactory = contextFactory;
+            _unitOfWorkFactory = unitOfWorkFactory;
         }
 
         public ScheduleRecordType RecordKey { get; } = ScheduleRecordType.BSN;
@@ -28,7 +26,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            using (var unitOfWork = new ScheduleUnitOfWork(_contextFactory.Create()))
+            using (var unitOfWork = _unitOfWorkFactory.Create())
             {
                 unitOfWork.ScheduleRecords.InsertRecord(record as ScheduleRecord);
 

@@ -46,6 +46,7 @@
     <Compile Include="IScheduleLocationRecordRepository.cs" />
     <Compile Include="IScheduleRecordRepository.cs" />
     <Compile Include="IScheduleUnitOfWork.cs" />
+    <Compile Include="IScheduleUnitOfWorkFactory.cs" />
     <Compile Include="ITiplocRecordRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

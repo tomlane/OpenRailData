@@ -44,9 +44,11 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
             var result = _scheduleRecordSetParser.ParseScheduleRecordSet(recordsToParse).ToList();
 
-            if (Logger.IsTraceEnabled)
+            if (Logger.IsInfoEnabled)
+            {
                 Logger.Info($"Records Parsed: {result.Count}");
                 Logger.Info("Schedule record fetching complete. Ready for parsing.");
+            }
 
             return result;
         }

@@ -73,6 +73,9 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             container.RegisterType<IScheduleRecordStorageProcessor, TiplocInsertScheduleRecordStorageProcessor>("TiplocInsertScheduleRecordStorageProcessor");
             container.RegisterType<IScheduleRecordStorageProcessor, HeaderScheduleRecordStorageProcessor>("HeaderScheduleRecordStorageProcessor");
 
+            container.RegisterType<IHeaderRecordValidator, HeaderRecordValidator>();
+
+            container.RegisterType<IScheduleUnitOfWorkFactory, ScheduleUnitOfWorkFactory>();
             container.RegisterType<IScheduleUnitOfWork, ScheduleUnitOfWork>();
 
             container.RegisterType<IDbContextFactory<ScheduleContext>, ScheduleContextFactory>();

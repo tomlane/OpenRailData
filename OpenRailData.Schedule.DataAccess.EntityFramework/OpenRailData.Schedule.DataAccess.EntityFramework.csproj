@@ -64,6 +64,7 @@
     <Compile Include="ScheduleLocationRecordRepository.cs" />
     <Compile Include="ScheduleRecordRepository.cs" />
     <Compile Include="ScheduleUnitOfWork.cs" />
+    <Compile Include="ScheduleUnitOfWorkFactory.cs" />
     <Compile Include="TiplocRecordRepository.cs" />
   </ItemGroup>
   <ItemGroup>
