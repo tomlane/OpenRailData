@@ -59,7 +59,6 @@
     <Compile Include="Records\Enums\StpIndicator.cs" />
     <Compile Include="Records\Enums\TransactionType.cs" />
     <Compile Include="Records\HeaderRecord.cs" />
-    <Compile Include="Records\IIdentifyable.cs" />
     <Compile Include="Records\IScheduleRecord.cs" />
     <Compile Include="Records\ScheduleLocationRecord.cs" />
     <Compile Include="Records\ScheduleRecord.cs" />

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Common.Logging;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.ScheduleFetching;
+using OpenRailData.ScheduleStorage;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
@@ -13,10 +15,10 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
         private readonly IScheduleFileFetcher _scheduleFileFetcher;
         private readonly IScheduleFileRecordExtractor _scheduleFileRecordExtractor;
         private readonly IScheduleRecordMerger _scheduleRecordMerger;
-        private readonly IScheduleRecordStorer _scheduleRecordStorer;
+        private readonly IScheduleRecordStorageService _scheduleRecordStorageService;
         private readonly IScheduleRecordSetParser _scheduleRecordSetParser;
 
-        public CifScheduleManager(IScheduleFileFetcher scheduleFileFetcher, IScheduleFileRecordExtractor scheduleFileRecordExtractor, IScheduleRecordMerger scheduleRecordMerger, IScheduleRecordStorer scheduleRecordStorer, IScheduleRecordSetParser scheduleRecordSetParser)
+        public CifScheduleManager(IScheduleFileFetcher scheduleFileFetcher, IScheduleFileRecordExtractor scheduleFileRecordExtractor, IScheduleRecordMerger scheduleRecordMerger, IScheduleRecordStorageService scheduleRecordStorageService, IScheduleRecordSetParser scheduleRecordSetParser)
         {
             if (scheduleFileFetcher == null)
                 throw new ArgumentNullException(nameof(scheduleFileFetcher));
@@ -24,15 +26,15 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
                 throw new ArgumentNullException(nameof(scheduleFileRecordExtractor));
             if (scheduleRecordMerger == null)
                 throw new ArgumentNullException(nameof(scheduleRecordMerger));
-            if (scheduleRecordStorer == null)
-                throw new ArgumentNullException(nameof(scheduleRecordStorer));
+            if (scheduleRecordStorageService == null)
+                throw new ArgumentNullException(nameof(scheduleRecordStorageService));
             if (scheduleRecordSetParser == null)
                 throw new ArgumentNullException(nameof(scheduleRecordSetParser));
 
             _scheduleFileFetcher = scheduleFileFetcher;
             _scheduleFileRecordExtractor = scheduleFileRecordExtractor;
             _scheduleRecordMerger = scheduleRecordMerger;
-            _scheduleRecordStorer = scheduleRecordStorer;
+            _scheduleRecordStorageService = scheduleRecordStorageService;
             _scheduleRecordSetParser = scheduleRecordSetParser;
         }
 
@@ -72,7 +74,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             if (scheduleRecordsToSave == null || !scheduleRecordsToSave.Any())
                 throw new ArgumentNullException(nameof(scheduleRecordsToSave));
 
-            _scheduleRecordStorer.StoreScheduleRecords(scheduleRecordsToSave);
+            _scheduleRecordStorageService.StoreScheduleRecords(scheduleRecordsToSave);
 
             if (Logger.IsInfoEnabled)
                 Logger.Info("Schedule storage operation complete.");

@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
+using OpenRailData.Modules.ScheduleParsing.Cif.PropertyParsers;
 using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
-using OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers;
 
 namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.PropertyParsers
 {

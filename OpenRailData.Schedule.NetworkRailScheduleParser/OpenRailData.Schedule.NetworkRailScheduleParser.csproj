@@ -60,8 +60,6 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSettingsConfigManager.cs" />
-    <Compile Include="CifFetchScheduleUrlProvider.cs" />
     <Compile Include="CifParserIocContainerBuilder.cs" />
     <Compile Include="CifScheduleManager.cs" />
     <Compile Include="HeaderRecordValidator.cs" />
@@ -69,92 +67,58 @@
     <Compile Include="IScheduleRecordSetParser.cs" />
     <Compile Include="ScheduleFileRecordExtractor.cs" />
     <Compile Include="CifScheduleRecordMerger.cs" />
-    <Compile Include="CifScheduleRecordStorer.cs" />
     <Compile Include="FileScheduleReader.cs" />
-    <Compile Include="IConfigManager.cs" />
-    <Compile Include="IFetchScheduleUrlProvider.cs" />
-    <Compile Include="IScheduleFileFetcher.cs" />
     <Compile Include="IScheduleManager.cs" />
     <Compile Include="IScheduleFileRecordExtractor.cs" />
     <Compile Include="IScheduleReader.cs" />
     <Compile Include="IScheduleRecordMerger.cs" />
-    <Compile Include="IScheduleRecordParser.cs" />
-    <Compile Include="IScheduleRecordStorer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyParsers\AssociationCategoryParser.cs" />
-    <Compile Include="PropertyParsers\AssociationTypeParser.cs" />
-    <Compile Include="PropertyParsers\BankHolidayRunningParser.cs" />
-    <Compile Include="PropertyParsers\CateringCodeParser.cs" />
-    <Compile Include="PropertyParsers\DateIndicatorParser.cs" />
-    <Compile Include="PropertyParsers\DateTimeParser.cs" />
-    <Compile Include="PropertyParsers\ExtractUpdateTypeParser.cs" />
-    <Compile Include="PropertyParsers\IDateTimeParser.cs" />
-    <Compile Include="PropertyParsers\IRecordEnumPropertyParser.cs" />
-    <Compile Include="PropertyParsers\ITimingAllowanceParser.cs" />
-    <Compile Include="PropertyParsers\LocationActivityParser.cs" />
-    <Compile Include="PropertyParsers\LocationTypeParser.cs" />
-    <Compile Include="PropertyParsers\OperatingCharacteristicsParser.cs" />
-    <Compile Include="PropertyParsers\PowerTypeParser.cs" />
-    <Compile Include="PropertyParsers\ReservationDetailsParser.cs" />
-    <Compile Include="PropertyParsers\RunningDaysParser.cs" />
-    <Compile Include="PropertyParsers\SeatingClassParser.cs" />
-    <Compile Include="PropertyParsers\ServiceBrandingParser.cs" />
-    <Compile Include="PropertyParsers\SleeperDetailsParser.cs" />
-    <Compile Include="PropertyParsers\StpIndicatorParser.cs" />
-    <Compile Include="PropertyParsers\TimingAllowanceParser.cs" />
-    <Compile Include="PropertyParsers\TransactionTypeParser.cs" />
-    <Compile Include="RecordParsers\AssociationCifRecordParser.cs" />
-    <Compile Include="RecordParsers\ScheduleCifRecordParser.cs" />
-    <Compile Include="RecordParsers\BasicScheduleExtraDetailsCifRecordParser.cs" />
-    <Compile Include="RecordParsers\ChangesEnRouteCifRecordParser.cs" />
-    <Compile Include="RecordParsers\EndOfFileRecordParser.cs" />
-    <Compile Include="RecordParsers\HeaderCifRecordParser.cs" />
-    <Compile Include="RecordParsers\IntermediateLocationCifRecordParser.cs" />
-    <Compile Include="RecordParsers\OriginLocationCifRecordParser.cs" />
-    <Compile Include="PropertyParsers\ScheduleRecordTypeParser.cs" />
-    <Compile Include="RecordParsers\TerminatingLocationCifRecordParser.cs" />
-    <Compile Include="RecordParsers\TiplocAmendCifRecordParser.cs" />
-    <Compile Include="RecordParsers\TiplocDeleteCifRecordParser.cs" />
-    <Compile Include="RecordParsers\TiplocInsertCifRecordParser.cs" />
-    <Compile Include="RecordStorageProcessor\AssociationAmendScheduleRecordStorageProcessor.cs" />
-    <Compile Include="RecordStorageProcessor\AssociationDeleteScheduleRecordStorageProcessor.cs" />
-    <Compile Include="RecordStorageProcessor\AssociationInsertScheduleRecordStorageProcessor.cs" />
-    <Compile Include="RecordStorageProcessor\ScheduleAmendScheduleRecordStorageProcessor.cs" />
-    <Compile Include="RecordStorageProcessor\ScheduleDeleteScheduleRecordStorageProcessor.cs" />
-    <Compile Include="RecordStorageProcessor\ScheduleInsertScheduleRecordStorageProcessor.cs" />
-    <Compile Include="RecordStorageProcessor\HeaderScheduleRecordStorageProcessor.cs" />
-    <Compile Include="RecordStorageProcessor\IScheduleRecordStorageProcessor.cs" />
-    <Compile Include="RecordStorageProcessor\TiplocAmendScheduleRecordStorageProcessor.cs" />
-    <Compile Include="RecordStorageProcessor\TiplocDeleteScheduleRecordStorageProcessor.cs" />
-    <Compile Include="RecordStorageProcessor\TiplocInsertScheduleRecordStorageProcessor.cs" />
     <Compile Include="ScheduleRecordSetParser.cs" />
-    <Compile Include="Utils\StringExtensions.cs" />
-    <Compile Include="WebScheduleFileFetcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OpenRailData.Configuration\OpenRailData.Configuration.csproj">
+      <Project>{97F4F260-5D57-431F-88DD-36C013AF598F}</Project>
+      <Name>OpenRailData.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleFetching.Cif\OpenRailData.Modules.ScheduleFetching.Cif.csproj">
+      <Project>{5042A13B-737C-4790-A59B-01C4CDE5F18C}</Project>
+      <Name>OpenRailData.Modules.ScheduleFetching.Cif</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleParsing.Cif\OpenRailData.Modules.ScheduleParsing.Cif.csproj">
+      <Project>{4ECAB2A3-DD04-4766-A1F7-EC330E37E026}</Project>
+      <Name>OpenRailData.Modules.ScheduleParsing.Cif</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleStorage.EntityFramework\OpenRailData.Modules.ScheduleStorage.EntityFramework.csproj">
+      <Project>{356A6879-C173-4F5B-BD77-80042FCFFF05}</Project>
+      <Name>OpenRailData.Modules.ScheduleStorage.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleStorageService\OpenRailData.Modules.ScheduleStorageService.csproj">
+      <Project>{F697A364-D2B4-452D-BE3F-5011CE702504}</Project>
+      <Name>OpenRailData.Modules.ScheduleStorageService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Schedule.CommonDatabase\OpenRailData.Schedule.CommonDatabase.csproj">
       <Project>{dbf09618-423d-4a73-bbec-36598e5b2fdf}</Project>
       <Name>OpenRailData.Schedule.CommonDatabase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenRailData.Schedule.DataAccess.Core\OpenRailData.Schedule.DataAccess.Core.csproj">
-      <Project>{77CC1BEC-8502-4070-AFD3-91DF09FBF168}</Project>
-      <Name>OpenRailData.Schedule.DataAccess.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenRailData.Schedule.DataAccess.EntityFramework\OpenRailData.Schedule.DataAccess.EntityFramework.csproj">
-      <Project>{7819945F-2467-48D3-BF48-48F3A671BCB7}</Project>
-      <Name>OpenRailData.Schedule.DataAccess.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Schedule.NetworkRailEntites\OpenRailData.Schedule.NetworkRailEntites.csproj">
       <Project>{3EAE81B6-D973-4D00-9DF7-87EA39550701}</Project>
       <Name>OpenRailData.Schedule.NetworkRailEntites</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OpenRailData.Schedule.NetworkRailScheduleDatabase\OpenRailData.Schedule.NetworkRailScheduleDatabase.csproj">
-      <Project>{47A38134-B8CC-4377-BEA7-1E974F7C9714}</Project>
-      <Name>OpenRailData.Schedule.NetworkRailScheduleDatabase</Name>
+    <ProjectReference Include="..\OpenRailData.ScheduleFetching\OpenRailData.ScheduleFetching.csproj">
+      <Project>{B097A1D0-592E-4751-91DB-1E8FFEECE536}</Project>
+      <Name>OpenRailData.ScheduleFetching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.ScheduleParsing\OpenRailData.ScheduleParsing.csproj">
+      <Project>{384119CE-97B5-4F1B-8AA1-6ABA519D80AC}</Project>
+      <Name>OpenRailData.ScheduleParsing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.ScheduleStorage\OpenRailData.ScheduleStorage.csproj">
+      <Project>{E6548915-E0BD-4225-8B8C-695B447F38E9}</Project>
+      <Name>OpenRailData.ScheduleStorage</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

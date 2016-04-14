@@ -1,4 +1,4 @@
-namespace OpenRailData.Schedule.NetworkRailScheduleParser.Records
+namespace OpenRailData.Schedule.CommonDatabase
 {
     public interface IIdentifyable
     {

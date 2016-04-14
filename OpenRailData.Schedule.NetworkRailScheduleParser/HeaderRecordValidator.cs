@@ -1,8 +1,7 @@
 using System;
-using System.Linq;
 using Common.Logging;
-using OpenRailData.Schedule.DataAccess.Core;
 using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
+using OpenRailData.ScheduleStorage;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
@@ -33,7 +32,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
 
             using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                var previousUpdate = unitOfWork.HeaderRecords.GetRecentUpdates().FirstOrDefault();
+                var previousUpdate = unitOfWork.HeaderRecords.GetPreviousUpdate();
 
                 if (previousUpdate != null)
                 {

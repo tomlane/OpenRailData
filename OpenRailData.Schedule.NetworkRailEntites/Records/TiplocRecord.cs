@@ -2,7 +2,6 @@
 {
     public class TiplocRecord : IScheduleRecord
     {
-        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string TiplocCode { get; set; } = string.Empty;
         public string CapitalsIdentification { get; set; } = string.Empty;
@@ -18,8 +17,7 @@
 
         protected bool Equals(TiplocRecord other)
         {
-            return Id == other.Id &&
-                RecordIdentity == other.RecordIdentity && 
+            return RecordIdentity == other.RecordIdentity && 
                 string.Equals(TiplocCode, other.TiplocCode) && 
                 string.Equals(CapitalsIdentification, other.CapitalsIdentification) && 
                 string.Equals(Nalco, other.Nalco) && 
@@ -61,7 +59,7 @@
 
         public override string ToString()
         {
-            return $"CapitalsIdentification: {CapitalsIdentification}, CapriDescription: {CapriDescription}, CrsCode: {CrsCode}, Id: {Id}, Nalco: {Nalco}, Nlc: {Nlc}, OldTiploc: {OldTiploc}, PoMcbCode: {PoMcbCode}, RecordIdentity: {RecordIdentity}, Stanox: {Stanox}, TiplocCode: {TiplocCode}, TpsDescription: {TpsDescription}";
+            return $"CapitalsIdentification: {CapitalsIdentification}, CapriDescription: {CapriDescription}, CrsCode: {CrsCode}, Nalco: {Nalco}, Nlc: {Nlc}, OldTiploc: {OldTiploc}, PoMcbCode: {PoMcbCode}, RecordIdentity: {RecordIdentity}, Stanox: {Stanox}, TiplocCode: {TiplocCode}, TpsDescription: {TpsDescription}";
         }
     }
 }

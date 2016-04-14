@@ -6,7 +6,6 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 {
     public class ScheduleRecord : IScheduleRecord
     {
-        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string TrainUid { get; set; } = string.Empty;
         public string UniqueId { get; set; } = string.Empty;
@@ -59,8 +58,7 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 
         protected bool Equals(ScheduleRecord other)
         {
-            return Id == other.Id &&
-                string.Equals(AtocCode, other.AtocCode) && 
+            return string.Equals(AtocCode, other.AtocCode) && 
                 string.Equals(AtsCode, other.AtsCode) && 
                 BankHolidayRunning == other.BankHolidayRunning && 
                 CateringCode == other.CateringCode && 
@@ -146,7 +144,7 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 
         public override string ToString()
         {
-            return $"Id: {Id}, RecordIdentity: {RecordIdentity}, TrainUid: {TrainUid}, UniqueId: {UniqueId}, DateRunsFrom: {DateRunsFrom}, DateRunsTo: {DateRunsTo}, RunningDays: {RunningDays}, BankHolidayRunning: {BankHolidayRunning}, TrainStatus: {TrainStatus}, TrainCategory: {TrainCategory}, TrainIdentity: {TrainIdentity}, HeadCode: {HeadCode}, CourseIndicator: {CourseIndicator}, TrainServiceCode: {TrainServiceCode}, PortionId: {PortionId}, PowerType: {PowerType}, TimingLoad: {TimingLoad}, Speed: {Speed}, OperatingCharacteristicsString: {OperatingCharacteristicsString}, OperatingCharacteristics: {OperatingCharacteristics}, SeatingClass: {SeatingClass}, Sleepers: {Sleepers}, Reservations: {Reservations}, ConnectionIndicator: {ConnectionIndicator}, CateringCode: {CateringCode}, ServiceBranding: {ServiceBranding}, StpIndicator: {StpIndicator}, ServiceTypeFlags: {ServiceTypeFlags}, UicCode: {UicCode}, AtocCode: {AtocCode}, AtsCode: {AtsCode}, Rsid: {Rsid}, DataSource: {DataSource}, ScheduleLocations: {ScheduleLocations}";
+            return $"RecordIdentity: {RecordIdentity}, TrainUid: {TrainUid}, UniqueId: {UniqueId}, DateRunsFrom: {DateRunsFrom}, DateRunsTo: {DateRunsTo}, RunningDays: {RunningDays}, BankHolidayRunning: {BankHolidayRunning}, TrainStatus: {TrainStatus}, TrainCategory: {TrainCategory}, TrainIdentity: {TrainIdentity}, HeadCode: {HeadCode}, CourseIndicator: {CourseIndicator}, TrainServiceCode: {TrainServiceCode}, PortionId: {PortionId}, PowerType: {PowerType}, TimingLoad: {TimingLoad}, Speed: {Speed}, OperatingCharacteristicsString: {OperatingCharacteristicsString}, OperatingCharacteristics: {OperatingCharacteristics}, SeatingClass: {SeatingClass}, Sleepers: {Sleepers}, Reservations: {Reservations}, ConnectionIndicator: {ConnectionIndicator}, CateringCode: {CateringCode}, ServiceBranding: {ServiceBranding}, StpIndicator: {StpIndicator}, ServiceTypeFlags: {ServiceTypeFlags}, UicCode: {UicCode}, AtocCode: {AtocCode}, AtsCode: {AtsCode}, Rsid: {Rsid}, DataSource: {DataSource}, ScheduleLocations: {ScheduleLocations}";
         }
     }
 }

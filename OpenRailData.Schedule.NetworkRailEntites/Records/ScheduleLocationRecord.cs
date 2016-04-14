@@ -5,7 +5,6 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 {
     public class ScheduleLocationRecord : IScheduleRecord
     {
-        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string Tiploc { get; set; } = string.Empty;
         public string TiplocSuffix { private get; set; } = string.Empty;
@@ -31,8 +30,7 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 
         protected bool Equals(ScheduleLocationRecord other)
         {
-            return Id == other.Id &&
-                EngineeringAllowance.Equals(other.EngineeringAllowance) && 
+            return EngineeringAllowance.Equals(other.EngineeringAllowance) && 
                 string.Equals(Line, other.Line) && 
                 LocationActivity == other.LocationActivity && 
                 string.Equals(LocationActivityString, other.LocationActivityString) && 
@@ -86,7 +84,7 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 
         public override string ToString()
         {
-            return $"ActualCall: {ActualCall}, EngineeringAllowance: {EngineeringAllowance}, Id: {Id}, Line: {Line}, Location: {Location}, LocationActivity: {LocationActivity}, LocationActivityString: {LocationActivityString}, OrderTime: {OrderTime}, Pass: {Pass}, Path: {Path}, PathingAllowance: {PathingAllowance}, PerformanceAllowance: {PerformanceAllowance}, Platform: {Platform}, PublicArrival: {PublicArrival}, PublicCall: {PublicCall}, PublicDeparture: {PublicDeparture}, RecordIdentity: {RecordIdentity}, Tiploc: {Tiploc}, TiplocSuffix: {TiplocSuffix}, WorkingArrival: {WorkingArrival}, WorkingDeparture: {WorkingDeparture}";
+            return $"ActualCall: {ActualCall}, EngineeringAllowance: {EngineeringAllowance}, Line: {Line}, Location: {Location}, LocationActivity: {LocationActivity}, LocationActivityString: {LocationActivityString}, OrderTime: {OrderTime}, Pass: {Pass}, Path: {Path}, PathingAllowance: {PathingAllowance}, PerformanceAllowance: {PerformanceAllowance}, Platform: {Platform}, PublicArrival: {PublicArrival}, PublicCall: {PublicCall}, PublicDeparture: {PublicDeparture}, RecordIdentity: {RecordIdentity}, Tiploc: {Tiploc}, TiplocSuffix: {TiplocSuffix}, WorkingArrival: {WorkingArrival}, WorkingDeparture: {WorkingDeparture}";
         }
     }
 }

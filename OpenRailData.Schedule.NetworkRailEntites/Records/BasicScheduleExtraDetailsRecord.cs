@@ -2,7 +2,6 @@
 {
     public class BasicScheduleExtraDetailsRecord : IScheduleRecord
     {
-        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string UicCode { get; set; } = string.Empty;
         public string AtocCode { get; set; } = string.Empty;
@@ -12,8 +11,7 @@
 
         protected bool Equals(BasicScheduleExtraDetailsRecord other)
         {
-            return Id == other.Id &&
-                RecordIdentity == other.RecordIdentity && 
+            return RecordIdentity == other.RecordIdentity && 
                 string.Equals(UicCode, other.UicCode) && 
                 string.Equals(AtocCode, other.AtocCode) && 
                 string.Equals(AtsCode, other.AtsCode) && 
@@ -49,7 +47,7 @@
 
         public override string ToString()
         {
-            return $"Id: {Id}, RecordIdentity: {RecordIdentity}, UicCode: {UicCode}, AtocCode: {AtocCode}, AtsCode: {AtsCode}, Rsid: {Rsid}, DataSource: {DataSource}";
+            return $"RecordIdentity: {RecordIdentity}, UicCode: {UicCode}, AtocCode: {AtocCode}, AtsCode: {AtsCode}, Rsid: {Rsid}, DataSource: {DataSource}";
         }
     }
 }

@@ -2,11 +2,11 @@
 using Microsoft.Practices.Unity;
 using Moq;
 using NUnit.Framework;
+using OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers;
 using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
 using OpenRailData.Schedule.NetworkRailScheduleParser;
-using OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers;
-using OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers;
+using OpenRailData.ScheduleParsing;
 
 namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
 {

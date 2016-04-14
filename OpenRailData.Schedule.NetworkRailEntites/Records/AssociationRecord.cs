@@ -5,7 +5,6 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 {
     public class AssociationRecord : IScheduleRecord
     {
-        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string MainTrainUid { get; set; } = string.Empty;
         public string AssocTrainUid { get; set; } = string.Empty;
@@ -23,8 +22,7 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 
         protected bool Equals(AssociationRecord other)
         {
-            return Id == other.Id &&
-                   AssocDays == other.AssocDays &&
+            return AssocDays == other.AssocDays &&
                    string.Equals(AssocLocationSuffix, other.AssocLocationSuffix) &&
                    string.Equals(AssocTrainUid, other.AssocTrainUid) &&
                    AssocType == other.AssocType &&
@@ -76,7 +74,7 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 
         public override string ToString()
         {
-            return $"AssocDays: {AssocDays}, AssocLocationSuffix: {AssocLocationSuffix}, AssocTrainUid: {AssocTrainUid}, AssocType: {AssocType}, BaseLocationSuffix: {BaseLocationSuffix}, Category: {Category}, DateFrom: {DateFrom}, DateIndicator: {DateIndicator}, DateTo: {DateTo}, DiagramType: {DiagramType}, Id: {Id}, Location: {Location}, MainTrainUid: {MainTrainUid}, RecordIdentity: {RecordIdentity}, StpIndicator: {StpIndicator}";
+            return $"AssocDays: {AssocDays}, AssocLocationSuffix: {AssocLocationSuffix}, AssocTrainUid: {AssocTrainUid}, AssocType: {AssocType}, BaseLocationSuffix: {BaseLocationSuffix}, Category: {Category}, DateFrom: {DateFrom}, DateIndicator: {DateIndicator}, DateTo: {DateTo}, DiagramType: {DiagramType}, Location: {Location}, MainTrainUid: {MainTrainUid}, RecordIdentity: {RecordIdentity}, StpIndicator: {StpIndicator}";
         }
     }
 }

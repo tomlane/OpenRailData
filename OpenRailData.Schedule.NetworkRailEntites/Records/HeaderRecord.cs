@@ -5,7 +5,6 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 {
     public class HeaderRecord : IScheduleRecord
     {
-        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string MainFrameIdentity { get; set; } = string.Empty;
         public DateTime DateOfExtract { get; set; }
@@ -21,8 +20,7 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 
         protected bool Equals(HeaderRecord other)
         {
-            return Id == other.Id &&
-                RecordIdentity == other.RecordIdentity && 
+            return RecordIdentity == other.RecordIdentity && 
                 string.Equals(MainFrameIdentity, other.MainFrameIdentity) && 
                 DateOfExtract.Equals(other.DateOfExtract) && 
                 TimeOfExtract.Equals(other.TimeOfExtract) && 
@@ -70,7 +68,7 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 
         public override string ToString()
         {
-            return $"Id: {Id}, RecordIdentity: {RecordIdentity}, MainFrameIdentity: {MainFrameIdentity}, DateOfExtract: {DateOfExtract}, TimeOfExtract: {TimeOfExtract}, CurrentFileRef: {CurrentFileRef}, LastFileRef: {LastFileRef}, ExtractUpdateType: {ExtractUpdateType}, CifSoftwareVersion: {CifSoftwareVersion}, UserExtractStartDate: {UserExtractStartDate}, UserExtractEndDate: {UserExtractEndDate}, MainFrameUser: {MainFrameUser}, MainFrameExtractDate: {MainFrameExtractDate}";
+            return $"RecordIdentity: {RecordIdentity}, MainFrameIdentity: {MainFrameIdentity}, DateOfExtract: {DateOfExtract}, TimeOfExtract: {TimeOfExtract}, CurrentFileRef: {CurrentFileRef}, LastFileRef: {LastFileRef}, ExtractUpdateType: {ExtractUpdateType}, CifSoftwareVersion: {CifSoftwareVersion}, UserExtractStartDate: {UserExtractStartDate}, UserExtractEndDate: {UserExtractEndDate}, MainFrameUser: {MainFrameUser}, MainFrameExtractDate: {MainFrameExtractDate}";
         }
     }
 }

@@ -27,7 +27,7 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
             if (Logger.IsInfoEnabled)
                 Logger.Info("Starting up...");
 
-            const string url = "https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&day=toc-update-thu.CIF.gz";
+            const string url = "https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&day=toc-update-sat.CIF.gz";
 
             var container = CifParserIocContainerBuilder.Build();
 

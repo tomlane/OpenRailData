@@ -4,7 +4,6 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 {
     public class ChangesEnRouteRecord : IScheduleRecord
     {
-        public int Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string Tiploc { get; set; } = string.Empty; 
         public string TiplocSuffix { get; set; } = string.Empty; 
@@ -29,8 +28,7 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 
         protected bool Equals(ChangesEnRouteRecord other)
         {
-            return Id == other.Id &&
-                string.Equals(Category, other.Category) && 
+            return string.Equals(Category, other.Category) && 
                 CateringCode == other.CateringCode && 
                 string.Equals(ConnectionIndicator, other.ConnectionIndicator) && 
                 string.Equals(CourseIndicator, other.CourseIndicator) && 
@@ -96,7 +94,7 @@ namespace OpenRailData.Schedule.NetworkRailEntites.Records
 
         public override string ToString()
         {
-            return $"Category: {Category}, CateringCode: {CateringCode}, ConnectionIndicator: {ConnectionIndicator}, CourseIndicator: {CourseIndicator}, HeadCode: {HeadCode}, Id: {Id}, OperatingCharacteristics: {OperatingCharacteristics}, PortionId: {PortionId}, PowerType: {PowerType}, RecordIdentity: {RecordIdentity}, Reservations: {Reservations}, Rsid: {Rsid}, SeatingClass: {SeatingClass}, ServiceBranding: {ServiceBranding}, ServiceCode: {ServiceCode}, Sleepers: {Sleepers}, Speed: {Speed}, TimingLoad: {TimingLoad}, Tiploc: {Tiploc}, TiplocSuffix: {TiplocSuffix}, TrainIdentity: {TrainIdentity}, UicCode: {UicCode}";
+            return $"Category: {Category}, CateringCode: {CateringCode}, ConnectionIndicator: {ConnectionIndicator}, CourseIndicator: {CourseIndicator}, HeadCode: {HeadCode}, OperatingCharacteristics: {OperatingCharacteristics}, PortionId: {PortionId}, PowerType: {PowerType}, RecordIdentity: {RecordIdentity}, Reservations: {Reservations}, Rsid: {Rsid}, SeatingClass: {SeatingClass}, ServiceBranding: {ServiceBranding}, ServiceCode: {ServiceCode}, Sleepers: {Sleepers}, Speed: {Speed}, TimingLoad: {TimingLoad}, Tiploc: {Tiploc}, TiplocSuffix: {TiplocSuffix}, TrainIdentity: {TrainIdentity}, UicCode: {UicCode}";
         }
     }
 }

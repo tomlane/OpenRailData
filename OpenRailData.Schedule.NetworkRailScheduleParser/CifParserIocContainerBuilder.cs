@@ -1,11 +1,16 @@
 ﻿using System.Data.Entity.Infrastructure;
 using Microsoft.Practices.Unity;
-using OpenRailData.Schedule.DataAccess.Core;
-using OpenRailData.Schedule.DataAccess.EntityFramework;
-using OpenRailData.Schedule.NetworkRailScheduleDatabase;
-using OpenRailData.Schedule.NetworkRailScheduleParser.PropertyParsers;
-using OpenRailData.Schedule.NetworkRailScheduleParser.RecordParsers;
-using OpenRailData.Schedule.NetworkRailScheduleParser.RecordStorageProcessor;
+using OpenRailData.Configuration;
+using OpenRailData.Modules.ScheduleFetching.Cif;
+using OpenRailData.Modules.ScheduleParsing.Cif.PropertyParsers;
+using OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers;
+using OpenRailData.Modules.ScheduleStorage.EntityFramework;
+using OpenRailData.Modules.ScheduleStorage.EntityFramework.UnitOfWork;
+using OpenRailData.Modules.ScheduleStorageService;
+using OpenRailData.Modules.ScheduleStorageService.RecordStorageProcessor;
+using OpenRailData.ScheduleFetching;
+using OpenRailData.ScheduleParsing;
+using OpenRailData.ScheduleStorage;
 
 namespace OpenRailData.Schedule.NetworkRailScheduleParser
 {
@@ -21,7 +26,7 @@ namespace OpenRailData.Schedule.NetworkRailScheduleParser
             container.RegisterType<IScheduleReader, FileScheduleReader>();
             container.RegisterType<IScheduleFileRecordExtractor, ScheduleFileRecordExtractor>();
             container.RegisterType<IScheduleRecordMerger, CifScheduleRecordMerger>();
-            container.RegisterType<IScheduleRecordStorer, CifScheduleRecordStorer>();
+            container.RegisterType<IScheduleRecordStorageService, ScheduleRecordStorageService>();
 
             container.RegisterType<IFetchScheduleUrlProvider, CifFetchScheduleUrlProvider>();
             container.RegisterType<IConfigManager, AppSettingsConfigManager>();
