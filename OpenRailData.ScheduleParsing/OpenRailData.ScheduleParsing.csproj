@@ -43,6 +43,7 @@
     <Compile Include="IDateTimeParser.cs" />
     <Compile Include="IRecordEnumPropertyParser.cs" />
     <Compile Include="IScheduleRecordParser.cs" />
+    <Compile Include="IScheduleRecordParsingService.cs" />
     <Compile Include="ITimingAllowanceParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -48,8 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CifFetchScheduleService.cs" />
     <Compile Include="CifFetchScheduleUrlProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduleFileRecordExtractor.cs" />
     <Compile Include="WebScheduleFileFetcher.cs" />
   </ItemGroup>
   <ItemGroup>
