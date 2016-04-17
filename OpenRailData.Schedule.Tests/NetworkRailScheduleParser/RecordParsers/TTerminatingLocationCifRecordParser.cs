@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.Practices.Unity;
 using NUnit.Framework;
+using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Domain.ScheduleRecords.Enums;
 using OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers;
-using OpenRailData.Schedule.NetworkRailEntites.Records;
-using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
-using OpenRailData.Schedule.NetworkRailScheduleParser;
+using OpenRailData.ScheduleContainer;
 using OpenRailData.ScheduleParsing;
 
 namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers

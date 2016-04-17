@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
-using OpenRailData.Schedule.NetworkRailEntites.Records;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters
 {

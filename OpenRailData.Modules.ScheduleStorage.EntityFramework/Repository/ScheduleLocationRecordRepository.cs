@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.ScheduleStorage;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository

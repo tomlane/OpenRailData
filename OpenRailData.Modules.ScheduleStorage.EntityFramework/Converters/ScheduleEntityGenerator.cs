@@ -1,5 +1,5 @@
-﻿using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
-using OpenRailData.Schedule.NetworkRailEntites.Records;
+﻿using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters
 {

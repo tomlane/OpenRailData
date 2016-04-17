@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Common.Logging;
-using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.ScheduleStorage;
 
 namespace OpenRailData.Modules.ScheduleStorageService
@@ -22,12 +22,12 @@ namespace OpenRailData.Modules.ScheduleStorageService
             _storageProcessors = scheduleRecordStorageProcessors.ToDictionary(x => x.RecordKey, x => x);
         }
 
-        public void StoreScheduleRecords(IList<IScheduleRecord> recordsToStore)
+        public void StoreScheduleRecords(IEnumerable<IScheduleRecord> recordsToStore)
         {
             if (Logger.IsInfoEnabled)
                 Logger.Info("Starting to store schedule records.");
 
-            if (recordsToStore == null || !recordsToStore.Any())
+            if (recordsToStore == null)
                 throw new ArgumentNullException(nameof(recordsToStore));
 
             Parallel.ForEach(recordsToStore, StoreRecord);

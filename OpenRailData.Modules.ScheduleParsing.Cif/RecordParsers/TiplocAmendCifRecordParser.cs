@@ -1,6 +1,6 @@
 ﻿using System;
+using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleParsing.Cif.Utils;
-using OpenRailData.Schedule.NetworkRailEntites.Records;
 using OpenRailData.ScheduleParsing;
 
 namespace OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers

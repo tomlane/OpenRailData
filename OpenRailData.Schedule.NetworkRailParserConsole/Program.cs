@@ -4,7 +4,10 @@ using Common.Logging;
 using Common.Logging.Configuration;
 using Common.Logging.NLog;
 using Microsoft.Practices.Unity;
-using OpenRailData.Schedule.NetworkRailScheduleParser;
+using OpenRailData.ScheduleContainer;
+using OpenRailData.ScheduleFetching;
+using OpenRailData.ScheduleParsing;
+using OpenRailData.ScheduleStorage;
 
 namespace OpenRailData.Schedule.NetworkRailParserConsole
 {
@@ -27,20 +30,22 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
             if (Logger.IsInfoEnabled)
                 Logger.Info("Starting up...");
 
-            const string url = "https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_UPDATE_DAILY&day=toc-update-sat.CIF.gz";
-
             var container = CifParserIocContainerBuilder.Build();
 
             if (Logger.IsInfoEnabled)
                 Logger.Info("Dependency Injection container built.");
 
-            var scheduleManager = container.Resolve<IScheduleManager>();
+            var scheduleFetchService = container.Resolve<IScheduleFetchingService>();
+            var scheduleParseService = container.Resolve<IScheduleRecordParsingService>();
+            var scheduleStorageService = container.Resolve<IScheduleRecordStorageService>();
 
-            var entites = scheduleManager.GetRecordsByScheduleFileUrl(url).ToList();
-            
-            entites = scheduleManager.MergeScheduleRecords(entites).ToList();
+            var recordMerger = container.Resolve<IScheduleRecordMerger>();
 
-            scheduleManager.SaveScheduleRecords(entites);
+            var records = recordMerger.MergeScheduleRecords(scheduleParseService.ParseScheduleRecords(scheduleFetchService.FetchSchedule(ScheduleType.Full))).ToList();
+
+            scheduleStorageService.StoreScheduleRecords(records);
+
+            Console.WriteLine("Parsed {0} records", records.Count);
 
             Console.WriteLine("Press any key to close...");
             Console.ReadLine();

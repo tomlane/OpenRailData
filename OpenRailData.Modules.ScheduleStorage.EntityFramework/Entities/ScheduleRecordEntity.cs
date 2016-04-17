@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using OpenRailData.Schedule.NetworkRailEntites.Records;
-using OpenRailData.Schedule.NetworkRailEntites.Records.Enums;
+using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Domain.ScheduleRecords.Enums;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities
 {

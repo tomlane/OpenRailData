@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Domain.ScheduleRecords;
 
 namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.Records
 {

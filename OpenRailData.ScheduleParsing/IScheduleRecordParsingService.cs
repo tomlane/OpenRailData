@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Domain.ScheduleRecords;
 
 namespace OpenRailData.ScheduleParsing
 {

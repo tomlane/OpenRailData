@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using OpenRailData.Schedule.NetworkRailEntites.Records;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
+using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.ScheduleParsing;
 
 namespace OpenRailData.Modules.ScheduleParsing.Cif
@@ -10,29 +13,33 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif
     {
         private readonly Dictionary<string, IScheduleRecordParser> _cifRecordParsers;
 
+        private readonly ConcurrentBag<ParsedScheduleRecord> _parsedRecords;
+
         public CifScheduleRecordParsingService(IScheduleRecordParser[] recordParsers)
         {
             if (recordParsers == null)
                 throw new ArgumentNullException(nameof(recordParsers));
 
             _cifRecordParsers = recordParsers.ToDictionary(x => x.RecordKey, x => x);
+
+            _parsedRecords = new ConcurrentBag<ParsedScheduleRecord>();
         }
 
         public IEnumerable<IScheduleRecord> ParseScheduleRecords(IEnumerable<string> records)
         {
             if (records == null)
                 throw new ArgumentNullException(nameof(records));
-            
-            var parsedRecords = new List<IScheduleRecord>();
-                
-            records.ToList().ForEach(r => parsedRecords.Add(ParseRecord(r)));
 
-            return parsedRecords;
+            var lineSet = BuildLineSet(records);
+
+            Parallel.ForEach(lineSet, ParseRecord);
+
+            return _parsedRecords.OrderBy(x => x.Index).Select(parsedScheduleRecord => parsedScheduleRecord.ScheduleRecord).ToList();
         }
 
-        private IScheduleRecord ParseRecord(string record)
+        private void ParseRecord(ScheduleFileLine fileLine)
         {
-            var recordType = record.Substring(0, 2);
+            var recordType = fileLine.Record.Substring(0, 2);
 
             IScheduleRecordParser parser;
 
@@ -45,7 +52,28 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif
                 throw new ArgumentException($"No parser found for record type {recordType}", exception);
             }
 
-            return parser.ParseRecord(record);
+            _parsedRecords.Add(new ParsedScheduleRecord
+            {
+                Index = fileLine.Index,
+                ScheduleRecord = parser.ParseRecord(fileLine.Record)
+            });
         }
+
+        private IList<ScheduleFileLine> BuildLineSet(IEnumerable<string> records)
+        {
+            var inputRecords = records as string[] ?? records.ToArray();
+
+            return inputRecords.Select((t, i) => new ScheduleFileLine
+            {
+                Index = i,
+                Record = t
+            }).ToList();
+        }
+    }
+
+    internal class ParsedScheduleRecord
+    {
+        public int Index { get; set; }
+        public IScheduleRecord ScheduleRecord { get; set; }
     }
 }

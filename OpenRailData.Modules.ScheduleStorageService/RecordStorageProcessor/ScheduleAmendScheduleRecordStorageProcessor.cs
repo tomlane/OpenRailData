@@ -1,6 +1,6 @@
 ﻿using System;
 using Common.Logging;
-using OpenRailData.Schedule.NetworkRailEntites.Records;
+using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.ScheduleStorage;
 
 namespace OpenRailData.Modules.ScheduleStorageService.RecordStorageProcessor

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FBB3001F-2CE9-4963-8299-7AFDBEDB7F8C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenRailData.ScheduleContainer</RootNamespace>
+    <AssemblyName>OpenRailData.ScheduleContainer</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CifParserIocContainerBuilder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenRailData.Configuration\OpenRailData.Configuration.csproj">
+      <Project>{97F4F260-5D57-431F-88DD-36C013AF598F}</Project>
+      <Name>OpenRailData.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleFetching.Cif\OpenRailData.Modules.ScheduleFetching.Cif.csproj">
+      <Project>{5042A13B-737C-4790-A59B-01C4CDE5F18C}</Project>
+      <Name>OpenRailData.Modules.ScheduleFetching.Cif</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleParsing.Cif\OpenRailData.Modules.ScheduleParsing.Cif.csproj">
+      <Project>{4ECAB2A3-DD04-4766-A1F7-EC330E37E026}</Project>
+      <Name>OpenRailData.Modules.ScheduleParsing.Cif</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleStorage.EntityFramework\OpenRailData.Modules.ScheduleStorage.EntityFramework.csproj">
+      <Project>{356A6879-C173-4F5B-BD77-80042FCFFF05}</Project>
+      <Name>OpenRailData.Modules.ScheduleStorage.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleStorageService\OpenRailData.Modules.ScheduleStorageService.csproj">
+      <Project>{F697A364-D2B4-452D-BE3F-5011CE702504}</Project>
+      <Name>OpenRailData.Modules.ScheduleStorageService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleValidation\OpenRailData.Modules.ScheduleValidation.csproj">
+      <Project>{81B0FEF5-C92D-419A-8D7A-39FEF23F08C8}</Project>
+      <Name>OpenRailData.Modules.ScheduleValidation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Schedule.CommonDatabase\OpenRailData.Schedule.CommonDatabase.csproj">
+      <Project>{DBF09618-423D-4A73-BBEC-36598E5B2FDF}</Project>
+      <Name>OpenRailData.Schedule.CommonDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.ScheduleFetching\OpenRailData.ScheduleFetching.csproj">
+      <Project>{B097A1D0-592E-4751-91DB-1E8FFEECE536}</Project>
+      <Name>OpenRailData.ScheduleFetching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.ScheduleParsing\OpenRailData.ScheduleParsing.csproj">
+      <Project>{384119CE-97B5-4F1B-8AA1-6ABA519D80AC}</Project>
+      <Name>OpenRailData.ScheduleParsing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.ScheduleStorage\OpenRailData.ScheduleStorage.csproj">
+      <Project>{E6548915-E0BD-4225-8B8C-695B447F38E9}</Project>
+      <Name>OpenRailData.ScheduleStorage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.ScheduleValidation\OpenRailData.ScheduleValidation.csproj">
+      <Project>{4BC918C0-62B0-4F57-8F8C-D7580A567EDC}</Project>
+      <Name>OpenRailData.ScheduleValidation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
