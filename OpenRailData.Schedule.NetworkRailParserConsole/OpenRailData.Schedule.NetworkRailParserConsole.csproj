@@ -89,6 +89,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OpenRailData.BerthStepData\OpenRailData.BerthStepData.csproj">
+      <Project>{1ADB0474-B5B7-480D-9C8A-1C9663C712C8}</Project>
+      <Name>OpenRailData.BerthStepData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Configuration\OpenRailData.Configuration.csproj">
       <Project>{97F4F260-5D57-431F-88DD-36C013AF598F}</Project>
       <Name>OpenRailData.Configuration</Name>

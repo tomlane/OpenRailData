@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using OpenRailData.DataFetcher;
 using OpenRailData.ScheduleFetching;
 
 namespace OpenRailData.Modules.ScheduleFetching.Cif
@@ -8,22 +9,26 @@ namespace OpenRailData.Modules.ScheduleFetching.Cif
     {
         private readonly IFetchScheduleUrlProvider _urlProvider;
         private readonly IScheduleFileRecordExtractor _scheduleFileRecordExtractor;
-        private readonly IScheduleFileFetcher _scheduleFileFetcher;
+        private readonly IDataFileFetcher _dataFileFetcher;
+        private readonly IDataFileDecompressor _dataFileDecompressor;
 
         private byte[] _cachedScheduleFile;
 
-        public CifScheduleFetchingService(IFetchScheduleUrlProvider urlProvider, IScheduleFileRecordExtractor scheduleFileRecordExtractor, IScheduleFileFetcher scheduleFileFetcher)
+        public CifScheduleFetchingService(IFetchScheduleUrlProvider urlProvider, IScheduleFileRecordExtractor scheduleFileRecordExtractor, IDataFileFetcher dataFileFetcher, IDataFileDecompressor dataFileDecompressor)
         {
             if (urlProvider == null)
                 throw new ArgumentNullException(nameof(urlProvider));
             if (scheduleFileRecordExtractor == null)
                 throw new ArgumentNullException(nameof(scheduleFileRecordExtractor));
-            if (scheduleFileFetcher == null)
-                throw new ArgumentNullException(nameof(scheduleFileFetcher));
+            if (dataFileFetcher == null)
+                throw new ArgumentNullException(nameof(dataFileFetcher));
+            if (dataFileDecompressor == null)
+                throw new ArgumentNullException(nameof(dataFileDecompressor));
 
             _urlProvider = urlProvider;
             _scheduleFileRecordExtractor = scheduleFileRecordExtractor;
-            _scheduleFileFetcher = scheduleFileFetcher;
+            _dataFileFetcher = dataFileFetcher;
+            _dataFileDecompressor = dataFileDecompressor;
         }
 
         public IEnumerable<string> FetchSchedule(ScheduleType scheduleType, bool useCachedFile = true)
@@ -45,7 +50,7 @@ namespace OpenRailData.Modules.ScheduleFetching.Cif
                     throw new ArgumentException($"Unknown schedule type {scheduleType}");
             }
 
-            _cachedScheduleFile = _scheduleFileFetcher.FetchScheduleFileFromUrl(scheduleUrl);
+            _cachedScheduleFile = _dataFileDecompressor.DecompressDataFile(_dataFileFetcher.FetchDataFile(scheduleUrl));
 
             return _scheduleFileRecordExtractor.ExtractScheduleFileRecords(_cachedScheduleFile);
         }

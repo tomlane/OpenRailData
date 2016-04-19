@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity.Infrastructure;
 using Microsoft.Practices.Unity;
+using OpenRailData.BerthStepData;
 using OpenRailData.Configuration;
+using OpenRailData.DataFetcher;
 using OpenRailData.Modules.ScheduleFetching.Cif;
 using OpenRailData.Modules.ScheduleParsing.Cif;
 using OpenRailData.Modules.ScheduleParsing.Cif.PropertyParsers;
@@ -24,6 +26,11 @@ namespace OpenRailData.ScheduleContainer
             if (container == null)
                 container = new UnityContainer();
 
+            container.RegisterType<IBerthStepDataProvider, BerthStepDataProvider>();
+            
+            container.RegisterType<IDataFileFetcher, WebDataFileFetcher>();
+            container.RegisterType<IDataFileDecompressor, GzipDataFileDecompressor>();
+
             container.RegisterType<IScheduleRecordStorageService, ScheduleRecordStorageService>();
             container.RegisterType<IScheduleRecordParsingService, CifScheduleRecordParsingService>();
             container.RegisterType<IScheduleFetchingService, CifScheduleFetchingService>();
@@ -34,7 +41,6 @@ namespace OpenRailData.ScheduleContainer
 
             container.RegisterType<IFetchScheduleUrlProvider, CifFetchScheduleUrlProvider>();
             container.RegisterType<IConfigManager, AppSettingsConfigManager>();
-            container.RegisterType<IScheduleFileFetcher, WebScheduleFileFetcher>();
 
             container.RegisterType<IScheduleRecordParser, AssociationCifRecordParser>("AssociationCifRecordParser");
             container.RegisterType<IScheduleRecordParser, BasicScheduleExtraDetailsCifRecordParser>("BasicScheduleExtraDetailsCifRecordParser");

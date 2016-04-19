@@ -35,6 +35,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferenceData\BerthEvent.cs" />
+    <Compile Include="ReferenceData\BerthStep.cs" />
+    <Compile Include="ReferenceData\BerthStepType.cs" />
     <Compile Include="ScheduleRecords\AssociationRecord.cs" />
     <Compile Include="ScheduleRecords\BasicScheduleExtraDetailsRecord.cs" />
     <Compile Include="ScheduleRecords\ChangesEnRouteRecord.cs" />
@@ -64,6 +67,7 @@
     <Compile Include="ScheduleRecords\ScheduleRecordType.cs" />
     <Compile Include="ScheduleRecords\TiplocRecord.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

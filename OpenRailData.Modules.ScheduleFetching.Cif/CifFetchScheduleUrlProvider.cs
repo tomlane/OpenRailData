@@ -18,7 +18,7 @@ namespace OpenRailData.Modules.ScheduleFetching.Cif
         public string GetWeeklyScheduleUrl()
         {
             if (Logger.IsInfoEnabled)
-                Logger.Info("Fetching URL for thr weekly schedule.");
+                Logger.Info("Fetching URL for the weekly schedule.");
             
             return "https://datafeeds.networkrail.co.uk/ntrod/CifFileAuthenticate?type=CIF_ALL_FULL_DAILY&day=toc-full.CIF.gz";
         }

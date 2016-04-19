@@ -6,37 +6,27 @@ using System.Net.Http;
 using System.Text;
 using Common.Logging;
 using OpenRailData.Configuration;
-using OpenRailData.ScheduleFetching;
 
-namespace OpenRailData.Modules.ScheduleFetching.Cif
+namespace OpenRailData.DataFetcher
 {
-    public class WebScheduleFileFetcher : IScheduleFileFetcher
+    public class WebDataFileFetcher : IDataFileFetcher
     {
         private readonly IConfigManager _configManager;
-        private readonly IFetchScheduleUrlProvider _scheduleUrlProvider;
         private readonly ILog Logger = LogManager.GetLogger("Schedule.Util.CifScheduleFileFetcher");
         
-        public WebScheduleFileFetcher(IConfigManager configManager, IFetchScheduleUrlProvider scheduleUrlProvider)
+        public WebDataFileFetcher(IConfigManager configManager)
         {
             if (configManager == null)
                 throw new ArgumentNullException(nameof(configManager));
-            if (scheduleUrlProvider == null)
-                throw new ArgumentNullException(nameof(scheduleUrlProvider));
 
             _configManager = configManager;
-            _scheduleUrlProvider = scheduleUrlProvider;
         }
 
-        public byte[] FetchScheduleFileFromUrl(string url)
+        public byte[] FetchDataFile(string url)
         {
             if (string.IsNullOrWhiteSpace(url))
                 throw new ArgumentNullException(nameof(url));
 
-            return GetScheduleFile(url);
-        }
-
-        private byte[] GetScheduleFile(string url)
-        {
             if (Logger.IsInfoEnabled)
                 Logger.Info($"Preparing web request for the following url: {url}");
 
@@ -51,13 +41,13 @@ namespace OpenRailData.Modules.ScheduleFetching.Cif
                 Logger.Info("Response received for web request.");
 
             if (response.StatusCode != HttpStatusCode.OK)
-                throw new HttpRequestException("Failed to fetch daily schedule update");
+                throw new HttpRequestException($"Failed to fetch file from {url}");
 
             using (var responseStream = response.GetResponseStream())
             using (var memoryStream = new MemoryStream())
             {
                 responseStream?.CopyTo(memoryStream);
-                return DecompressBytes(memoryStream.ToArray());
+                return memoryStream.ToArray();
             }
         }
 

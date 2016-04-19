@@ -4,6 +4,7 @@ using Common.Logging;
 using Common.Logging.Configuration;
 using Common.Logging.NLog;
 using Microsoft.Practices.Unity;
+using OpenRailData.BerthStepData;
 using OpenRailData.ScheduleContainer;
 using OpenRailData.ScheduleFetching;
 using OpenRailData.ScheduleParsing;
@@ -35,17 +36,21 @@ namespace OpenRailData.Schedule.NetworkRailParserConsole
             if (Logger.IsInfoEnabled)
                 Logger.Info("Dependency Injection container built.");
 
-            var scheduleFetchService = container.Resolve<IScheduleFetchingService>();
-            var scheduleParseService = container.Resolve<IScheduleRecordParsingService>();
-            var scheduleStorageService = container.Resolve<IScheduleRecordStorageService>();
+            //var scheduleFetchService = container.Resolve<IScheduleFetchingService>();
+            //var scheduleParseService = container.Resolve<IScheduleRecordParsingService>();
+            //var scheduleStorageService = container.Resolve<IScheduleRecordStorageService>();
 
-            var recordMerger = container.Resolve<IScheduleRecordMerger>();
+            //var recordMerger = container.Resolve<IScheduleRecordMerger>();
 
-            var records = recordMerger.MergeScheduleRecords(scheduleParseService.ParseScheduleRecords(scheduleFetchService.FetchSchedule(ScheduleType.Full))).ToList();
+            //var records = recordMerger.MergeScheduleRecords(scheduleParseService.ParseScheduleRecords(scheduleFetchService.FetchSchedule(ScheduleType.Full))).ToList();
 
-            scheduleStorageService.StoreScheduleRecords(records);
+            //scheduleStorageService.StoreScheduleRecords(records);
 
-            Console.WriteLine("Parsed {0} records", records.Count);
+            var berthStepProvider = container.Resolve<IBerthStepDataProvider>();
+
+            var steps = berthStepProvider.GetBerthSteps();
+
+            //Console.WriteLine("Parsed {0} records", records.Count);
 
             Console.WriteLine("Press any key to close...");
             Console.ReadLine();

@@ -63,9 +63,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OpenRailData.BerthStepData\OpenRailData.BerthStepData.csproj">
+      <Project>{1ADB0474-B5B7-480D-9C8A-1C9663C712C8}</Project>
+      <Name>OpenRailData.BerthStepData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Configuration\OpenRailData.Configuration.csproj">
       <Project>{97F4F260-5D57-431F-88DD-36C013AF598F}</Project>
       <Name>OpenRailData.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.DataFetcher\OpenRailData.DataFetcher.csproj">
+      <Project>{FD996A6A-2257-4DE5-AF9D-1622C44C7C6D}</Project>
+      <Name>OpenRailData.DataFetcher</Name>
     </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Modules.ScheduleFetching.Cif\OpenRailData.Modules.ScheduleFetching.Cif.csproj">
       <Project>{5042A13B-737C-4790-A59B-01C4CDE5F18C}</Project>
