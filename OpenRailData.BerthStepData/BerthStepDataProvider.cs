@@ -26,7 +26,7 @@ namespace OpenRailData.BerthStepData
 
         public IList<BerthStep> GetBerthSteps()
         {
-            var rawData = _dataFileDecompressor.DecompressDataFile(_dataFileFetcher.FetchDataFile("https://datafeeds.networkrail.co.uk/ntrod/spring_security_login;jsessionid=F778E0CD8FED7E0F68023E05B22834A5"));
+            var rawData = _dataFileDecompressor.DecompressDataFile(_dataFileFetcher.FetchDataFile(@"C:\Users\Tom\Downloads\SMARTExtract (3).json.gz"));
 
             var rawSteps = JsonConvert.DeserializeObject<RawBerthData>(Encoding.UTF8.GetString(rawData));
 
