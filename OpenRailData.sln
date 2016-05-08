@@ -45,6 +45,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Application
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B148E18E-36CF-47A4-9019-C1FED350EE8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.DataFeedClient", "OpenRailData.DataFeedClient\OpenRailData.DataFeedClient.csproj", "{A3A2005D-63FD-4F5F-9D33-C7A72C6D333D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Modules.DataFeedClient.OpenWire", "OpenRailData.Modules.DataFeedClient.OpenWire\OpenRailData.Modules.DataFeedClient.OpenWire.csproj", "{B0BD0116-A7BC-4FB8-86F4-3D1544309ADE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +127,14 @@ Global
 		{2A7F8238-0661-4A7B-A789-65A56E64945C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A7F8238-0661-4A7B-A789-65A56E64945C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A7F8238-0661-4A7B-A789-65A56E64945C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A2005D-63FD-4F5F-9D33-C7A72C6D333D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A2005D-63FD-4F5F-9D33-C7A72C6D333D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A2005D-63FD-4F5F-9D33-C7A72C6D333D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A2005D-63FD-4F5F-9D33-C7A72C6D333D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0BD0116-A7BC-4FB8-86F4-3D1544309ADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0BD0116-A7BC-4FB8-86F4-3D1544309ADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0BD0116-A7BC-4FB8-86F4-3D1544309ADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0BD0116-A7BC-4FB8-86F4-3D1544309ADE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,5 +149,6 @@ Global
 		{5042A13B-737C-4790-A59B-01C4CDE5F18C} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 		{81B0FEF5-C92D-419A-8D7A-39FEF23F08C8} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 		{2A7F8238-0661-4A7B-A789-65A56E64945C} = {05F30D8A-FA75-4FCB-AAFD-2A4E1756336D}
+		{B0BD0116-A7BC-4FB8-86F4-3D1544309ADE} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 	EndGlobalSection
 EndGlobal
