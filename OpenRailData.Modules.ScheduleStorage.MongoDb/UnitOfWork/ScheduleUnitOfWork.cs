@@ -1,5 +1,4 @@
 ﻿using System;
-using MongoDB.Driver;
 using OpenRailData.Modules.ScheduleStorage.MongoDb.Repository;
 using OpenRailData.ScheduleStorage;
 
@@ -7,9 +6,6 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.UnitOfWork
 {
     public class ScheduleUnitOfWork : IScheduleUnitOfWork
     {
-        private readonly IMongoClient _client;
-        private readonly IMongoDatabase _database;
-
         public IHeaderRecordRepository HeaderRecords { get; }
         public ITiplocRecordRepository TiplocRecords { get; }
         public IAssociationRecordRepository AssociationRecords { get; }
@@ -21,10 +17,14 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.UnitOfWork
             if (clientFactory == null)
                 throw new ArgumentNullException(nameof(clientFactory));
 
-            _client = clientFactory.Create();
-            _database = _client.GetDatabase("NetworkRailSchedule");
+            var client = clientFactory.Create();
+            var database = client.GetDatabase("NetworkRailSchedule");
 
-            TiplocRecords = new TiplocMongoDbRepository(_database);
+            HeaderRecords = new HeaderMongoDbRepository(database);
+            TiplocRecords = new TiplocMongoDbRepository(database);
+            AssociationRecords = new AssociationMongoDbRepository(database);
+            ScheduleRecords = new ScheduleMongoDbRepository(database);
+            ScheduleLocationRecords = new ScheduleLocationMongoDbRepository();
         }
 
         public int Complete()
@@ -32,6 +32,6 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.UnitOfWork
             return 1;
         }
 
-        public void Dispose() { }
+        public void Dispose() {  }
     }
 }

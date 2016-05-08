@@ -87,6 +87,10 @@
       <Project>{356A6879-C173-4F5B-BD77-80042FCFFF05}</Project>
       <Name>OpenRailData.Modules.ScheduleStorage.EntityFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleStorage.MongoDb\OpenRailData.Modules.ScheduleStorage.MongoDb.csproj">
+      <Project>{29D1C9ED-BF7C-4C04-8B85-453A44FCB687}</Project>
+      <Name>OpenRailData.Modules.ScheduleStorage.MongoDb</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Modules.ScheduleStorageService\OpenRailData.Modules.ScheduleStorageService.csproj">
       <Project>{F697A364-D2B4-452D-BE3F-5011CE702504}</Project>
       <Name>OpenRailData.Modules.ScheduleStorageService</Name>

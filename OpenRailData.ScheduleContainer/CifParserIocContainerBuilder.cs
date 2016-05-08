@@ -8,7 +8,7 @@ using OpenRailData.Modules.ScheduleParsing.Cif;
 using OpenRailData.Modules.ScheduleParsing.Cif.PropertyParsers;
 using OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework;
-using OpenRailData.Modules.ScheduleStorage.EntityFramework.UnitOfWork;
+using OpenRailData.Modules.ScheduleStorage.MongoDb;
 using OpenRailData.Modules.ScheduleStorageService;
 using OpenRailData.Modules.ScheduleStorageService.RecordStorageProcessor;
 using OpenRailData.Modules.ScheduleValidation;
@@ -16,6 +16,8 @@ using OpenRailData.ScheduleFetching;
 using OpenRailData.ScheduleParsing;
 using OpenRailData.ScheduleStorage;
 using OpenRailData.ScheduleValidation;
+using ScheduleUnitOfWork = OpenRailData.Modules.ScheduleStorage.MongoDb.UnitOfWork.ScheduleUnitOfWork;
+using ScheduleUnitOfWorkFactory = OpenRailData.Modules.ScheduleStorage.MongoDb.UnitOfWork.ScheduleUnitOfWorkFactory;
 
 namespace OpenRailData.ScheduleContainer
 {
@@ -33,7 +35,7 @@ namespace OpenRailData.ScheduleContainer
 
             container.RegisterType<IScheduleRecordStorageService, ScheduleRecordStorageService>();
             container.RegisterType<IScheduleRecordParsingService, CifScheduleRecordParsingService>();
-            container.RegisterType<IScheduleFetchingService, CifScheduleFetchingService>();
+            container.RegisterType<IScheduleFetchingService, FileScheduleFetchingService>();
 
             container.RegisterType<IScheduleFileRecordExtractor, ScheduleFileRecordExtractor>();
             container.RegisterType<IScheduleRecordMerger, CifScheduleRecordMerger>();
@@ -92,6 +94,7 @@ namespace OpenRailData.ScheduleContainer
             container.RegisterType<IScheduleUnitOfWorkFactory, ScheduleUnitOfWorkFactory>();
             container.RegisterType<IScheduleUnitOfWork, ScheduleUnitOfWork>();
 
+            container.RegisterType<IMongoDbClientFactory, MongoDbClientFactory>();
             container.RegisterType<IDbContextFactory<ScheduleContext>, ScheduleContextFactory>();
             
             return container;

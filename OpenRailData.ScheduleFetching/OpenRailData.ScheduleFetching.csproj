@@ -34,11 +34,18 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileScheduleFetchingService.cs" />
     <Compile Include="IScheduleFetchingService.cs" />
     <Compile Include="IFetchScheduleUrlProvider.cs" />
     <Compile Include="IScheduleFileRecordExtractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScheduleType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenRailData.Configuration\OpenRailData.Configuration.csproj">
+      <Project>{97F4F260-5D57-431F-88DD-36C013AF598F}</Project>
+      <Name>OpenRailData.Configuration</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
