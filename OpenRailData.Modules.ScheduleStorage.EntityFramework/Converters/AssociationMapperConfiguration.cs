@@ -12,5 +12,12 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters
 
             return config.CreateMapper();
         }
+
+        internal static IMapper EntityToRecord()
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<AssociationRecordEntity, AssociationRecord>());
+
+            return config.CreateMapper();
+        }
     }
 }

@@ -56,12 +56,12 @@ namespace OpenRailData.Schedule.CommonDatabase
 
         public IDbEntityEntryWrapper WrappedEntry(object entity)
         {
-            return new DbEntityEntryWrapper(this.Entry(entity));
+            return new DbEntityEntryWrapper(Entry(entity));
         }
 
         public List<TEntity> ExecuteQuery<TEntity>(string sql, params object[] parameters)
         {
-            var list = this.Database.SqlQuery<TEntity>(sql, parameters).ToList();
+            var list = Database.SqlQuery<TEntity>(sql, parameters).ToList();
 
             return list;
         }
@@ -77,10 +77,10 @@ namespace OpenRailData.Schedule.CommonDatabase
 
         private SqlCommand BuildSqlCommand()
         {
-            if (this.Database.Connection.State != ConnectionState.Open)
-                this.Database.Connection.Open();
+            if (Database.Connection.State != ConnectionState.Open)
+                Database.Connection.Open();
 
-            SqlCommand command = this.Database.Connection.CreateCommand() as SqlCommand;
+            SqlCommand command = Database.Connection.CreateCommand() as SqlCommand;
             if (command == null)
                 throw new ArgumentException("SqlCommand not created from connection");
             return command;

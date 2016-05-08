@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using OpenRailData.Domain.ScheduleRecords.Enums;
 
 namespace OpenRailData.Domain.ScheduleRecords
@@ -90,14 +91,15 @@ namespace OpenRailData.Domain.ScheduleRecords
                 string.Equals(TrainStatus, other.TrainStatus) && 
                 string.Equals(TrainUid, other.TrainUid) && 
                 string.Equals(UicCode, other.UicCode) && 
-                string.Equals(UniqueId, other.UniqueId);
+                string.Equals(UniqueId, other.UniqueId)
+                && ScheduleLocations.SequenceEqual(other.ScheduleLocations);
         }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((ScheduleRecord) obj);
         }
 

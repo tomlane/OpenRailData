@@ -11,5 +11,12 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters
 
             return tiplocRecordEntity;
         }
+
+        internal static TiplocRecord EntityToRecord(TiplocRecordEntity entity)
+        {
+            var tiplocRecord = TiplocMapperConfiguration.EntityToRecord().Map<TiplocRecord>(entity);
+
+            return tiplocRecord;
+        }
     }
 }

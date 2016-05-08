@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Practices.Unity;
 using Moq;
 using NUnit.Framework;
@@ -84,7 +85,8 @@ namespace OpenRailData.Schedule.Tests.NetworkRailScheduleParser.RecordParsers
                 ServiceBranding = 0,
                 StpIndicator = StpIndicator.P,
                 UniqueId = "Y80201151214P",
-                ServiceTypeFlags = ServiceTypeFlags.Passenger | ServiceTypeFlags.Train
+                ServiceTypeFlags = ServiceTypeFlags.Passenger | ServiceTypeFlags.Train,
+                ScheduleLocations = new List<ScheduleLocationRecord>()
             };
 
             var result = recordParser.ParseRecord(recordToParse);

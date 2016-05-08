@@ -11,5 +11,12 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters
 
             return associationRecordEntity;
         }
+
+        internal static AssociationRecord EntityToRecord(AssociationRecordEntity entity)
+        {
+            var associationRecord = AssociationMapperConfiguration.EntityToRecord().Map<AssociationRecord>(entity);
+
+            return associationRecord;
+        }
     }
 }

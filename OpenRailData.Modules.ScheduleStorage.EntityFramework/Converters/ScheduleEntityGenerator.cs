@@ -11,5 +11,12 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters
 
             return scheduleRecordEntity;
         }
+
+        internal static ScheduleRecord EntityToRecord(ScheduleRecordEntity entity)
+        {
+            var scheduleRecord = ScheduleMapperConfiguration.EntityToRecord().Map<ScheduleRecord>(entity);
+
+            return scheduleRecord;
+        }
     }
 }
