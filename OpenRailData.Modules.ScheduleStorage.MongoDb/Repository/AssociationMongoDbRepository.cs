@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using MongoDB.Driver;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.MongoDb.Converters;
@@ -43,6 +46,52 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
                 throw new ArgumentNullException(nameof(record));
 
             _collection.DeleteOne(x =>
+                x.MainTrainUid == record.MainTrainUid &&
+                x.AssocTrainUid == record.AssocTrainUid &&
+                x.DateFrom == record.DateFrom &&
+                x.StpIndicator == record.StpIndicator);
+        }
+
+        public async Task InsertRecordAsync(AssociationRecord record)
+        {
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            var document = AssociationEntityGenerator.RecordToDocument(record);
+
+            await _collection.InsertOneAsync(document, null, CancellationToken.None);
+        }
+
+        public async Task InsertMultipleRecordsAsync(IEnumerable<AssociationRecord> records)
+        {
+            if (records == null)
+                throw new ArgumentNullException(nameof(records));
+
+            throw new NotImplementedException();
+        }
+
+        public async Task AmendRecordAsync(AssociationRecord record)
+        {
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            var document = AssociationEntityGenerator.RecordToDocument(record);
+
+            await _collection.UpdateOneAsync(x =>
+                x.MainTrainUid == record.MainTrainUid &&
+                x.AssocTrainUid == record.AssocTrainUid &&
+                x.DateFrom == record.DateFrom &&
+                x.StpIndicator == record.StpIndicator,
+                new ObjectUpdateDefinition<AssociationDocument>(document),
+                new UpdateOptions());
+        }
+
+        public async Task DeleteRecordAsync(AssociationRecord record)
+        {
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            await _collection.DeleteOneAsync(x =>
                 x.MainTrainUid == record.MainTrainUid &&
                 x.AssocTrainUid == record.AssocTrainUid &&
                 x.DateFrom == record.DateFrom &&

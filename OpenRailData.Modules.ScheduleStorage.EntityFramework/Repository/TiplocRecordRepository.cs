@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Common.Logging;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters;
@@ -96,6 +98,31 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
             recordToAmend.LocationName = locationName;
 
             Add(recordToAmend);
+        }
+
+        public Task InsertRecordAsync(TiplocRecord record)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task InsertMultipleRecordsAsync(IEnumerable<TiplocRecord> records)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AmendRecordAsync(TiplocRecord record)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteRecordAsync(TiplocRecord record)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AmendLocationNameAsync(string locationName, string tiplocCode)
+        {
+            throw new NotImplementedException();
         }
     }
 }

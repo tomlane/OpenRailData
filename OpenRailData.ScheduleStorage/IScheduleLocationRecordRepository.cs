@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using OpenRailData.Domain.ScheduleRecords;
 
 namespace OpenRailData.ScheduleStorage
 {
     public interface IScheduleLocationRecordRepository
     {
-        void InsertRecords(IEnumerable<ScheduleLocationRecord> records);
+        void InsertMultipleRecords(IEnumerable<ScheduleLocationRecord> records);
+        void DeleteMultipleRecords(IEnumerable<ScheduleLocationRecord> records);
 
-        void DeleteRecords(IEnumerable<ScheduleLocationRecord> records);
+        Task InsertMultipleRecordsAsync(IEnumerable<ScheduleLocationRecord> records);
+        Task DeleteMultipleRecordsAsync(IEnumerable<ScheduleLocationRecord> records);
     }
 }

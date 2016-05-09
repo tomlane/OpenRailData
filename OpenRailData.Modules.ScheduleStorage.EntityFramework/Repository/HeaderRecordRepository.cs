@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Common.Logging;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters;
@@ -38,6 +39,16 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
             var record = HeaderEntityGenerator.EntityToRecord(update);
 
             return record;
+        }
+
+        public Task InsertRecordAsync(HeaderRecord record)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<HeaderRecord> GetPreviousUpdateAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

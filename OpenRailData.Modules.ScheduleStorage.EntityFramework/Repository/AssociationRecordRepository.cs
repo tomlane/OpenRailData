@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Common.Logging;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters;
@@ -83,6 +85,26 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 
                 Remove(recordToDelete);
             }
+        }
+
+        public Task InsertRecordAsync(AssociationRecord record)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task InsertMultipleRecordsAsync(IEnumerable<AssociationRecord> records)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AmendRecordAsync(AssociationRecord record)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteRecordAsync(AssociationRecord record)
+        {
+            throw new NotImplementedException();
         }
     }
 }

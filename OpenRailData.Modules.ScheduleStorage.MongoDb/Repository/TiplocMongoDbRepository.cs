@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using MongoDB.Driver;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.MongoDb.Converters;
@@ -55,6 +57,39 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
             if (string.IsNullOrWhiteSpace(tiplocCode))
                 throw new ArgumentNullException(nameof(tiplocCode));
 
+            throw new NotImplementedException();
+        }
+
+        public async Task InsertRecordAsync(TiplocRecord record)
+        {
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            var document = TiplocEntityGenerator.RecordToDocument(record);
+
+            await _collection.InsertOneAsync(document);
+        }
+
+        public Task InsertMultipleRecordsAsync(IEnumerable<TiplocRecord> records)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task AmendRecordAsync(TiplocRecord record)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task DeleteRecordAsync(TiplocRecord record)
+        {
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            await _collection.DeleteOneAsync(x => x.TiplocCode == record.TiplocCode);
+        }
+
+        public Task AmendLocationNameAsync(string locationName, string tiplocCode)
+        {
             throw new NotImplementedException();
         }
     }

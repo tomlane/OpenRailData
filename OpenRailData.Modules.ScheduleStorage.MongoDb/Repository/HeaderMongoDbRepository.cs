@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using MongoDB.Driver;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.MongoDb.Converters;
@@ -36,6 +37,21 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
             var record = HeaderEntityGenerator.DocumentToRecord(document);
 
             return record;
+        }
+
+        public async Task InsertRecordAsync(HeaderRecord record)
+        {
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            var document = HeaderEntityGenerator.RecordToDocument(record);
+
+            await _collection.InsertOneAsync(document);
+        }
+
+        public async Task<HeaderRecord> GetPreviousUpdateAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

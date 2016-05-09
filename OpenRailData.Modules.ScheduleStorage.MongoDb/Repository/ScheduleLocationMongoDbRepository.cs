@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.ScheduleStorage;
 
@@ -6,12 +7,22 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
 {
     public class ScheduleLocationMongoDbRepository : IScheduleLocationRecordRepository
     {
-        public void InsertRecords(IEnumerable<ScheduleLocationRecord> records)
+        public void InsertMultipleRecords(IEnumerable<ScheduleLocationRecord> records)
         {
             throw new System.NotImplementedException();
         }
 
-        public void DeleteRecords(IEnumerable<ScheduleLocationRecord> records)
+        public void DeleteMultipleRecords(IEnumerable<ScheduleLocationRecord> records)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task InsertMultipleRecordsAsync(IEnumerable<ScheduleLocationRecord> records)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task DeleteMultipleRecordsAsync(IEnumerable<ScheduleLocationRecord> records)
         {
             throw new System.NotImplementedException();
         }
