@@ -51,7 +51,11 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
 
         public async Task<HeaderRecord> GetPreviousUpdateAsync()
         {
-            throw new NotImplementedException();
+            var cursor = await _collection.FindAsync(x => x.DateOfExtract < DateTime.Now);
+
+            var document = cursor.First();
+
+            return HeaderEntityGenerator.DocumentToRecord(document);
         }
     }
 }

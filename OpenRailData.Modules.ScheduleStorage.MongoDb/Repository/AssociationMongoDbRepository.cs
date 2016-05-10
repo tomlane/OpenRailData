@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using MongoDB.Driver;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.MongoDb.Converters;
@@ -37,7 +38,14 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            throw new NotImplementedException();
+            var document = AssociationEntityGenerator.RecordToDocument(record);
+
+            _collection.UpdateOne(x =>
+                x.MainTrainUid == record.MainTrainUid &&
+                x.AssocTrainUid == record.AssocTrainUid &&
+                x.DateFrom == record.DateFrom &&
+                x.StpIndicator == record.StpIndicator,
+                new ObjectUpdateDefinition<AssociationDocument>(document));
         }
 
         public void DeleteRecord(AssociationRecord record)
@@ -67,7 +75,9 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
             if (records == null)
                 throw new ArgumentNullException(nameof(records));
 
-            throw new NotImplementedException();
+            var documents = Mapper.Map<IEnumerable<AssociationRecord>, IEnumerable<AssociationDocument>>(records);
+
+            await _collection.InsertManyAsync(documents);
         }
 
         public async Task AmendRecordAsync(AssociationRecord record)
@@ -82,8 +92,7 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
                 x.AssocTrainUid == record.AssocTrainUid &&
                 x.DateFrom == record.DateFrom &&
                 x.StpIndicator == record.StpIndicator,
-                new ObjectUpdateDefinition<AssociationDocument>(document),
-                new UpdateOptions());
+                new ObjectUpdateDefinition<AssociationDocument>(document));
         }
 
         public async Task DeleteRecordAsync(AssociationRecord record)

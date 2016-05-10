@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using MongoDB.Driver;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.MongoDb.Converters;
@@ -38,7 +39,8 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
 
             var document = TiplocEntityGenerator.RecordToDocument(record);
 
-            throw new NotImplementedException();
+            _collection.UpdateOne(x => x.TiplocCode == record.TiplocCode,
+                new ObjectUpdateDefinition<TiplocDocument>(document));
         }
 
         public void DeleteRecord(TiplocRecord record)
@@ -70,14 +72,25 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
             await _collection.InsertOneAsync(document);
         }
 
-        public Task InsertMultipleRecordsAsync(IEnumerable<TiplocRecord> records)
+        public async Task InsertMultipleRecordsAsync(IEnumerable<TiplocRecord> records)
         {
-            throw new NotImplementedException();
+            if (records == null)
+                throw new ArgumentNullException(nameof(records));
+
+            var documents = Mapper.Map<IEnumerable<TiplocRecord>, IEnumerable<TiplocDocument>>(records);
+
+            await _collection.InsertManyAsync(documents);
         }
 
-        public Task AmendRecordAsync(TiplocRecord record)
+        public async Task AmendRecordAsync(TiplocRecord record)
         {
-            throw new NotImplementedException();
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            var document = TiplocEntityGenerator.RecordToDocument(record);
+
+            await _collection.UpdateOneAsync(x => x.TiplocCode == record.TiplocCode,
+                new ObjectUpdateDefinition<TiplocDocument>(document));
         }
 
         public async Task DeleteRecordAsync(TiplocRecord record)

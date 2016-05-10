@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using MongoDB.Driver;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.MongoDb.Converters;
@@ -33,7 +34,16 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
 
         public void AmendRecord(ScheduleRecord record)
         {
-            throw new NotImplementedException();
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            var document = ScheduleEntityGenerator.RecordToDocument(record);
+
+            _collection.UpdateOne(x =>
+                x.TrainUid == record.TrainUid &&
+                x.DateRunsFrom == record.DateRunsFrom &&
+                x.StpIndicator == record.StpIndicator,
+                new ObjectUpdateDefinition<ScheduleDocument>(document));
         }
 
         public void DeleteRecord(ScheduleRecord record)
@@ -57,14 +67,28 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
             await _collection.InsertOneAsync(document);
         }
 
-        public Task InsertMultipleRecordsAsync(IEnumerable<ScheduleRecord> records)
+        public async Task InsertMultipleRecordsAsync(IEnumerable<ScheduleRecord> records)
         {
-            throw new NotImplementedException();
+            if (records == null)
+                throw new ArgumentNullException(nameof(records));
+
+            var documents = Mapper.Map<IEnumerable<ScheduleRecord>, IEnumerable<ScheduleDocument>>(records);
+
+            await _collection.InsertManyAsync(documents);
         }
 
-        public Task AmendRecordAsync(ScheduleRecord record)
+        public async Task AmendRecordAsync(ScheduleRecord record)
         {
-            throw new NotImplementedException();
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            var document = ScheduleEntityGenerator.RecordToDocument(record);
+
+            await _collection.UpdateOneAsync(x =>
+                x.TrainUid == record.TrainUid &&
+                x.DateRunsFrom == record.DateRunsFrom &&
+                x.StpIndicator == record.StpIndicator,
+                new ObjectUpdateDefinition<ScheduleDocument>(document));
         }
 
         public async Task DeleteRecordAsync(ScheduleRecord record)
