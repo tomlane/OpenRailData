@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Logging;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
@@ -11,8 +10,6 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 {
     public class HeaderRecordRepository : BaseRepository<HeaderRecordEntity>, IHeaderRecordRepository
     {
-        private readonly ILog Logger = LogManager.GetLogger("Repository.HeaderRecordEntity");
-
         public HeaderRecordRepository(IScheduleContext context) : base(context)
         {
         }
@@ -21,9 +18,6 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
-
-            if (Logger.IsTraceEnabled)
-                Logger.Trace($"Inserting new Header record: {record}");
 
             var recordEntity = HeaderEntityGenerator.RecordToEntity(record);
 

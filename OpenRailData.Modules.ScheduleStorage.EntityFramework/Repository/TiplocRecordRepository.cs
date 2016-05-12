@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Logging;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
@@ -12,8 +11,6 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 {
     public class TiplocRecordRepository : BaseRepository<TiplocRecordEntity>, ITiplocRecordRepository 
     {
-        private readonly ILog Logger = LogManager.GetLogger("Repository.TiplocRecordEntity");
-
         public TiplocRecordRepository(IScheduleContext context) : base(context)
         {
         }
@@ -22,9 +19,6 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
-
-            if (Logger.IsTraceEnabled)
-                Logger.Trace($"Inserting new Tiploc record: {record}");
 
             var entity = TiplocEntityGenerator.RecordToEntity(record);
 
@@ -38,16 +32,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 
             var currentRecord = Find(x => x.TiplocCode == record.TiplocCode).FirstOrDefault();
 
-            if (currentRecord == null)
+            if (currentRecord != null)
             {
-                if (Logger.IsWarnEnabled)
-                    Logger.Warn($"Failed to find Tiploc record to amend. Criteria: {record}");
-            }
-            else
-            {
-                if (Logger.IsTraceEnabled)
-                    Logger.Trace($"Amending Tiploc record: {currentRecord}. New record: {record}");
-
                 var entity = TiplocEntityGenerator.RecordToEntity(record);
 
                 currentRecord = entity;
@@ -63,18 +49,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 
             var recordToDelete = Find(x => x.TiplocCode == record.TiplocCode).FirstOrDefault();
 
-            if (recordToDelete == null)
-            {
-                if (Logger.IsWarnEnabled)
-                    Logger.Warn($"Failed to find Tiploc record to delete. Criteria: {record}");
-            }
-            else
-            {
-                if (Logger.IsTraceEnabled)
-                    Logger.Trace($"Deleting Tiploc record: {recordToDelete}. Criteria: {record}");
-
+            if (recordToDelete != null)
                 Remove(recordToDelete);
-            }
         }
 
         public void AmendLocationName(string locationName, string tiplocCode)
@@ -87,17 +63,12 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 
             var recordToAmend = Find(x => x.TiplocCode == tiplocCode).FirstOrDefault();
 
-            if (recordToAmend == null)
+            if (recordToAmend != null)
             {
-                if (Logger.IsWarnEnabled)
-                    Logger.Warn($"Could not find Tiploc record to amend. Criteria: {tiplocCode}");
+                recordToAmend.LocationName = locationName;
 
-                return;
+                Add(recordToAmend);
             }
-
-            recordToAmend.LocationName = locationName;
-
-            Add(recordToAmend);
         }
 
         public Task InsertRecordAsync(TiplocRecord record)

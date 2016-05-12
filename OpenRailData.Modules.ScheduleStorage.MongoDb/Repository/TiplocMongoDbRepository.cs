@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using MongoDB.Driver;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.MongoDb.Converters;
@@ -77,7 +77,7 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
             if (records == null)
                 throw new ArgumentNullException(nameof(records));
 
-            var documents = Mapper.Map<IEnumerable<TiplocRecord>, IEnumerable<TiplocDocument>>(records);
+            var documents = records.Select(TiplocEntityGenerator.RecordToDocument).ToList();
 
             await _collection.InsertManyAsync(documents);
         }

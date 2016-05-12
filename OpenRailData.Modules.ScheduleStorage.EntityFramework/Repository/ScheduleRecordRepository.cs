@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Logging;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
@@ -12,8 +11,6 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 {
     public class ScheduleRecordRepository : BaseRepository<ScheduleRecordEntity>, IScheduleRecordRepository
     {
-        private readonly ILog Logger = LogManager.GetLogger("Repository.ScheduleRecordEntity");
-
         public ScheduleRecordRepository(IScheduleContext context) : base(context)
         {
         }
@@ -22,9 +19,6 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
-
-            if (Logger.IsTraceEnabled)
-                Logger.Trace($"Inserting new Schedule record: {record}");
 
             var entity = ScheduleEntityGenerator.RecordToEntity(record);
 
@@ -42,16 +36,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
                 x.StpIndicator == record.StpIndicator)
                 .FirstOrDefault();
 
-            if (currentRecord == null)
-            {
-                if (Logger.IsWarnEnabled)
-                    Logger.Warn($"Failed to find Schedule record to amend. Criteria: {record}");
-            }
-            else
-            {
-                if (Logger.IsTraceEnabled)
-                    Logger.Trace($"Amending Schedule record: {currentRecord}. New record: {record}");
-
+            if (currentRecord != null)
+            { 
                 var entity = ScheduleEntityGenerator.RecordToEntity(record);
 
                 currentRecord = entity;
@@ -71,18 +57,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
                 x.StpIndicator == record.StpIndicator)
                 .FirstOrDefault();
 
-            if (recordToDelete == null)
-            {
-                if (Logger.IsWarnEnabled)
-                    Logger.Warn($"Failed to find Schedule record to delete. Criteria: {record}");
-            }
-            else
-            {
-                if (Logger.IsTraceEnabled)
-                    Logger.Trace($"Deleting Schedule record: {recordToDelete}. Criteria: {record}");
-
+            if (recordToDelete != null)
                 Remove(recordToDelete);
-            }
         }
 
         public Task InsertRecordAsync(ScheduleRecord record)

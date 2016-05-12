@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Logging;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
@@ -12,8 +11,6 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 {
     public class AssociationRecordRepository : BaseRepository<AssociationRecordEntity>, IAssociationRecordRepository
     {
-        private readonly ILog Logger = LogManager.GetLogger("Repository.AssociationRecordEntity");
-
         public AssociationRecordRepository(IScheduleContext context) : base(context)
         {
         }
@@ -22,9 +19,6 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
-
-            if (Logger.IsTraceEnabled)
-                Logger.Trace($"Inserting new Association record: {record} ");
 
             var entityRecord = AssociationEntityGenerator.RecordToEntity(record);
 
@@ -43,16 +37,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
                 x.StpIndicator == record.StpIndicator)
                 .FirstOrDefault();
 
-            if (currentRecord == null)
+            if (currentRecord != null)
             {
-                if (Logger.IsWarnEnabled)
-                    Logger.Warn($"Failed to find Assocation record to amend. Criteria: {record}");
-            }
-            else
-            {
-                if (Logger.IsTraceEnabled)
-                    Logger.Trace($"Amending Association record: {currentRecord}. New record: {record}");
-
                 var entityRecord = AssociationEntityGenerator.RecordToEntity(record);
 
                 currentRecord = entityRecord;
@@ -73,18 +59,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
                 x.StpIndicator == record.StpIndicator)
                 .FirstOrDefault();
 
-            if (recordToDelete == null)
-            {
-                if (Logger.IsWarnEnabled)
-                    Logger.Warn($"Failed to find Assocation record to delete. Criteria: {record}");
-            }
-            else
-            {
-                if (Logger.IsTraceEnabled)
-                    Logger.Trace($"Deleting Association record: {recordToDelete}. Criteria: {record}");
-
+            if (recordToDelete != null)
                 Remove(recordToDelete);
-            }
         }
 
         public Task InsertRecordAsync(AssociationRecord record)

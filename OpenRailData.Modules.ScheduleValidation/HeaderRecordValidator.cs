@@ -1,5 +1,4 @@
 using System;
-using Common.Logging;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Domain.ScheduleRecords.Enums;
 using OpenRailData.ScheduleStorage;
@@ -10,7 +9,6 @@ namespace OpenRailData.Modules.ScheduleValidation
     public class HeaderRecordValidator : IHeaderRecordValidator
     {
         private readonly IScheduleUnitOfWorkFactory _unitOfWorkFactory;
-        private readonly ILog Logger = LogManager.GetLogger("Schedule.Util.HeaderRecordValidator");
 
         public HeaderRecordValidator(IScheduleUnitOfWorkFactory unitOfWorkFactory)
         {
@@ -22,9 +20,6 @@ namespace OpenRailData.Modules.ScheduleValidation
 
         public HeaderRecordValidationResult ValidateHeaderRecord(HeaderRecordValidationRequest request)
         {
-            if (Logger.IsInfoEnabled)
-                Logger.Info("Validating Schedule Header Record.");
-
             if (request?.RecordToCheck == null)
                 throw new ArgumentNullException(nameof(request));
 
@@ -49,9 +44,6 @@ namespace OpenRailData.Modules.ScheduleValidation
                         throw new InvalidOperationException($"The schedule file is out of order. Last file reference: {previousUpdate.CurrentFileRef}. Expected Last file reference: {headerRecord.LastFileRef}");
                 }
             }
-
-            if (Logger.IsInfoEnabled)
-                Logger.Info("Finished validating Schedule Header Record. Header is valid.");
 
             response.IsValid = true;
 

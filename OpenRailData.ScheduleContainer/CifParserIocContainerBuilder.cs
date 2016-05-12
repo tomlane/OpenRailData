@@ -9,7 +9,6 @@ using OpenRailData.Modules.ScheduleParsing.Cif.PropertyParsers;
 using OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework;
 using OpenRailData.Modules.ScheduleStorage.MongoDb;
-using OpenRailData.Modules.ScheduleStorageService;
 using OpenRailData.Modules.ScheduleStorageService.RecordStorageProcessor;
 using OpenRailData.Modules.ScheduleValidation;
 using OpenRailData.ScheduleFetching;
@@ -33,13 +32,12 @@ namespace OpenRailData.ScheduleContainer
             container.RegisterType<IDataFileFetcher, WebDataFileFetcher>();
             container.RegisterType<IDataFileDecompressor, GzipDataFileDecompressor>();
 
-            container.RegisterType<IScheduleRecordStorageService, ScheduleRecordStorageService>();
+            container.RegisterType<IScheduleRecordStorageService, MongoDbBulkCreateStorageService>();
             container.RegisterType<IScheduleRecordParsingService, CifScheduleRecordParsingService>();
             container.RegisterType<IScheduleFetchingService, FileScheduleFetchingService>();
 
             container.RegisterType<IScheduleFileRecordExtractor, ScheduleFileRecordExtractor>();
             container.RegisterType<IScheduleRecordMerger, CifScheduleRecordMerger>();
-            container.RegisterType<IScheduleRecordStorageService, ScheduleRecordStorageService>();
 
             container.RegisterType<IFetchScheduleUrlProvider, CifFetchScheduleUrlProvider>();
             container.RegisterType<IConfigManager, AppSettingsConfigManager>();

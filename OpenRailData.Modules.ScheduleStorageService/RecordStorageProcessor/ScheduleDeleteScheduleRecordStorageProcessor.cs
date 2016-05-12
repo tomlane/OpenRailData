@@ -1,5 +1,4 @@
 ﻿using System;
-using Common.Logging;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.ScheduleStorage;
 
@@ -8,7 +7,6 @@ namespace OpenRailData.Modules.ScheduleStorageService.RecordStorageProcessor
     public class ScheduleDeleteScheduleRecordStorageProcessor : IScheduleRecordStorageProcessor
     {
         private readonly IScheduleUnitOfWorkFactory _unitOfWorkFactory;
-        private readonly ILog Logger = LogManager.GetLogger("RecordStorage.Schedule.Delete");
         
         public ScheduleDeleteScheduleRecordStorageProcessor(IScheduleUnitOfWorkFactory unitOfWorkFactory)
         {
@@ -33,9 +31,6 @@ namespace OpenRailData.Modules.ScheduleStorageService.RecordStorageProcessor
 
                 unitOfWork.Complete();
             }
-
-            if (Logger.IsTraceEnabled)
-                Logger.Trace("Processed a Schedule Delete Record.");
         }
     }
 }

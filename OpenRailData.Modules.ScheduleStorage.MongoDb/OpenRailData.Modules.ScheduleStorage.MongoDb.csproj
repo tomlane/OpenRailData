@@ -71,6 +71,7 @@
     <Compile Include="Documents\ScheduleLocationDocument.cs" />
     <Compile Include="Documents\TiplocDocument.cs" />
     <Compile Include="IMongoDbClientFactory.cs" />
+    <Compile Include="MongoDbBulkCreateStorageService.cs" />
     <Compile Include="MongoDbClientFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AssociationMongoDbRepository.cs" />
