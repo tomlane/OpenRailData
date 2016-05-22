@@ -1,19 +1,19 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords.Enums
 {
     public enum DateIndicator
     {
-        [Description("None")]
+        [Display(Name = "None")]
         None = 0,
 
-        [Description("Standard (same day)")]
+        [Display(Name = "Standard (same day)")]
         S = 1,
 
-        [Description("Over next midnight")]
+        [Display(Name = "Over next midnight")]
         N = 2,
 
-        [Description("Over previous midnight")]
+        [Display(Name = "Over previous midnight")]
         P = 3
     }
 }

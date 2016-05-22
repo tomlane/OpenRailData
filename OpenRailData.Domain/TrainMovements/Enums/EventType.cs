@@ -1,16 +1,16 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.TrainMovements.Enums
 {
     public enum EventType
     {
-        [Description("Arrival")]
+        [Display(Name = "Arrival")]
         Arrival,
 
-        [Description("Departure")]
+        [Display(Name = "Departure")]
         Departure,
 
-        [Description("Destination")]
+        [Display(Name = "Destination")]
         Destination
     }
 }

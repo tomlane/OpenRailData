@@ -1,19 +1,19 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.TrainDescriber
 {
     public enum CClassMessageType
     {
-        [Description("Berth Step")]
+        [Display(Name = "Berth Step")]
         BerthStep,
 
-        [Description("Berth Cancel")]
+        [Display(Name = "Berth Cancel")]
         BerthCancel,
 
-        [Description("Berth Interpose")]
+        [Display(Name = "Berth Interpose")]
         BerthInterpose,
 
-        [Description("Heartbeat")]
+        [Display(Name = "Heartbeat")]
         Heartbeat
     }
 }

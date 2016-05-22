@@ -1,19 +1,19 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.TrainMovements.Enums
 {
     public enum CancellationType
     {
-        [Description("On Call")]
+        [Display(Name = "On Call")]
         OnCall,
 
-        [Description("At Origin")]
+        [Display(Name = "At Origin")]
         AtOrigin,
 
-        [Description("En Route")]
+        [Display(Name = "En Route")]
         EnRoute,
 
-        [Description("Out of Plan")]
+        [Display(Name = "Out of Plan")]
         OutOfPlan
     }
 }

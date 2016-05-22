@@ -1,40 +1,40 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords.Enums
 {
     public enum PowerType
     {
-        [Description("Diesel")]
+        [Display(Name = "Diesel")]
         D = 1,
 
-        [Description("Diesel Electric Multiple Unit")]
+        [Display(Name = "Diesel Electric Multiple Unit")]
         DEM = 2,
 
-        [Description("Diesel Mechanical Multiple Unit")]
+        [Display(Name = "Diesel Mechanical Multiple Unit")]
         DMU = 3,
 
-        [Description("Electric")]
+        [Display(Name = "Electric")]
         E = 4,
 
-        [Description("Electro-Diesel")]
+        [Display(Name = "Electro-Diesel")]
         ED = 5,
 
-        [Description("Electric Multiple Unit plus Diesel, Electric, or Electro-Diesel locomotive")]
+        [Display(Name = "Electric Multiple Unit plus Diesel, Electric, or Electro-Diesel locomotive")]
         EML = 6,
 
-        [Description("Electric Multiple Unit")]
+        [Display(Name = "Electric Multiple Unit")]
         EMU = 7,
 
-        [Description("Electric Parcels Unit")]
+        [Display(Name = "Electric Parcels Unit")]
         EPU = 8,
 
-        [Description("High Speed Train")]
+        [Display(Name = "High Speed Train")]
         HST = 9,
 
-        [Description("Diesel Shunting Lococmotive")]
+        [Display(Name = "Diesel Shunting Lococmotive")]
         LDS = 10,
 
-        [Description("None defined")]
+        [Display(Name = "None defined")]
         None = 11
     }
 }

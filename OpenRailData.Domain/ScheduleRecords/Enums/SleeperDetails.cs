@@ -1,19 +1,19 @@
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords.Enums
 {
     public enum SleeperDetails
     {
-        [Description("Not Available")]
+        [Display(Name = "Not Available")]
         NotAvailable = 0,
 
-        [Description("First and Standard Sleepers")]
+        [Display(Name = "First and Standard Sleepers")]
         B = 1,
 
-        [Description("First Class Sleepers Only")]
+        [Display(Name = "First Class Sleepers Only")]
         F = 2,
 
-        [Description("Standard Class Sleepers Only")]
+        [Display(Name = "Standard Class Sleepers Only")]
         S = 3
     }
 }

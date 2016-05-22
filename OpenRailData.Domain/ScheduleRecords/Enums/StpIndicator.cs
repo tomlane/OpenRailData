@@ -1,19 +1,19 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords.Enums
 {
     public enum StpIndicator
     {
-        [Description("Permanent Schedule")]
+        [Display(Name = "Permanent Schedule")]
         P = 1,
         
-        [Description("Overlay Schedule")]
+        [Display(Name = "Overlay Schedule")]
         O = 2,
 
-        [Description("New Schedule")]
+        [Display(Name = "New Schedule")]
         N = 3,
 
-        [Description("Schedule Cancellation")]
+        [Display(Name = "Schedule Cancellation")]
         C = 4
     }
 }

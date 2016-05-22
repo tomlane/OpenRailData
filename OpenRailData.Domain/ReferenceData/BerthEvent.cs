@@ -1,18 +1,18 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ReferenceData
 {
     public enum BerthEvent
     {
-        [Description("Arrive Up")]
+        [Display(Name = "Arrive Up")]
         A,
-        [Description("Depart Up")]
+        [Display(Name = "Depart Up")]
         B,
-        [Description("Arrive Down")]
+        [Display(Name = "Arrive Down")]
         C,
-        [Description("Depart Down")]
+        [Display(Name = "Depart Down")]
         D,
-        [Description("Unknown / Could not parse")]
+        [Display(Name = "Unknown / Could not parse")]
         Unknown
     }
 }

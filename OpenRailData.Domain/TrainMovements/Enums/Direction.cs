@@ -1,13 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.TrainMovements.Enums
 {
     public enum Direction
     {
-        [Description("Up")]
+        [Display(Name = "Up")]
         Up,
 
-        [Description("Down")]
+        [Display(Name = "Down")]
         Down
     }
 }

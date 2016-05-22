@@ -1,22 +1,22 @@
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords.Enums
 {
     public enum ReservationDetails
     {
-        [Description("None")]
+        [Display(Name = "None")]
         None = 0,
 
-        [Description("Compulsory")]
+        [Display(Name = "Compulsory")]
         A = 1,
 
-        [Description("Bicyle Reservations Essential")]
+        [Display(Name = "Bicyle Reservations Essential")]
         E = 2,
 
-        [Description("Recommended")]
+        [Display(Name = "Recommended")]
         R = 3,
 
-        [Description("Possible From Any Station")]
+        [Display(Name = "Possible From Any Station")]
         S = 4
     }
 }

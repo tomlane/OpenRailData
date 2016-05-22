@@ -1,24 +1,24 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ReferenceData
 {
     public enum BerthStepType
     {
-        [Description("Between")]
+        [Display(Name = "Between")]
         B,
-        [Description("From")]
+        [Display(Name = "From")]
         F,
-        [Description("To")]
+        [Display(Name = "To")]
         T,
-        [Description("Intermediate First")]
+        [Display(Name = "Intermediate First")]
         D,
-        [Description("Clearout")]
+        [Display(Name = "Clearout")]
         C,
-        [Description("Interpose")]
+        [Display(Name = "Interpose")]
         I,
-        [Description("Intermediate")]
+        [Display(Name = "Intermediate")]
         E,
-        [Description("Unknown / Failed to parse")]
+        [Display(Name = "Unknown / Failed to parse")]
         Unknown
     }
 }

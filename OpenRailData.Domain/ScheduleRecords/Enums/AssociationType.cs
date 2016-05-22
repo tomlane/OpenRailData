@@ -1,16 +1,16 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords.Enums
 {
     public enum AssociationType
     {
-        [Description("None")]
+        [Display(Name = "None")]
         None = 0,
 
-        [Description("Passenger Use")]
+        [Display(Name = "Passenger Use")]
         P = 1,
 
-        [Description("Operating Use Only")]
+        [Display(Name = "Operating Use Only")]
         O = 2
     }
 }

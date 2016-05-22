@@ -1,13 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.TrainMovements.Enums
 {
     public enum EventSource
     {
-        [Description("Automatic")]
+        [Display(Name = "Automatic")]
         Automatic,
 
-        [Description("Manual")]
+        [Display(Name = "Manual")]
         Manual
     }
 }

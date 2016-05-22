@@ -1,55 +1,55 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords
 {
     public enum ScheduleRecordType
     {
-        [Description("Header Record")]
+        [Display(Name = "Header Record")]
         HD = 1,
 
-        [Description("Tiploc Insert Record")]
+        [Display(Name = "Tiploc Insert Record")]
         TI = 2,
 
-        [Description("Tiploc Amend Record")]
+        [Display(Name = "Tiploc Amend Record")]
         TA = 4,
 
-        [Description("Tiploc Delete Record")]
+        [Display(Name = "Tiploc Delete Record")]
         TD = 5,
 
-        [Description("Association Insert Record")]
+        [Display(Name = "Association Insert Record")]
         AAN = 6,
 
-        [Description("Association Amend Record")]
+        [Display(Name = "Association Amend Record")]
         AAR = 7,
 
-        [Description("Association Delete Record")]
+        [Display(Name = "Association Delete Record")]
         AAD = 8,
 
-        [Description("Basic Schedule Insert Record")]
+        [Display(Name = "Basic Schedule Insert Record")]
         BSN = 9,
 
-        [Description("Basic Schedule Amend Record")]
+        [Display(Name = "Basic Schedule Amend Record")]
         BSR = 10,
 
-        [Description("Basic Schedule Delete Record")]
+        [Display(Name = "Basic Schedule Delete Record")]
         BSD = 11,
 
-        [Description("Basic Schedule Extra Details Record")]
+        [Display(Name = "Basic Schedule Extra Details Record")]
         BX = 12,
 
-        [Description("Origin Location Record")]
+        [Display(Name = "Origin Location Record")]
         LO = 13,
 
-        [Description("Intermediate Location Record")]
+        [Display(Name = "Intermediate Location Record")]
         LI = 14,
 
-        [Description("Changes en Route Record")]
+        [Display(Name = "Changes en Route Record")]
         CR = 15,
 
-        [Description("Terminating Location Record")]
+        [Display(Name = "Terminating Location Record")]
         LT = 16,
         
-        [Description("End of File Record")]
+        [Display(Name = "End of File Record")]
         ZZ = 17
     }
 }

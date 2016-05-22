@@ -1,19 +1,19 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords.Enums
 {
     public enum AssociationCategory
     {
-        [Description("None")]
+        [Display(Name = "None")]
         None = 0,
 
-        [Description("Join")]
+        [Display(Name = "Join")]
         JJ = 1,
 
-        [Description("Split")]
+        [Display(Name = "Split")]
         VV = 2,
 
-        [Description("Next")]
+        [Display(Name = "Next")]
         NP = 3
     }
 }

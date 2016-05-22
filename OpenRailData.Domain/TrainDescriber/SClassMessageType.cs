@@ -1,16 +1,16 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.TrainDescriber
 {
     public enum SClassMessageType
     {
-        [Description("Signal Update")]
+        [Display(Name = "Signal Update")]
         Update,
 
-        [Description("Signal Refesh")]
+        [Display(Name = "Signal Refesh")]
         Refresh,
 
-        [Description("Signal Refresh Finished")]
+        [Display(Name = "Signal Refresh Finished")]
         RefreshFinished
     }
 }

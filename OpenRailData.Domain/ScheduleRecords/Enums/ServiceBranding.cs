@@ -1,13 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords.Enums
 {
     public enum ServiceBranding
     {
-        [Description("None")]
+        [Display(Name = "None")]
         None = 0,
 
-        [Description("Eurostar")]
+        [Display(Name = "Eurostar")]
         E = 1
     }
 }

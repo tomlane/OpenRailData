@@ -1,13 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords.Enums
 {
     public enum ExtractUpdateType
     {
-        [Description("Full Extract")]
+        [Display(Name = "Full Extract")]
         F = 1,
 
-        [Description("Update Extract")]
+        [Display(Name = "Update Extract")]
         U = 2
     }
 }

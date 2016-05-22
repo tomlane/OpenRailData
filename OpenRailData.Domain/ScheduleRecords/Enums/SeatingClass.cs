@@ -1,13 +1,13 @@
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords.Enums
 {
     public enum SeatingClass
     {
-        [Description("First and Standard Class")]
+        [Display(Name = "First and Standard Class")]
         B = 1,
 
-        [Description("Standard Class Only")]
+        [Display(Name = "Standard Class Only")]
         S = 2
     }
 }

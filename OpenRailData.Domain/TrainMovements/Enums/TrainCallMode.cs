@@ -1,13 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.TrainMovements.Enums
 {
     public enum TrainCallMode
     {
-        [Description("Normal")]
+        [Display(Name = "Normal")]
         Normal,
 
-        [Description("Overnight")]
+        [Display(Name = "Overnight")]
         Overnight
     }
 }

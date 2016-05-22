@@ -1,16 +1,16 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.ScheduleRecords.Enums
 {
     public enum TransactionType
     {
-        [Description("New CIF Record")]
+        [Display(Name = "New CIF Record")]
         N = 1,
 
-        [Description("Revise CIF Record")]
+        [Display(Name = "Revise CIF Record")]
         R = 2,
 
-        [Description("Delete CIF Record")]
+        [Display(Name = "Delete CIF Record")]
         D = 3,
     }
 }

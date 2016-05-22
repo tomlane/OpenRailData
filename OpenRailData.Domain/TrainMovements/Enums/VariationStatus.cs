@@ -1,19 +1,19 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.TrainMovements.Enums
 {
     public enum VariationStatus
     {
-        [Description("On Time")]
+        [Display(Name = "On Time")]
         OnTime,
 
-        [Description("Early")]
+        [Display(Name = "Early")]
         Early,
 
-        [Description("Late")]
+        [Display(Name = "Late")]
         Late,
 
-        [Description("Off Route")]
+        [Display(Name = "Off Route")]
         OffRoute
     }
 }

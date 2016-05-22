@@ -1,19 +1,19 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.TrainMovements.Enums
 {
     public enum ScheduleType
     {
-        [Description("Permanent Schedule")]
+        [Display(Name = "Permanent Schedule")]
         Permanent,
 
-        [Description("Overlay Schedule")]
+        [Display(Name = "Overlay Schedule")]
         Overlay,
 
-        [Description("New Schedule")]
+        [Display(Name = "New Schedule")]
         New,
 
-        [Description("Schedule Cancellation")]
+        [Display(Name = "Schedule Cancellation")]
         Cancellation
     }
 }

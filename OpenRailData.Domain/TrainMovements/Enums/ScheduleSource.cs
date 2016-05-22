@@ -1,13 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OpenRailData.Domain.TrainMovements.Enums
 {
     public enum ScheduleSource
     {
-        [Description("CIF")]
+        [Display(Name = "CIF")]
         Cif,
 
-        [Description("Very Short Term Plan")]
+        [Display(Name = "Very Short Term Plan")]
         Vstp
     }
 }
