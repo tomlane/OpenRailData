@@ -2,12 +2,12 @@
 
 namespace OpenRailData.Domain.TrainDescriber
 {
-    public class SClassMessage
+    public class SClassMessage : ITrainDescriberMessage
     {
         /// <summary>
         ///     Message time.
         /// </summary>
-        public DateTime TimeStamp { get; set; }
+        public DateTime Timestamp { get; set; }
         /// <summary>
         /// 	Alphanumeric code representing the Train Describer area that the message originates from.
         /// </summary>
