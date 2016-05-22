@@ -38,6 +38,7 @@
     <Compile Include="ReferenceData\BerthEvent.cs" />
     <Compile Include="ReferenceData\BerthStep.cs" />
     <Compile Include="ReferenceData\BerthStepType.cs" />
+    <Compile Include="ReferenceData\CorpusLocation.cs" />
     <Compile Include="ScheduleRecords\AssociationRecord.cs" />
     <Compile Include="ScheduleRecords\BasicScheduleExtraDetailsRecord.cs" />
     <Compile Include="ScheduleRecords\ChangesEnRouteRecord.cs" />
@@ -66,6 +67,26 @@
     <Compile Include="ScheduleRecords\ScheduleRecord.cs" />
     <Compile Include="ScheduleRecords\ScheduleRecordType.cs" />
     <Compile Include="ScheduleRecords\TiplocRecord.cs" />
+    <Compile Include="TrainDescriber\CClassMessage.cs" />
+    <Compile Include="TrainDescriber\CClassMessageType.cs" />
+    <Compile Include="TrainDescriber\SClassMessage.cs" />
+    <Compile Include="TrainDescriber\SClassMessageType.cs" />
+    <Compile Include="TrainMovements\ChangeOfIdentity.cs" />
+    <Compile Include="TrainMovements\ChangeOfOrigin.cs" />
+    <Compile Include="TrainMovements\Enums\CancellationType.cs" />
+    <Compile Include="TrainMovements\Enums\Direction.cs" />
+    <Compile Include="TrainMovements\Enums\EventSource.cs" />
+    <Compile Include="TrainMovements\Enums\EventType.cs" />
+    <Compile Include="TrainMovements\Enums\ScheduleSource.cs" />
+    <Compile Include="TrainMovements\Enums\ScheduleType.cs" />
+    <Compile Include="TrainMovements\Enums\TrainCallMode.cs" />
+    <Compile Include="TrainMovements\Enums\TrainCallType.cs" />
+    <Compile Include="TrainMovements\Enums\VariationStatus.cs" />
+    <Compile Include="TrainMovements\ITrainMovementMessage.cs" />
+    <Compile Include="TrainMovements\TrainActivation.cs" />
+    <Compile Include="TrainMovements\TrainCancellation.cs" />
+    <Compile Include="TrainMovements\TrainMovement.cs" />
+    <Compile Include="TrainMovements\TrainReinstatement.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
