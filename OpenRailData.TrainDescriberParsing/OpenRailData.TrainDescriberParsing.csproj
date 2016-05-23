@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{384119CE-97B5-4F1B-8AA1-6ABA519D80AC}</ProjectGuid>
+    <ProjectGuid>{B71F2B7D-2D61-427E-BA76-0091F3701CB5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpenRailData.ScheduleParsing</RootNamespace>
-    <AssemblyName>OpenRailData.ScheduleParsing</AssemblyName>
+    <RootNamespace>OpenRailData.TrainDescriberParsing</RootNamespace>
+    <AssemblyName>OpenRailData.TrainDescriberParsing</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,14 +32,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDateTimeParser.cs" />
-    <Compile Include="IRecordEnumPropertyParser.cs" />
-    <Compile Include="IScheduleRecordMerger.cs" />
-    <Compile Include="IScheduleRecordParser.cs" />
-    <Compile Include="IScheduleRecordParsingService.cs" />
-    <Compile Include="ITimingAllowanceParser.cs" />
+    <Compile Include="ITrainDescriberMessageParser.cs" />
+    <Compile Include="ITrainDescriberMessageParsingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
