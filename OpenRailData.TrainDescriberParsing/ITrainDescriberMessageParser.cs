@@ -4,7 +4,7 @@ namespace OpenRailData.TrainDescriberParsing
 {
     public interface ITrainDescriberMessageParser
     {
-        string DescriberMessageType { get; set; }
+        string DescriberMessageType { get; }
 
         ITrainDescriberMessage ParseDescriberMessage(string message);
     }

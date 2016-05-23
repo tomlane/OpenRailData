@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.TrainMovementP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.TrainDescriberParsing", "OpenRailData.TrainDescriberParsing\OpenRailData.TrainDescriberParsing.csproj", "{B71F2B7D-2D61-427E-BA76-0091F3701CB5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.TrainDescriberParsing.Json", "OpenRailData.TrainDescriberParsing.Json\OpenRailData.TrainDescriberParsing.Json.csproj", "{44B91613-1CB3-47D9-9814-3DBA124D2E36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{B71F2B7D-2D61-427E-BA76-0091F3701CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B71F2B7D-2D61-427E-BA76-0091F3701CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B71F2B7D-2D61-427E-BA76-0091F3701CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44B91613-1CB3-47D9-9814-3DBA124D2E36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44B91613-1CB3-47D9-9814-3DBA124D2E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44B91613-1CB3-47D9-9814-3DBA124D2E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44B91613-1CB3-47D9-9814-3DBA124D2E36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -169,5 +175,6 @@ Global
 		{2A7F8238-0661-4A7B-A789-65A56E64945C} = {05F30D8A-FA75-4FCB-AAFD-2A4E1756336D}
 		{B0BD0116-A7BC-4FB8-86F4-3D1544309ADE} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 		{29D1C9ED-BF7C-4C04-8B85-453A44FCB687} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
+		{44B91613-1CB3-47D9-9814-3DBA124D2E36} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 	EndGlobalSection
 EndGlobal
