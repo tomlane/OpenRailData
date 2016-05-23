@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace OpenRailData.TrainDescriberParsing.Json
+namespace OpenRailData.TrainDescriberParsing.Json.RawMessages
 {
     public class DeserializedCClassMessage
     {

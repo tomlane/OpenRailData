@@ -4,7 +4,7 @@ namespace OpenRailData.TrainMovementParsing
 {
     public interface ITrainMovementMessageParser
     {
-        string TrainMovementMessageType { get; set; }
+        string TrainMovementMessageType { get; }
 
         ITrainMovementMessage ParseMovementMessage(string message);
     }
