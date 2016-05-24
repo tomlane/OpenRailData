@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.DataFetcher", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.BerthStepData", "OpenRailData.BerthStepData\OpenRailData.BerthStepData.csproj", "{1ADB0474-B5B7-480D-9C8A-1C9663C712C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.BerthStepData.TestConsole", "OpenRailData.BerthStepData.TestConsole\OpenRailData.BerthStepData.TestConsole.csproj", "{2A7F8238-0661-4A7B-A789-65A56E64945C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.TestConsole", "OpenRailData.BerthStepData.TestConsole\OpenRailData.TestConsole.csproj", "{2A7F8238-0661-4A7B-A789-65A56E64945C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{05F30D8A-FA75-4FCB-AAFD-2A4E1756336D}"
 EndProject

@@ -14,7 +14,7 @@ namespace OpenRailData.TrainMovementParsing.Json.RawMessages
     internal class DeserializedJsonCancellationHeader
     {
         [JsonProperty("source_dev_id")]
-        public string SourceDevId { get; set; }
+        public string SourceDeviceId { get; set; }
 
         [JsonProperty("source_system_id")]
         public string SourceSystemId { get; set; }

@@ -44,7 +44,7 @@ namespace OpenRailData.Domain.TrainMovements
         /// <summary>
         /// 	The planned departure time associated with the original location.
         /// </summary>
-        public DateTime OriginalLocationTimestamp { get; set; }
+        public DateTime? OriginalLocationTimestamp { get; set; }
         /// <summary>
         /// 	The planned type of event - one of "ARRIVAL", "DEPARTURE" or "DESTINATION".
         /// </summary>

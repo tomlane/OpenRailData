@@ -1,38 +1,65 @@
 ﻿using System;
+using Apache.NMS;
 using Microsoft.Practices.Unity;
+using OpenRailData.BerthStepData;
 using OpenRailData.DataFetcher;
 using OpenRailData.TrainDescriberParsing;
 using OpenRailData.TrainDescriberParsing.Json;
 using OpenRailData.TrainDescriberParsing.Json.TrainDescriberMessageParsers;
+using Serilog;
 
-namespace OpenRailData.BerthStepData.TestConsole
+namespace OpenRailData.TestConsole
 {
-    class Program
+    internal static class Program
     {
+        private static ILogger _logger;
+
         static void Main(string[] args)
         {
-            var container = BuildContainer();
+            _logger = new LoggerConfiguration().ReadFrom.AppSettings().CreateLogger();
 
-            var request = new[]
-            {
-                @"{""SF_MSG"":{""time"":""1422404915000"",""area_id"":""SI"",""address"":""16"",""msg_type"":""SF"",""data"":""43""}}",
-                @"{""SG_MSG"":{""time"":""1422404915000"",""area_id"":""RW"",""address"":""00"",""msg_type"":""SG"",""data"":""06880306""}}",
-                @"{""SH_MSG"":{""time"":""1422404915000"",""area_id"":""RW"",""address"":""04"",""msg_type"":""SH"",""data"":""35000000""}}",
-                @"{""CA_MSG"":{""time"":""1349696911000"", ""area_id"":""SK"", ""msg_type"":""CA"", ""from"":""3647"", ""to"":""3649"", ""descr"":""1F42""}}",
-                @"{""CB_MSG"":{""time"":""1349696911000"", ""area_id"":""G1"", ""msg_type"":""CB"", ""from"":""G669"", ""descr"":""2J01""}}",
-                @"{""CC_MSG"":{""time"":""1349696911000"", ""area_id"":""G1"", ""msg_type"":""CC"", ""descr"":""2J01"", ""to"":""G669""}}"
-            };
+            IConnectionFactory factory = new NMSConnectionFactory(new Uri("tcp://datafeeds.networkrail.co.uk:61619"));
 
-            var parsingService = container.Resolve<ITrainDescriberMessageParsingService>();
+            IConnection connection = factory.CreateConnection("username", "password");
+            ISession session = connection.CreateSession();
 
-            var result = parsingService.ParseDescriberMessages(request);
+            IDestination movementDestination = session.GetDestination("topic://TRAIN_MVT_ALL_TOC");
+            IMessageConsumer movementConsumer = session.CreateConsumer(movementDestination);
 
-            foreach (var trainDescriberMessage in result)
-            {
-                Console.WriteLine(trainDescriberMessage);
-            }
+            IDestination vstpDestination = session.GetDestination("topic://VSTP_ALL");
+            IMessageConsumer vstpConsumer = session.CreateConsumer(vstpDestination);
+            
+            connection.Start();
+            movementConsumer.Listener += OnMessage;
+            vstpConsumer.Listener += OnMessage;
+
+            Console.WriteLine("Consumer started, waiting for messages... (Press ENTER to stop.)");
 
             Console.ReadLine();
+            connection.Close();
+        }
+
+        private static void OnMessage(IMessage message)
+        {
+            try
+            {
+                Console.WriteLine("Median-Server (.NET): Message received");
+
+                ITextMessage msg = (ITextMessage)message;
+
+                message.Acknowledge();
+
+                var messageLog = new NetworkRailMessageLog
+                {
+                    Content = msg.Text.Replace(@"\","")
+                };
+                
+                _logger.Information(messageLog.Content);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, string.Empty);
+            }
         }
 
         private static UnityContainer BuildContainer()
@@ -55,6 +82,16 @@ namespace OpenRailData.BerthStepData.TestConsole
             container.RegisterType<ITrainDescriberMessageParser, SignallingRefreshFinishedMessageParser>("SignallingRefreshFinishedMessageParser");
 
             return container;
+        }
+    }
+
+    internal class NetworkRailMessageLog
+    {
+        public string Content { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Content}";
         }
     }
 }

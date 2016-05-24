@@ -28,7 +28,7 @@ namespace OpenRailData.Domain.TrainMovements
         /// <summary>
         ///     For an "OUT OF PLAN" cancellation, this is the departure time of the location that the train should have been at according to the schedule.
         /// </summary>
-        public DateTime OriginalLocationTimestamp { get; set; }
+        public DateTime? OriginalLocationTimestamp { get; set; }
         /// <summary>
         /// 	Operating company ID as per TOC Codes.
         /// </summary>
