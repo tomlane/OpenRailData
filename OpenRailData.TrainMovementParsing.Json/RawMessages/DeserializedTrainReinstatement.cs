@@ -14,7 +14,7 @@ namespace OpenRailData.TrainMovementParsing.Json.RawMessages
     internal class DeserializedTrainReinstatementHeader
     {
         [JsonProperty("source_dev_id")]
-        public string SourceDevId { get; set; }
+        public string SourceDeviceId { get; set; }
 
         [JsonProperty("source_system_id")]
         public string SourceSystemId { get; set; }
@@ -42,7 +42,7 @@ namespace OpenRailData.TrainMovementParsing.Json.RawMessages
         [JsonProperty("toc_id")]
         public string TocId { get; set; }
         [JsonProperty("division_code_id")]
-        public string DivisonCodeId { get; set; }
+        public string DivisonCode { get; set; }
         [JsonProperty("train_file_address")]
         public string TrainFileAddress { get; set; }
         [JsonProperty("train_service_code")]

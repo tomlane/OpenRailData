@@ -27,7 +27,7 @@ namespace OpenRailData.Domain.TrainMovements
         /// <summary>
         /// 	The planned departure time associated with the original location.
         /// </summary>
-        public DateTime OriginalLocationTimestamp { get; set; }
+        public DateTime? OriginalLocationTimestamp { get; set; }
         /// <summary>
         /// 	The planned departure time at the location where the train is being reinstated
         /// </summary>
@@ -51,7 +51,7 @@ namespace OpenRailData.Domain.TrainMovements
         /// <summary>
         ///     Operating company ID as per TOC Codes
         /// </summary>
-        public string DivisionCodeId { get; set; }
+        public string DivisionCode { get; set; }
         /// <summary>
         ///     The TOPS train file address, if applicable.
         /// </summary>

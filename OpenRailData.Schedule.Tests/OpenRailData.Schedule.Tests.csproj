@@ -47,52 +47,52 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.5.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.5.0\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TScheduleRecordTypeParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TScheduleRecordTypeParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TAssociationCategoryParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TAssociationTypeParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TBankHolidayRunningParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TCateringCodeParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TDateIndicatorParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TDateTimeParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TExtractUpdateTypeParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TLocationActivityParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TLocationTypeParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TOperatingCharacteristicsParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TPowerTypeParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TReservationDetailsParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TRunningDaysParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TSeatingClassParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TServiceBrandingParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TStpIndicatorParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TTimingAllowanceParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TTrainSleeperDetailsParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\PropertyParsers\TTransactionTypeParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TAssociationCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TScheduleCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TBasicScheduleExtraDetailsCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TChangesEnRouteCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TEndOfFileRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\THeaderCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TIntermediateLocationCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TOriginLocationCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TTerminatingLocationCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TTiplocAmendCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TTiplocDeleteCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\RecordParsers\TTiplocInsertCifRecordParser.cs" />
-    <Compile Include="NetworkRailScheduleParser\Records\TScheduleRecord.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TAssociationCategoryParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TAssociationTypeParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TBankHolidayRunningParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TCateringCodeParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TDateIndicatorParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TDateTimeParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TExtractUpdateTypeParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TLocationActivityParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TLocationTypeParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TOperatingCharacteristicsParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TPowerTypeParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TReservationDetailsParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TRunningDaysParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TSeatingClassParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TServiceBrandingParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TStpIndicatorParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TTimingAllowanceParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TTrainSleeperDetailsParser.cs" />
+    <Compile Include="ScheduleParsing\PropertyParsers\TTransactionTypeParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TAssociationCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TScheduleCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TBasicScheduleExtraDetailsCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TChangesEnRouteCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TEndOfFileRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\THeaderCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TIntermediateLocationCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TOriginLocationCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TTerminatingLocationCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TTiplocAmendCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TTiplocDeleteCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TTiplocInsertCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\Records\TScheduleRecord.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenRailData.Domain\OpenRailData.Domain.csproj">
