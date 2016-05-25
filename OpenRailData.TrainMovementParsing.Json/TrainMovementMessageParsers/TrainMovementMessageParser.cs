@@ -26,11 +26,9 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 EventType = (EventType)Enum.Parse(typeof(EventType), deserializedMovement.Body.EventType),
                 OriginalLocationStanox = deserializedMovement.Body.OriginalLocationStanox,
                 TimetableVariation = int.Parse(deserializedMovement.Body.TimetableVariation),
-                OriginalLocationTimestamp = null, // TODO: needs investigation
                 CurrentTrainId = deserializedMovement.Body.CurrentTrainId,
                 IsDelayMonitoringPoint = bool.Parse(deserializedMovement.Body.DelayMonitoringPoint),
                 ReportingStanox = deserializedMovement.Body.ReportingStanox,
-                EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.ActualTimestamp)).DateTime,
                 IsCorrection = bool.Parse(deserializedMovement.Body.Correction),
                 EventSource = (EventSource)Enum.Parse(typeof(EventSource), deserializedMovement.Body.EventSource),
                 TrainFileAddress = deserializedMovement.Body.TrainFileAddress,
@@ -48,6 +46,12 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 NextReportStanox = deserializedMovement.Body.NextReportStanox,
                 Line = deserializedMovement.Body.Line
             };
+
+            if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.ActualTimestamp))
+                movement.EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.ActualTimestamp)).DateTime;
+
+            if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.OriginalLocationTimestamp))
+                movement.OriginalLocationTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.OriginalLocationTimestamp)).DateTime;
 
             if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.PlannedTimestamp))
                 movement.PlannedTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.PlannedTimestamp)).DateTime;

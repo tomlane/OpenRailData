@@ -79,7 +79,7 @@ namespace OpenRailData.TrainMovementParsing.Json.RawMessages
         [JsonProperty("train_service_code")]
         public string TrainServiceCode { get; set; }
 
-        [JsonProperty("divison_code")]
+        [JsonProperty("division_code")]
         public string DivisionCode { get; set; }
 
         [JsonProperty("toc_id")]

@@ -40,7 +40,7 @@ namespace OpenRailData.TrainMovementParsing.Json.RawMessages
         [JsonProperty("dep_timestamp")]
         public string DepartureTimestamp { get; set; }
 
-        [JsonProperty("divison_code")]
+        [JsonProperty("division_code")]
         public string DivisionCode { get; set; }
 
         [JsonProperty("loc_stanox")]

@@ -32,9 +32,11 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedCancellation.Body.CancellationTimestamp)).DateTime,
                 ReasonCode = deserializedCancellation.Body.CancellationReasonCode,
                 TrainId = deserializedCancellation.Body.TrainId,
-                OriginalLocationTimestamp = null,
                 CancellationType = (CancellationType)Enum.Parse(typeof(CancellationType), deserializedCancellation.Body.CancellationType.Replace(" ", string.Empty))
             };
+
+            if (!string.IsNullOrWhiteSpace(deserializedCancellation.Body.OriginalLocationTimestamp))
+                cancellation.OriginalLocationTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedCancellation.Body.OriginalLocationTimestamp)).DateTime;
 
             return cancellation;
         }

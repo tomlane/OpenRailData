@@ -42,7 +42,7 @@ namespace OpenRailData.TrainMovementParsing.Json.RawMessages
         [JsonProperty("reason_code")]
         public string ReasonCode { get; set; }
         [JsonProperty("division_code")]
-        public string DivisonCode { get; set; }
+        public string DivisionCode { get; set; }
         [JsonProperty("toc_id")]
         public string TocId { get; set; }
         [JsonProperty("train_file_address")]

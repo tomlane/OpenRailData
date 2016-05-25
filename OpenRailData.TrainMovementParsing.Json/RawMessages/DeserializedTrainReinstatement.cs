@@ -41,8 +41,8 @@ namespace OpenRailData.TrainMovementParsing.Json.RawMessages
         public string ReinstatementTimestamp { get; set; }
         [JsonProperty("toc_id")]
         public string TocId { get; set; }
-        [JsonProperty("division_code_id")]
-        public string DivisonCode { get; set; }
+        [JsonProperty("division_code")]
+        public string DivisionCode { get; set; }
         [JsonProperty("train_file_address")]
         public string TrainFileAddress { get; set; }
         [JsonProperty("train_service_code")]

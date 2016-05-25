@@ -28,7 +28,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 TrainServiceCode = deserializedTrainReinstatement.Body.TrainServiceCode,
                 TocId = deserializedTrainReinstatement.Body.TocId,
                 DepartureTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedTrainReinstatement.Body.DepartureTimestamp)).DateTime,
-                DivisionCode = deserializedTrainReinstatement.Body.DivisonCode,
+                DivisionCode = deserializedTrainReinstatement.Body.DivisionCode,
                 LocationStanox = deserializedTrainReinstatement.Body.LocationStanox,
                 TrainId = deserializedTrainReinstatement.Body.TrainId,
                 OriginalLocationStanox = deserializedTrainReinstatement.Body.OriginalLocationStanox,
