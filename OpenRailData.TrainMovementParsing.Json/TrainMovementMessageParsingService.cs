@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using OpenRailData.Domain.TrainMovements;
+using Serilog;
 
 namespace OpenRailData.TrainMovementParsing.Json
 {
@@ -27,9 +28,18 @@ namespace OpenRailData.TrainMovementParsing.Json
 
             foreach (var message in messages)
             {
-                var key = JObject.Parse(message)["header"]["msg_type"].ToString();
+                try
+                {
+                    var key = JObject.Parse(message)["header"]["msg_type"].ToString();
 
-                response.Add(_messageParsers[key].ParseMovementMessage(message));
+                    response.Add(_messageParsers[key].ParseMovementMessage(message));
+
+                    Log.Information("Succesfully parsed message of type {key}.", key);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, message);
+                }
             }
 
             return response;
