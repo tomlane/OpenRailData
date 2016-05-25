@@ -32,8 +32,8 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedCancellation.Body.CancellationTimestamp)).DateTime,
                 ReasonCode = deserializedCancellation.Body.CancellationReasonCode,
                 TrainId = deserializedCancellation.Body.TrainId,
-                OriginalLocationTimestamp = null, // TODO: Logic needed here, can be empty string
-                CancellationType = CancellationType.AtOrigin // TODO: use my provider
+                OriginalLocationTimestamp = null,
+                CancellationType = (CancellationType)Enum.Parse(typeof(CancellationType), deserializedCancellation.Body.CancellationType.Replace(" ", string.Empty))
             };
 
             return cancellation;

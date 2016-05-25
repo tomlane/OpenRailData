@@ -5,15 +5,15 @@ namespace OpenRailData.Domain.TrainMovements.Enums
     public enum VariationStatus
     {
         [Display(Name = "On Time")]
-        OnTime,
+        ONTIME,
 
         [Display(Name = "Early")]
-        Early,
+        EARLY,
 
         [Display(Name = "Late")]
-        Late,
+        LATE,
 
         [Display(Name = "Off Route")]
-        OffRoute
+        OFFROUTE
     }
 }

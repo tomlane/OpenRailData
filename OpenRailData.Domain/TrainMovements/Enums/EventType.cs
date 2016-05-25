@@ -5,12 +5,12 @@ namespace OpenRailData.Domain.TrainMovements.Enums
     public enum EventType
     {
         [Display(Name = "Arrival")]
-        Arrival,
+        ARRIVAL,
 
         [Display(Name = "Departure")]
-        Departure,
+        DEPARTURE,
 
         [Display(Name = "Destination")]
-        Destination
+        DESTINATION
     }
 }

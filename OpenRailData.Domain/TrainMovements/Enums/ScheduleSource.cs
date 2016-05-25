@@ -5,9 +5,9 @@ namespace OpenRailData.Domain.TrainMovements.Enums
     public enum ScheduleSource
     {
         [Display(Name = "CIF")]
-        Cif,
+        C,
 
         [Display(Name = "Very Short Term Plan")]
-        Vstp
+        V
     }
 }

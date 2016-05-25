@@ -5,9 +5,9 @@ namespace OpenRailData.Domain.TrainMovements.Enums
     public enum Direction
     {
         [Display(Name = "Up")]
-        Up,
+        UP,
 
         [Display(Name = "Down")]
-        Down
+        DOWN
     }
 }

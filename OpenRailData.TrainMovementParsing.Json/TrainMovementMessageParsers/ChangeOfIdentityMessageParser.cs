@@ -1,4 +1,5 @@
-﻿using OpenRailData.Domain.TrainMovements;
+﻿using System;
+using OpenRailData.Domain.TrainMovements;
 
 namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
 {
@@ -8,6 +9,9 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
 
         public ITrainMovementMessage ParseMovementMessage(string message)
         {
+            if (string.IsNullOrWhiteSpace(message))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(message));
+            
             throw new System.NotImplementedException();
         }
     }

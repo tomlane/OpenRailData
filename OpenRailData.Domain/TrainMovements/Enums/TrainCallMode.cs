@@ -5,9 +5,9 @@ namespace OpenRailData.Domain.TrainMovements.Enums
     public enum TrainCallMode
     {
         [Display(Name = "Normal")]
-        Normal,
+        NORMAL,
 
         [Display(Name = "Overnight")]
-        Overnight
+        OVERNIGHT
     }
 }

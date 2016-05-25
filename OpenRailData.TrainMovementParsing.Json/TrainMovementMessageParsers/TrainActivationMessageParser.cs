@@ -24,7 +24,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 OriginalDataSource = deserializedActivation.Header.OriginalDataSource,
                 SourceSystemId = deserializedActivation.Header.SourceSystemId,
 
-                ScheduleSource = ScheduleSource.Cif, // TODO: Use my provider
+                ScheduleSource = (ScheduleSource)Enum.Parse(typeof(ScheduleSource), deserializedActivation.Body.ScheduleSource),
                 TrainFileAddress = deserializedActivation.Body.TrainFileAddress,
                 ScheduleEndDate = DateTime.ParseExact(deserializedActivation.Body.ScheduleEndDate, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                 TrainId = deserializedActivation.Body.TrainId,
@@ -35,10 +35,10 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 TrainServiceCode = deserializedActivation.Body.TrainServiceCode,
                 TocId = deserializedActivation.Body.TocId,
                 DRecordNumber = deserializedActivation.Body.DRecordNumber,
-                CallType = TrainCallType.Automatic, // TODO: Use my provider
+                CallType = (TrainCallType)Enum.Parse(typeof(TrainCallType), deserializedActivation.Body.TrainCallType),
                 TrainUid = deserializedActivation.Body.TrainUid,
-                CallMode = TrainCallMode.Normal, // TODO: Use my provider
-                ScheduleType = ScheduleType.Overlay, // TODO: Use my provider
+                CallMode = (TrainCallMode)Enum.Parse(typeof(TrainCallMode), deserializedActivation.Body.TrainCallMode),
+                ScheduleType = (ScheduleType)Enum.Parse(typeof(ScheduleType), deserializedActivation.Body.ScheduleType),
                 ScheduleOriginStanox = deserializedActivation.Body.ScheduleOriginStanox,
                 ScheduleWttId = deserializedActivation.Body.ScheduleWttId,
                 ScheduleStartDate = DateTime.ParseExact(deserializedActivation.Body.ScheduleStartDate, "yyyy-MM-dd", CultureInfo.InvariantCulture)

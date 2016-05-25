@@ -23,36 +23,46 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 OriginalDataSource = deserializedMovement.Header.OriginalDataSource,
                 SourceSystemId = deserializedMovement.Header.SourceSystemId,
 
-                EventType = EventType.Arrival, // TODO: use my provider
-                PassengerTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.GbttTimestamp)).DateTime, // TODO: can be empty string
+                EventType = (EventType)Enum.Parse(typeof(EventType), deserializedMovement.Body.EventType),
                 OriginalLocationStanox = deserializedMovement.Body.OriginalLocationStanox,
-                PlannedTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.PlannedTimestamp)).DateTime,
                 TimetableVariation = int.Parse(deserializedMovement.Body.TimetableVariation),
                 OriginalLocationTimestamp = null, // TODO: needs investigation
                 CurrentTrainId = deserializedMovement.Body.CurrentTrainId,
                 IsDelayMonitoringPoint = bool.Parse(deserializedMovement.Body.DelayMonitoringPoint),
-                NextReportRunTime = int.Parse(deserializedMovement.Body.NextReportRunTime), // TODO: can be empty
                 ReportingStanox = deserializedMovement.Body.ReportingStanox,
                 EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.ActualTimestamp)).DateTime,
                 IsCorrection = bool.Parse(deserializedMovement.Body.Correction),
-                EventSource = EventSource.Automatic, // TODO: use my provider
+                EventSource = (EventSource)Enum.Parse(typeof(EventSource), deserializedMovement.Body.EventSource),
                 TrainFileAddress = deserializedMovement.Body.TrainFileAddress,
                 Platform = deserializedMovement.Body.Platform,
                 DivisionCode = deserializedMovement.Body.DivisionCode,
                 HasTerminated = bool.Parse(deserializedMovement.Body.TrainTerminated),
                 TrainId = deserializedMovement.Body.TrainId,
                 IsOffRoute = bool.Parse(deserializedMovement.Body.OffRoute),
-                VariationStatus = VariationStatus.OnTime, // TODO: use my provider
+                VariationStatus = (VariationStatus)Enum.Parse(typeof(VariationStatus), deserializedMovement.Body.VariationStatus.Replace(" ", String.Empty)),
                 TrainServiceCode = deserializedMovement.Body.TrainServiceCode,
                 TocId = deserializedMovement.Body.TocId,
                 LocationStanox = deserializedMovement.Body.LocationStanox,
-                IsAutoExpected = bool.Parse(deserializedMovement.Body.AutoExpected),
-                Direction = Direction.Down, // TODO: use my provider
                 Route = deserializedMovement.Body.Route,
-                PlannedEventType = EventType.Arrival, // TODO: use my provider
+                PlannedEventType = (EventType)Enum.Parse(typeof(EventType), deserializedMovement.Body.PlannedEventType),
                 NextReportStanox = deserializedMovement.Body.NextReportStanox,
                 Line = deserializedMovement.Body.Line
             };
+
+            if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.PlannedTimestamp))
+                movement.PlannedTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.PlannedTimestamp)).DateTime;
+
+            if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.GbttTimestamp))
+                movement.PassengerTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.GbttTimestamp)).DateTime;
+
+            if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.NextReportRunTime))
+                movement.NextReportRunTime = int.Parse(deserializedMovement.Body.NextReportRunTime);
+
+            if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.AutoExpected))
+                movement.IsAutoExpected = bool.Parse(deserializedMovement.Body.AutoExpected);
+
+            if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.Direction))
+                movement.Direction = (Direction) Enum.Parse(typeof(Direction), deserializedMovement.Body.Direction);
 
             return movement;
         }

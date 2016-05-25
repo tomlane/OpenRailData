@@ -32,47 +32,23 @@ namespace OpenRailData.TestConsole
             IConnection connection = factory.CreateConnection("username", "password");
             ISession session = connection.CreateSession();
 
-            IDestination movementDestination = session.GetDestination("topic://TRAIN_MVT_EF_TOC");
+            IDestination movementDestination = session.GetDestination("topic://TRAIN_MVT_ALL_TOC");
             IMessageConsumer movementConsumer = session.CreateConsumer(movementDestination);
-
-            IDestination vstpDestination = session.GetDestination("topic://VSTP_ALL");
-            IMessageConsumer vstpConsumer = session.CreateConsumer(vstpDestination);
             
             connection.Start();
             movementConsumer.Listener += OnMovementMessage;
-            vstpConsumer.Listener += OnVstpMessage;
 
             Console.WriteLine("Consumer started, waiting for messages... (Press ENTER to stop.)");
 
             Console.ReadLine();
+
             connection.Close();
-        }
-
-        private static void OnVstpMessage(IMessage message)
-        {
-            try
-            {
-                Console.WriteLine("Median-Server (.NET): Message received");
-
-                ITextMessage msg = (ITextMessage)message;
-
-                message.Acknowledge();
-
-                var messageLog = new NetworkRailMessageLog
-                {
-                    Content = msg.Text.Replace(@"\","")
-                };
-                
-                Log.Information(messageLog.Content);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, string.Empty);
-            }
         }
 
         private static void OnMovementMessage(IMessage message)
         {
+            Console.WriteLine("Median-Server (.NET): Message received");
+
             try
             {
                 ITextMessage msg = (ITextMessage)message;
@@ -113,6 +89,7 @@ namespace OpenRailData.TestConsole
             container.RegisterType<ITrainMovementMessageParser, TrainActivationMessageParser>("TrainActivationMessageParser");
             container.RegisterType<ITrainMovementMessageParser, TrainCancellationMessageParser>("TrainCancellationMessageParser");
             container.RegisterType<ITrainMovementMessageParser, TrainMovementMessageParser>("TrainMovementMessageParser");
+            container.RegisterType<ITrainMovementMessageParser, TrainReinstatementMessageParser>("TrainReinstatementMessageParser");
             container.RegisterType<ITrainMovementMessageParser, ChangeOfOriginMessageParser>("ChangeOfOriginMessageParser");
 
             return container;

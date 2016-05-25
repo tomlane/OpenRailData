@@ -23,7 +23,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 SourceSystemId = deserializedTrainReinstatement.Header.SourceSystemId,
 
                 CurrentTrainId = deserializedTrainReinstatement.Body.CurrentTrainId,
-                OriginalLocationTimestamp = null, // TODO: needs investigation
+                OriginalLocationTimestamp = null,
                 TrainFileAddress = deserializedTrainReinstatement.Body.TrainFileAddress,
                 TrainServiceCode = deserializedTrainReinstatement.Body.TrainServiceCode,
                 TocId = deserializedTrainReinstatement.Body.TocId,

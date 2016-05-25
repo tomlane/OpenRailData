@@ -5,15 +5,15 @@ namespace OpenRailData.Domain.TrainMovements.Enums
     public enum CancellationType
     {
         [Display(Name = "On Call")]
-        OnCall,
+        ONCALL,
 
         [Display(Name = "At Origin")]
-        AtOrigin,
+        ATORIGIN,
 
         [Display(Name = "En Route")]
-        EnRoute,
+        ENROUTE,
 
         [Display(Name = "Out of Plan")]
-        OutOfPlan
+        OUTOFPLAN
     }
 }

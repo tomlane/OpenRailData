@@ -5,9 +5,9 @@ namespace OpenRailData.Domain.TrainMovements.Enums
     public enum EventSource
     {
         [Display(Name = "Automatic")]
-        Automatic,
+        AUTOMATIC,
 
         [Display(Name = "Manual")]
-        Manual
+        MANUAL
     }
 }
