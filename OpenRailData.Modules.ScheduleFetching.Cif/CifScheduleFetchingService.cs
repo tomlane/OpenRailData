@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using OpenRailData.DataFetcher;
 using OpenRailData.ScheduleFetching;
 
 namespace OpenRailData.Modules.ScheduleFetching.Cif

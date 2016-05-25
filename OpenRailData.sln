@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.NetworkRailParserConsole", "OpenRailData.Schedule.NetworkRailParserConsole\OpenRailData.Schedule.NetworkRailParserConsole.csproj", "{9334ADAB-1E1F-476D-A4E2-23588F3BF851}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.Tests", "OpenRailData.Schedule.Tests\OpenRailData.Schedule.Tests.csproj", "{23819884-6772-49F3-BA2E-77DB60E6EFCC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule.CommonDatabase", "OpenRailData.Schedule.CommonDatabase\OpenRailData.Schedule.CommonDatabase.csproj", "{DBF09618-423D-4A73-BBEC-36598E5B2FDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.ScheduleStorage", "OpenRailData.ScheduleStorage\OpenRailData.ScheduleStorage.csproj", "{E6548915-E0BD-4225-8B8C-695B447F38E9}"
@@ -59,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.TrainDescriber
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.TrainMovementParsing.Json", "OpenRailData.TrainMovementParsing.Json\OpenRailData.TrainMovementParsing.Json.csproj", "{CFC9BE57-8E43-4EE9-AB48-FBCA72050161}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.UnitTests", "OpenRailData.UnitTests\OpenRailData.UnitTests.csproj", "{29F0E893-783D-4AC8-B0F3-3E83E8565DB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,10 +69,6 @@ Global
 		{9334ADAB-1E1F-476D-A4E2-23588F3BF851}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9334ADAB-1E1F-476D-A4E2-23588F3BF851}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9334ADAB-1E1F-476D-A4E2-23588F3BF851}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23819884-6772-49F3-BA2E-77DB60E6EFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23819884-6772-49F3-BA2E-77DB60E6EFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23819884-6772-49F3-BA2E-77DB60E6EFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23819884-6772-49F3-BA2E-77DB60E6EFCC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DBF09618-423D-4A73-BBEC-36598E5B2FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DBF09618-423D-4A73-BBEC-36598E5B2FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBF09618-423D-4A73-BBEC-36598E5B2FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -165,13 +161,16 @@ Global
 		{CFC9BE57-8E43-4EE9-AB48-FBCA72050161}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFC9BE57-8E43-4EE9-AB48-FBCA72050161}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFC9BE57-8E43-4EE9-AB48-FBCA72050161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29F0E893-783D-4AC8-B0F3-3E83E8565DB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F0E893-783D-4AC8-B0F3-3E83E8565DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F0E893-783D-4AC8-B0F3-3E83E8565DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F0E893-783D-4AC8-B0F3-3E83E8565DB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9334ADAB-1E1F-476D-A4E2-23588F3BF851} = {05F30D8A-FA75-4FCB-AAFD-2A4E1756336D}
-		{23819884-6772-49F3-BA2E-77DB60E6EFCC} = {B148E18E-36CF-47A4-9019-C1FED350EE8A}
 		{DBF09618-423D-4A73-BBEC-36598E5B2FDF} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 		{356A6879-C173-4F5B-BD77-80042FCFFF05} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 		{F697A364-D2B4-452D-BE3F-5011CE702504} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
@@ -183,5 +182,6 @@ Global
 		{29D1C9ED-BF7C-4C04-8B85-453A44FCB687} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 		{44B91613-1CB3-47D9-9814-3DBA124D2E36} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 		{CFC9BE57-8E43-4EE9-AB48-FBCA72050161} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
+		{29F0E893-783D-4AC8-B0F3-3E83E8565DB4} = {B148E18E-36CF-47A4-9019-C1FED350EE8A}
 	EndGlobalSection
 EndGlobal
