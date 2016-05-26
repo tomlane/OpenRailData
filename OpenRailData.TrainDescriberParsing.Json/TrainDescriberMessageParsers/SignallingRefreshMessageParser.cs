@@ -16,7 +16,7 @@ namespace OpenRailData.TrainDescriberParsing.Json.TrainDescriberMessageParsers
 
             var jsonClass = JsonConvert.DeserializeObject<DeserializedSClassMessage>(message);
 
-            return new SClassMessage
+            return new SignalMessage
             {
                 Timestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(jsonClass.Time)).DateTime,
                 AreaId = jsonClass.AreaId,

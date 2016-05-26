@@ -16,7 +16,7 @@ namespace OpenRailData.TrainDescriberParsing.Json.TrainDescriberMessageParsers
 
             var jsonClass = JsonConvert.DeserializeObject<DeserializedCClassMessage>(message);
 
-            return new CClassMessage
+            return new BerthMessage
             {
                 Timestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(jsonClass.Time)).DateTime,
                 AreaId = jsonClass.AreaId,

@@ -2,7 +2,7 @@
 
 namespace OpenRailData.Domain.TrainDescriber
 {
-    public class SClassMessage : ITrainDescriberMessage
+    public class SignalMessage : ITrainDescriberMessage
     {
         /// <summary>
         ///     Message time.
@@ -26,7 +26,7 @@ namespace OpenRailData.Domain.TrainDescriber
         /// </summary>
         public string Data { get; set; }
 
-        protected bool Equals(SClassMessage other)
+        protected bool Equals(SignalMessage other)
         {
             return string.Equals(Address, other.Address) && 
                 string.Equals(AreaId, other.AreaId) && 
@@ -40,7 +40,7 @@ namespace OpenRailData.Domain.TrainDescriber
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((SClassMessage) obj);
+            return Equals((SignalMessage) obj);
         }
 
         public override int GetHashCode()

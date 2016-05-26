@@ -68,10 +68,10 @@
     <Compile Include="ScheduleRecords\ScheduleRecord.cs" />
     <Compile Include="ScheduleRecords\ScheduleRecordType.cs" />
     <Compile Include="ScheduleRecords\TiplocRecord.cs" />
-    <Compile Include="TrainDescriber\CClassMessage.cs" />
+    <Compile Include="TrainDescriber\BerthMessage.cs" />
     <Compile Include="TrainDescriber\CClassMessageType.cs" />
     <Compile Include="TrainDescriber\ITrainDescriberMessage.cs" />
-    <Compile Include="TrainDescriber\SClassMessage.cs" />
+    <Compile Include="TrainDescriber\SignalMessage.cs" />
     <Compile Include="TrainDescriber\SClassMessageType.cs" />
     <Compile Include="TrainMovements\ChangeOfIdentity.cs" />
     <Compile Include="TrainMovements\ChangeOfOrigin.cs" />
