@@ -63,6 +63,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.TrainMovementS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.TrainDescriberStorage", "OpenRailData.TrainDescriberStorage\OpenRailData.TrainDescriberStorage.csproj", "{F13BF98A-0CC4-4905-A4C0-3F365FEBB3A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.TrainDescriberStorage.EntityFramework", "OpenRailData.TrainDescriberStorage.EntityFramework\OpenRailData.TrainDescriberStorage.EntityFramework.csproj", "{F8E9DF10-8099-41F6-B22B-4CEDAEB1D115}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.TrainMovementStorage.EntityFramework", "OpenRailData.TrainMovementStorage.EntityFramework\OpenRailData.TrainMovementStorage.EntityFramework.csproj", "{1D8BBA4F-8543-4607-A10D-245D72042A45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -177,6 +181,14 @@ Global
 		{F13BF98A-0CC4-4905-A4C0-3F365FEBB3A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F13BF98A-0CC4-4905-A4C0-3F365FEBB3A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F13BF98A-0CC4-4905-A4C0-3F365FEBB3A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8E9DF10-8099-41F6-B22B-4CEDAEB1D115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8E9DF10-8099-41F6-B22B-4CEDAEB1D115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8E9DF10-8099-41F6-B22B-4CEDAEB1D115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8E9DF10-8099-41F6-B22B-4CEDAEB1D115}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D8BBA4F-8543-4607-A10D-245D72042A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D8BBA4F-8543-4607-A10D-245D72042A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D8BBA4F-8543-4607-A10D-245D72042A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D8BBA4F-8543-4607-A10D-245D72042A45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -195,5 +207,7 @@ Global
 		{44B91613-1CB3-47D9-9814-3DBA124D2E36} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 		{CFC9BE57-8E43-4EE9-AB48-FBCA72050161} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 		{29F0E893-783D-4AC8-B0F3-3E83E8565DB4} = {B148E18E-36CF-47A4-9019-C1FED350EE8A}
+		{F8E9DF10-8099-41F6-B22B-4CEDAEB1D115} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
+		{1D8BBA4F-8543-4607-A10D-245D72042A45} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 	EndGlobalSection
 EndGlobal

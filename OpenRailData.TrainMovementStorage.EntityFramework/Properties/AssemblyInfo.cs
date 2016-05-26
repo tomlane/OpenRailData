@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OpenRailData.TrainDescriberStorage")]
+[assembly: AssemblyTitle("OpenRailData.TrainMovementStorage.EntityFramework")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OpenRailData.TrainDescriberStorage")]
+[assembly: AssemblyProduct("OpenRailData.TrainMovementStorage.EntityFramework")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f13bf98a-0cc4-4905-a4c0-3f365febb3a9")]
+[assembly: Guid("1d8bba4f-8543-4607-a10d-245d72042a45")]
 
 // Version information for an assembly consists of the following four values:
 //

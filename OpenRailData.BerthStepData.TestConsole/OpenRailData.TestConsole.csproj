@@ -308,6 +308,10 @@
       <Project>{B71F2B7D-2D61-427E-BA76-0091F3701CB5}</Project>
       <Name>OpenRailData.TrainDescriberParsing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.TrainDescriberStorage.EntityFramework\OpenRailData.TrainDescriberStorage.EntityFramework.csproj">
+      <Project>{f8e9df10-8099-41f6-b22b-4cedaeb1d115}</Project>
+      <Name>OpenRailData.TrainDescriberStorage.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.TrainMovementParsing.Json\OpenRailData.TrainMovementParsing.Json.csproj">
       <Project>{CFC9BE57-8E43-4EE9-AB48-FBCA72050161}</Project>
       <Name>OpenRailData.TrainMovementParsing.Json</Name>
@@ -315,6 +319,10 @@
     <ProjectReference Include="..\OpenRailData.TrainMovementParsing\OpenRailData.TrainMovementParsing.csproj">
       <Project>{F0874C4A-F746-4AB6-BF61-08CFF0353920}</Project>
       <Name>OpenRailData.TrainMovementParsing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.TrainMovementStorage.EntityFramework\OpenRailData.TrainMovementStorage.EntityFramework.csproj">
+      <Project>{1d8bba4f-8543-4607-a10d-245d72042a45}</Project>
+      <Name>OpenRailData.TrainMovementStorage.EntityFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
