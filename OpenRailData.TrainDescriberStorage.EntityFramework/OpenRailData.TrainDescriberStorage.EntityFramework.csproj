@@ -114,6 +114,10 @@
     <Compile Include="TrainDescriberDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OpenRailData.Configuration\OpenRailData.Configuration.csproj">
+      <Project>{97F4F260-5D57-431F-88DD-36C013AF598F}</Project>
+      <Name>OpenRailData.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Domain\OpenRailData.Domain.csproj">
       <Project>{D82B3675-E4A1-431D-9CB1-01C2CA91D12F}</Project>
       <Name>OpenRailData.Domain</Name>

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using OpenRailData.Configuration;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
 using OpenRailData.Schedule.CommonDatabase;
 

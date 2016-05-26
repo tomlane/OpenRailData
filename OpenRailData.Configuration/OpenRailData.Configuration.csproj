@@ -36,7 +36,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettingsConfigManager.cs" />
+    <Compile Include="ConfigConnectionStringProvider.cs" />
     <Compile Include="IConfigManager.cs" />
+    <Compile Include="IConnectionStringProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

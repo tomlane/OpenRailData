@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenRailData.Schedule.CommonDatabase;
+using OpenRailData.Configuration;
 
 namespace OpenRailData.TrainDescriberStorage.EntityFramework
 {

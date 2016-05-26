@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using OpenRailData.Configuration;
 using OpenRailData.Schedule.CommonDatabase;
 using OpenRailData.TrainDescriberStorage.EntityFramework.Entities;
 

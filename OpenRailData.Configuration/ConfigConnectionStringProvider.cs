@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace OpenRailData.Schedule.CommonDatabase
+namespace OpenRailData.Configuration
 {
     public class ConfigConnectionStringProvider : IConnectionStringProvider
     {

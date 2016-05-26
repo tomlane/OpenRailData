@@ -1,4 +1,4 @@
-﻿namespace OpenRailData.Schedule.CommonDatabase
+﻿namespace OpenRailData.Configuration
 {
     public interface IConnectionStringProvider
     {
