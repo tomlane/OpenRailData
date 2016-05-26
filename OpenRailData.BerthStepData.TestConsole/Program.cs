@@ -110,14 +110,4 @@ namespace OpenRailData.TestConsole
             return container;
         }
     }
-
-    internal class NetworkRailMessageLog
-    {
-        public string Content { get; set; }
-
-        public override string ToString()
-        {
-            return $"{Content}";
-        }
-    }
 }
