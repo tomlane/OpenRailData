@@ -1,5 +1,6 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
 using OpenRailData.Schedule.CommonDatabase;
 
@@ -7,26 +8,26 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework
 {
     public class ScheduleContext : ContextBase, IScheduleContext
     {
+        private readonly IConnectionStringProvider _connectionStringProvider;
+
+        public ScheduleContext(IConnectionStringProvider connectionStringProvider)
+        {
+            if (connectionStringProvider == null)
+                throw new ArgumentNullException(nameof(connectionStringProvider));
+
+            _connectionStringProvider = connectionStringProvider;
+        }
+
         public DbSet<HeaderRecordEntity> HeaderRecords { get; set; }
         public DbSet<AssociationRecordEntity> AssociationRecords { get; set; }
         public DbSet<TiplocRecordEntity> TiplocRecords { get; set; }
         public DbSet<ScheduleRecordEntity> ScheduleRecords { get; set; }
         public DbSet<ScheduleLocationRecordEntity> ScheduleLocationRecords { get; set; }
         
-        public ScheduleContext(string connectionString)
-            : base(connectionString)
-        {
-            Database.SetInitializer(new NullDatabaseInitializer<ScheduleContext>());
-            Configuration.AutoDetectChangesEnabled = false;
-            Configuration.ValidateOnSaveEnabled = false;
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             const string schema = "Schedule";
-
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
+            
             //setting table names
             modelBuilder.Entity<HeaderRecordEntity>().ToTable("Header", schema);
             modelBuilder.Entity<AssociationRecordEntity>().ToTable("Association", schema);
@@ -36,9 +37,14 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework
 
             //setting cascade delete on schedule record locations
             modelBuilder.Entity<ScheduleRecordEntity>()
-                .HasMany(r => r.ScheduleLocations)
-                .WithOptional()
-                .WillCascadeOnDelete(true);
+                .HasMany(x => x.ScheduleLocations)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(_connectionStringProvider.ConnectionString("ScheduleContext"));
         }
     }
 

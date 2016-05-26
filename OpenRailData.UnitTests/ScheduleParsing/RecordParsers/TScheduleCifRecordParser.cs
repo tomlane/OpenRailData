@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Practices.Unity;
 using Moq;
-using OpenRailData.Domain.ScheduleRecords;
-using OpenRailData.Domain.ScheduleRecords.Enums;
 using OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers;
 using OpenRailData.ScheduleContainer;
 using OpenRailData.ScheduleParsing;

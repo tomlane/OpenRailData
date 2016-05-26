@@ -1,4 +1,4 @@
-﻿using System.Data.Entity.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Practices.Unity;
 using OpenRailData.BerthStepData;
 using OpenRailData.Configuration;

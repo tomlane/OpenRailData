@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.Entity.Infrastructure;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using OpenRailData.ScheduleStorage;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.UnitOfWork

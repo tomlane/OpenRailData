@@ -1,4 +1,4 @@
-﻿using System.Data.Entity.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using OpenRailData.Schedule.CommonDatabase;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework
