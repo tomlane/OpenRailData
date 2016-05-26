@@ -32,9 +32,11 @@ namespace OpenRailData.TrainMovementParsing.Json
                 {
                     var key = JObject.Parse(message)["header"]["msg_type"].ToString();
 
-                    response.Add(_messageParsers[key].ParseMovementMessage(message));
+                    var parsedMessage = _messageParsers[key].ParseMovementMessage(message);
 
-                    Log.Information("Succesfully parsed message of type {key}.", key);
+                    response.Add(parsedMessage);
+
+                    Log.Information("Succesfully parsed message of type {key}. Input: {message} Result: {parsedMessage}", key, parsedMessage, message);
                 }
                 catch (Exception ex)
                 {

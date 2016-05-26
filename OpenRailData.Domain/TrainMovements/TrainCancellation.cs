@@ -66,5 +66,10 @@ namespace OpenRailData.Domain.TrainMovements
         /// 	The TOPS train file address, if applicable.
         /// </summary>
         public string TrainFileAddress { get; set; }
+
+        public override string ToString()
+        {
+            return $"CancellationType: {CancellationType}, DepartureTimestamp: {DepartureTimestamp}, DivisionCode: {DivisionCode}, EventTimestamp: {EventTimestamp}, LocationStanox: {LocationStanox}, OriginalDataSource: {OriginalDataSource}, OriginalLocationStanox: {OriginalLocationStanox}, OriginalLocationTimestamp: {OriginalLocationTimestamp}, ReasonCode: {ReasonCode}, SourceDeviceId: {SourceDeviceId}, SourceSystemId: {SourceSystemId}, TocId: {TocId}, TrainFileAddress: {TrainFileAddress}, TrainId: {TrainId}, TrainServiceCode: {TrainServiceCode}";
+        }
     }
 }

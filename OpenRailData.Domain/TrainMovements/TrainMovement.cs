@@ -136,5 +136,10 @@ namespace OpenRailData.Domain.TrainMovements
         ///     Set to "true" if an automatic report is expected for this location, otherwise "false".
         /// </summary>
         public bool IsAutoExpected { get; set; }
+
+        public override string ToString()
+        {
+            return $"CurrentTrainId: {CurrentTrainId}, Direction: {Direction}, DivisionCode: {DivisionCode}, EventSource: {EventSource}, EventTimestamp: {EventTimestamp}, EventType: {EventType}, HasTerminated: {HasTerminated}, IsAutoExpected: {IsAutoExpected}, IsCorrection: {IsCorrection}, IsDelayMonitoringPoint: {IsDelayMonitoringPoint}, IsOffRoute: {IsOffRoute}, Line: {Line}, LocationStanox: {LocationStanox}, NextReportRunTime: {NextReportRunTime}, NextReportStanox: {NextReportStanox}, OriginalDataSource: {OriginalDataSource}, OriginalLocationStanox: {OriginalLocationStanox}, OriginalLocationTimestamp: {OriginalLocationTimestamp}, PassengerTimestamp: {PassengerTimestamp}, PlannedEventType: {PlannedEventType}, PlannedTimestamp: {PlannedTimestamp}, Platform: {Platform}, ReportingStanox: {ReportingStanox}, Route: {Route}, SourceDeviceId: {SourceDeviceId}, SourceSystemId: {SourceSystemId}, TimetableVariation: {TimetableVariation}, TocId: {TocId}, TrainFileAddress: {TrainFileAddress}, TrainId: {TrainId}, TrainServiceCode: {TrainServiceCode}, VariationStatus: {VariationStatus}";
+        }
     }
 }

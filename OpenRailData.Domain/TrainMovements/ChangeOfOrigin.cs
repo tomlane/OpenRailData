@@ -63,6 +63,11 @@ namespace OpenRailData.Domain.TrainMovements
         /// <summary>
         /// 	The time at which the Change of Origin is entered into TRUST.
         /// </summary>
-        public DateTime EventTimestamp { get; set; } 
+        public DateTime EventTimestamp { get; set; }
+
+        public override string ToString()
+        {
+            return $"CurrentTrainId: {CurrentTrainId}, DepartureTimestamp: {DepartureTimestamp}, DivisionCode: {DivisionCode}, EventTimestamp: {EventTimestamp}, LocationStanox: {LocationStanox}, OriginalDataSource: {OriginalDataSource}, OriginalLocationStanox: {OriginalLocationStanox}, OriginalLocationTimestamp: {OriginalLocationTimestamp}, ReasonCode: {ReasonCode}, SourceDeviceId: {SourceDeviceId}, SourceSystemId: {SourceSystemId}, TocId: {TocId}, TrainFileAddress: {TrainFileAddress}, TrainId: {TrainId}, TrainServiceCode: {TrainServiceCode}";
+        }
     }
 }

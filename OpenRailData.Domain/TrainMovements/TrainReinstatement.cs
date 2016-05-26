@@ -59,6 +59,11 @@ namespace OpenRailData.Domain.TrainMovements
         /// <summary>
         /// 	Train service code as per schedule.
         /// </summary>
-        public string TrainServiceCode { get; set; } 
+        public string TrainServiceCode { get; set; }
+
+        public override string ToString()
+        {
+            return $"CurrentTrainId: {CurrentTrainId}, DepartureTimestamp: {DepartureTimestamp}, DivisionCode: {DivisionCode}, EventTimestamp: {EventTimestamp}, LocationStanox: {LocationStanox}, OriginalDataSource: {OriginalDataSource}, OriginalLocationStanox: {OriginalLocationStanox}, OriginalLocationTimestamp: {OriginalLocationTimestamp}, SourceDeviceId: {SourceDeviceId}, SourceSystemId: {SourceSystemId}, TocId: {TocId}, TrainFileAddress: {TrainFileAddress}, TrainId: {TrainId}, TrainServiceCode: {TrainServiceCode}";
+        }
     }
 }

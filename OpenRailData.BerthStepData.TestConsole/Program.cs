@@ -27,7 +27,7 @@ namespace OpenRailData.TestConsole
 
             _movementMessageParsingService = container.Resolve<ITrainMovementMessageParsingService>();
 
-            IConnectionFactory factory = new NMSConnectionFactory(new Uri("tcp://datafeeds.networkrail.co.uk:61619"));
+            IConnectionFactory factory = new NMSConnectionFactory("stomp:failover:tcp://datafeeds.networkrail.co.uk:61618");
 
             IConnection connection = factory.CreateConnection("username", "password");
             ISession session = connection.CreateSession();
@@ -91,6 +91,7 @@ namespace OpenRailData.TestConsole
             container.RegisterType<ITrainMovementMessageParser, TrainMovementMessageParser>("TrainMovementMessageParser");
             container.RegisterType<ITrainMovementMessageParser, TrainReinstatementMessageParser>("TrainReinstatementMessageParser");
             container.RegisterType<ITrainMovementMessageParser, ChangeOfOriginMessageParser>("ChangeOfOriginMessageParser");
+            container.RegisterType<ITrainMovementMessageParser, ChangeOfIdentityMessageParser>("ChangeOfIdentityMessageParser");
 
             return container;
         }

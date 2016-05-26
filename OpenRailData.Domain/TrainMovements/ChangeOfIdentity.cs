@@ -40,5 +40,10 @@ namespace OpenRailData.Domain.TrainMovements
         /// 	The time, in milliseconds, when the train's identity was changed.
         /// </summary>
         public DateTime EventTimestamp { get; set; }
+
+        public override string ToString()
+        {
+            return $"CurrentTrainId: {CurrentTrainId}, EventTimestamp: {EventTimestamp}, OriginalDataSource: {OriginalDataSource}, RevisedTrainId: {RevisedTrainId}, SourceDeviceId: {SourceDeviceId}, SourceSystemId: {SourceSystemId}, TrainFileAddress: {TrainFileAddress}, TrainId: {TrainId}, TrainServiceCode: {TrainServiceCode}";
+        }
     }
 }
