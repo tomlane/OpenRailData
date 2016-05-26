@@ -30,19 +30,33 @@ namespace OpenRailData.TestConsole
             IConnectionFactory factory = new NMSConnectionFactory("stomp:failover:tcp://datafeeds.networkrail.co.uk:61618");
 
             IConnection connection = factory.CreateConnection("username", "password");
-            ISession session = connection.CreateSession();
 
-            IDestination movementDestination = session.GetDestination("topic://TRAIN_MVT_ALL_TOC");
-            IMessageConsumer movementConsumer = session.CreateConsumer(movementDestination);
+            connection.ConnectionInterruptedListener += ConnectionInterruptedHandler;
+            connection.ConnectionResumedListener += ConnectionResumedHandler;
+
+            ISession session = connection.CreateSession();
+            
+            ITopic movementTopic = session.GetTopic("topic://TRAIN_MVT_ALL_TOC");
+            IMessageConsumer movementConsumer = session.CreateDurableConsumer(movementTopic, "toml-movements", null, false);
             
             connection.Start();
             movementConsumer.Listener += OnMovementMessage;
-
+            
             Console.WriteLine("Consumer started, waiting for messages... (Press ENTER to stop.)");
 
             Console.ReadLine();
 
             connection.Close();
+        }
+
+        private static void ConnectionResumedHandler()
+        {
+            Log.Information("Connection to Network Rail Data Feeds re-established.");
+        }
+
+        private static void ConnectionInterruptedHandler()
+        {
+            Log.Warning("Connection to Network Rail Data Feeds interrupted.");
         }
 
         private static void OnMovementMessage(IMessage message)
@@ -51,7 +65,7 @@ namespace OpenRailData.TestConsole
 
             try
             {
-                ITextMessage msg = (ITextMessage)message;
+                var msg = (ITextMessage)message;
 
                 message.Acknowledge();
 
