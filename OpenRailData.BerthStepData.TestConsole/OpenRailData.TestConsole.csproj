@@ -300,6 +300,10 @@
       <Project>{356a6879-c173-4f5b-bd77-80042fcfff05}</Project>
       <Name>OpenRailData.Modules.ScheduleStorage.EntityFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Schedule.CommonDatabase\OpenRailData.Schedule.CommonDatabase.csproj">
+      <Project>{DBF09618-423D-4A73-BBEC-36598E5B2FDF}</Project>
+      <Name>OpenRailData.Schedule.CommonDatabase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.TrainDescriberParsing.Json\OpenRailData.TrainDescriberParsing.Json.csproj">
       <Project>{44B91613-1CB3-47D9-9814-3DBA124D2E36}</Project>
       <Name>OpenRailData.TrainDescriberParsing.Json</Name>
@@ -312,6 +316,10 @@
       <Project>{f8e9df10-8099-41f6-b22b-4cedaeb1d115}</Project>
       <Name>OpenRailData.TrainDescriberStorage.EntityFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.TrainDescriberStorage\OpenRailData.TrainDescriberStorage.csproj">
+      <Project>{F13BF98A-0CC4-4905-A4C0-3F365FEBB3A9}</Project>
+      <Name>OpenRailData.TrainDescriberStorage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.TrainMovementParsing.Json\OpenRailData.TrainMovementParsing.Json.csproj">
       <Project>{CFC9BE57-8E43-4EE9-AB48-FBCA72050161}</Project>
       <Name>OpenRailData.TrainMovementParsing.Json</Name>
@@ -323,6 +331,10 @@
     <ProjectReference Include="..\OpenRailData.TrainMovementStorage.EntityFramework\OpenRailData.TrainMovementStorage.EntityFramework.csproj">
       <Project>{1d8bba4f-8543-4607-a10d-245d72042a45}</Project>
       <Name>OpenRailData.TrainMovementStorage.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.TrainMovementStorage\OpenRailData.TrainMovementStorage.csproj">
+      <Project>{EE1385A8-1A5C-44EA-8E5F-85A2A053BBF7}</Project>
+      <Name>OpenRailData.TrainMovementStorage</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

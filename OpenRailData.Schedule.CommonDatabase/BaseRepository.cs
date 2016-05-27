@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
+namespace OpenRailData.Schedule.CommonDatabase
 {
     public class BaseRepository<TEntity> where TEntity : class
     {
-        private readonly IScheduleContext _context;
+        private readonly IContext _context;
 
-        protected BaseRepository(IScheduleContext context)
+        protected BaseRepository(IContext context)
         {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
@@ -37,10 +37,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 
         protected void RemoveRange(IEnumerable<TEntity> entities)
         {
-            foreach (var entity in entities)
-            {
-                _context.GetSet<TEntity>().Remove(entity);
-            }
+            _context.GetSet<TEntity>().RemoveRange(entities);
         }
 
         protected IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)

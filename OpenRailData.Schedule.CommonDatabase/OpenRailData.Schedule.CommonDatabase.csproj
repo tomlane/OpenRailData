@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseRepository.cs" />
     <Compile Include="ContextBase.cs" />
     <Compile Include="DbEntityEntryWrapper.cs" />
     <Compile Include="IContext.cs" />

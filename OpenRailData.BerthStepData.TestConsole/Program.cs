@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Apache.NMS;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Linq;
 using OpenRailData.BerthStepData;
@@ -8,9 +9,17 @@ using OpenRailData.DataFetcher;
 using OpenRailData.TrainDescriberParsing;
 using OpenRailData.TrainDescriberParsing.Json;
 using OpenRailData.TrainDescriberParsing.Json.TrainDescriberMessageParsers;
+using OpenRailData.TrainDescriberStorage;
+using OpenRailData.TrainDescriberStorage.EntityFramework;
+using OpenRailData.TrainDescriberStorage.EntityFramework.Repository;
+using OpenRailData.TrainDescriberStorage.EntityFramework.UnitOfWork;
 using OpenRailData.TrainMovementParsing;
 using OpenRailData.TrainMovementParsing.Json;
 using OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers;
+using OpenRailData.TrainMovementStorage;
+using OpenRailData.TrainMovementStorage.EntityFramework;
+using OpenRailData.TrainMovementStorage.EntityFramework.Repository;
+using OpenRailData.TrainMovementStorage.EntityFramework.UnitOfWork;
 using Serilog;
 
 namespace OpenRailData.TestConsole
@@ -25,8 +34,11 @@ namespace OpenRailData.TestConsole
 
             var container = BuildContainer();
 
-            _movementMessageParsingService = container.Resolve<ITrainMovementMessageParsingService>();
+            var trainMovementsUnitOfWorkFactory = container.Resolve<ITrainMovementsUnitOfWorkFactory>();
+            var trainDescriberUnitOfWorkFactory = container.Resolve<ITrainDescriberUnitOfWorkFactory>();
 
+            _movementMessageParsingService = container.Resolve<ITrainMovementMessageParsingService>();
+            
             IConnectionFactory factory = new NMSConnectionFactory("stomp:failover:tcp://datafeeds.networkrail.co.uk:61618");
 
             IConnection connection = factory.CreateConnection("username", "password");
@@ -106,6 +118,24 @@ namespace OpenRailData.TestConsole
             container.RegisterType<ITrainMovementMessageParser, TrainReinstatementMessageParser>("TrainReinstatementMessageParser");
             container.RegisterType<ITrainMovementMessageParser, ChangeOfOriginMessageParser>("ChangeOfOriginMessageParser");
             container.RegisterType<ITrainMovementMessageParser, ChangeOfIdentityMessageParser>("ChangeOfIdentityMessageParser");
+
+            container.RegisterType<ITrainMovementsUnitOfWorkFactory, TrainMovementsUnitOfWorkFactory>();
+            container.RegisterType<ITrainMovementsUnitOfWork, TrainMovementsUnitOfWork>();
+            container.RegisterType<IDbContextFactory<TrainMovementContext>, TrainMovementContextFactory>();
+
+            container.RegisterType<ITrainActivationRepository, TrainActivationRepository>();
+            container.RegisterType<ITrainCancellationRepository, TrainCancellationRepository>();
+            container.RegisterType<ITrainMovementRepository, TrainMovementRepository>();
+            container.RegisterType<ITrainReinstatementRepository, TrainReinstatementRepository>();
+            container.RegisterType<IChangeOfOriginRepository, ChangeOfOriginRepository>();
+            container.RegisterType<IChangeOfIdentityRepository, ChangeOfIdentityRepository>();
+
+            container.RegisterType<ITrainDescriberUnitOfWorkFactory, TrainDescriberUnitOfWorkFactory>();
+            container.RegisterType<ITrainDescriberUnitOfWork, TrainDescriberUnitOfWork>();
+            container.RegisterType<IDbContextFactory<TrainDescriberContext>, TrainDescriberContextFactory>();
+
+            container.RegisterType<ISignalMessageRepository, SignalMessageRepository>();
+            container.RegisterType<IBerthMessageRepository, BerthMessageRepository>();
 
             return container;
         }

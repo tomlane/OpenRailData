@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.1.0.0-rc2-final\lib\net451\Microsoft.EntityFrameworkCore.dll</HintPath>
       <Private>True</Private>
@@ -103,15 +107,20 @@
     <Compile Include="Entities\SignalMessageEntity.cs" />
     <Compile Include="ITrainDescriberContext.cs" />
     <Compile Include="ITrainDescriberDatabase.cs" />
+    <Compile Include="Mappers\TrainDescriberMapperConfiguration.cs" />
     <Compile Include="Migrations\20160526214833_InitialMigration.cs" />
     <Compile Include="Migrations\20160526214833_InitialMigration.designer.cs">
       <DependentUpon>20160526214833_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\TrainDescriberContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BerthMessageRepository.cs" />
+    <Compile Include="Repository\SignalMessageRepository.cs" />
     <Compile Include="TrainDescriberContext.cs" />
     <Compile Include="TrainDescriberContextFactory.cs" />
     <Compile Include="TrainDescriberDatabase.cs" />
+    <Compile Include="UnitOfWork\TrainDescriberUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\TrainDescriberUnitOfWorkFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenRailData.Configuration\OpenRailData.Configuration.csproj">
@@ -126,10 +135,15 @@
       <Project>{DBF09618-423D-4A73-BBEC-36598E5B2FDF}</Project>
       <Name>OpenRailData.Schedule.CommonDatabase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.TrainDescriberStorage\OpenRailData.TrainDescriberStorage.csproj">
+      <Project>{F13BF98A-0CC4-4905-A4C0-3F365FEBB3A9}</Project>
+      <Name>OpenRailData.TrainDescriberStorage</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

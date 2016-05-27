@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
+using OpenRailData.Schedule.CommonDatabase;
 using OpenRailData.ScheduleStorage;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository

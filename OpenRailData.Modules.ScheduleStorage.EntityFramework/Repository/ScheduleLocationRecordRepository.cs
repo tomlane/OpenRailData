@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Schedule.CommonDatabase;
 using OpenRailData.ScheduleStorage;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
