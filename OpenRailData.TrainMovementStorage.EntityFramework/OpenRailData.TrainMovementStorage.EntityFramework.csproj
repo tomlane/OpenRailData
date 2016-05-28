@@ -126,6 +126,7 @@
     <Compile Include="TrainMovementContext.cs" />
     <Compile Include="TrainMovementContextFactory.cs" />
     <Compile Include="TrainMovementDatabase.cs" />
+    <Compile Include="TrainMovementStorageService.cs" />
     <Compile Include="UnitOfWork\TrainMovementsUnitOfWork.cs" />
     <Compile Include="UnitOfWork\TrainMovementsUnitOfWorkFactory.cs" />
   </ItemGroup>

@@ -27,6 +27,7 @@ namespace OpenRailData.TestConsole
     internal static class Program
     {
         private static ITrainMovementMessageParsingService _movementMessageParsingService;
+        private static ITrainMovementStorageService _movementStorageService;
 
         static void Main(string[] args)
         {
@@ -34,10 +35,8 @@ namespace OpenRailData.TestConsole
 
             var container = BuildContainer();
 
-            var trainMovementsUnitOfWorkFactory = container.Resolve<ITrainMovementsUnitOfWorkFactory>();
-            var trainDescriberUnitOfWorkFactory = container.Resolve<ITrainDescriberUnitOfWorkFactory>();
-
             _movementMessageParsingService = container.Resolve<ITrainMovementMessageParsingService>();
+            _movementStorageService = container.Resolve<ITrainMovementStorageService>();
             
             IConnectionFactory factory = new NMSConnectionFactory("stomp:failover:tcp://datafeeds.networkrail.co.uk:61618");
 
@@ -83,7 +82,9 @@ namespace OpenRailData.TestConsole
 
                 var array = JArray.Parse(msg.Text).Children().Select(jToken => jToken.ToString());
 
-                _movementMessageParsingService.ParseTrainMovementMessages(array);
+                var parsedMessages = _movementMessageParsingService.ParseTrainMovementMessages(array);
+
+                _movementStorageService.StoreTrainMovementMessages(parsedMessages);
             }
             catch (Exception ex)
             {
@@ -118,6 +119,9 @@ namespace OpenRailData.TestConsole
             container.RegisterType<ITrainMovementMessageParser, TrainReinstatementMessageParser>("TrainReinstatementMessageParser");
             container.RegisterType<ITrainMovementMessageParser, ChangeOfOriginMessageParser>("ChangeOfOriginMessageParser");
             container.RegisterType<ITrainMovementMessageParser, ChangeOfIdentityMessageParser>("ChangeOfIdentityMessageParser");
+
+            container.RegisterType<ITrainMovementStorageService, TrainMovementStorageService>();
+            container.RegisterType<ITrainDescriberStorageService, TrainDescriberStorageService>();
 
             container.RegisterType<ITrainMovementsUnitOfWorkFactory, TrainMovementsUnitOfWorkFactory>();
             container.RegisterType<ITrainMovementsUnitOfWork, TrainMovementsUnitOfWork>();

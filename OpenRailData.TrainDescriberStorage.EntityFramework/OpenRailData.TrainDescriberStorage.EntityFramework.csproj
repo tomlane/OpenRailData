@@ -119,6 +119,7 @@
     <Compile Include="TrainDescriberContext.cs" />
     <Compile Include="TrainDescriberContextFactory.cs" />
     <Compile Include="TrainDescriberDatabase.cs" />
+    <Compile Include="TrainDescriberStorageService.cs" />
     <Compile Include="UnitOfWork\TrainDescriberUnitOfWork.cs" />
     <Compile Include="UnitOfWork\TrainDescriberUnitOfWorkFactory.cs" />
   </ItemGroup>

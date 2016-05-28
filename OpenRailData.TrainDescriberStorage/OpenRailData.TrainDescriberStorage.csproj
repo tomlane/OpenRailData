@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="IBerthMessageRepository.cs" />
     <Compile Include="ISignalMessageRepository.cs" />
+    <Compile Include="ITrainDescriberStorageService.cs" />
     <Compile Include="ITrainDescriberUnitOfWork.cs" />
     <Compile Include="ITrainDescriberUnitOfWorkFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

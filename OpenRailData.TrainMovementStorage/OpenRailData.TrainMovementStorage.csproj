@@ -45,6 +45,7 @@
     <Compile Include="ITrainActivationRepository.cs" />
     <Compile Include="ITrainCancellationRepository.cs" />
     <Compile Include="ITrainMovementRepository.cs" />
+    <Compile Include="ITrainMovementStorageService.cs" />
     <Compile Include="ITrainMovementsUnitOfWork.cs" />
     <Compile Include="ITrainMovementsUnitOfWorkFactory.cs" />
     <Compile Include="ITrainReinstatementRepository.cs" />
