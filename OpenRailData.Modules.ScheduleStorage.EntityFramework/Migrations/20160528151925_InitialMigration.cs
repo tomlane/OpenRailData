@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
 {
@@ -16,8 +15,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
                 schema: "Schedule",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     AssocDays = table.Column<int>(nullable: false),
                     AssocLocationSuffix = table.Column<string>(nullable: true),
                     AssocTrainUid = table.Column<string>(nullable: true),
@@ -43,8 +41,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
                 schema: "Schedule",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CifSoftwareVersion = table.Column<string>(nullable: true),
                     CurrentFileRef = table.Column<string>(nullable: true),
                     DateOfExtract = table.Column<DateTime>(nullable: false),
@@ -68,8 +65,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
                 schema: "Schedule",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     AtocCode = table.Column<string>(nullable: true),
                     AtsCode = table.Column<string>(nullable: true),
                     BankHolidayRunning = table.Column<int>(nullable: false),
@@ -113,8 +109,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
                 schema: "Schedule",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CapitalsIdentification = table.Column<string>(nullable: true),
                     CapriDescription = table.Column<string>(nullable: true),
                     CrsCode = table.Column<string>(nullable: true),
@@ -138,8 +133,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
                 schema: "Schedule",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     EngineeringAllowance = table.Column<TimeSpan>(nullable: false),
                     Line = table.Column<string>(nullable: true),
                     LocationActivity = table.Column<int>(nullable: false),
@@ -153,7 +147,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
                     PublicArrival = table.Column<string>(nullable: true),
                     PublicDeparture = table.Column<string>(nullable: true),
                     RecordIdentity = table.Column<int>(nullable: false),
-                    ScheduleRecordEntityId = table.Column<int>(nullable: true),
+                    ScheduleRecordEntityId = table.Column<Guid>(nullable: true),
                     Tiploc = table.Column<string>(nullable: true),
                     WorkingArrival = table.Column<string>(nullable: true),
                     WorkingDeparture = table.Column<string>(nullable: true)

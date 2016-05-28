@@ -2,7 +2,7 @@
 
 namespace OpenRailData.Domain.TrainDescriber
 {
-    public enum SClassMessageType
+    public enum SignalMessageType
     {
         [Display(Name = "Signal Update")]
         Update,

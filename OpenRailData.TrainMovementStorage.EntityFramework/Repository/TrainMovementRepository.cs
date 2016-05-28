@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using OpenRailData.Domain.TrainMovements;
@@ -10,7 +8,7 @@ using OpenRailData.TrainMovementStorage.EntityFramework.Mappers;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Repository
 {
-    public class TrainMovementRepository : BaseRepository<TrainMovementEntity>, ITrainMovementRepository
+    public class TrainMovementRepository : BaseRepository<TrainMovementEntity>, ITrainMovementRepository<TrainMovement>
     {
         private readonly IMapper _mapper;
 
@@ -52,18 +50,6 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Repository
             var entity = _mapper.Map<TrainMovementEntity>(record);
 
             Add(entity);
-
-            return Task.CompletedTask;
-        }
-
-        public Task InsertMultipleRecordsAsync(IEnumerable<TrainMovement> records)
-        {
-            if (records == null)
-                throw new ArgumentNullException(nameof(records));
-
-            var entites = records.Select(_mapper.Map<TrainMovementEntity>).ToList();
-
-            RemoveRange(entites);
 
             return Task.CompletedTask;
         }

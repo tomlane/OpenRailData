@@ -6,12 +6,15 @@ using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Linq;
 using OpenRailData.BerthStepData;
 using OpenRailData.DataFetcher;
+using OpenRailData.Domain.TrainDescriber;
+using OpenRailData.Domain.TrainMovements;
 using OpenRailData.TrainDescriberParsing;
 using OpenRailData.TrainDescriberParsing.Json;
 using OpenRailData.TrainDescriberParsing.Json.TrainDescriberMessageParsers;
 using OpenRailData.TrainDescriberStorage;
 using OpenRailData.TrainDescriberStorage.EntityFramework;
 using OpenRailData.TrainDescriberStorage.EntityFramework.Repository;
+using OpenRailData.TrainDescriberStorage.EntityFramework.StorageProcessor;
 using OpenRailData.TrainDescriberStorage.EntityFramework.UnitOfWork;
 using OpenRailData.TrainMovementParsing;
 using OpenRailData.TrainMovementParsing.Json;
@@ -19,6 +22,7 @@ using OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers;
 using OpenRailData.TrainMovementStorage;
 using OpenRailData.TrainMovementStorage.EntityFramework;
 using OpenRailData.TrainMovementStorage.EntityFramework.Repository;
+using OpenRailData.TrainMovementStorage.EntityFramework.StorageProcessor;
 using OpenRailData.TrainMovementStorage.EntityFramework.UnitOfWork;
 using Serilog;
 
@@ -70,7 +74,7 @@ namespace OpenRailData.TestConsole
             Log.Warning("Connection to Network Rail Data Feeds interrupted.");
         }
 
-        private static void OnMovementMessage(IMessage message)
+        private static async void OnMovementMessage(IMessage message)
         {
             Console.WriteLine("Median-Server (.NET): Message received");
 
@@ -84,7 +88,7 @@ namespace OpenRailData.TestConsole
 
                 var parsedMessages = _movementMessageParsingService.ParseTrainMovementMessages(array);
 
-                _movementStorageService.StoreTrainMovementMessages(parsedMessages);
+                await _movementStorageService.StoreTrainMovementMessages(parsedMessages);
             }
             catch (Exception ex)
             {
@@ -123,23 +127,33 @@ namespace OpenRailData.TestConsole
             container.RegisterType<ITrainMovementStorageService, TrainMovementStorageService>();
             container.RegisterType<ITrainDescriberStorageService, TrainDescriberStorageService>();
 
-            container.RegisterType<ITrainMovementsUnitOfWorkFactory, TrainMovementsUnitOfWorkFactory>();
-            container.RegisterType<ITrainMovementsUnitOfWork, TrainMovementsUnitOfWork>();
+            container.RegisterType<ITrainMovementUnitOfWorkFactory, TrainMovementUnitOfWorkFactory>();
+            container.RegisterType<ITrainMovementUnitOfWork, TrainMovementUnitOfWork>();
             container.RegisterType<IDbContextFactory<TrainMovementContext>, TrainMovementContextFactory>();
 
-            container.RegisterType<ITrainActivationRepository, TrainActivationRepository>();
-            container.RegisterType<ITrainCancellationRepository, TrainCancellationRepository>();
-            container.RegisterType<ITrainMovementRepository, TrainMovementRepository>();
-            container.RegisterType<ITrainReinstatementRepository, TrainReinstatementRepository>();
-            container.RegisterType<IChangeOfOriginRepository, ChangeOfOriginRepository>();
-            container.RegisterType<IChangeOfIdentityRepository, ChangeOfIdentityRepository>();
+            container.RegisterType<ITrainMovementRepository<TrainActivation>, TrainActivationRepository>();
+            container.RegisterType<ITrainMovementRepository<TrainCancellation>, TrainCancellationRepository>();
+            container.RegisterType<ITrainMovementRepository<TrainMovement>, TrainMovementRepository>();
+            container.RegisterType<ITrainMovementRepository<TrainReinstatement>, TrainReinstatementRepository>();
+            container.RegisterType<ITrainMovementRepository<ChangeOfOrigin>, ChangeOfOriginRepository>();
+            container.RegisterType<ITrainMovementRepository<ChangeOfIdentity>, ChangeOfIdentityRepository>();
+
+            container.RegisterType<ITrainMovementStorageProcessor, TrainActivationStorageProcessor>("TrainActivationStorageProcessor");
+            container.RegisterType<ITrainMovementStorageProcessor, TrainCancellationStorageProcessor>("TrainCancellationStorageProcessor");
+            container.RegisterType<ITrainMovementStorageProcessor, TrainMovementStorageProcessor>("TrainMovementStorageProcessor");
+            container.RegisterType<ITrainMovementStorageProcessor, TrainReinstatmentStorageProcessor>("TrainReinstatmentStorageProcessor");
+            container.RegisterType<ITrainMovementStorageProcessor, ChangeOfOriginStorageProcessor>("ChangeOfOriginStorageProcessor");
+            container.RegisterType<ITrainMovementStorageProcessor, ChangeOfIdentityStorageProcessor>("ChangeOfIdentityStorageProcessor");
 
             container.RegisterType<ITrainDescriberUnitOfWorkFactory, TrainDescriberUnitOfWorkFactory>();
             container.RegisterType<ITrainDescriberUnitOfWork, TrainDescriberUnitOfWork>();
             container.RegisterType<IDbContextFactory<TrainDescriberContext>, TrainDescriberContextFactory>();
 
-            container.RegisterType<ISignalMessageRepository, SignalMessageRepository>();
-            container.RegisterType<IBerthMessageRepository, BerthMessageRepository>();
+            container.RegisterType<ITrainDescriberStorageProcessor, SignalMessageStorageProcessor>("SignalMessageStorageProcessor");
+            container.RegisterType<ITrainDescriberStorageProcessor, BerthMessageStorageProcessor>("BerthMessageStorageProcessor");
+
+            container.RegisterType<ITrainDescriberRepository<SignalMessage>, SignalMessageRepository>();
+            container.RegisterType<ITrainDescriberRepository<BerthMessage>, BerthMessageRepository>();
 
             return container;
         }

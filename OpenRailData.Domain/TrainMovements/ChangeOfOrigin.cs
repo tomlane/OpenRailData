@@ -4,6 +4,8 @@ namespace OpenRailData.Domain.TrainMovements
 {
     public class ChangeOfOrigin : ITrainMovementMessage
     {
+        public TrainMovementMessageType MessageType { get; } = TrainMovementMessageType.ChangeOfOrigin;
+
         /// <summary>
         ///     Set to the ID of the device that issued the change of origin message.
         /// </summary>

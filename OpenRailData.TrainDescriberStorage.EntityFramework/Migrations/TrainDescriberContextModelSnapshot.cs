@@ -16,7 +16,7 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainDescriberStorage.EntityFramework.Entities.BerthMessageEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("AreaId");
@@ -40,7 +40,7 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainDescriberStorage.EntityFramework.Entities.SignalMessageEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");

@@ -8,14 +8,14 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework
 {
     public class TrainDescriberStorageService : ITrainDescriberStorageService
     {
-        private readonly ITrainDescriberUnitOfWorkFactory _unitOfWorkFactory;
+        private readonly Dictionary<TrainDescriberMessageType, ITrainDescriberStorageProcessor> _storageProcessors;
 
-        public TrainDescriberStorageService(ITrainDescriberUnitOfWorkFactory unitOfWorkFactory)
+        public TrainDescriberStorageService(ITrainDescriberStorageProcessor[] storageProcessors)
         {
-            if (unitOfWorkFactory == null)
-                throw new ArgumentNullException(nameof(unitOfWorkFactory));
+            if (storageProcessors == null)
+                throw new ArgumentNullException(nameof(storageProcessors));
 
-            _unitOfWorkFactory = unitOfWorkFactory;
+            _storageProcessors = storageProcessors.ToDictionary(x => x.MessageType, x => x);
         }
 
         public async Task StoreDescriberMessages(IEnumerable<ITrainDescriberMessage> messages)
@@ -23,14 +23,9 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework
             if (messages == null)
                 throw new ArgumentNullException(nameof(messages));
 
-            var trainDescriberMessages = messages as IList<ITrainDescriberMessage> ?? messages.ToList();
-
-            using (var unitOfWork = _unitOfWorkFactory.Create())
+            foreach (var trainDescriberMessage in messages)
             {
-                await unitOfWork.BerthMessages.InsertMultipleRecordsAsync(trainDescriberMessages.OfType<BerthMessage>());
-                await unitOfWork.SignalMessages.InsertMultipleRecordsAsync(trainDescriberMessages.OfType<SignalMessage>());
-
-                unitOfWork.Complete();
+                await _storageProcessors[trainDescriberMessage.MessageType].ProcessMessage(trainDescriberMessage);
             }
         }
     }

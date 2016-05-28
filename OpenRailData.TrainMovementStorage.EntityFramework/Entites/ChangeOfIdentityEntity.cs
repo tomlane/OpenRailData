@@ -5,7 +5,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Entites
 {
     public class ChangeOfIdentityEntity : IIdentifyable
     {
-        public int Id { get; set; }
+        public Guid? Id { get; set; }
 
         public string SourceDeviceId { get; set; }
         public string SourceSystemId { get; set; }

@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBerthMessageRepository.cs" />
-    <Compile Include="ISignalMessageRepository.cs" />
+    <Compile Include="ITrainDescriberRepository.cs" />
+    <Compile Include="ITrainDescriberStorageProcessor.cs" />
     <Compile Include="ITrainDescriberStorageService.cs" />
     <Compile Include="ITrainDescriberUnitOfWork.cs" />
     <Compile Include="ITrainDescriberUnitOfWorkFactory.cs" />

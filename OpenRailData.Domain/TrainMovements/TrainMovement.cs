@@ -5,6 +5,8 @@ namespace OpenRailData.Domain.TrainMovements
 {
     public class TrainMovement : ITrainMovementMessage
     {
+        public TrainMovementMessageType MessageType { get; } = TrainMovementMessageType.TrainMovement;
+
         /// <summary>
         ///     Where the movement is manually entered, set to the ID of the device that generated the movement message.
         /// </summary>

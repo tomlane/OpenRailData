@@ -4,6 +4,8 @@ namespace OpenRailData.Domain.TrainMovements
 {
     public class ChangeOfIdentity : ITrainMovementMessage
     {
+        public TrainMovementMessageType MessageType { get; } = TrainMovementMessageType.ChangeOfIdentity;
+
         /// <summary>
         /// 	Set to the device ID of the terminal that issued the request.
         /// </summary>

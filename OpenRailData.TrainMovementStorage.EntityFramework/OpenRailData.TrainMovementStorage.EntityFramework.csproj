@@ -111,9 +111,9 @@
     <Compile Include="ITrainMovementContext.cs" />
     <Compile Include="ITrainMovementDatabase.cs" />
     <Compile Include="Mappers\TrainMovementMapperConfiguration.cs" />
-    <Compile Include="Migrations\20160526214909_InitialMigration.cs" />
-    <Compile Include="Migrations\20160526214909_InitialMigration.designer.cs">
-      <DependentUpon>20160526214909_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20160528152038_InitialMigration.cs" />
+    <Compile Include="Migrations\20160528152038_InitialMigration.designer.cs">
+      <DependentUpon>20160528152038_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\TrainMovementContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,12 +123,18 @@
     <Compile Include="Repository\TrainCancellationRepository.cs" />
     <Compile Include="Repository\TrainMovementRepository.cs" />
     <Compile Include="Repository\TrainReinstatementRepository.cs" />
+    <Compile Include="StorageProcessor\ChangeOfIdentityStorageProcessor.cs" />
+    <Compile Include="StorageProcessor\ChangeOfOriginStorageProcessor.cs" />
+    <Compile Include="StorageProcessor\TrainActivationStorageProcessor.cs" />
+    <Compile Include="StorageProcessor\TrainCancellationStorageProcessor.cs" />
+    <Compile Include="StorageProcessor\TrainMovementStorageProcessor.cs" />
+    <Compile Include="StorageProcessor\TrainReinstatmentStorageProcessor.cs" />
     <Compile Include="TrainMovementContext.cs" />
     <Compile Include="TrainMovementContextFactory.cs" />
     <Compile Include="TrainMovementDatabase.cs" />
     <Compile Include="TrainMovementStorageService.cs" />
-    <Compile Include="UnitOfWork\TrainMovementsUnitOfWork.cs" />
-    <Compile Include="UnitOfWork\TrainMovementsUnitOfWorkFactory.cs" />
+    <Compile Include="UnitOfWork\TrainMovementUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\TrainMovementUnitOfWorkFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenRailData.Configuration\OpenRailData.Configuration.csproj">

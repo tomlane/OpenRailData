@@ -249,14 +249,13 @@
     <Compile Include="Converters\AssociationMapperConfiguration.cs" />
     <Compile Include="Entities\AssociationRecordEntity.cs" />
     <Compile Include="Entities\HeaderRecordEntity.cs" />
-    <Compile Include="Entities\IIdentifyable.cs" />
     <Compile Include="Entities\ScheduleLocationRecordEntity.cs" />
     <Compile Include="Entities\ScheduleRecordEntity.cs" />
     <Compile Include="Entities\TiplocRecordEntity.cs" />
     <Compile Include="IScheduleDatabase.cs" />
-    <Compile Include="Migrations\20160526194231_InitialMigration.cs" />
-    <Compile Include="Migrations\20160526194231_InitialMigration.designer.cs">
-      <DependentUpon>20160526194231_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20160528151925_InitialMigration.cs" />
+    <Compile Include="Migrations\20160528151925_InitialMigration.designer.cs">
+      <DependentUpon>20160528151925_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ScheduleContextModelSnapshot.cs" />
     <Compile Include="Repository\AssociationRecordRepository.cs" />

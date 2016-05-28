@@ -8,7 +8,7 @@ using OpenRailData.TrainDescriberStorage.EntityFramework;
 namespace OpenRailData.TrainDescriberStorage.EntityFramework.Migrations
 {
     [DbContext(typeof(TrainDescriberContext))]
-    [Migration("20160526214833_InitialMigration")]
+    [Migration("20160528152015_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainDescriberStorage.EntityFramework.Entities.BerthMessageEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("AreaId");
@@ -43,7 +43,7 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainDescriberStorage.EntityFramework.Entities.SignalMessageEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Address");

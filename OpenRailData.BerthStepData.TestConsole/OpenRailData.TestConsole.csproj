@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Apache.NMS, Version=1.7.1.3894, Culture=neutral, PublicKeyToken=82756feee3957618, processorArchitecture=MSIL">
-      <HintPath>..\packages\Apache.NMS.1.7.1\lib\net40\Apache.NMS.dll</HintPath>
+    <Reference Include="Apache.NMS, Version=1.5.1.2739, Culture=neutral, PublicKeyToken=82756feee3957618, processorArchitecture=MSIL">
+      <HintPath>..\packages\Apache.NMS.1.5.1\lib\net40\Apache.NMS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Apache.NMS.Stomp, Version=1.5.4.3215, Culture=neutral, PublicKeyToken=82756feee3957618, processorArchitecture=MSIL">

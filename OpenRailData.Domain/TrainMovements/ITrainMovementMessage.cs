@@ -4,6 +4,8 @@ namespace OpenRailData.Domain.TrainMovements
 {
     public interface ITrainMovementMessage
     {
+        TrainMovementMessageType MessageType { get; }
+
         string SourceDeviceId { get; set; }
         string SourceSystemId { get; set; }
         string OriginalDataSource { get; set; }

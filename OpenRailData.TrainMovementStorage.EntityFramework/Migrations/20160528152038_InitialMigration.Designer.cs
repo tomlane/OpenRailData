@@ -8,7 +8,7 @@ using OpenRailData.TrainMovementStorage.EntityFramework;
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 {
     [DbContext(typeof(TrainMovementContext))]
-    [Migration("20160526214909_InitialMigration")]
+    [Migration("20160528152038_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.ChangeOfIdentityEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CurrentTrainId");
@@ -47,7 +47,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.ChangeOfOriginEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CurrentTrainId");
@@ -87,7 +87,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.TrainActivationEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CallMode");
@@ -139,7 +139,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.TrainCancellationEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CancellationType");
@@ -179,7 +179,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.TrainMovementEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CurrentTrainId");
@@ -253,7 +253,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.TrainReinstatementEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CurrentTrainId");

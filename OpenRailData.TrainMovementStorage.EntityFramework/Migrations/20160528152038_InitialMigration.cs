@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 {
@@ -16,8 +15,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                 schema: "TrainMovements",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CurrentTrainId = table.Column<string>(nullable: true),
                     EventTimestamp = table.Column<DateTime>(nullable: false),
                     OriginalDataSource = table.Column<string>(nullable: true),
@@ -38,8 +36,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                 schema: "TrainMovements",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CurrentTrainId = table.Column<string>(nullable: true),
                     DepartureTimestamp = table.Column<DateTime>(nullable: false),
                     DivisionCode = table.Column<string>(nullable: true),
@@ -66,8 +63,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                 schema: "TrainMovements",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CallMode = table.Column<int>(nullable: false),
                     CallType = table.Column<int>(nullable: false),
                     DRecordNumber = table.Column<string>(nullable: true),
@@ -100,8 +96,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                 schema: "TrainMovements",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CancellationType = table.Column<int>(nullable: false),
                     DepartureTimestamp = table.Column<DateTime>(nullable: false),
                     DivisionCode = table.Column<string>(nullable: true),
@@ -128,8 +123,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                 schema: "TrainMovements",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CurrentTrainId = table.Column<string>(nullable: true),
                     Direction = table.Column<int>(nullable: true),
                     DivisionCode = table.Column<string>(nullable: true),
@@ -173,8 +167,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                 schema: "TrainMovements",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     CurrentTrainId = table.Column<string>(nullable: true),
                     DepartureTimestamp = table.Column<DateTime>(nullable: false),
                     DivisionCode = table.Column<string>(nullable: true),

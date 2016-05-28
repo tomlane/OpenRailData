@@ -10,8 +10,8 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework.Mappers
         {
             var mapperConfiguration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<SignalMessage, SignalMessageEntity>().ReverseMap();
-                cfg.CreateMap<BerthMessage, BerthMessageEntity>().ReverseMap();
+                cfg.CreateMap<SignalMessage, SignalMessageEntity>().ForMember(dest => dest.Id, opt => opt.Ignore()).ReverseMap();
+                cfg.CreateMap<BerthMessage, BerthMessageEntity>().ForMember(dest => dest.Id, opt => opt.Ignore()).ReverseMap();
             });
 
             return mapperConfiguration.CreateMapper();

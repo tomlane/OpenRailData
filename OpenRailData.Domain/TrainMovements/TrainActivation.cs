@@ -5,6 +5,8 @@ namespace OpenRailData.Domain.TrainMovements
 {
     public class TrainActivation : ITrainMovementMessage
     {
+        public TrainMovementMessageType MessageType { get; } = TrainMovementMessageType.TrainActivation;
+
         /// <summary>
         ///  Always blank for an activation message.
         /// </summary>

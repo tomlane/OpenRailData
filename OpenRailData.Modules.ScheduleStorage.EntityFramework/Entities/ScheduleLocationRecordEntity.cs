@@ -1,12 +1,13 @@
 ﻿using System;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Domain.ScheduleRecords.Enums;
+using OpenRailData.Schedule.CommonDatabase;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities
 {
     public class ScheduleLocationRecordEntity : IIdentifyable
     {
-        public int Id { get; set; }
+        public Guid? Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string Tiploc { get; set; } = string.Empty;
         public string TiplocSuffix { private get; set; } = string.Empty;

@@ -108,14 +108,16 @@
     <Compile Include="ITrainDescriberContext.cs" />
     <Compile Include="ITrainDescriberDatabase.cs" />
     <Compile Include="Mappers\TrainDescriberMapperConfiguration.cs" />
-    <Compile Include="Migrations\20160526214833_InitialMigration.cs" />
-    <Compile Include="Migrations\20160526214833_InitialMigration.designer.cs">
-      <DependentUpon>20160526214833_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20160528152015_InitialMigration.cs" />
+    <Compile Include="Migrations\20160528152015_InitialMigration.designer.cs">
+      <DependentUpon>20160528152015_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\TrainDescriberContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BerthMessageRepository.cs" />
     <Compile Include="Repository\SignalMessageRepository.cs" />
+    <Compile Include="StorageProcessor\BerthMessageStorageProcessor.cs" />
+    <Compile Include="StorageProcessor\SignalMessageStorageProcessor.cs" />
     <Compile Include="TrainDescriberContext.cs" />
     <Compile Include="TrainDescriberContextFactory.cs" />
     <Compile Include="TrainDescriberDatabase.cs" />

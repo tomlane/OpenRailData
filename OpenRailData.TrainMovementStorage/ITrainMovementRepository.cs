@@ -1,18 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using OpenRailData.Domain.TrainMovements;
 
 namespace OpenRailData.TrainMovementStorage
 {
-    public interface ITrainMovementRepository
+    public interface ITrainMovementRepository<T> where T : ITrainMovementMessage
     {
-        void InsertRecord(TrainMovement record);
-        void AmendRecord(TrainMovement record);
-        void DeleteRecord(TrainMovement record);
+        void InsertRecord(T record);
+        void AmendRecord(T record);
+        void DeleteRecord(T record);
 
-        Task InsertRecordAsync(TrainMovement record);
-        Task InsertMultipleRecordsAsync(IEnumerable<TrainMovement> records);
-        Task AmendRecordAsync(TrainMovement record);
-        Task DeleteRecordAsync(TrainMovement record);
+        Task InsertRecordAsync(T record);
+        Task AmendRecordAsync(T record);
+        Task DeleteRecordAsync(T record);
     }
 }

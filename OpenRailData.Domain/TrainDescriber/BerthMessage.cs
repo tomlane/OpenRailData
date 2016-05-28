@@ -4,6 +4,8 @@ namespace OpenRailData.Domain.TrainDescriber
 {
     public class BerthMessage : ITrainDescriberMessage
     {
+        public TrainDescriberMessageType MessageType { get; } = TrainDescriberMessageType.BerthMessage;
+
         /// <summary>
         ///     Message time.
         /// </summary>
@@ -15,7 +17,7 @@ namespace OpenRailData.Domain.TrainDescriber
         /// <summary>
         ///     Type of message.
         /// </summary>
-        public CClassMessageType MessageType { get; set; }
+        public BerthMessageType BerthMessageType { get; set; }
         /// <summary>
         ///     From berth.
         /// </summary>

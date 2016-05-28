@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace OpenRailData.TrainDescriberStorage.EntityFramework.Migrations
 {
@@ -16,8 +15,7 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework.Migrations
                 schema: "TrainDescriber",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     AreaId = table.Column<string>(nullable: true),
                     FromBerth = table.Column<string>(nullable: true),
                     MessageType = table.Column<int>(nullable: false),
@@ -36,8 +34,7 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework.Migrations
                 schema: "TrainDescriber",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<Guid>(nullable: false),
                     Address = table.Column<string>(nullable: true),
                     AreaId = table.Column<string>(nullable: true),
                     Data = table.Column<string>(nullable: true),

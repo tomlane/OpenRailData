@@ -2,7 +2,7 @@
 
 namespace OpenRailData.Domain.TrainDescriber
 {
-    public enum CClassMessageType
+    public enum BerthMessageType
     {
         [Display(Name = "Berth Step")]
         BerthStep,

@@ -6,7 +6,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities
 {
     public class HeaderRecordEntity : IScheduleRecord
     {
-        public int Id { get; set; }
+        public Guid? Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string MainFrameIdentity { get; set; } = string.Empty;
         public DateTime DateOfExtract { get; set; }

@@ -69,10 +69,10 @@
     <Compile Include="ScheduleRecords\ScheduleRecordType.cs" />
     <Compile Include="ScheduleRecords\TiplocRecord.cs" />
     <Compile Include="TrainDescriber\BerthMessage.cs" />
-    <Compile Include="TrainDescriber\CClassMessageType.cs" />
+    <Compile Include="TrainDescriber\BerthMessageType.cs" />
     <Compile Include="TrainDescriber\ITrainDescriberMessage.cs" />
     <Compile Include="TrainDescriber\SignalMessage.cs" />
-    <Compile Include="TrainDescriber\SClassMessageType.cs" />
+    <Compile Include="TrainDescriber\SignalMessageType.cs" />
     <Compile Include="TrainMovements\ChangeOfIdentity.cs" />
     <Compile Include="TrainMovements\ChangeOfOrigin.cs" />
     <Compile Include="TrainMovements\Enums\CancellationType.cs" />
@@ -88,6 +88,7 @@
     <Compile Include="TrainMovements\TrainActivation.cs" />
     <Compile Include="TrainMovements\TrainCancellation.cs" />
     <Compile Include="TrainMovements\TrainMovement.cs" />
+    <Compile Include="TrainMovements\TrainMovementMessageType.cs" />
     <Compile Include="TrainMovements\TrainReinstatement.cs" />
   </ItemGroup>
   <ItemGroup />

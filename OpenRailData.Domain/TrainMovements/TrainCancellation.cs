@@ -5,6 +5,8 @@ namespace OpenRailData.Domain.TrainMovements
 {
     public class TrainCancellation : ITrainMovementMessage
     {
+        public TrainMovementMessageType MessageType { get; } = TrainMovementMessageType.TrainCancellation;
+
         /// <summary>
         ///     Set to the device ID of the terminal that issued the request.
         /// </summary>

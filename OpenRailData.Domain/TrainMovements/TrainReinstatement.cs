@@ -4,6 +4,8 @@ namespace OpenRailData.Domain.TrainMovements
 {
     public class TrainReinstatement : ITrainMovementMessage
     {
+        public TrainMovementMessageType MessageType { get; } = TrainMovementMessageType.TrainReinstatement;
+
         /// <summary>
         ///     Set to the device ID of the terminal that issued the request.
         /// </summary>

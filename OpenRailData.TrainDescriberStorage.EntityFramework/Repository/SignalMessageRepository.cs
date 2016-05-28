@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using OpenRailData.Domain.TrainDescriber;
@@ -10,7 +8,7 @@ using OpenRailData.TrainDescriberStorage.EntityFramework.Mappers;
 
 namespace OpenRailData.TrainDescriberStorage.EntityFramework.Repository
 {
-    public class SignalMessageRepository : BaseRepository<SignalMessageEntity>, ISignalMessageRepository
+    public class SignalMessageRepository : BaseRepository<SignalMessageEntity>, ITrainDescriberRepository<SignalMessage>
     {
         private readonly IMapper _mapper;
 
@@ -52,18 +50,6 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework.Repository
             var entity = _mapper.Map<SignalMessageEntity>(record);
 
             Add(entity);
-
-            return Task.CompletedTask;
-        }
-
-        public Task InsertMultipleRecordsAsync(IEnumerable<SignalMessage> records)
-        {
-            if (records == null)
-                throw new ArgumentNullException(nameof(records));
-
-            var entities = records.Select(_mapper.Map<SignalMessageEntity>).ToList();
-
-            AddRange(entities);
 
             return Task.CompletedTask;
         }

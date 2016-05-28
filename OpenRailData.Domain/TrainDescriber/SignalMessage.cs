@@ -4,6 +4,8 @@ namespace OpenRailData.Domain.TrainDescriber
 {
     public class SignalMessage : ITrainDescriberMessage
     {
+        public TrainDescriberMessageType MessageType { get; } = TrainDescriberMessageType.SignalMessage;
+
         /// <summary>
         ///     Message time.
         /// </summary>
@@ -15,7 +17,7 @@ namespace OpenRailData.Domain.TrainDescriber
         /// <summary>
         ///     Type of message.
         /// </summary>
-        public SClassMessageType MessageType { get; set; }
+        public SignalMessageType SignalMessageType { get; set; }
         /// <summary>
         /// 	Address of the signalling data being updated.
         /// </summary>

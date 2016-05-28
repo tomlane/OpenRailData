@@ -8,14 +8,14 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework
 {
     public class TrainMovementStorageService : ITrainMovementStorageService
     {
-        private readonly ITrainMovementsUnitOfWorkFactory _unitOfWorkFactory;
+        private readonly Dictionary<TrainMovementMessageType, ITrainMovementStorageProcessor> _storageProcessors;
 
-        public TrainMovementStorageService(ITrainMovementsUnitOfWorkFactory unitOfWorkFactory)
+        public TrainMovementStorageService(ITrainMovementStorageProcessor[] storageProcessors)
         {
-            if (unitOfWorkFactory == null)
-                throw new ArgumentNullException(nameof(unitOfWorkFactory));
+            if (storageProcessors == null)
+                throw new ArgumentNullException(nameof(storageProcessors));
 
-            _unitOfWorkFactory = unitOfWorkFactory;
+            _storageProcessors = storageProcessors.ToDictionary(x => x.MessageType, x => x);
         }
 
         public async Task StoreTrainMovementMessages(IEnumerable<ITrainMovementMessage> messages)
@@ -23,18 +23,9 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework
             if (messages == null)
                 throw new ArgumentNullException(nameof(messages));
 
-            var trainMovementMessages = messages as IList<ITrainMovementMessage> ?? messages.ToList();
-            
-            using (var unitOfWork = _unitOfWorkFactory.Create())
+            foreach (var trainMovementMessage in messages)
             {
-                await unitOfWork.TrainActivations.InsertMultipleRecordsAsync(trainMovementMessages.OfType<TrainActivation>());
-                await unitOfWork.TrainCancellations.InsertMultipleRecordsAsync(trainMovementMessages.OfType<TrainCancellation>());
-                await unitOfWork.TrainMovements.InsertMultipleRecordsAsync(trainMovementMessages.OfType<TrainMovement>());
-                await unitOfWork.TrainReinstatements.InsertMultipleRecordsAsync(trainMovementMessages.OfType<TrainReinstatement>());
-                await unitOfWork.ChangeOfOrigins.InsertMultipleRecordsAsync(trainMovementMessages.OfType<ChangeOfOrigin>());
-                await unitOfWork.ChangeOfIdentities.InsertMultipleRecordsAsync(trainMovementMessages.OfType<ChangeOfIdentity>());
-
-                unitOfWork.Complete();
+                await _storageProcessors[trainMovementMessage.MessageType].ProcessMessage(trainMovementMessage);
             }
         }
     }

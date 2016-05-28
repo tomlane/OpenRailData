@@ -1,10 +1,12 @@
-﻿using OpenRailData.Domain.ScheduleRecords;
+﻿using System;
+using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Schedule.CommonDatabase;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities
 {
     public class TiplocRecordEntity : IIdentifyable
     {
-        public int Id { get; set; }
+        public Guid? Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string TiplocCode { get; set; } = string.Empty;
         public string CapitalsIdentification { get; set; } = string.Empty;

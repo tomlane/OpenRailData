@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Domain.ScheduleRecords.Enums;
+using OpenRailData.Schedule.CommonDatabase;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities
 {
     public class ScheduleRecordEntity : IIdentifyable
     {
-        public int Id { get; set; }
+        public Guid? Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string TrainUid { get; set; } = string.Empty;
         public string UniqueId { get; set; } = string.Empty;

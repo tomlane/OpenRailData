@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.UnitOfWork
 {
-    public class TrainMovementsUnitOfWorkFactory : ITrainMovementsUnitOfWorkFactory
+    public class TrainMovementUnitOfWorkFactory : ITrainMovementUnitOfWorkFactory
     {
         private readonly IDbContextFactory<TrainMovementContext> _contextFactory;
 
-        public TrainMovementsUnitOfWorkFactory(IDbContextFactory<TrainMovementContext> contextFactory)
+        public TrainMovementUnitOfWorkFactory(IDbContextFactory<TrainMovementContext> contextFactory)
         {
             if (contextFactory == null)
                 throw new ArgumentNullException(nameof(contextFactory));
@@ -15,9 +15,9 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.UnitOfWork
             _contextFactory = contextFactory;
         }
 
-        public ITrainMovementsUnitOfWork Create()
+        public ITrainMovementUnitOfWork Create()
         {
-            return new TrainMovementsUnitOfWork(_contextFactory.Create());
+            return new TrainMovementUnitOfWork(_contextFactory.Create());
         }
     }
 }

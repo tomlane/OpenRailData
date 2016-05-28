@@ -1,7 +1,9 @@
+using System;
+
 namespace OpenRailData.Schedule.CommonDatabase
 {
     public interface IIdentifyable
     {
-        int Id { get; set; }
+        Guid? Id { get; set; }
     }
 }

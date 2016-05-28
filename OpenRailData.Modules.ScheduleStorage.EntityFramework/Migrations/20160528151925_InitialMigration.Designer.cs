@@ -8,7 +8,7 @@ using OpenRailData.Modules.ScheduleStorage.EntityFramework;
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
 {
     [DbContext(typeof(ScheduleContext))]
-    [Migration("20160526194231_InitialMigration")]
+    [Migration("20160528151925_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities.AssociationRecordEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AssocDays");
@@ -57,7 +57,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities.HeaderRecordEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CifSoftwareVersion");
@@ -91,7 +91,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities.ScheduleLocationRecordEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<TimeSpan>("EngineeringAllowance");
@@ -120,7 +120,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
 
                     b.Property<int>("RecordIdentity");
 
-                    b.Property<int?>("ScheduleRecordEntityId");
+                    b.Property<Guid?>("ScheduleRecordEntityId");
 
                     b.Property<string>("Tiploc");
 
@@ -137,7 +137,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities.ScheduleRecordEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("AtocCode");
@@ -211,7 +211,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities.TiplocRecordEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CapitalsIdentification");

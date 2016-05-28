@@ -1,4 +1,5 @@
 ﻿using System;
+using OpenRailData.Domain.TrainDescriber;
 using OpenRailData.TrainDescriberStorage.EntityFramework.Repository;
 
 namespace OpenRailData.TrainDescriberStorage.EntityFramework.UnitOfWork
@@ -20,8 +21,8 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework.UnitOfWork
 
         public void Dispose() => _context?.Dispose();
 
-        public IBerthMessageRepository BerthMessages { get; }
-        public ISignalMessageRepository SignalMessages { get; }
+        public ITrainDescriberRepository<BerthMessage> BerthMessages { get; }
+        public ITrainDescriberRepository<SignalMessage> SignalMessages { get; }
 
         public int Complete() => _context.SaveChanges();
     }

@@ -1,13 +1,14 @@
 ﻿using System;
+using OpenRailData.Domain.TrainMovements;
 using OpenRailData.TrainMovementStorage.EntityFramework.Repository;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.UnitOfWork
 {
-    public class TrainMovementsUnitOfWork : ITrainMovementsUnitOfWork
+    public class TrainMovementUnitOfWork : ITrainMovementUnitOfWork
     {
         private readonly ITrainMovementContext _context;
 
-        public TrainMovementsUnitOfWork(ITrainMovementContext context)
+        public TrainMovementUnitOfWork(ITrainMovementContext context)
         {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
@@ -23,12 +24,12 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.UnitOfWork
 
         public void Dispose() => _context?.Dispose();
 
-        public ITrainActivationRepository TrainActivations { get; }
-        public ITrainCancellationRepository TrainCancellations { get; }
-        public ITrainMovementRepository TrainMovements { get; }
-        public ITrainReinstatementRepository TrainReinstatements { get; }
-        public IChangeOfOriginRepository ChangeOfOrigins { get; }
-        public IChangeOfIdentityRepository ChangeOfIdentities { get; }
+        public ITrainMovementRepository<TrainActivation> TrainActivations { get; }
+        public ITrainMovementRepository<TrainCancellation> TrainCancellations { get; }
+        public ITrainMovementRepository<TrainMovement> TrainMovements { get; }
+        public ITrainMovementRepository<TrainReinstatement> TrainReinstatements { get; }
+        public ITrainMovementRepository<ChangeOfOrigin> ChangeOfOrigins { get; }
+        public ITrainMovementRepository<ChangeOfIdentity> ChangeOfIdentities { get; }
 
         public int Complete() => _context.SaveChanges();
     }
