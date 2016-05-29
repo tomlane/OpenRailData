@@ -48,6 +48,7 @@ namespace OpenRailData.TestConsole
 
             connection.ConnectionInterruptedListener += ConnectionInterruptedHandler;
             connection.ConnectionResumedListener += ConnectionResumedHandler;
+            connection.ExceptionListener += ExceptionHandler;
 
             ISession session = connection.CreateSession();
             
@@ -62,6 +63,11 @@ namespace OpenRailData.TestConsole
             Console.ReadLine();
 
             connection.Close();
+        }
+
+        private static void ExceptionHandler(Exception exception)
+        {
+            Log.Error(exception, string.Empty);
         }
 
         private static void ConnectionResumedHandler()
@@ -83,6 +89,8 @@ namespace OpenRailData.TestConsole
                 var msg = (ITextMessage)message;
 
                 message.Acknowledge();
+
+                Console.WriteLine(DateTime.Now - msg.NMSTimestamp);
 
                 var array = JArray.Parse(msg.Text).Children().Select(jToken => jToken.ToString());
 

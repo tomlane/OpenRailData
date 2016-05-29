@@ -26,7 +26,6 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 TrainServiceCode = deserializedCancellation.Body.TrainServiceCode,
                 OriginalLocationStanox = deserializedCancellation.Body.OriginalLocationStanox,
                 TocId = deserializedCancellation.Body.TocId,
-                DepartureTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedCancellation.Body.DepartureTimestamp)).DateTime,
                 DivisionCode = deserializedCancellation.Body.DivisionCode,
                 LocationStanox = deserializedCancellation.Body.LocationStanox,
                 EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedCancellation.Body.CancellationTimestamp)).DateTime,
@@ -37,6 +36,9 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
 
             if (!string.IsNullOrWhiteSpace(deserializedCancellation.Body.OriginalLocationTimestamp))
                 cancellation.OriginalLocationTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedCancellation.Body.OriginalLocationTimestamp)).DateTime;
+
+            if (!string.IsNullOrWhiteSpace(deserializedCancellation.Body.DepartureTimestamp))
+                cancellation.DepartureTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedCancellation.Body.DepartureTimestamp)).DateTime;
 
             return cancellation;
         }

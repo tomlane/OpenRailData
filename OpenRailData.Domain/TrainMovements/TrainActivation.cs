@@ -99,5 +99,69 @@ namespace OpenRailData.Domain.TrainMovements
         {
             return $"CallMode: {CallMode}, CallType: {CallType}, DRecordNumber: {DRecordNumber}, EventTimestamp: {EventTimestamp}, OriginalDataSource: {OriginalDataSource}, OriginDepartureTimestamp: {OriginDepartureTimestamp}, OriginStanox: {OriginStanox}, OriginTimestamp: {OriginTimestamp}, ScheduleEndDate: {ScheduleEndDate}, ScheduleOriginStanox: {ScheduleOriginStanox}, ScheduleSource: {ScheduleSource}, ScheduleStartDate: {ScheduleStartDate}, ScheduleType: {ScheduleType}, ScheduleWttId: {ScheduleWttId}, SourceDeviceId: {SourceDeviceId}, SourceSystemId: {SourceSystemId}, TocId: {TocId}, TrainFileAddress: {TrainFileAddress}, TrainId: {TrainId}, TrainServiceCode: {TrainServiceCode}, TrainUid: {TrainUid}";
         }
+
+        protected bool Equals(TrainActivation other)
+        {
+            return MessageType == other.MessageType && 
+                string.Equals(SourceDeviceId, other.SourceDeviceId) && 
+                string.Equals(SourceSystemId, other.SourceSystemId) && 
+                string.Equals(OriginalDataSource, other.OriginalDataSource) && 
+                string.Equals(TrainId, other.TrainId) && 
+                EventTimestamp.Equals(other.EventTimestamp) && 
+                OriginTimestamp.Equals(other.OriginTimestamp) && 
+                string.Equals(TrainUid, other.TrainUid) && 
+                string.Equals(ScheduleOriginStanox, other.ScheduleOriginStanox) && 
+                ScheduleStartDate.Equals(other.ScheduleStartDate) && 
+                ScheduleEndDate.Equals(other.ScheduleEndDate) && 
+                ScheduleSource == other.ScheduleSource && 
+                ScheduleType == other.ScheduleType && 
+                string.Equals(ScheduleWttId, other.ScheduleWttId) && 
+                string.Equals(DRecordNumber, other.DRecordNumber) && 
+                string.Equals(OriginStanox, other.OriginStanox) && 
+                OriginDepartureTimestamp.Equals(other.OriginDepartureTimestamp) && 
+                CallType == other.CallType && 
+                CallMode == other.CallMode && 
+                string.Equals(TocId, other.TocId) && 
+                string.Equals(TrainServiceCode, other.TrainServiceCode) && 
+                string.Equals(TrainFileAddress, other.TrainFileAddress);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((TrainActivation) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (int) MessageType;
+                hashCode = (hashCode*397) ^ (SourceDeviceId != null ? SourceDeviceId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (SourceSystemId != null ? SourceSystemId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (OriginalDataSource != null ? OriginalDataSource.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (TrainId != null ? TrainId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ EventTimestamp.GetHashCode();
+                hashCode = (hashCode*397) ^ OriginTimestamp.GetHashCode();
+                hashCode = (hashCode*397) ^ (TrainUid != null ? TrainUid.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (ScheduleOriginStanox != null ? ScheduleOriginStanox.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ ScheduleStartDate.GetHashCode();
+                hashCode = (hashCode*397) ^ ScheduleEndDate.GetHashCode();
+                hashCode = (hashCode*397) ^ (int) ScheduleSource;
+                hashCode = (hashCode*397) ^ (int) ScheduleType;
+                hashCode = (hashCode*397) ^ (ScheduleWttId != null ? ScheduleWttId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (DRecordNumber != null ? DRecordNumber.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (OriginStanox != null ? OriginStanox.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ OriginDepartureTimestamp.GetHashCode();
+                hashCode = (hashCode*397) ^ (int) CallType;
+                hashCode = (hashCode*397) ^ (int) CallMode;
+                hashCode = (hashCode*397) ^ (TocId != null ? TocId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (TrainServiceCode != null ? TrainServiceCode.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (TrainFileAddress != null ? TrainFileAddress.GetHashCode() : 0);
+                return hashCode;
+            }
+        }
     }
 }

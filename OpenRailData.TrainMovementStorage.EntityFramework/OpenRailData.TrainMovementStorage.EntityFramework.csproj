@@ -111,9 +111,9 @@
     <Compile Include="ITrainMovementContext.cs" />
     <Compile Include="ITrainMovementDatabase.cs" />
     <Compile Include="Mappers\TrainMovementMapperConfiguration.cs" />
-    <Compile Include="Migrations\20160528152038_InitialMigration.cs" />
-    <Compile Include="Migrations\20160528152038_InitialMigration.designer.cs">
-      <DependentUpon>20160528152038_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20160529140950_InitialMigration.cs" />
+    <Compile Include="Migrations\20160529140950_InitialMigration.designer.cs">
+      <DependentUpon>20160529140950_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\TrainMovementContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

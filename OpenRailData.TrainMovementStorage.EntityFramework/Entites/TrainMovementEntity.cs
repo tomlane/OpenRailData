@@ -14,15 +14,15 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Entites
         public string TrainId { get; set; }
         public DateTime EventTimestamp { get; set; }
         public string LocationStanox { get; set; }
-        public DateTime PassengerTimestamp { get; set; }
-        public DateTime PlannedTimestamp { get; set; }
+        public DateTime? PassengerTimestamp { get; set; }
+        public DateTime? PlannedTimestamp { get; set; }
         public string OriginalLocationStanox { get; set; }
         public DateTime? OriginalLocationTimestamp { get; set; }
         public EventType PlannedEventType { get; set; }
         public EventType EventType { get; set; }
         public EventSource EventSource { get; set; }
-        public bool IsCorrection { get; set; }
-        public bool IsOffRoute { get; set; }
+        public bool Correction { get; set; }
+        public bool OffRoute { get; set; }
         public Direction? Direction { get; set; }
         public string Line { get; set; }
         public string Platform { get; set; }
@@ -35,10 +35,10 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Entites
         public VariationStatus VariationStatus { get; set; }
         public string NextReportStanox { get; set; }
         public int NextReportRunTime { get; set; }
-        public bool HasTerminated { get; set; }
-        public bool IsDelayMonitoringPoint { get; set; }
+        public bool Terminated { get; set; }
+        public bool DelayMonitoringPoint { get; set; }
         public string TrainFileAddress { get; set; }
         public string ReportingStanox { get; set; }
-        public bool IsAutoExpected { get; set; }
+        public bool AutoExpected { get; set; }
     }
 }

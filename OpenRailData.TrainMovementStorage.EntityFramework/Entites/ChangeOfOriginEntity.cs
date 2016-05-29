@@ -11,7 +11,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Entites
         public string SourceSystemId { get; set; }
         public string OriginalDataSource { get; set; }
         public string TrainId { get; set; }
-        public DateTime DepartureTimestamp { get; set; }
+        public DateTime? DepartureTimestamp { get; set; }
         public string LocationStanox { get; set; }
         public string OriginalLocationStanox { get; set; }
         public DateTime? OriginalLocationTimestamp { get; set; }

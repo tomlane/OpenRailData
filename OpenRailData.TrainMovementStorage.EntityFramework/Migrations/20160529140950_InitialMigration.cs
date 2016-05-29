@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
@@ -38,7 +39,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     CurrentTrainId = table.Column<string>(nullable: true),
-                    DepartureTimestamp = table.Column<DateTime>(nullable: false),
+                    DepartureTimestamp = table.Column<DateTime>(nullable: true),
                     DivisionCode = table.Column<string>(nullable: true),
                     EventTimestamp = table.Column<DateTime>(nullable: false),
                     LocationStanox = table.Column<string>(nullable: true),
@@ -68,7 +69,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                     CallType = table.Column<int>(nullable: false),
                     DRecordNumber = table.Column<string>(nullable: true),
                     EventTimestamp = table.Column<DateTime>(nullable: false),
-                    OriginDepartureTimestamp = table.Column<DateTime>(nullable: false),
+                    OriginDepartureTimestamp = table.Column<DateTime>(nullable: true),
                     OriginStanox = table.Column<string>(nullable: true),
                     OriginTimestamp = table.Column<DateTime>(nullable: false),
                     OriginalDataSource = table.Column<string>(nullable: true),
@@ -98,7 +99,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     CancellationType = table.Column<int>(nullable: false),
-                    DepartureTimestamp = table.Column<DateTime>(nullable: false),
+                    DepartureTimestamp = table.Column<DateTime>(nullable: true),
                     DivisionCode = table.Column<string>(nullable: true),
                     EventTimestamp = table.Column<DateTime>(nullable: false),
                     LocationStanox = table.Column<string>(nullable: true),
@@ -124,32 +125,32 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    AutoExpected = table.Column<bool>(nullable: false),
+                    Correction = table.Column<bool>(nullable: false),
                     CurrentTrainId = table.Column<string>(nullable: true),
+                    DelayMonitoringPoint = table.Column<bool>(nullable: false),
                     Direction = table.Column<int>(nullable: true),
                     DivisionCode = table.Column<string>(nullable: true),
                     EventSource = table.Column<int>(nullable: false),
                     EventTimestamp = table.Column<DateTime>(nullable: false),
                     EventType = table.Column<int>(nullable: false),
-                    HasTerminated = table.Column<bool>(nullable: false),
-                    IsAutoExpected = table.Column<bool>(nullable: false),
-                    IsCorrection = table.Column<bool>(nullable: false),
-                    IsDelayMonitoringPoint = table.Column<bool>(nullable: false),
-                    IsOffRoute = table.Column<bool>(nullable: false),
                     Line = table.Column<string>(nullable: true),
                     LocationStanox = table.Column<string>(nullable: true),
                     NextReportRunTime = table.Column<int>(nullable: false),
                     NextReportStanox = table.Column<string>(nullable: true),
+                    OffRoute = table.Column<bool>(nullable: false),
                     OriginalDataSource = table.Column<string>(nullable: true),
                     OriginalLocationStanox = table.Column<string>(nullable: true),
                     OriginalLocationTimestamp = table.Column<DateTime>(nullable: true),
-                    PassengerTimestamp = table.Column<DateTime>(nullable: false),
+                    PassengerTimestamp = table.Column<DateTime>(nullable: true),
                     PlannedEventType = table.Column<int>(nullable: false),
-                    PlannedTimestamp = table.Column<DateTime>(nullable: false),
+                    PlannedTimestamp = table.Column<DateTime>(nullable: true),
                     Platform = table.Column<string>(nullable: true),
                     ReportingStanox = table.Column<string>(nullable: true),
                     Route = table.Column<string>(nullable: true),
                     SourceDeviceId = table.Column<string>(nullable: true),
                     SourceSystemId = table.Column<string>(nullable: true),
+                    Terminated = table.Column<bool>(nullable: false),
                     TimetableVariation = table.Column<int>(nullable: false),
                     TocId = table.Column<string>(nullable: true),
                     TrainFileAddress = table.Column<string>(nullable: true),
@@ -169,7 +170,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     CurrentTrainId = table.Column<string>(nullable: true),
-                    DepartureTimestamp = table.Column<DateTime>(nullable: false),
+                    DepartureTimestamp = table.Column<DateTime>(nullable: true),
                     DivisionCode = table.Column<string>(nullable: true),
                     EventTimestamp = table.Column<DateTime>(nullable: false),
                     LocationStanox = table.Column<string>(nullable: true),

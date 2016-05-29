@@ -27,16 +27,16 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 OriginalLocationStanox = deserializedMovement.Body.OriginalLocationStanox,
                 TimetableVariation = int.Parse(deserializedMovement.Body.TimetableVariation),
                 CurrentTrainId = deserializedMovement.Body.CurrentTrainId,
-                IsDelayMonitoringPoint = bool.Parse(deserializedMovement.Body.DelayMonitoringPoint),
+                DelayMonitoringPoint = bool.Parse(deserializedMovement.Body.DelayMonitoringPoint),
                 ReportingStanox = deserializedMovement.Body.ReportingStanox,
-                IsCorrection = bool.Parse(deserializedMovement.Body.Correction),
+                Correction = bool.Parse(deserializedMovement.Body.Correction),
                 EventSource = (EventSource)Enum.Parse(typeof(EventSource), deserializedMovement.Body.EventSource),
                 TrainFileAddress = deserializedMovement.Body.TrainFileAddress,
                 Platform = deserializedMovement.Body.Platform,
                 DivisionCode = deserializedMovement.Body.DivisionCode,
-                HasTerminated = bool.Parse(deserializedMovement.Body.TrainTerminated),
+                Terminated = bool.Parse(deserializedMovement.Body.TrainTerminated),
                 TrainId = deserializedMovement.Body.TrainId,
-                IsOffRoute = bool.Parse(deserializedMovement.Body.OffRoute),
+                OffRoute = bool.Parse(deserializedMovement.Body.OffRoute),
                 VariationStatus = (VariationStatus)Enum.Parse(typeof(VariationStatus), deserializedMovement.Body.VariationStatus.Replace(" ", String.Empty)),
                 TrainServiceCode = deserializedMovement.Body.TrainServiceCode,
                 TocId = deserializedMovement.Body.TocId,
@@ -63,7 +63,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 movement.NextReportRunTime = int.Parse(deserializedMovement.Body.NextReportRunTime);
 
             if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.AutoExpected))
-                movement.IsAutoExpected = bool.Parse(deserializedMovement.Body.AutoExpected);
+                movement.AutoExpected = bool.Parse(deserializedMovement.Body.AutoExpected);
 
             if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.Direction))
                 movement.Direction = (Direction) Enum.Parse(typeof(Direction), deserializedMovement.Body.Direction);

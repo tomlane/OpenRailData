@@ -67,5 +67,55 @@ namespace OpenRailData.Domain.TrainMovements
         {
             return $"CurrentTrainId: {CurrentTrainId}, DepartureTimestamp: {DepartureTimestamp}, DivisionCode: {DivisionCode}, EventTimestamp: {EventTimestamp}, LocationStanox: {LocationStanox}, OriginalDataSource: {OriginalDataSource}, OriginalLocationStanox: {OriginalLocationStanox}, OriginalLocationTimestamp: {OriginalLocationTimestamp}, SourceDeviceId: {SourceDeviceId}, SourceSystemId: {SourceSystemId}, TocId: {TocId}, TrainFileAddress: {TrainFileAddress}, TrainId: {TrainId}, TrainServiceCode: {TrainServiceCode}";
         }
+
+        protected bool Equals(TrainReinstatement other)
+        {
+            return MessageType == other.MessageType && 
+                string.Equals(SourceDeviceId, other.SourceDeviceId) && 
+                string.Equals(SourceSystemId, other.SourceSystemId) && 
+                string.Equals(OriginalDataSource, other.OriginalDataSource) && 
+                string.Equals(TrainId, other.TrainId) && 
+                string.Equals(CurrentTrainId, other.CurrentTrainId) && 
+                OriginalLocationTimestamp.Equals(other.OriginalLocationTimestamp) && 
+                DepartureTimestamp.Equals(other.DepartureTimestamp) && 
+                string.Equals(LocationStanox, other.LocationStanox) && 
+                string.Equals(OriginalLocationStanox, other.OriginalLocationStanox) && 
+                EventTimestamp.Equals(other.EventTimestamp) && 
+                string.Equals(TocId, other.TocId) && 
+                string.Equals(DivisionCode, other.DivisionCode) && 
+                string.Equals(TrainFileAddress, other.TrainFileAddress) && 
+                string.Equals(TrainServiceCode, other.TrainServiceCode);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((TrainReinstatement) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (int) MessageType;
+                hashCode = (hashCode*397) ^ (SourceDeviceId != null ? SourceDeviceId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (SourceSystemId != null ? SourceSystemId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (OriginalDataSource != null ? OriginalDataSource.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (TrainId != null ? TrainId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (CurrentTrainId != null ? CurrentTrainId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ OriginalLocationTimestamp.GetHashCode();
+                hashCode = (hashCode*397) ^ DepartureTimestamp.GetHashCode();
+                hashCode = (hashCode*397) ^ (LocationStanox != null ? LocationStanox.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (OriginalLocationStanox != null ? OriginalLocationStanox.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ EventTimestamp.GetHashCode();
+                hashCode = (hashCode*397) ^ (TocId != null ? TocId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (DivisionCode != null ? DivisionCode.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (TrainFileAddress != null ? TrainFileAddress.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (TrainServiceCode != null ? TrainServiceCode.GetHashCode() : 0);
+                return hashCode;
+            }
+        }
     }
 }

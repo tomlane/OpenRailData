@@ -34,11 +34,11 @@ namespace OpenRailData.Domain.TrainMovements
         /// <summary>
         ///     The planned GBTT (passenger) date and time that the event was due to happen at this location.
         /// </summary>
-        public DateTime PassengerTimestamp { get; set; }
+        public DateTime? PassengerTimestamp { get; set; }
         /// <summary>
         ///     The planned date and time that this event was due to happen at this location.
         /// </summary>
-        public DateTime PlannedTimestamp { get; set; }
+        public DateTime? PlannedTimestamp { get; set; }
         /// <summary>
         /// 	If the location has been revised, the STANOX of the location in the schedule at activation time.
         /// </summary>
@@ -62,11 +62,11 @@ namespace OpenRailData.Domain.TrainMovements
         /// <summary>
         /// 	Set to "false" if this report is not a correction of a previous report, or "true" if it is.
         /// </summary>
-        public bool IsCorrection { get; set; }
+        public bool Correction { get; set; }
         /// <summary>
         /// 	Set to "false" if this report is for a location in the schedule, or "true" if it is not.
         /// </summary>
-        public bool IsOffRoute { get; set; }
+        public bool OffRoute { get; set; }
         /// <summary>
         /// 	For automatic reports, either "UP" or "DOWN" depending on the direction of travel.
         /// </summary>
@@ -119,12 +119,12 @@ namespace OpenRailData.Domain.TrainMovements
         /// <summary>
         /// 	Set to "true" if the train has completed its journey, or "false" otherwise.
         /// </summary>
-        public bool HasTerminated { get; set; }
+        public bool Terminated { get; set; }
         /// <summary>
         /// 	Set to "true" if this is a delay monitoring point, "false" if it is not.
         /// </summary>
         /// <remarks>Off-route reports will contain "false".</remarks>
-        public bool IsDelayMonitoringPoint { get; set; }
+        public bool DelayMonitoringPoint { get; set; }
         /// <summary>
         /// 	The TOPS train file address, if applicable.
         /// </summary>
@@ -137,11 +137,97 @@ namespace OpenRailData.Domain.TrainMovements
         /// <summary>
         ///     Set to "true" if an automatic report is expected for this location, otherwise "false".
         /// </summary>
-        public bool IsAutoExpected { get; set; }
+        public bool AutoExpected { get; set; }
 
         public override string ToString()
         {
-            return $"CurrentTrainId: {CurrentTrainId}, Direction: {Direction}, DivisionCode: {DivisionCode}, EventSource: {EventSource}, EventTimestamp: {EventTimestamp}, EventType: {EventType}, HasTerminated: {HasTerminated}, IsAutoExpected: {IsAutoExpected}, IsCorrection: {IsCorrection}, IsDelayMonitoringPoint: {IsDelayMonitoringPoint}, IsOffRoute: {IsOffRoute}, Line: {Line}, LocationStanox: {LocationStanox}, NextReportRunTime: {NextReportRunTime}, NextReportStanox: {NextReportStanox}, OriginalDataSource: {OriginalDataSource}, OriginalLocationStanox: {OriginalLocationStanox}, OriginalLocationTimestamp: {OriginalLocationTimestamp}, PassengerTimestamp: {PassengerTimestamp}, PlannedEventType: {PlannedEventType}, PlannedTimestamp: {PlannedTimestamp}, Platform: {Platform}, ReportingStanox: {ReportingStanox}, Route: {Route}, SourceDeviceId: {SourceDeviceId}, SourceSystemId: {SourceSystemId}, TimetableVariation: {TimetableVariation}, TocId: {TocId}, TrainFileAddress: {TrainFileAddress}, TrainId: {TrainId}, TrainServiceCode: {TrainServiceCode}, VariationStatus: {VariationStatus}";
+            return $"CurrentTrainId: {CurrentTrainId}, Direction: {Direction}, DivisionCode: {DivisionCode}, EventSource: {EventSource}, EventTimestamp: {EventTimestamp}, EventType: {EventType}, HasTerminated: {Terminated}, IsAutoExpected: {AutoExpected}, IsCorrection: {Correction}, IsDelayMonitoringPoint: {DelayMonitoringPoint}, IsOffRoute: {OffRoute}, Line: {Line}, LocationStanox: {LocationStanox}, NextReportRunTime: {NextReportRunTime}, NextReportStanox: {NextReportStanox}, OriginalDataSource: {OriginalDataSource}, OriginalLocationStanox: {OriginalLocationStanox}, OriginalLocationTimestamp: {OriginalLocationTimestamp}, PassengerTimestamp: {PassengerTimestamp}, PlannedEventType: {PlannedEventType}, PlannedTimestamp: {PlannedTimestamp}, Platform: {Platform}, ReportingStanox: {ReportingStanox}, Route: {Route}, SourceDeviceId: {SourceDeviceId}, SourceSystemId: {SourceSystemId}, TimetableVariation: {TimetableVariation}, TocId: {TocId}, TrainFileAddress: {TrainFileAddress}, TrainId: {TrainId}, TrainServiceCode: {TrainServiceCode}, VariationStatus: {VariationStatus}";
+        }
+
+        protected bool Equals(TrainMovement other)
+        {
+            return MessageType == other.MessageType && 
+                string.Equals(SourceDeviceId, other.SourceDeviceId) && 
+                string.Equals(SourceSystemId, other.SourceSystemId) && 
+                string.Equals(OriginalDataSource, other.OriginalDataSource) && 
+                string.Equals(TrainId, other.TrainId) && 
+                EventTimestamp.Equals(other.EventTimestamp) && 
+                string.Equals(LocationStanox, other.LocationStanox) && 
+                PassengerTimestamp.Equals(other.PassengerTimestamp) && 
+                PlannedTimestamp.Equals(other.PlannedTimestamp) && 
+                string.Equals(OriginalLocationStanox, other.OriginalLocationStanox) && 
+                OriginalLocationTimestamp.Equals(other.OriginalLocationTimestamp) && 
+                PlannedEventType == other.PlannedEventType && 
+                EventType == other.EventType && 
+                EventSource == other.EventSource && 
+                Correction == other.Correction && 
+                OffRoute == other.OffRoute && 
+                Direction == other.Direction && 
+                string.Equals(Line, other.Line) && 
+                string.Equals(Platform, other.Platform) && 
+                string.Equals(Route, other.Route) && 
+                string.Equals(CurrentTrainId, other.CurrentTrainId) && 
+                string.Equals(TrainServiceCode, other.TrainServiceCode) && 
+                string.Equals(DivisionCode, other.DivisionCode) && 
+                string.Equals(TocId, other.TocId) && 
+                TimetableVariation == other.TimetableVariation && 
+                VariationStatus == other.VariationStatus && 
+                string.Equals(NextReportStanox, other.NextReportStanox) && 
+                NextReportRunTime == other.NextReportRunTime && 
+                Terminated == other.Terminated && 
+                DelayMonitoringPoint == other.DelayMonitoringPoint && 
+                string.Equals(TrainFileAddress, other.TrainFileAddress) && 
+                string.Equals(ReportingStanox, other.ReportingStanox) && 
+                AutoExpected == other.AutoExpected;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((TrainMovement) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (int) MessageType;
+                hashCode = (hashCode*397) ^ (SourceDeviceId != null ? SourceDeviceId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (SourceSystemId != null ? SourceSystemId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (OriginalDataSource != null ? OriginalDataSource.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (TrainId != null ? TrainId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ EventTimestamp.GetHashCode();
+                hashCode = (hashCode*397) ^ (LocationStanox != null ? LocationStanox.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ PassengerTimestamp.GetHashCode();
+                hashCode = (hashCode*397) ^ PlannedTimestamp.GetHashCode();
+                hashCode = (hashCode*397) ^ (OriginalLocationStanox != null ? OriginalLocationStanox.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ OriginalLocationTimestamp.GetHashCode();
+                hashCode = (hashCode*397) ^ (int) PlannedEventType;
+                hashCode = (hashCode*397) ^ (int) EventType;
+                hashCode = (hashCode*397) ^ (int) EventSource;
+                hashCode = (hashCode*397) ^ Correction.GetHashCode();
+                hashCode = (hashCode*397) ^ OffRoute.GetHashCode();
+                hashCode = (hashCode*397) ^ Direction.GetHashCode();
+                hashCode = (hashCode*397) ^ (Line != null ? Line.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (Platform != null ? Platform.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (Route != null ? Route.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (CurrentTrainId != null ? CurrentTrainId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (TrainServiceCode != null ? TrainServiceCode.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (DivisionCode != null ? DivisionCode.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (TocId != null ? TocId.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ TimetableVariation;
+                hashCode = (hashCode*397) ^ (int) VariationStatus;
+                hashCode = (hashCode*397) ^ (NextReportStanox != null ? NextReportStanox.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ NextReportRunTime;
+                hashCode = (hashCode*397) ^ Terminated.GetHashCode();
+                hashCode = (hashCode*397) ^ DelayMonitoringPoint.GetHashCode();
+                hashCode = (hashCode*397) ^ (TrainFileAddress != null ? TrainFileAddress.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (ReportingStanox != null ? ReportingStanox.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ AutoExpected.GetHashCode();
+                return hashCode;
+            }
         }
     }
 }

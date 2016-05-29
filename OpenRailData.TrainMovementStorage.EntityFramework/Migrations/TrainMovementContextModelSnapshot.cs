@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using OpenRailData.TrainMovementStorage.EntityFramework;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 {
@@ -16,7 +18,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.ChangeOfIdentityEntity", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CurrentTrainId");
@@ -44,12 +46,12 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.ChangeOfOriginEntity", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CurrentTrainId");
 
-                    b.Property<DateTime>("DepartureTimestamp");
+                    b.Property<DateTime?>("DepartureTimestamp");
 
                     b.Property<string>("DivisionCode");
 
@@ -84,7 +86,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.TrainActivationEntity", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CallMode");
@@ -95,7 +97,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
                     b.Property<DateTime>("EventTimestamp");
 
-                    b.Property<DateTime>("OriginDepartureTimestamp");
+                    b.Property<DateTime?>("OriginDepartureTimestamp");
 
                     b.Property<string>("OriginStanox");
 
@@ -136,12 +138,12 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.TrainCancellationEntity", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CancellationType");
 
-                    b.Property<DateTime>("DepartureTimestamp");
+                    b.Property<DateTime?>("DepartureTimestamp");
 
                     b.Property<string>("DivisionCode");
 
@@ -176,10 +178,16 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.TrainMovementEntity", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("AutoExpected");
+
+                    b.Property<bool>("Correction");
+
                     b.Property<string>("CurrentTrainId");
+
+                    b.Property<bool>("DelayMonitoringPoint");
 
                     b.Property<int?>("Direction");
 
@@ -191,16 +199,6 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
                     b.Property<int>("EventType");
 
-                    b.Property<bool>("HasTerminated");
-
-                    b.Property<bool>("IsAutoExpected");
-
-                    b.Property<bool>("IsCorrection");
-
-                    b.Property<bool>("IsDelayMonitoringPoint");
-
-                    b.Property<bool>("IsOffRoute");
-
                     b.Property<string>("Line");
 
                     b.Property<string>("LocationStanox");
@@ -209,17 +207,19 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
                     b.Property<string>("NextReportStanox");
 
+                    b.Property<bool>("OffRoute");
+
                     b.Property<string>("OriginalDataSource");
 
                     b.Property<string>("OriginalLocationStanox");
 
                     b.Property<DateTime?>("OriginalLocationTimestamp");
 
-                    b.Property<DateTime>("PassengerTimestamp");
+                    b.Property<DateTime?>("PassengerTimestamp");
 
                     b.Property<int>("PlannedEventType");
 
-                    b.Property<DateTime>("PlannedTimestamp");
+                    b.Property<DateTime?>("PlannedTimestamp");
 
                     b.Property<string>("Platform");
 
@@ -230,6 +230,8 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                     b.Property<string>("SourceDeviceId");
 
                     b.Property<string>("SourceSystemId");
+
+                    b.Property<bool>("Terminated");
 
                     b.Property<int>("TimetableVariation");
 
@@ -250,12 +252,12 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
             modelBuilder.Entity("OpenRailData.TrainMovementStorage.EntityFramework.Entites.TrainReinstatementEntity", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CurrentTrainId");
 
-                    b.Property<DateTime>("DepartureTimestamp");
+                    b.Property<DateTime?>("DepartureTimestamp");
 
                     b.Property<string>("DivisionCode");
 

@@ -23,7 +23,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Entites
         public string ScheduleWttId { get; set; }
         public string DRecordNumber { get; set; }
         public string OriginStanox { get; set; }
-        public DateTime OriginDepartureTimestamp { get; set; }
+        public DateTime? OriginDepartureTimestamp { get; set; }
         public TrainCallType CallType { get; set; }
         public TrainCallMode CallMode { get; set; }
         public string TocId { get; set; }
