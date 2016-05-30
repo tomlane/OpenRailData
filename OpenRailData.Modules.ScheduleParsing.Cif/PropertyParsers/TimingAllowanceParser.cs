@@ -32,6 +32,7 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif.PropertyParsers
                 }
                 catch (FormatException)
                 {
+                    // TODO: Really, Tom? Really? Log these.
                     return new TimeSpan(0);
                 }
 
