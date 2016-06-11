@@ -9,14 +9,18 @@ namespace OpenRailData.ScheduleParsing.Json
 {
     public class JsonScheduleRecordParsingService : IScheduleRecordParsingService
     {
+        private readonly ILogger _logger;
         private readonly Dictionary<string, IScheduleRecordParser> _recordParsers;
 
-        public JsonScheduleRecordParsingService(IScheduleRecordParser[] scheduleRecordParsers)
+        public JsonScheduleRecordParsingService(IScheduleRecordParser[] scheduleRecordParsers, ILogger logger)
         {
             if (scheduleRecordParsers == null)
                 throw new ArgumentNullException(nameof(scheduleRecordParsers));
+            if (logger == null)
+                throw new ArgumentNullException(nameof(logger));
 
             _recordParsers = scheduleRecordParsers.ToDictionary(x => x.RecordKey, x => x);
+            _logger = logger;
         }
 
         public IEnumerable<IScheduleRecord> ParseScheduleRecords(IEnumerable<string> records)
@@ -38,7 +42,7 @@ namespace OpenRailData.ScheduleParsing.Json
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, "An error occured while trying to parse the following schedule record: {record}", record);
+                    _logger.Error(ex, "An error occured while trying to parse the following schedule record: {record}", record);
                 }
             }
 
