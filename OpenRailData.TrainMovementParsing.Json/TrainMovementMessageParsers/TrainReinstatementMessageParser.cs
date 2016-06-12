@@ -22,7 +22,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 OriginalDataSource = deserializedTrainReinstatement.Header.OriginalDataSource,
                 SourceSystemId = deserializedTrainReinstatement.Header.SourceSystemId,
 
-                CurrentTrainId = deserializedTrainReinstatement.Body.CurrentTrainId,
+                CurrentTrainId = string.Empty,
                 OriginalLocationTimestamp = null,
                 TrainFileAddress = string.Empty,
                 TrainServiceCode = deserializedTrainReinstatement.Body.TrainServiceCode,
@@ -39,6 +39,9 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
 
             if (!string.IsNullOrWhiteSpace(deserializedTrainReinstatement.Body.TrainFileAddress))
                 trainReinstatement.TrainFileAddress = deserializedTrainReinstatement.Body.TrainFileAddress;
+
+            if (!string.IsNullOrWhiteSpace(deserializedTrainReinstatement.Body.CurrentTrainId))
+                trainReinstatement.CurrentTrainId = deserializedTrainReinstatement.Body.CurrentTrainId;
 
             return trainReinstatement;
         }
