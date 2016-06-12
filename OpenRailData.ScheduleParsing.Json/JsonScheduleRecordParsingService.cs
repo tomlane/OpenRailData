@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using OpenRailData.Domain.ScheduleRecords;
-using Serilog;
 
 namespace OpenRailData.ScheduleParsing.Json
 {

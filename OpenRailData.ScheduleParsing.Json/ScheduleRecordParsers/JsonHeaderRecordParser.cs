@@ -1,4 +1,7 @@
-﻿using OpenRailData.Domain.ScheduleRecords;
+﻿using System;
+using Newtonsoft.Json;
+using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.ScheduleParsing.Json.RawRecords;
 
 namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
 {
@@ -8,7 +11,12 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
 
         public IScheduleRecord ParseRecord(string recordString)
         {
-            throw new System.NotImplementedException();
+            if (string.IsNullOrWhiteSpace(recordString))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(recordString));
+
+            var deserialziedHeader = JsonConvert.DeserializeObject<DeserializedHeader>(recordString);
+
+            throw new NotImplementedException();
         }
     }
 }
