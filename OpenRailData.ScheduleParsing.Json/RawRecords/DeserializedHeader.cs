@@ -4,6 +4,12 @@ namespace OpenRailData.ScheduleParsing.Json.RawRecords
 {
     internal class DeserializedHeader
     {
+        [JsonProperty("JsonTimetableV1")]
+        public JsonHeader Header { get; set; }
+    }
+
+    internal class JsonHeader
+    {
         [JsonProperty("classification")]
         public string Classification { get; set; }
         [JsonProperty("timestamp")]

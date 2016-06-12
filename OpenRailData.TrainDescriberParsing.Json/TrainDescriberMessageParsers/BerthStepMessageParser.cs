@@ -18,7 +18,7 @@ namespace OpenRailData.TrainDescriberParsing.Json.TrainDescriberMessageParsers
 
             return new BerthMessage
             {
-                Timestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(jsonClass.Time)).DateTime,
+                Timestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(jsonClass.Time)).UtcDateTime,
                 AreaId = jsonClass.AreaId,
                 BerthMessageType = BerthMessageType.BerthStep,
                 FromBerth = jsonClass.FromBerth,

@@ -31,11 +31,11 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 LocationStanox = deserializedTrainReinstatement.Body.LocationStanox,
                 TrainId = deserializedTrainReinstatement.Body.TrainId,
                 OriginalLocationStanox = deserializedTrainReinstatement.Body.OriginalLocationStanox,
-                EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedTrainReinstatement.Body.ReinstatementTimestamp)).DateTime
+                EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedTrainReinstatement.Body.ReinstatementTimestamp)).UtcDateTime
             };
 
             if (!string.IsNullOrWhiteSpace(deserializedTrainReinstatement.Body.DepartureTimestamp))
-                trainReinstatement.DepartureTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedTrainReinstatement.Body.DepartureTimestamp)).DateTime;
+                trainReinstatement.DepartureTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedTrainReinstatement.Body.DepartureTimestamp)).UtcDateTime;
 
             if (!string.IsNullOrWhiteSpace(deserializedTrainReinstatement.Body.TrainFileAddress))
                 trainReinstatement.TrainFileAddress = deserializedTrainReinstatement.Body.TrainFileAddress;

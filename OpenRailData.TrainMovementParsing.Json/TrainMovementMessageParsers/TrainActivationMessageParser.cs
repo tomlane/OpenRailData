@@ -29,7 +29,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 ScheduleEndDate = DateTime.ParseExact(deserializedActivation.Body.ScheduleEndDate, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                 TrainId = deserializedActivation.Body.TrainId,
                 OriginTimestamp = DateTime.ParseExact(deserializedActivation.Body.OriginTimeStamp, "yyyy-MM-dd", CultureInfo.InvariantCulture),
-                EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedActivation.Body.CreationTimestamp)).DateTime,
+                EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedActivation.Body.CreationTimestamp)).UtcDateTime,
                 OriginStanox = deserializedActivation.Body.OriginStanox,
                 TrainServiceCode = deserializedActivation.Body.TrainServiceCode,
                 TocId = deserializedActivation.Body.TocId,
@@ -44,7 +44,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
             };
 
             if (!string.IsNullOrWhiteSpace(deserializedActivation.Body.OriginDepartureTimestamp))
-                activation.OriginDepartureTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedActivation.Body.OriginDepartureTimestamp)).DateTime;
+                activation.OriginDepartureTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedActivation.Body.OriginDepartureTimestamp)).UtcDateTime;
 
             if (!string.IsNullOrWhiteSpace(deserializedActivation.Body.TrainFileAddress))
                 activation.TrainFileAddress = deserializedActivation.Body.TrainFileAddress;

@@ -48,16 +48,16 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
             };
 
             if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.ActualTimestamp))
-                movement.EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.ActualTimestamp)).DateTime;
+                movement.EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.ActualTimestamp)).UtcDateTime;
 
             if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.OriginalLocationTimestamp))
-                movement.OriginalLocationTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.OriginalLocationTimestamp)).DateTime;
+                movement.OriginalLocationTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.OriginalLocationTimestamp)).UtcDateTime;
 
             if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.PlannedTimestamp))
-                movement.PlannedTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.PlannedTimestamp)).DateTime;
+                movement.PlannedTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.PlannedTimestamp)).UtcDateTime;
 
             if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.GbttTimestamp))
-                movement.PassengerTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.GbttTimestamp)).DateTime;
+                movement.PassengerTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedMovement.Body.GbttTimestamp)).UtcDateTime;
 
             if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.NextReportRunTime))
                 movement.NextReportRunTime = int.Parse(deserializedMovement.Body.NextReportRunTime);

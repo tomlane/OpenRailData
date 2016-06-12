@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Domain.ScheduleRecords.Enums;
 using OpenRailData.ScheduleParsing.Json.RawRecords;
 
 namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
@@ -16,7 +17,16 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
 
             var deserialziedHeader = JsonConvert.DeserializeObject<DeserializedHeader>(recordString);
 
-            throw new NotImplementedException();
+            return new HeaderRecord
+            {
+                RecordIdentity = ScheduleRecordType.HD,
+                MainFrameIdentity = deserialziedHeader.Header.Sender.Organisation,
+                DateOfExtract = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(deserialziedHeader.Header.Timestamp)).UtcDateTime,
+                MainFrameUser = deserialziedHeader.Header.Owner,
+                CurrentFileRef = deserialziedHeader.Header.MetaData.Sequence,
+                ExtractUpdateType = ExtractUpdateType.F,
+                MainFrameExtractDate = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(deserialziedHeader.Header.Timestamp)).UtcDateTime
+            };
         }
     }
 }

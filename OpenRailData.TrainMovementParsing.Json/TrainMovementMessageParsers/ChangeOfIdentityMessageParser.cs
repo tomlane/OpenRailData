@@ -27,7 +27,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 TrainServiceCode = deserializedChangeOfIdentity.Body.TrainServiceCode,
                 RevisedTrainId = deserializedChangeOfIdentity.Body.RevisedTrainId,
                 TrainId = deserializedChangeOfIdentity.Body.TrainId,
-                EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedChangeOfIdentity.Body.EventTimestamp)).DateTime
+                EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedChangeOfIdentity.Body.EventTimestamp)).UtcDateTime
             };
 
             if (!string.IsNullOrWhiteSpace(deserializedChangeOfIdentity.Body.TrainFileAddress))
