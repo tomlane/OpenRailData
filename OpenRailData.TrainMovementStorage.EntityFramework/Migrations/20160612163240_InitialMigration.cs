@@ -129,7 +129,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
                     Correction = table.Column<bool>(nullable: false),
                     CurrentTrainId = table.Column<string>(nullable: true),
                     DelayMonitoringPoint = table.Column<bool>(nullable: false),
-                    Direction = table.Column<int>(nullable: true),
+                    Direction = table.Column<int>(nullable: false),
                     DivisionCode = table.Column<string>(nullable: true),
                     EventSource = table.Column<int>(nullable: false),
                     EventTimestamp = table.Column<DateTime>(nullable: false),

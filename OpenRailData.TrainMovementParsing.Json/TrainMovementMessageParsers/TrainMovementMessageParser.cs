@@ -31,7 +31,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 ReportingStanox = deserializedMovement.Body.ReportingStanox,
                 Correction = bool.Parse(deserializedMovement.Body.Correction),
                 EventSource = (EventSource)Enum.Parse(typeof(EventSource), deserializedMovement.Body.EventSource),
-                TrainFileAddress = deserializedMovement.Body.TrainFileAddress,
+                TrainFileAddress = string.Empty,
                 Platform = deserializedMovement.Body.Platform,
                 DivisionCode = deserializedMovement.Body.DivisionCode,
                 Terminated = bool.Parse(deserializedMovement.Body.TrainTerminated),
@@ -67,6 +67,11 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
 
             if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.Direction))
                 movement.Direction = (Direction) Enum.Parse(typeof(Direction), deserializedMovement.Body.Direction);
+            else
+                movement.Direction = Direction.None;
+
+            if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.TrainFileAddress))
+                movement.TrainFileAddress = deserializedMovement.Body.TrainFileAddress;
 
             return movement;
         }

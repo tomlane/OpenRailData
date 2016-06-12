@@ -53,7 +53,7 @@ namespace OpenRailData.UnitTests.TrainMovementParsing.MessageParsers
                 {
                     TrainServiceCode = "56121720",
                     TrainId = "52609JC426",
-                    TrainFileAddress = null,
+                    TrainFileAddress = string.Empty,
                     EventTimestamp = new DateTime(2016, 5, 26, 4, 15, 0),
                     SourceDeviceId = string.Empty,
                     OriginalDataSource = "TSIA",
@@ -85,7 +85,7 @@ namespace OpenRailData.UnitTests.TrainMovementParsing.MessageParsers
                 {
                     TrainServiceCode = "52495100",
                     TrainId = "65610PCY26",
-                    TrainFileAddress = null,
+                    TrainFileAddress = string.Empty,
                     EventTimestamp = new DateTime(2016, 5, 26, 19, 0, 0),
                     SourceDeviceId = string.Empty,
                     OriginalDataSource = "TSIA",

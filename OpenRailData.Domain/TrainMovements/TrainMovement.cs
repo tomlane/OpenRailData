@@ -68,9 +68,9 @@ namespace OpenRailData.Domain.TrainMovements
         /// </summary>
         public bool OffRoute { get; set; }
         /// <summary>
-        /// 	For automatic reports, either "UP" or "DOWN" depending on the direction of travel.
+        /// 	For automatic reports, either "UP" or "DOWN" depending on the direction of travel. Set to None for arrivals/terminations.
         /// </summary>
-        public Direction? Direction { get; set; }
+        public Direction Direction { get; set; }
         /// <summary>
         /// 	A single character (or blank) depending on the line the train is travelling on, e.g. F = Fast, S = Slow.
         /// </summary>

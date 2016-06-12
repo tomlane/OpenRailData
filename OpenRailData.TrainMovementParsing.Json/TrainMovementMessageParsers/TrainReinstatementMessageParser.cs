@@ -24,7 +24,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
 
                 CurrentTrainId = deserializedTrainReinstatement.Body.CurrentTrainId,
                 OriginalLocationTimestamp = null,
-                TrainFileAddress = deserializedTrainReinstatement.Body.TrainFileAddress,
+                TrainFileAddress = string.Empty,
                 TrainServiceCode = deserializedTrainReinstatement.Body.TrainServiceCode,
                 TocId = deserializedTrainReinstatement.Body.TocId,
                 DivisionCode = deserializedTrainReinstatement.Body.DivisionCode,
@@ -36,6 +36,9 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
 
             if (!string.IsNullOrWhiteSpace(deserializedTrainReinstatement.Body.DepartureTimestamp))
                 trainReinstatement.DepartureTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedTrainReinstatement.Body.DepartureTimestamp)).DateTime;
+
+            if (!string.IsNullOrWhiteSpace(deserializedTrainReinstatement.Body.TrainFileAddress))
+                trainReinstatement.TrainFileAddress = deserializedTrainReinstatement.Body.TrainFileAddress;
 
             return trainReinstatement;
         }

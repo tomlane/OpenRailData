@@ -16,19 +16,24 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
 
             var deserializedChangeOfIdentity = JsonConvert.DeserializeObject<DeserializedChangeOfIdentity>(message);
 
-            return new ChangeOfIdentity
+            var changeOfIdentity = new ChangeOfIdentity
             {
                 SourceDeviceId = deserializedChangeOfIdentity.Header.SourceDeviceId,
                 OriginalDataSource = deserializedChangeOfIdentity.Header.OriginalDataSource,
                 SourceSystemId = deserializedChangeOfIdentity.Header.SourceSystemId,
 
                 CurrentTrainId = deserializedChangeOfIdentity.Body.CurrentTrainId,
-                TrainFileAddress = deserializedChangeOfIdentity.Body.TrainFileAddress,
+                TrainFileAddress = string.Empty,
                 TrainServiceCode = deserializedChangeOfIdentity.Body.TrainServiceCode,
                 RevisedTrainId = deserializedChangeOfIdentity.Body.RevisedTrainId,
                 TrainId = deserializedChangeOfIdentity.Body.TrainId,
                 EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedChangeOfIdentity.Body.EventTimestamp)).DateTime
             };
+
+            if (!string.IsNullOrWhiteSpace(deserializedChangeOfIdentity.Body.TrainFileAddress))
+                changeOfIdentity.TrainFileAddress = deserializedChangeOfIdentity.Body.TrainFileAddress;
+
+            return changeOfIdentity;
         }
     }
 }

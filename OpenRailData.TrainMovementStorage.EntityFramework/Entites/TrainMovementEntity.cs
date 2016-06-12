@@ -23,7 +23,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Entites
         public EventSource EventSource { get; set; }
         public bool Correction { get; set; }
         public bool OffRoute { get; set; }
-        public Direction? Direction { get; set; }
+        public Direction Direction { get; set; }
         public string Line { get; set; }
         public string Platform { get; set; }
         public string Route { get; set; }

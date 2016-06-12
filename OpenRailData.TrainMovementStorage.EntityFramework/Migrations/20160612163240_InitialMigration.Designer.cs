@@ -8,7 +8,7 @@ using OpenRailData.TrainMovementStorage.EntityFramework;
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 {
     [DbContext(typeof(TrainMovementContext))]
-    [Migration("20160529140950_InitialMigration")]
+    [Migration("20160612163240_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -190,7 +190,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
                     b.Property<bool>("DelayMonitoringPoint");
 
-                    b.Property<int?>("Direction");
+                    b.Property<int>("Direction");
 
                     b.Property<string>("DivisionCode");
 

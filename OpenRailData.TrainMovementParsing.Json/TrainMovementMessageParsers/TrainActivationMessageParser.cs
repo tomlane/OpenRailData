@@ -25,7 +25,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 SourceSystemId = deserializedActivation.Header.SourceSystemId,
 
                 ScheduleSource = (ScheduleSource)Enum.Parse(typeof(ScheduleSource), deserializedActivation.Body.ScheduleSource),
-                TrainFileAddress = deserializedActivation.Body.TrainFileAddress,
+                TrainFileAddress = string.Empty,
                 ScheduleEndDate = DateTime.ParseExact(deserializedActivation.Body.ScheduleEndDate, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                 TrainId = deserializedActivation.Body.TrainId,
                 OriginTimestamp = DateTime.ParseExact(deserializedActivation.Body.OriginTimeStamp, "yyyy-MM-dd", CultureInfo.InvariantCulture),
@@ -45,6 +45,20 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
 
             if (!string.IsNullOrWhiteSpace(deserializedActivation.Body.OriginDepartureTimestamp))
                 activation.OriginDepartureTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedActivation.Body.OriginDepartureTimestamp)).DateTime;
+
+            if (!string.IsNullOrWhiteSpace(deserializedActivation.Body.TrainFileAddress))
+                activation.TrainFileAddress = deserializedActivation.Body.TrainFileAddress;
+
+            // Activation schedule type issue fix.
+            switch (activation.ScheduleType)
+            {
+                case ScheduleType.P:
+                    activation.ScheduleType = ScheduleType.O;
+                    break;
+                case ScheduleType.O:
+                    activation.ScheduleType = ScheduleType.P;
+                    break;
+            }
 
             return activation;
         }
