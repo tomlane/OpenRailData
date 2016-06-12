@@ -1,10 +1,6 @@
 ﻿using System;
-using Microsoft.Practices.Unity;
 using Moq;
-using OpenRailData.Domain.ScheduleRecords;
-using OpenRailData.Domain.ScheduleRecords.Enums;
 using OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers;
-using OpenRailData.ScheduleContainer;
 using OpenRailData.ScheduleParsing;
 using Xunit;
 
@@ -13,20 +9,18 @@ namespace OpenRailData.UnitTests.ScheduleParsing.RecordParsers
     
     public class THeaderCifRecordParser
     {
-        private static IUnityContainer _container;
         private static IRecordEnumPropertyParser[] _enumPropertyParsers;
-        private static IDateTimeParser _dateTimeParser;
+        private static Mock<IDateTimeParser> _dateTimeParser;
 
         public THeaderCifRecordParser()
         {
-            _container = CifParserIocContainerBuilder.Build();
-            _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
-            _dateTimeParser = _container.Resolve<IDateTimeParser>();
+            _enumPropertyParsers = new IRecordEnumPropertyParser[0];
+            _dateTimeParser = new Mock<IDateTimeParser>();
         }
         
         private static HeaderCifRecordParser BuildParser()
         {
-            return new HeaderCifRecordParser(_enumPropertyParsers, _dateTimeParser);
+            return new HeaderCifRecordParser(_enumPropertyParsers, _dateTimeParser.Object);
         }
 
         [Fact]
@@ -65,32 +59,6 @@ namespace OpenRailData.UnitTests.ScheduleParsing.RecordParsers
             var record = "HD                    3012152116DFROC1EDFROC1DUA301215291216                    ";
 
             Assert.Throws<InvalidOperationException>(() => recordParser.ParseRecord(record));
-        }
-
-        [Fact]
-        public void returns_expected_result()
-        {
-            var recordParser = BuildParser();
-            var recordToParse = "HDTPS.UDFROC1.PD1512303012152116DFROC1EDFROC1DUA301215291216                    ";
-            var expectedResult = new HeaderRecord
-            {
-                RecordIdentity = ScheduleRecordType.HD,
-                MainFrameIdentity = "TPS.UDFROC1.PD151230",
-                DateOfExtract = new DateTime(2015, 12, 30),
-                TimeOfExtract = "2116",
-                CurrentFileRef = "DFROC1E",
-                LastFileRef = "DFROC1D",
-                ExtractUpdateType = ExtractUpdateType.U,
-                CifSoftwareVersion = "A",
-                UserExtractStartDate = new DateTime(2015, 12, 30),
-                UserExtractEndDate = new DateTime(2016, 12, 29),
-                MainFrameUser = "DFROC1",
-                MainFrameExtractDate = new DateTime(2015, 12, 30)
-            };
-
-            var result = recordParser.ParseRecord(recordToParse);
-            
-            Assert.Equal(expectedResult, result);
         }
     }
 }

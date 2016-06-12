@@ -236,7 +236,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Serilog.Sinks.MSSqlServer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.MSSqlServer.3.0.52\lib\net45\Serilog.Sinks.MSSqlServer.dll</HintPath>
+      <HintPath>..\packages\Serilog.Sinks.MSSqlServer.3.0.98\lib\net45\Serilog.Sinks.MSSqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -295,6 +295,10 @@
     <ProjectReference Include="..\OpenRailData.Domain\OpenRailData.Domain.csproj">
       <Project>{d82b3675-e4a1-431d-9cb1-01c2ca91d12f}</Project>
       <Name>OpenRailData.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Logging\OpenRailData.Logging.csproj">
+      <Project>{70AC4EEF-C3EF-4BB3-8521-55BDD9631559}</Project>
+      <Name>OpenRailData.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Modules.ScheduleStorage.EntityFramework\OpenRailData.Modules.ScheduleStorage.EntityFramework.csproj">
       <Project>{356a6879-c173-4f5b-bd77-80042fcfff05}</Project>

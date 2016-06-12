@@ -67,6 +67,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.TrainMovementS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.ScheduleParsing.Json", "OpenRailData.ScheduleParsing.Json\OpenRailData.ScheduleParsing.Json.csproj", "{9301FAAA-A4EC-4ECC-92F0-8D8E4DE274ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Logging", "OpenRailData.Logging\OpenRailData.Logging.csproj", "{70AC4EEF-C3EF-4BB3-8521-55BDD9631559}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.IntegrationTests", "OpenRailData.IntegrationTests\OpenRailData.IntegrationTests.csproj", "{39108023-743B-4C85-AB44-8A2AC617EFE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -189,6 +193,14 @@ Global
 		{9301FAAA-A4EC-4ECC-92F0-8D8E4DE274ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9301FAAA-A4EC-4ECC-92F0-8D8E4DE274ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9301FAAA-A4EC-4ECC-92F0-8D8E4DE274ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70AC4EEF-C3EF-4BB3-8521-55BDD9631559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70AC4EEF-C3EF-4BB3-8521-55BDD9631559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70AC4EEF-C3EF-4BB3-8521-55BDD9631559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70AC4EEF-C3EF-4BB3-8521-55BDD9631559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39108023-743B-4C85-AB44-8A2AC617EFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39108023-743B-4C85-AB44-8A2AC617EFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39108023-743B-4C85-AB44-8A2AC617EFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39108023-743B-4C85-AB44-8A2AC617EFE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -209,5 +221,6 @@ Global
 		{F8E9DF10-8099-41F6-B22B-4CEDAEB1D115} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 		{1D8BBA4F-8543-4607-A10D-245D72042A45} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
 		{9301FAAA-A4EC-4ECC-92F0-8D8E4DE274ED} = {8421D541-2A10-49CD-91BA-2AA26514D92C}
+		{39108023-743B-4C85-AB44-8A2AC617EFE2} = {B148E18E-36CF-47A4-9019-C1FED350EE8A}
 	EndGlobalSection
 EndGlobal

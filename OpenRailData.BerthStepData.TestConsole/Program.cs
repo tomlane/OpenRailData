@@ -8,6 +8,7 @@ using OpenRailData.BerthStepData;
 using OpenRailData.DataFetcher;
 using OpenRailData.Domain.TrainDescriber;
 using OpenRailData.Domain.TrainMovements;
+using OpenRailData.Logging;
 using OpenRailData.TrainDescriberParsing;
 using OpenRailData.TrainDescriberParsing.Json;
 using OpenRailData.TrainDescriberParsing.Json.TrainDescriberMessageParsers;
@@ -30,16 +31,17 @@ namespace OpenRailData.TestConsole
 {
     internal static class Program
     {
-        private static ITrainMovementMessageParsingService _movementMessageParsingService;
+        private static ITrainMovementParsingService _movementParsingService;
         private static ITrainMovementStorageService _movementStorageService;
+        private static ILogger _logger;
 
         static void Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration().ReadFrom.AppSettings().CreateLogger();
-
             var container = BuildContainer();
 
-            _movementMessageParsingService = container.Resolve<ITrainMovementMessageParsingService>();
+            _logger = container.Resolve<ILogger>();
+
+            _movementParsingService = container.Resolve<ITrainMovementParsingService>();
             _movementStorageService = container.Resolve<ITrainMovementStorageService>();
             
             IConnectionFactory factory = new NMSConnectionFactory("stomp:failover:tcp://datafeeds.networkrail.co.uk:61618");
@@ -53,7 +55,7 @@ namespace OpenRailData.TestConsole
             ISession session = connection.CreateSession();
             
             ITopic movementTopic = session.GetTopic("topic://TRAIN_MVT_ALL_TOC");
-            IMessageConsumer movementConsumer = session.CreateDurableConsumer(movementTopic, "toml-movements", null, false);
+            IMessageConsumer movementConsumer = session.CreateDurableConsumer(movementTopic, "rde-movements", null, false);
             
             connection.Start();
             movementConsumer.Listener += OnMovementMessage;
@@ -67,40 +69,40 @@ namespace OpenRailData.TestConsole
 
         private static void ExceptionHandler(Exception exception)
         {
-            Log.Error(exception, string.Empty);
+            _logger.Error(exception, string.Empty);
         }
 
         private static void ConnectionResumedHandler()
         {
-            Log.Information("Connection to Network Rail Data Feeds re-established.");
+            _logger.Information("Connection to Network Rail Data Feeds re-established.");
         }
 
         private static void ConnectionInterruptedHandler()
         {
-            Log.Warning("Connection to Network Rail Data Feeds interrupted.");
+            _logger.Warning("Connection to Network Rail Data Feeds interrupted.");
         }
 
         private static async void OnMovementMessage(IMessage message)
         {
-            Console.WriteLine("Median-Server (.NET): Message received");
-
             try
             {
                 var msg = (ITextMessage)message;
 
                 message.Acknowledge();
 
-                Console.WriteLine(DateTime.Now - msg.NMSTimestamp);
+                var delay = DateTime.Now - msg.NMSTimestamp;
 
+                _logger.Debug("Current message delivery delay: {delay}", delay);
+                
                 var array = JArray.Parse(msg.Text).Children().Select(jToken => jToken.ToString());
 
-                var parsedMessages = _movementMessageParsingService.ParseTrainMovementMessages(array);
+                var parsedMessages = _movementParsingService.ParseTrainMovementMessages(array);
 
                 await _movementStorageService.StoreTrainMovementMessages(parsedMessages);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, string.Empty);
+                _logger.Error(ex, string.Empty);
             }
         }
 
@@ -123,7 +125,7 @@ namespace OpenRailData.TestConsole
             container.RegisterType<ITrainDescriberMessageParser, SignallingRefreshMessageParser>("SignallingRefreshMessageParser");
             container.RegisterType<ITrainDescriberMessageParser, SignallingRefreshFinishedMessageParser>("SignallingRefreshFinishedMessageParser");
 
-            container.RegisterType<ITrainMovementMessageParsingService, TrainMovementMessageParsingService>();
+            container.RegisterType<ITrainMovementParsingService, TrainMovementParsingService>();
 
             container.RegisterType<ITrainMovementMessageParser, TrainActivationMessageParser>("TrainActivationMessageParser");
             container.RegisterType<ITrainMovementMessageParser, TrainCancellationMessageParser>("TrainCancellationMessageParser");
@@ -162,6 +164,8 @@ namespace OpenRailData.TestConsole
 
             container.RegisterType<ITrainDescriberRepository<SignalMessage>, SignalMessageRepository>();
             container.RegisterType<ITrainDescriberRepository<BerthMessage>, BerthMessageRepository>();
+
+            container.RegisterInstance<ILogger>(ConsoleLoggerConfig.Create());
 
             return container;
         }

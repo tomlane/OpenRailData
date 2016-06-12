@@ -7,16 +7,20 @@ using Serilog;
 
 namespace OpenRailData.TrainMovementParsing.Json
 {
-    public class TrainMovementMessageParsingService : ITrainMovementMessageParsingService
+    public class TrainMovementParsingService : ITrainMovementParsingService
     {
+        private readonly ILogger _logger;
         private readonly Dictionary<string, ITrainMovementMessageParser> _messageParsers;
 
-        public TrainMovementMessageParsingService(ITrainMovementMessageParser[] messageParsers)
+        public TrainMovementParsingService(ITrainMovementMessageParser[] messageParsers, ILogger logger)
         {
             if (messageParsers == null)
                 throw new ArgumentNullException(nameof(messageParsers));
+            if (logger == null)
+                throw new ArgumentNullException(nameof(logger));
 
             _messageParsers = messageParsers.ToDictionary(x => x.TrainMovementMessageType, x => x);
+            _logger = logger;
         }
 
         public IEnumerable<ITrainMovementMessage> ParseTrainMovementMessages(IEnumerable<string> messages)
@@ -36,11 +40,11 @@ namespace OpenRailData.TrainMovementParsing.Json
 
                     response.Add(parsedMessage);
 
-                    Log.Information("Succesfully parsed message of type {key}. Input: {message} Result: {parsedMessage}", key, parsedMessage, message);
+                    _logger.Information("Succesfully parsed message of type {key}. Input: {message} Result: {parsedMessage}", key, parsedMessage, message);
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, message);
+                    _logger.Error(ex, message);
                 }
             }
 

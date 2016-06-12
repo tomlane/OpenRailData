@@ -1,10 +1,6 @@
 ﻿using System;
-using Microsoft.Practices.Unity;
 using Moq;
-using OpenRailData.Domain.ScheduleRecords;
-using OpenRailData.Domain.ScheduleRecords.Enums;
 using OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers;
-using OpenRailData.ScheduleContainer;
 using OpenRailData.ScheduleParsing;
 using Xunit;
 
@@ -13,21 +9,18 @@ namespace OpenRailData.UnitTests.ScheduleParsing.RecordParsers
     
     public class TAssociationCifRecordParser
     {
-        private static IUnityContainer _container;
         private static IRecordEnumPropertyParser[] _enumPropertyParsers;
-        private static IDateTimeParser _dateTimeParser;
+        private static Mock<IDateTimeParser> _dateTimeParser;
 
         public TAssociationCifRecordParser()
         {
-            _container = CifParserIocContainerBuilder.Build();
-
-            _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
-            _dateTimeParser = _container.Resolve<IDateTimeParser>();
+            _enumPropertyParsers = new IRecordEnumPropertyParser[0];
+            _dateTimeParser = new Mock<IDateTimeParser>(MockBehavior.Strict);
         }
         
         private static AssociationCifRecordParser BuildParser()
         {
-            return new AssociationCifRecordParser(_enumPropertyParsers, _dateTimeParser);
+            return new AssociationCifRecordParser(_enumPropertyParsers, _dateTimeParser.Object);
         }
 
         [Fact]
@@ -57,89 +50,6 @@ namespace OpenRailData.UnitTests.ScheduleParsing.RecordParsers
             var parser = BuildParser();
 
             Assert.Equal("AA", parser.RecordKey);
-        }
-
-        [Fact]
-        public void returns_expected_result_with_revise_record()
-        {
-            var recordParser = BuildParser();
-            var recordToParse = "AARW01400W005701512131602070000001   ORPNGTN  T                                C";
-            var expectedResult = new AssociationRecord
-            {
-                RecordIdentity = ScheduleRecordType.AAR,
-                MainTrainUid = "W01400",
-                AssocTrainUid = "W00570",
-                DateFrom = new DateTime(2015, 12, 13),
-                DateTo = new DateTime(2016, 2, 7),
-                AssocDays = Days.Sunday,
-                Category = AssociationCategory.None,
-                DateIndicator = DateIndicator.None,
-                Location = "ORPNGTN",
-                BaseLocationSuffix = string.Empty,
-                AssocLocationSuffix = string.Empty,
-                DiagramType = "T",
-                AssocType = AssociationType.None,
-                StpIndicator = StpIndicator.C
-            };
-
-            var result = recordParser.ParseRecord(recordToParse);
-            
-            Assert.Equal(expectedResult, result);
-        }
-
-        [Fact]
-        public void returns_expected_result_with_new_record()
-        {
-            var recordParser = BuildParser();
-            var recordToParse = "AANL82468L839221512191601020000010   CLCHSTR  T                                C";
-            var expectedResult = new AssociationRecord
-            {
-                RecordIdentity = ScheduleRecordType.AAN,
-                MainTrainUid = "L82468",
-                AssocTrainUid = "L83922",
-                DateFrom = new DateTime(2015, 12, 19),
-                DateTo = new DateTime(2016, 1, 2),
-                AssocDays = Days.Saturday,
-                Category = AssociationCategory.None,
-                DateIndicator = DateIndicator.None,
-                Location = "CLCHSTR",
-                BaseLocationSuffix = string.Empty,
-                AssocLocationSuffix = string.Empty,
-                DiagramType = "T",
-                AssocType = AssociationType.None,
-                StpIndicator = StpIndicator.C
-            };
-
-            var result = recordParser.ParseRecord(recordToParse);
-            
-            Assert.Equal(expectedResult, result);
-        }
-
-        [Fact]
-        public void returns_expected_result_with_delete_record()
-        {
-            var recordParser = BuildParser();
-            var recordToParse = "AADL82468L83922151226                CLCHSTR  T                                C";
-            var expectedResult = new AssociationRecord
-            {
-                RecordIdentity = ScheduleRecordType.AAD,
-                MainTrainUid = "L82468",
-                AssocTrainUid = "L83922",
-                DateFrom = new DateTime(2015, 12, 26),
-                DateTo = null,
-                Category = AssociationCategory.None,
-                DateIndicator = DateIndicator.None,
-                Location = "CLCHSTR",
-                BaseLocationSuffix = string.Empty,
-                AssocLocationSuffix = string.Empty,
-                DiagramType = "T",
-                AssocType = AssociationType.None,
-                StpIndicator = StpIndicator.C
-            };
-
-            var result = recordParser.ParseRecord(recordToParse);
-            
-            Assert.Equal(expectedResult, result);
         }
     }
 }

@@ -64,7 +64,7 @@
     <Compile Include="TrainMovementMessageParsers\TrainCancellationMessageParser.cs" />
     <Compile Include="TrainMovementMessageParsers\TrainMovementMessageParser.cs" />
     <Compile Include="TrainMovementMessageParsers\TrainReinstatementMessageParser.cs" />
-    <Compile Include="TrainMovementMessageParsingService.cs" />
+    <Compile Include="TrainMovementParsingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenRailData.Domain\OpenRailData.Domain.csproj">

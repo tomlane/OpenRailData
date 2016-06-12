@@ -8,6 +8,9 @@ namespace OpenRailData.Domain.TrainMovements.Enums
         UP,
 
         [Display(Name = "Down")]
-        DOWN
+        DOWN,
+
+        [Display(Name = "None")]
+        None
     }
 }

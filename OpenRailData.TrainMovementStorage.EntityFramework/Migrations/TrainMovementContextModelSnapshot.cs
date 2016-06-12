@@ -189,7 +189,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Migrations
 
                     b.Property<bool>("DelayMonitoringPoint");
 
-                    b.Property<int?>("Direction");
+                    b.Property<int>("Direction");
 
                     b.Property<string>("DivisionCode");
 
