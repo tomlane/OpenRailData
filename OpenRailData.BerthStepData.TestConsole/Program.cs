@@ -165,7 +165,7 @@ namespace OpenRailData.TestConsole
             container.RegisterType<ITrainDescriberRepository<SignalMessage>, SignalMessageRepository>();
             container.RegisterType<ITrainDescriberRepository<BerthMessage>, BerthMessageRepository>();
 
-            container.RegisterInstance<ILogger>(ConsoleLoggerConfig.Create());
+            container.RegisterInstance<ILogger>(SqlServerLoggerConfig.Create());
 
             return container;
         }
