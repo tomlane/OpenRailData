@@ -16,15 +16,30 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
 
             var deserialziedTiploc = JsonConvert.DeserializeObject<DeserializedTiploc>(recordString);
 
-            return new TiplocRecord
+            var tiploc = new TiplocRecord
             {
-                TiplocCode = deserialziedTiploc.TiplocCode,
-                Stanox = deserialziedTiploc.Stanox,
-                CrsCode = deserialziedTiploc.CrsCode,
-                Nalco = deserialziedTiploc.Nalco,
-                TpsDescription = deserialziedTiploc.TpsDescription,
-                CapriDescription = deserialziedTiploc.Description
+                TiplocCode = deserialziedTiploc.Tiploc.TiplocCode,
+                Stanox = deserialziedTiploc.Tiploc.Stanox,
+                CrsCode = deserialziedTiploc.Tiploc.CrsCode,
+                Nalco = deserialziedTiploc.Tiploc.Nalco,
+                TpsDescription = deserialziedTiploc.Tiploc.TpsDescription,
+                CapriDescription = deserialziedTiploc.Tiploc.Description
             };
+
+            switch (deserialziedTiploc.Tiploc.TransactionType)
+            {
+                case "Create":
+                    tiploc.RecordIdentity = ScheduleRecordType.TI;
+                    break;
+                case "Update":
+                    tiploc.RecordIdentity = ScheduleRecordType.TA;
+                    break;
+                case "Delete":
+                    tiploc.RecordIdentity = ScheduleRecordType.TD;
+                    break;
+            }
+
+            return tiploc;
         }
     }
 }

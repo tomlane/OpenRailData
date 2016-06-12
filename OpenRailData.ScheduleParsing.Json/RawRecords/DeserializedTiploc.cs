@@ -4,6 +4,12 @@ namespace OpenRailData.ScheduleParsing.Json.RawRecords
 {
     internal class DeserializedTiploc
     {
+        [JsonProperty("TiplocV1")]
+        public JsonTiploc Tiploc { get; set; }
+    }
+
+    internal class JsonTiploc
+    {
         [JsonProperty("transaction_type")]
         public string TransactionType { get; set; }
         [JsonProperty("tiploc_code")]

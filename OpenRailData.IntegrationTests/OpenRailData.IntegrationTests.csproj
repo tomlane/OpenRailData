@@ -77,6 +77,7 @@
     <Compile Include="ScheduleParsing\RecordParsers\TChangesEnRouteCifRecordParser.cs" />
     <Compile Include="ScheduleParsing\RecordParsers\THeaderCifRecordParser.cs" />
     <Compile Include="ScheduleParsing\RecordParsers\TIntermediateLocationCifRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TJsonAssociationRecordParser.cs" />
     <Compile Include="ScheduleParsing\RecordParsers\TOriginLocationCifRecordParser.cs" />
     <Compile Include="ScheduleParsing\RecordParsers\TTerminatingLocationCifRecordParser.cs" />
   </ItemGroup>
@@ -97,6 +98,10 @@
     <ProjectReference Include="..\OpenRailData.ScheduleContainer\OpenRailData.ScheduleContainer.csproj">
       <Project>{FBB3001F-2CE9-4963-8299-7AFDBEDB7F8C}</Project>
       <Name>OpenRailData.ScheduleContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.ScheduleParsing.Json\OpenRailData.ScheduleParsing.Json.csproj">
+      <Project>{9301FAAA-A4EC-4ECC-92F0-8D8E4DE274ED}</Project>
+      <Name>OpenRailData.ScheduleParsing.Json</Name>
     </ProjectReference>
     <ProjectReference Include="..\OpenRailData.ScheduleParsing\OpenRailData.ScheduleParsing.csproj">
       <Project>{384119CE-97B5-4F1B-8AA1-6ABA519D80AC}</Project>
