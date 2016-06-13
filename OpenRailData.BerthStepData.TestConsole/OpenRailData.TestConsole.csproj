@@ -300,13 +300,33 @@
       <Project>{70AC4EEF-C3EF-4BB3-8521-55BDD9631559}</Project>
       <Name>OpenRailData.Logging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleParsing.Cif\OpenRailData.Modules.ScheduleParsing.Cif.csproj">
+      <Project>{4ECAB2A3-DD04-4766-A1F7-EC330E37E026}</Project>
+      <Name>OpenRailData.Modules.ScheduleParsing.Cif</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Modules.ScheduleStorage.EntityFramework\OpenRailData.Modules.ScheduleStorage.EntityFramework.csproj">
       <Project>{356a6879-c173-4f5b-bd77-80042fcfff05}</Project>
       <Name>OpenRailData.Modules.ScheduleStorage.EntityFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Modules.ScheduleStorageService\OpenRailData.Modules.ScheduleStorageService.csproj">
+      <Project>{F697A364-D2B4-452D-BE3F-5011CE702504}</Project>
+      <Name>OpenRailData.Modules.ScheduleStorageService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.Schedule.CommonDatabase\OpenRailData.Schedule.CommonDatabase.csproj">
       <Project>{DBF09618-423D-4A73-BBEC-36598E5B2FDF}</Project>
       <Name>OpenRailData.Schedule.CommonDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.ScheduleParsing.Json\OpenRailData.ScheduleParsing.Json.csproj">
+      <Project>{9301FAAA-A4EC-4ECC-92F0-8D8E4DE274ED}</Project>
+      <Name>OpenRailData.ScheduleParsing.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.ScheduleParsing\OpenRailData.ScheduleParsing.csproj">
+      <Project>{384119CE-97B5-4F1B-8AA1-6ABA519D80AC}</Project>
+      <Name>OpenRailData.ScheduleParsing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.ScheduleStorage\OpenRailData.ScheduleStorage.csproj">
+      <Project>{E6548915-E0BD-4225-8B8C-695B447F38E9}</Project>
+      <Name>OpenRailData.ScheduleStorage</Name>
     </ProjectReference>
     <ProjectReference Include="..\OpenRailData.TrainDescriberParsing.Json\OpenRailData.TrainDescriberParsing.Json.csproj">
       <Project>{44B91613-1CB3-47D9-9814-3DBA124D2E36}</Project>

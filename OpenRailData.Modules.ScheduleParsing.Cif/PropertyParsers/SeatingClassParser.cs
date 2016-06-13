@@ -10,10 +10,7 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif.PropertyParsers
 
         public Enum ParseProperty(string propertyString)
         {
-            if (propertyString == null)
-                throw new ArgumentNullException(nameof(propertyString));
-            
-            if (propertyString.Trim() == string.Empty)
+            if (propertyString == null || propertyString.Trim() == string.Empty)
                 return SeatingClass.B;
             
             return (SeatingClass)Enum.Parse(typeof(SeatingClass), propertyString);

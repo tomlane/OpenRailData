@@ -6,17 +6,19 @@ using Xunit;
 namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers
 {
     
-    public class TTrainSleeperDetailsParser
+    public class TSleeperDetailsParser
     {
         
         class ParseTrainSleeperDetails
         {
             [Fact]
-            public void throws_when_argument_is_null_or_empty()
+            public void returns_zero_when_argument_is_null_or_empty()
             {
                 var parser = new SleeperDetailsParser();
 
-                Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+                var result = parser.ParseProperty(null);
+
+                Assert.Equal((OperatingCharacteristics)0, result);
             }
 
             [Fact]

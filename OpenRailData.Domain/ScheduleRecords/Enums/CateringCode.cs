@@ -9,7 +9,7 @@ namespace OpenRailData.Domain.ScheduleRecords.Enums
         [Display(Name = "Buffet Service")]
         C = 1 << 0,
 
-        [Display(Name = "Restaurance Car available for First Class passengers")]
+        [Display(Name = "Restaurant Car available for First Class passengers")]
         F = 1 << 1,
 
         [Display(Name = "Hot food available")]
@@ -25,6 +25,9 @@ namespace OpenRailData.Domain.ScheduleRecords.Enums
         R = 1 << 5,
 
         [Display(Name = "Trolley service")]
-        T = 1 << 6
+        T = 1 << 6,
+
+        [Display(Name = "None / Could not parse")]
+        None = 1 << 7
     }
 }

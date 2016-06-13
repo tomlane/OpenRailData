@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Apache.NMS;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -9,6 +10,15 @@ using OpenRailData.DataFetcher;
 using OpenRailData.Domain.TrainDescriber;
 using OpenRailData.Domain.TrainMovements;
 using OpenRailData.Logging;
+using OpenRailData.Modules.ScheduleParsing.Cif.PropertyParsers;
+using OpenRailData.Modules.ScheduleStorage.EntityFramework;
+using OpenRailData.Modules.ScheduleStorage.EntityFramework.UnitOfWork;
+using OpenRailData.Modules.ScheduleStorageService;
+using OpenRailData.Modules.ScheduleStorageService.RecordStorageProcessor;
+using OpenRailData.ScheduleParsing;
+using OpenRailData.ScheduleParsing.Json;
+using OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers;
+using OpenRailData.ScheduleStorage;
 using OpenRailData.TrainDescriberParsing;
 using OpenRailData.TrainDescriberParsing.Json;
 using OpenRailData.TrainDescriberParsing.Json.TrainDescriberMessageParsers;
@@ -33,6 +43,7 @@ namespace OpenRailData.TestConsole
     {
         private static ITrainMovementParsingService _movementParsingService;
         private static ITrainMovementStorageService _movementStorageService;
+
         private static ILogger _logger;
 
         static void Main(string[] args)
@@ -41,30 +52,41 @@ namespace OpenRailData.TestConsole
 
             _logger = container.Resolve<ILogger>();
 
-            _movementParsingService = container.Resolve<ITrainMovementParsingService>();
-            _movementStorageService = container.Resolve<ITrainMovementStorageService>();
-            
-            IConnectionFactory factory = new NMSConnectionFactory("stomp:failover:tcp://datafeeds.networkrail.co.uk:61618");
+            var scheduleParsingService = container.Resolve<IScheduleRecordParsingService>();
+            var scheduleStorageService = container.Resolve<IScheduleRecordStorageService>();
 
-            IConnection connection = factory.CreateConnection("username", "password");
+            var records = File.ReadLines(@"C:\RailData\JSON Extracts\CIF_EF_TOC_FULL_DAILY-toc-full");
 
-            connection.ConnectionInterruptedListener += ConnectionInterruptedHandler;
-            connection.ConnectionResumedListener += ConnectionResumedHandler;
-            connection.ExceptionListener += ExceptionHandler;
+            var result = scheduleParsingService.ParseScheduleRecords(records);
 
-            ISession session = connection.CreateSession();
-            
-            ITopic movementTopic = session.GetTopic("topic://TRAIN_MVT_ALL_TOC");
-            IMessageConsumer movementConsumer = session.CreateDurableConsumer(movementTopic, "rde-movements", null, false);
-            
-            connection.Start();
-            movementConsumer.Listener += OnMovementMessage;
-            
-            Console.WriteLine("Consumer started, waiting for messages... (Press ENTER to stop.)");
+            Console.WriteLine("Records Parsed");
+
+            scheduleStorageService.StoreScheduleRecords(result);
+
+            //_movementParsingService = container.Resolve<ITrainMovementParsingService>();
+            //_movementStorageService = container.Resolve<ITrainMovementStorageService>();
+
+            //IConnectionFactory factory = new NMSConnectionFactory("stomp:failover:tcp://datafeeds.networkrail.co.uk:61618");
+
+            //IConnection connection = factory.CreateConnection("username", "password");
+
+            //connection.ConnectionInterruptedListener += ConnectionInterruptedHandler;
+            //connection.ConnectionResumedListener += ConnectionResumedHandler;
+            //connection.ExceptionListener += ExceptionHandler;
+
+            //ISession session = connection.CreateSession();
+
+            //ITopic movementTopic = session.GetTopic("topic://TRAIN_MVT_ALL_TOC");
+            //IMessageConsumer movementConsumer = session.CreateDurableConsumer(movementTopic, "rde-movements", null, false);
+
+            //connection.Start();
+            //movementConsumer.Listener += OnMovementMessage;
+
+            //Console.WriteLine("Consumer started, waiting for messages... (Press ENTER to stop.)");
 
             Console.ReadLine();
 
-            connection.Close();
+            //connection.Close();
         }
 
         private static void ExceptionHandler(Exception exception)
@@ -151,7 +173,7 @@ namespace OpenRailData.TestConsole
             container.RegisterType<ITrainMovementStorageProcessor, TrainActivationStorageProcessor>("TrainActivationStorageProcessor");
             container.RegisterType<ITrainMovementStorageProcessor, TrainCancellationStorageProcessor>("TrainCancellationStorageProcessor");
             container.RegisterType<ITrainMovementStorageProcessor, TrainMovementStorageProcessor>("TrainMovementStorageProcessor");
-            container.RegisterType<ITrainMovementStorageProcessor, TrainReinstatmentStorageProcessor>("TrainReinstatmentStorageProcessor");
+            container.RegisterType<ITrainMovementStorageProcessor, TrainReinstatmentStorageProcessor>("TrainReinstatementStorageProcessor");
             container.RegisterType<ITrainMovementStorageProcessor, ChangeOfOriginStorageProcessor>("ChangeOfOriginStorageProcessor");
             container.RegisterType<ITrainMovementStorageProcessor, ChangeOfIdentityStorageProcessor>("ChangeOfIdentityStorageProcessor");
 
@@ -165,7 +187,53 @@ namespace OpenRailData.TestConsole
             container.RegisterType<ITrainDescriberRepository<SignalMessage>, SignalMessageRepository>();
             container.RegisterType<ITrainDescriberRepository<BerthMessage>, BerthMessageRepository>();
 
-            container.RegisterInstance<ILogger>(SqlServerLoggerConfig.Create());
+            container.RegisterInstance<ILogger>(ConsoleLoggerConfig.Create());
+
+            // schedule json testing
+            container.RegisterType<IScheduleRecordParsingService, JsonScheduleRecordParsingService>();
+
+            container.RegisterType<IRecordEnumPropertyParser, AssociationCategoryParser>("AssociationCategoryParser");
+            container.RegisterType<IRecordEnumPropertyParser, AssociationTypeParser>("AssociationTypeParser");
+            container.RegisterType<IRecordEnumPropertyParser, BankHolidayRunningParser>("BankHolidayRunningParser");
+            container.RegisterType<IRecordEnumPropertyParser, CateringCodeParser>("CateringCodeParser");
+            container.RegisterType<IRecordEnumPropertyParser, DateIndicatorParser>("DateIndicatorParser");
+            container.RegisterType<IRecordEnumPropertyParser, ExtractUpdateTypeParser>("ExtractUpdateTypeParser");
+            container.RegisterType<IRecordEnumPropertyParser, LocationActivityParser>("LocationActivityParser");
+            container.RegisterType<IRecordEnumPropertyParser, OperatingCharacteristicsParser>("OperatingCharacteristicsParser");
+            container.RegisterType<IRecordEnumPropertyParser, PowerTypeParser>("PowerTypeParser");
+            container.RegisterType<IRecordEnumPropertyParser, ReservationDetailsParser>("ReservationDetailsParser");
+            container.RegisterType<IRecordEnumPropertyParser, RunningDaysParser>("RunningDaysParser");
+            container.RegisterType<IRecordEnumPropertyParser, ScheduleRecordTypeParser>("ScheduleRecordTypeParser");
+            container.RegisterType<IRecordEnumPropertyParser, SeatingClassParser>("SeatingClassParser");
+            container.RegisterType<IRecordEnumPropertyParser, ServiceBrandingParser>("ServiceBrandingParser");
+            container.RegisterType<IRecordEnumPropertyParser, SleeperDetailsParser>("SleeperDetailsParser");
+            container.RegisterType<IRecordEnumPropertyParser, StpIndicatorParser>("StpIndicatorParser");
+            container.RegisterType<IRecordEnumPropertyParser, TransactionTypeParser>("TransactionTypeParser");
+
+            container.RegisterType<IScheduleRecordParser, JsonAssociationRecordParser>("AssociationJsonRecordParser");
+            container.RegisterType<IScheduleRecordParser, JsonScheduleRecordParser>("ScheduleJsonRecordParser");
+            container.RegisterType<IScheduleRecordParser, JsonHeaderRecordParser>("HeaderJsonRecordParser");
+            container.RegisterType<IScheduleRecordParser, JsonTiplocRecordParser>("TiplocJsonRecordParser");
+
+            container.RegisterType<ITimingAllowanceParser, TimingAllowanceParser>();
+
+            container.RegisterType<IScheduleRecordStorageService, ScheduleRecordStorageService>();
+
+            container.RegisterType<IScheduleRecordStorageProcessor, AssociationAmendScheduleRecordStorageProcessor>("AssociationAmendScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, AssociationDeleteScheduleRecordStorageProcessor>("AssociationDeleteScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, AssociationInsertScheduleRecordStorageProcessor>("AssociationInsertScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, ScheduleAmendScheduleRecordStorageProcessor>("ScheduleAmendScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, ScheduleDeleteScheduleRecordStorageProcessor>("ScheduleDeleteScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, ScheduleInsertScheduleRecordStorageProcessor>("ScheduleInsertScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, TiplocAmendScheduleRecordStorageProcessor>("TiplocAmendScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, TiplocDeleteScheduleRecordStorageProcessor>("TiplocDeleteScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, TiplocInsertScheduleRecordStorageProcessor>("TiplocInsertScheduleRecordStorageProcessor");
+            container.RegisterType<IScheduleRecordStorageProcessor, HeaderScheduleRecordStorageProcessor>("HeaderScheduleRecordStorageProcessor");
+
+            container.RegisterType<IScheduleUnitOfWorkFactory, ScheduleUnitOfWorkFactory>();
+            container.RegisterType<IScheduleUnitOfWork, ScheduleUnitOfWork>();
+
+            container.RegisterType<IDbContextFactory<ScheduleContext>, ScheduleContextFactory>();
 
             return container;
         }

@@ -38,6 +38,9 @@ namespace OpenRailData.ScheduleParsing.Json
 
                     var key = jObject.Properties().Select(p => p.Name).ToList().First();
 
+                    if (key == "EOF")
+                        break;
+
                     response.Add(_recordParsers[key].ParseRecord(record));
                 }
                 catch (Exception ex)

@@ -13,19 +13,12 @@ namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers
             return new ReservationDetailsParser();
         }
 
-        [Fact]
-        public void throws_when_string_is_null()
-        {
-            var parser = BuildParser();
-
-            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
-        }
-
         [Theory]
         [InlineData("A", ReservationDetails.A)]
         [InlineData("E", ReservationDetails.E)]
         [InlineData("R", ReservationDetails.R)]
         [InlineData("S", ReservationDetails.S)]
+        [InlineData(null, ReservationDetails.None)]
         public void returns_expected_result_from_argument(string value, ReservationDetails expectedResult)
         {
             var parser = BuildParser();

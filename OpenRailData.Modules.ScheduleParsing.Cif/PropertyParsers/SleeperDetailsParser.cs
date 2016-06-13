@@ -11,7 +11,7 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif.PropertyParsers
         public Enum ParseProperty(string propertyString)
         {
             if (propertyString == null)
-                throw new ArgumentNullException(nameof(propertyString));
+                return SleeperDetails.NotAvailable;
 
             SleeperDetails result;
 

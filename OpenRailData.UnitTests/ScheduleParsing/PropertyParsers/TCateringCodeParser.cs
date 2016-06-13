@@ -12,14 +12,6 @@ namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers
             return new CateringCodeParser();
         }
 
-        [Fact]
-        public void throws_if_argument_string_is_null()
-        {
-            var parser = BuildParser();
-
-            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
-        }
-
         [Theory]
         [InlineData("C", CateringCode.C)]
         [InlineData("F", CateringCode.F)]
@@ -28,6 +20,7 @@ namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers
         [InlineData("P", CateringCode.P)]
         [InlineData("R", CateringCode.R)]
         [InlineData("T", CateringCode.T)]
+        [InlineData(null, CateringCode.None)]
         public void returns_expected_result(string value, CateringCode expectedResult)
         {
             var parser = BuildParser();

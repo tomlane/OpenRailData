@@ -13,12 +13,14 @@ namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers
             return new OperatingCharacteristicsParser();
         }
 
-        [Fact]
-        public void throws_when_argument_is_empty_string()
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void returns_zero_when_argument_is_empty_string_or_null(string argument)
         {
             var parser = BuildParser();
 
-            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+            Assert.Equal((OperatingCharacteristics)0, parser.ParseProperty(argument));
         }
 
         [Theory]

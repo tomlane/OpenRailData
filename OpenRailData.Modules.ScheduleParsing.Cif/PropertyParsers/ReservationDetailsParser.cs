@@ -10,9 +10,6 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif.PropertyParsers
 
         public Enum ParseProperty(string propertyString)
         {
-            if (propertyString == null)
-                throw new ArgumentNullException(nameof(propertyString));
-
             ReservationDetails result;
 
             var successful = Enum.TryParse(propertyString, true, out result);
