@@ -97,6 +97,7 @@
     <Compile Include="ScheduleParsing\RecordParsers\TIntermediateLocationCifRecordParser.cs" />
     <Compile Include="ScheduleParsing\RecordParsers\TJsonAssociationRecordParser.cs" />
     <Compile Include="ScheduleParsing\RecordParsers\TJsonHeaderRecordParser.cs" />
+    <Compile Include="ScheduleParsing\RecordParsers\TJsonScheduleRecordParser.cs" />
     <Compile Include="ScheduleParsing\RecordParsers\TJsonTiplocRecordParser.cs" />
     <Compile Include="ScheduleParsing\RecordParsers\TOriginLocationCifRecordParser.cs" />
     <Compile Include="ScheduleParsing\RecordParsers\TScheduleCifRecordParser.cs" />

@@ -13,11 +13,13 @@ namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers
         }
 
         [Fact]
-        public void throws_when_argument_is_null()
+        public void returns_not_running_when_argument_is_null()
         {
             var parser = BuildParser();
 
-            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+            var result = parser.ParseProperty(null);
+
+            Assert.Equal(BankHolidayRunning.X, result);
         }
 
         [Theory]

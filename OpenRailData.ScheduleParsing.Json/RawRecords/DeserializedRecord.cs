@@ -5,6 +5,14 @@ namespace OpenRailData.ScheduleParsing.Json.RawRecords
 {
     internal class DeserializedRecord
     {
+        [JsonProperty("JsonScheduleV1")]
+        public JsonSchedule Schedule { get; set; }
+    }
+
+    internal class JsonSchedule
+    {
+        [JsonProperty("CIF_train_uid")]
+        public string TrainUid { get; set; }
         [JsonProperty("CIF_bank_holiday_running")]
         public string BankHolidayRunning { get; set; }
         [JsonProperty("CIF_stp_indicator")]
@@ -36,7 +44,7 @@ namespace OpenRailData.ScheduleParsing.Json.RawRecords
         [JsonProperty("uic_code")]
         public string UicCode { get; set; }
     }
-
+    
     internal class ScheduleSegment
     {
         [JsonProperty("signalling_id")]
@@ -86,9 +94,13 @@ namespace OpenRailData.ScheduleParsing.Json.RawRecords
         [JsonProperty("tiploc_instance")]
         public string TiplocInstance { get; set; }
         [JsonProperty("departure")]
-        public string Departure { get; set; }
+        public string WorkingDeparture { get; set; }
+        [JsonProperty("arrival")]
+        public string WorkingArrival { get; set; }
         [JsonProperty("public_departure")]
         public string PublicDeparture { get; set; }
+        [JsonProperty("public_arrival")]
+        public string PublicArrival { get; set; }
         [JsonProperty("platform")]
         public string Platform { get; set; }
         [JsonProperty("line")]
@@ -99,5 +111,9 @@ namespace OpenRailData.ScheduleParsing.Json.RawRecords
         public string PathingAllowance { get; set; }
         [JsonProperty("performance_allowance")]
         public string PerformanceAllowance { get; set; }
+        [JsonProperty("pass")]
+        public string Pass { get; set; }
+        [JsonProperty("path")]
+        public string Path { get; set; }
     }
 }
