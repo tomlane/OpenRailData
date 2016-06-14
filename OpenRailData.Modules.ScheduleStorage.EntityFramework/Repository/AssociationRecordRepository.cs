@@ -34,7 +34,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
             var currentRecord = Find(x =>
                 x.MainTrainUid == record.MainTrainUid &&
                 x.AssocTrainUid == record.AssocTrainUid &&
-                x.DateFrom == record.DateFrom &&
+                x.StartDate == record.StartDate &&
                 x.StpIndicator == record.StpIndicator)
                 .FirstOrDefault();
 
@@ -56,7 +56,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
             var recordToDelete = Find(x => 
                 x.MainTrainUid == record.MainTrainUid && 
                 x.AssocTrainUid == record.AssocTrainUid &&
-                x.DateFrom == record.DateFrom && 
+                x.StartDate == record.StartDate && 
                 x.StpIndicator == record.StpIndicator)
                 .FirstOrDefault();
 

@@ -1,22 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Unity;
 using OpenRailData.BerthStepData;
 using OpenRailData.Configuration;
 using OpenRailData.DataFetcher;
 using OpenRailData.Modules.ScheduleFetching.Cif;
 using OpenRailData.Modules.ScheduleParsing.Cif;
-using OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers;
-using OpenRailData.Modules.ScheduleStorage.EntityFramework;
 using OpenRailData.Modules.ScheduleStorage.MongoDb;
-using OpenRailData.Modules.ScheduleStorageService.RecordStorageProcessor;
-using OpenRailData.Modules.ScheduleValidation;
 using OpenRailData.ScheduleFetching;
 using OpenRailData.ScheduleParsing;
-using OpenRailData.ScheduleParsing.PropertyParsers;
 using OpenRailData.ScheduleStorage;
-using OpenRailData.ScheduleValidation;
-using ScheduleUnitOfWork = OpenRailData.Modules.ScheduleStorage.MongoDb.UnitOfWork.ScheduleUnitOfWork;
-using ScheduleUnitOfWorkFactory = OpenRailData.Modules.ScheduleStorage.MongoDb.UnitOfWork.ScheduleUnitOfWorkFactory;
 
 namespace OpenRailData.ScheduleContainer
 {

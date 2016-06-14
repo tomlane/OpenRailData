@@ -14,11 +14,11 @@ namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers
         }
 
         [Fact]
-        public void throws_when_argument_is_null_or_whitespace()
+        public void returns_zero_when_argument_is_null_or_whitespace()
         {
             var parser = BuildParser();
 
-            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+            Assert.Equal((Days)0, parser.ParseProperty(null));
         }
 
         [Fact]

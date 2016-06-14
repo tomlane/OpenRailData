@@ -46,11 +46,10 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
                 ConnectionIndicator = string.Empty,
                 CourseIndicator = deserializedSchedule?.Schedule?.ScheduleSegment?.CourseIndicator ?? string.Empty,
                 DataSource = string.Empty,
-                DateRunsFrom = DateTime.ParseExact(deserializedSchedule?.Schedule?.ScheduleStartDate, "yyyy-MM-dd", CultureInfo.InvariantCulture),
-                DateRunsTo = DateTime.ParseExact(deserializedSchedule?.Schedule?.ScheduleEndDate, "yyyy-MM-dd", CultureInfo.InvariantCulture),
+                StartDate = DateTime.ParseExact(deserializedSchedule?.Schedule?.ScheduleStartDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal),
                 HeadCode = deserializedSchedule?.Schedule?.ScheduleSegment?.HeadCode,
                 OperatingCharacteristics = (OperatingCharacteristics)_propertyParsers["OperatingCharacteristics"].ParseProperty(deserializedSchedule?.Schedule?.ScheduleSegment?.OperatingCharacteristics),
-                OperatingCharacteristicsString = deserializedSchedule?.Schedule?.ScheduleSegment?.OperatingCharacteristics,
+                OperatingCharacteristicsString = deserializedSchedule?.Schedule?.ScheduleSegment?.OperatingCharacteristics ?? string.Empty,
                 PortionId = string.Empty,
                 PowerType = (PowerType)_propertyParsers["PowerType"].ParseProperty(deserializedSchedule?.Schedule?.ScheduleSegment?.PowerType),
                 Reservations = (ReservationDetails)_propertyParsers["ReservationDetails"].ParseProperty(deserializedSchedule?.Schedule?.ScheduleSegment?.Reservations),
@@ -60,15 +59,20 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
                 ServiceBranding = (ServiceBranding)_propertyParsers["ServiceBranding"].ParseProperty(deserializedSchedule?.Schedule?.ScheduleSegment?.ServiceBranding),
                 ServiceTypeFlags = 0,
                 Sleepers = (SleeperDetails)_propertyParsers["SleeperDetails"].ParseProperty(deserializedSchedule?.Schedule?.ScheduleSegment?.Sleepers),
-                TimingLoad = deserializedSchedule?.Schedule?.ScheduleSegment?.TimingLoad,
+                TimingLoad = deserializedSchedule?.Schedule?.ScheduleSegment?.TimingLoad ?? string.Empty,
                 TrainCategory = deserializedSchedule?.Schedule?.ScheduleSegment?.TrainCategory,
                 TrainIdentity = deserializedSchedule?.Schedule?.ScheduleSegment?.SignallingId,
                 TrainStatus = string.Empty,
-                UicCode = deserializedSchedule?.Schedule?.NewScheduleSegment?.UicCode
+                UicCode = deserializedSchedule?.Schedule?.NewScheduleSegment?.UicCode ?? string.Empty
             };
 
+            schedule.UniqueId = $"{schedule.TrainUid}{schedule.StartDate.ToString("yyyyMMdd")}{schedule.StpIndicator}";
+
+            if (!string.IsNullOrWhiteSpace(deserializedSchedule?.Schedule?.ScheduleEndDate))
+                schedule.EndDate = DateTime.ParseExact(deserializedSchedule?.Schedule?.ScheduleEndDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal);
+
             if (!string.IsNullOrWhiteSpace(deserializedSchedule?.Schedule?.ScheduleSegment?.Speed))
-                schedule.Speed = int.Parse(deserializedSchedule?.Schedule?.ScheduleSegment?.Speed);
+                schedule.Speed = int.Parse(deserializedSchedule.Schedule?.ScheduleSegment?.Speed);
 
             var scheduleLocations = deserializedSchedule?.Schedule?.ScheduleSegment?.ScheduleLocations;
 

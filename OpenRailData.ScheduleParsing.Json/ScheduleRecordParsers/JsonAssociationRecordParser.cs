@@ -36,15 +36,14 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
                 Location = deserializedAssociataion.Association.Location,
                 StpIndicator = (StpIndicator)_propertyParsers["StpIndicator"].ParseProperty(deserializedAssociataion.Association.StpIndicator),
                 DiagramType = "T",
-                DateFrom = DateTime.Parse(deserializedAssociataion.Association.AssocStartDate).ToUniversalTime(),
-                MainTrainUid = deserializedAssociataion.Association.MainTrainUid
+                StartDate = DateTime.Parse(deserializedAssociataion.Association.AssocStartDate).ToUniversalTime(),
+                MainTrainUid = deserializedAssociataion.Association.MainTrainUid,
+                BaseLocationSuffix = deserializedAssociataion.Association.BaseLocationSuffix ?? string.Empty,
+                AssocLocationSuffix = deserializedAssociataion.Association.AssocLocationSuffix ?? string.Empty,
             };
 
-            if (!string.IsNullOrWhiteSpace(deserializedAssociataion.Association.BaseLocationSuffix))
-                association.BaseLocationSuffix = deserializedAssociataion.Association.BaseLocationSuffix;
-
-            if (!string.IsNullOrWhiteSpace(deserializedAssociataion.Association.AssocLocationSuffix))
-                association.AssocLocationSuffix = deserializedAssociataion.Association.AssocLocationSuffix;
+            association.UniqueId =
+                $"{association.MainTrainUid}{association.AssocTrainUid}{association.StartDate.ToString("yyyyMMdd")}{association.DiagramType}{association.Location}{association.BaseLocationSuffix}{association.AssocLocationSuffix}{association.StpIndicator}";
 
             if (!string.IsNullOrWhiteSpace(deserializedAssociataion.Association.AssocDays))
                 association.AssocDays = (Days)_propertyParsers["RunningDays"].ParseProperty(deserializedAssociataion.Association.AssocDays);
@@ -56,7 +55,7 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
                 association.Category = (AssociationCategory)_propertyParsers["AssociationCategory"].ParseProperty(deserializedAssociataion.Association.Category);
 
             if (!string.IsNullOrWhiteSpace(deserializedAssociataion.Association.AssocEndDate))
-                association.DateTo = DateTime.Parse(deserializedAssociataion.Association.AssocEndDate).ToUniversalTime();
+                association.EndDate = DateTime.Parse(deserializedAssociataion.Association.AssocEndDate).ToUniversalTime();
 
             switch (deserializedAssociataion.Association.TransactionType)
             {

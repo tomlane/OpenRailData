@@ -5,22 +5,13 @@ using System.Linq;
 using Apache.NMS;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Linq;
-using OpenRailData.BerthStepData;
-using OpenRailData.DataFetcher;
 using OpenRailData.Logging;
+using OpenRailData.Modules.ScheduleStorage.EntityFramework;
 using OpenRailData.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Json;
-using OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers;
-using OpenRailData.ScheduleParsing.PropertyParsers;
 using OpenRailData.ScheduleStorage;
-using OpenRailData.TrainDescriberParsing;
-using OpenRailData.TrainDescriberParsing.Json;
-using OpenRailData.TrainDescriberParsing.Json.TrainDescriberMessageParsers;
 using OpenRailData.TrainMovementParsing;
-using OpenRailData.TrainMovementParsing.Json;
-using OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers;
 using OpenRailData.TrainMovementStorage;
-using OpenRailData.TrainMovementStorage.EntityFramework;
 using Serilog;
 
 namespace OpenRailData.TestConsole
@@ -38,7 +29,10 @@ namespace OpenRailData.TestConsole
 
             timer.Start();
 
-            var container = BuildContainer();
+            var container = JsonScheduleParsingContainerBuilder.Build();
+            container = SchedulePropertyParsersContainerBuilder.Build(container);
+            container = EntityFrameworkScheduleStorageContainerBuilder.Build(container);
+            container.RegisterInstance(ConsoleLoggerConfig.Create());
 
             _logger = container.Resolve<ILogger>();
 
@@ -56,6 +50,7 @@ namespace OpenRailData.TestConsole
 
             timer.Stop();
             
+            Console.WriteLine("Records stored");
             Console.WriteLine(timer.Elapsed);
 
             Console.ReadLine();
@@ -123,48 +118,6 @@ namespace OpenRailData.TestConsole
             {
                 _logger.Error(ex, string.Empty);
             }
-        }
-
-        private static UnityContainer BuildContainer()
-        {
-            var container = new UnityContainer();
-
-            container.RegisterType<IBerthStepDataProvider, BerthStepDataProvider>();
-
-            container.RegisterType<IDataFileFetcher, FileSystemDataFileFetcher>();
-            container.RegisterType<IDataFileDecompressor, GzipDataFileDecompressor>();
-
-            container.RegisterType<ITrainDescriberMessageParsingService, TrainDescriberMessageParsingService>();
-
-            container.RegisterType<ITrainDescriberMessageParser, BerthCancelMessageParser>("BerthCancelMessageParser");
-            container.RegisterType<ITrainDescriberMessageParser, BerthInterposeMessageParser>("BerthInterposeMessageParser");
-            container.RegisterType<ITrainDescriberMessageParser, BerthStepMessageParser>("BerthStepMessageParser");
-
-            container.RegisterType<ITrainDescriberMessageParser, SignallingUpdateMessageParser>("SignallingUpdateMessageParser");
-            container.RegisterType<ITrainDescriberMessageParser, SignallingRefreshMessageParser>("SignallingRefreshMessageParser");
-            container.RegisterType<ITrainDescriberMessageParser, SignallingRefreshFinishedMessageParser>("SignallingRefreshFinishedMessageParser");
-
-            container.RegisterType<ITrainMovementParsingService, TrainMovementParsingService>();
-
-            container.RegisterType<ITrainMovementMessageParser, TrainActivationMessageParser>("TrainActivationMessageParser");
-            container.RegisterType<ITrainMovementMessageParser, TrainCancellationMessageParser>("TrainCancellationMessageParser");
-            container.RegisterType<ITrainMovementMessageParser, TrainMovementMessageParser>("TrainMovementMessageParser");
-            container.RegisterType<ITrainMovementMessageParser, TrainReinstatementMessageParser>("TrainReinstatementMessageParser");
-            container.RegisterType<ITrainMovementMessageParser, ChangeOfOriginMessageParser>("ChangeOfOriginMessageParser");
-            container.RegisterType<ITrainMovementMessageParser, ChangeOfIdentityMessageParser>("ChangeOfIdentityMessageParser");
-
-            container.RegisterType<ITrainMovementStorageService, TrainMovementStorageService>();
-            
-            
-
-            container.RegisterInstance<ILogger>(ConsoleLoggerConfig.Create());
-
-            // schedule json testing
-            
-
-            
-
-            return container;
         }
     }
 }

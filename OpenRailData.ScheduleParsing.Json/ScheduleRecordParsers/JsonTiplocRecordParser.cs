@@ -18,12 +18,12 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
 
             var tiploc = new TiplocRecord
             {
-                TiplocCode = deserialziedTiploc.Tiploc.TiplocCode,
-                Stanox = deserialziedTiploc.Tiploc.Stanox,
-                CrsCode = deserialziedTiploc.Tiploc.CrsCode,
-                Nalco = deserialziedTiploc.Tiploc.Nalco,
-                TpsDescription = deserialziedTiploc.Tiploc.TpsDescription,
-                CapriDescription = deserialziedTiploc.Tiploc.Description
+                TiplocCode = deserialziedTiploc.Tiploc.TiplocCode ?? string.Empty,
+                Stanox = deserialziedTiploc.Tiploc.Stanox ?? string.Empty,
+                CrsCode = deserialziedTiploc.Tiploc.CrsCode ?? string.Empty,
+                Nalco = deserialziedTiploc.Tiploc.Nalco ?? string.Empty,
+                TpsDescription = deserialziedTiploc.Tiploc.TpsDescription ?? string.Empty,
+                CapriDescription = deserialziedTiploc.Tiploc.Description ?? string.Empty
             };
 
             switch (deserialziedTiploc.Tiploc.TransactionType)

@@ -15,8 +15,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities
         public string LastFileRef { get; set; } = string.Empty;
         public ExtractUpdateType ExtractUpdateType { get; set; }
         public string CifSoftwareVersion { get; set; } = string.Empty;
-        public DateTime UserExtractStartDate { get; set; }
-        public DateTime UserExtractEndDate { get; set; }
+        public DateTime? UserExtractStartDate { get; set; }
+        public DateTime? UserExtractEndDate { get; set; }
         public string MainFrameUser { get; set; } = string.Empty;
         public DateTime MainFrameExtractDate { get; set; }
 

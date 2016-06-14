@@ -270,9 +270,9 @@
     <Compile Include="Entities\TiplocRecordEntity.cs" />
     <Compile Include="EntityFrameworkScheduleStorageContainerBuilder.cs" />
     <Compile Include="IScheduleDatabase.cs" />
-    <Compile Include="Migrations\20160528151925_InitialMigration.cs" />
-    <Compile Include="Migrations\20160528151925_InitialMigration.designer.cs">
-      <DependentUpon>20160528151925_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20160614203325_InitialMigration.cs" />
+    <Compile Include="Migrations\20160614203325_InitialMigration.designer.cs">
+      <DependentUpon>20160614203325_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ScheduleContextModelSnapshot.cs" />
     <Compile Include="Repository\AssociationRecordRepository.cs" />

@@ -2,7 +2,7 @@
 using Microsoft.Practices.Unity;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Domain.ScheduleRecords.Enums;
-using OpenRailData.ScheduleContainer;
+using OpenRailData.Modules.ScheduleParsing.Cif;
 using OpenRailData.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers;
 using Xunit;
@@ -16,7 +16,8 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
 
         public TJsonAssociationRecordParser()
         {
-            _container = CifParserIocContainerBuilder.Build();
+            _container = SchedulePropertyParsersContainerBuilder.Build();
+            _container = CifScheduleParsingContainerBuilder.Build(_container);
 
             _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
         }
@@ -40,15 +41,16 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
                 AssocTrainUid = "C40607",
                 BaseLocationSuffix = string.Empty,
                 Category = AssociationCategory.NP,
-                DateFrom = new DateTime(2016, 5, 15),
+                StartDate = new DateTime(2016, 5, 15),
                 DateIndicator = DateIndicator.S,
-                DateTo = new DateTime(2016, 12, 4),
+                EndDate = new DateTime(2016, 12, 4),
                 DiagramType = "T",
                 Location = "BRNSTPL",
                 MainTrainUid = "C40300",
                 RecordIdentity = ScheduleRecordType.AAN,
                 StpIndicator = StpIndicator.P,
-                AssocType = AssociationType.None
+                AssocType = AssociationType.None,
+                UniqueId = "C40300C4060720160515TBRNSTPLP"
             };
 
             var result = parser.ParseRecord(message);
@@ -68,11 +70,12 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
                 RecordIdentity = ScheduleRecordType.AAD,
                 MainTrainUid = "L27500",
                 AssocTrainUid = "L29154",
-                DateFrom = new DateTime(2016, 6, 6),
+                StartDate = new DateTime(2016, 6, 6),
                 Location = "CLCHSTR",
                 BaseLocationSuffix = string.Empty,
                 DiagramType = "T",
-                StpIndicator = StpIndicator.C
+                StpIndicator = StpIndicator.C,
+                UniqueId = "L27500L2915420160606TCLCHSTRC"
             };
 
             var result = parser.ParseRecord(message);

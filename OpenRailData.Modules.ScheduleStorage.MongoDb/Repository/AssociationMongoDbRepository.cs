@@ -43,7 +43,7 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
             _collection.UpdateOne(x =>
                 x.MainTrainUid == record.MainTrainUid &&
                 x.AssocTrainUid == record.AssocTrainUid &&
-                x.DateFrom == record.DateFrom &&
+                x.DateFrom == record.StartDate &&
                 x.StpIndicator == record.StpIndicator,
                 new ObjectUpdateDefinition<AssociationDocument>(document));
         }
@@ -56,7 +56,7 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
             _collection.DeleteOne(x =>
                 x.MainTrainUid == record.MainTrainUid &&
                 x.AssocTrainUid == record.AssocTrainUid &&
-                x.DateFrom == record.DateFrom &&
+                x.DateFrom == record.StartDate &&
                 x.StpIndicator == record.StpIndicator);
         }
 
@@ -90,7 +90,7 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
             await _collection.UpdateOneAsync(x =>
                 x.MainTrainUid == record.MainTrainUid &&
                 x.AssocTrainUid == record.AssocTrainUid &&
-                x.DateFrom == record.DateFrom &&
+                x.DateFrom == record.StartDate &&
                 x.StpIndicator == record.StpIndicator,
                 new ObjectUpdateDefinition<AssociationDocument>(document));
         }
@@ -103,7 +103,7 @@ namespace OpenRailData.Modules.ScheduleStorage.MongoDb.Repository
             await _collection.DeleteOneAsync(x =>
                 x.MainTrainUid == record.MainTrainUid &&
                 x.AssocTrainUid == record.AssocTrainUid &&
-                x.DateFrom == record.DateFrom &&
+                x.DateFrom == record.StartDate &&
                 x.StpIndicator == record.StpIndicator);
         }
     }

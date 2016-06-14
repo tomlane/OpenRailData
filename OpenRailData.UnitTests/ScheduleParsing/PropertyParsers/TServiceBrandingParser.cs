@@ -14,11 +14,11 @@ namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers
         }
 
         [Fact]
-        public void throws_when_argument_is_invalid()
+        public void returns_none_when_argument_is_null()
         {
             var parser = BuildParser();
 
-            Assert.Throws<ArgumentNullException>(() => parser.ParseProperty(null));
+            Assert.Equal(ServiceBranding.None, parser.ParseProperty(null));
         }
 
         [Theory]

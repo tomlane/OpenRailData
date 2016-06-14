@@ -31,14 +31,5 @@ namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers
             var result = parser.ParseProperty(value);
             Assert.Equal(expectedResult, result);
         }
-
-        [Fact]
-        public void returns_expected_running_value()
-        {
-            var parser = BuildParser();
-
-            var result = parser.ParseProperty(string.Empty);
-            Assert.Equal(BankHolidayRunning.R, result);
-        }
     }
 }

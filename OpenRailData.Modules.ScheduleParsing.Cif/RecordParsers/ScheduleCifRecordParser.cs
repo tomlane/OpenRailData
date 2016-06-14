@@ -35,7 +35,7 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers
             {
                 RecordIdentity = (ScheduleRecordType)_enumPropertyParsers["ScheduleRecordType"].ParseProperty(recordString.Substring(0, 3)),
                 TrainUid = recordString.Substring(3, 6),
-                DateRunsTo = _dateTimeParser.ParseDateTime(new DateTimeParserRequest
+                EndDate = _dateTimeParser.ParseDateTime(new DateTimeParserRequest
                 {
                     DateTimeFormat = "yyMMdd",
                     DateTimeString = recordString.Substring(15, 6)
@@ -75,13 +75,13 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers
             });
 
             if (dateRunsFromResult.HasValue)
-                record.DateRunsFrom = dateRunsFromResult.Value;
+                record.StartDate = dateRunsFromResult.Value;
             else
             {
                 throw new ArgumentException("Failed to parse Date Runs From in Basic Schedule Record");
             }
 
-            record.UniqueId = record.TrainUid + recordString.Substring(9, 6) + record.StpIndicator;
+            record.UniqueId = $"{record.TrainUid}{recordString.Substring(9, 6)}{record.StpIndicator}";
 
             if (record.TrainCategory == "BR" || record.TrainCategory == "BS")
             {

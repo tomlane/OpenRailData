@@ -35,7 +35,7 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers
                 RecordIdentity = (ScheduleRecordType)_enumPropertyParsers["ScheduleRecordType"].ParseProperty(recordString.Substring(0, 3)),
                 MainTrainUid = recordString.Substring(3, 6),
                 AssocTrainUid = recordString.Substring(9, 6),
-                DateTo = _dateTimeParser.ParseDateTime(new DateTimeParserRequest
+                EndDate = _dateTimeParser.ParseDateTime(new DateTimeParserRequest
                 {
                     DateTimeFormat = "yyMMdd",
                     DateTimeString = recordString.Substring(21, 6)
@@ -57,7 +57,7 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers
             });
 
             if (dateFromResult.HasValue)
-                record.DateFrom = dateFromResult.Value;
+                record.StartDate = dateFromResult.Value;
             else
                 throw new ArgumentException("Failed to parse Date From for Association record.");
 

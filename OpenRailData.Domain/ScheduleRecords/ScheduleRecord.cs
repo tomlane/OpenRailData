@@ -10,11 +10,11 @@ namespace OpenRailData.Domain.ScheduleRecords
         public ScheduleRecordType RecordIdentity { get; set; }
         public string TrainUid { get; set; } = string.Empty;
         public string UniqueId { get; set; } = string.Empty;
-        public DateTime DateRunsFrom { get; set; }
-        public DateTime? DateRunsTo { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public Days RunningDays { get; set; }
         
-        public BankHolidayRunning BankHolidayRunning { get; set; }
+        public BankHolidayRunning BankHolidayRunning { get; set; } = BankHolidayRunning.X;
         public string TrainStatus { get; set; } = string.Empty;
         public string TrainCategory { get; set; } = string.Empty;
         public string TrainIdentity { get; set; } = string.Empty;
@@ -22,20 +22,20 @@ namespace OpenRailData.Domain.ScheduleRecords
         public string CourseIndicator { get; set; } = string.Empty;
         public string TrainServiceCode { get; set; } = string.Empty;
         public string PortionId { get; set; } = string.Empty;
-        public PowerType PowerType { get; set; }
+        public PowerType PowerType { get; set; } = PowerType.None;
         public string TimingLoad { get; set; } = string.Empty;
         public int Speed { get; set; }
         public string OperatingCharacteristicsString { get; set; } = string.Empty;
         public OperatingCharacteristics OperatingCharacteristics { get; set; }
-        public SeatingClass SeatingClass { get; set; }
-        public SleeperDetails Sleepers { get; set; }
+        public SeatingClass SeatingClass { get; set; } = SeatingClass.B;
+        public SleeperDetails Sleepers { get; set; } = SleeperDetails.NotAvailable;
         public ReservationDetails Reservations { get; set; }
         public string ConnectionIndicator { get; set; } = string.Empty;
-        public CateringCode CateringCode { get; set; }
-        public ServiceBranding ServiceBranding { get; set; }
+        public CateringCode CateringCode { get; set; } = CateringCode.None;
+        public ServiceBranding ServiceBranding { get; set; } = ServiceBranding.None;
         public StpIndicator StpIndicator { get; set; }
 
-        public ServiceTypeFlags ServiceTypeFlags { get; set; } = ServiceTypeFlags.Train;
+        public ServiceTypeFlags ServiceTypeFlags { get; set; } = 0;
 
         public string UicCode { get; set; } = string.Empty;
         public string AtocCode { get; set; } = string.Empty;
@@ -66,8 +66,8 @@ namespace OpenRailData.Domain.ScheduleRecords
                 string.Equals(ConnectionIndicator, other.ConnectionIndicator) && 
                 string.Equals(CourseIndicator, other.CourseIndicator) && 
                 string.Equals(DataSource, other.DataSource) && 
-                DateRunsFrom.Equals(other.DateRunsFrom) && 
-                DateRunsTo.Equals(other.DateRunsTo) && 
+                StartDate.Equals(other.StartDate) && 
+                EndDate.Equals(other.EndDate) && 
                 string.Equals(HeadCode, other.HeadCode) && 
                 OperatingCharacteristics == other.OperatingCharacteristics && 
                 string.Equals(OperatingCharacteristicsString, other.OperatingCharacteristicsString) && 
@@ -114,8 +114,8 @@ namespace OpenRailData.Domain.ScheduleRecords
                 hashCode = (hashCode*397) ^ (ConnectionIndicator != null ? ConnectionIndicator.GetHashCode() : 0);
                 hashCode = (hashCode*397) ^ (CourseIndicator != null ? CourseIndicator.GetHashCode() : 0);
                 hashCode = (hashCode*397) ^ (DataSource != null ? DataSource.GetHashCode() : 0);
-                hashCode = (hashCode*397) ^ DateRunsFrom.GetHashCode();
-                hashCode = (hashCode*397) ^ DateRunsTo.GetHashCode();
+                hashCode = (hashCode*397) ^ StartDate.GetHashCode();
+                hashCode = (hashCode*397) ^ EndDate.GetHashCode();
                 hashCode = (hashCode*397) ^ (HeadCode != null ? HeadCode.GetHashCode() : 0);
                 hashCode = (hashCode*397) ^ (int) OperatingCharacteristics;
                 hashCode = (hashCode*397) ^ (OperatingCharacteristicsString != null ? OperatingCharacteristicsString.GetHashCode() : 0);
@@ -146,7 +146,7 @@ namespace OpenRailData.Domain.ScheduleRecords
 
         public override string ToString()
         {
-            return $"RecordIdentity: {RecordIdentity}, TrainUid: {TrainUid}, UniqueId: {UniqueId}, DateRunsFrom: {DateRunsFrom}, DateRunsTo: {DateRunsTo}, RunningDays: {RunningDays}, BankHolidayRunning: {BankHolidayRunning}, TrainStatus: {TrainStatus}, TrainCategory: {TrainCategory}, TrainIdentity: {TrainIdentity}, HeadCode: {HeadCode}, CourseIndicator: {CourseIndicator}, TrainServiceCode: {TrainServiceCode}, PortionId: {PortionId}, PowerType: {PowerType}, TimingLoad: {TimingLoad}, Speed: {Speed}, OperatingCharacteristicsString: {OperatingCharacteristicsString}, OperatingCharacteristics: {OperatingCharacteristics}, SeatingClass: {SeatingClass}, Sleepers: {Sleepers}, Reservations: {Reservations}, ConnectionIndicator: {ConnectionIndicator}, CateringCode: {CateringCode}, ServiceBranding: {ServiceBranding}, StpIndicator: {StpIndicator}, ServiceTypeFlags: {ServiceTypeFlags}, UicCode: {UicCode}, AtocCode: {AtocCode}, AtsCode: {AtsCode}, Rsid: {Rsid}, DataSource: {DataSource}, ScheduleLocations: {ScheduleLocations}";
+            return $"RecordIdentity: {RecordIdentity}, TrainUid: {TrainUid}, UniqueId: {UniqueId}, DateRunsFrom: {StartDate}, DateRunsTo: {EndDate}, RunningDays: {RunningDays}, BankHolidayRunning: {BankHolidayRunning}, TrainStatus: {TrainStatus}, TrainCategory: {TrainCategory}, TrainIdentity: {TrainIdentity}, HeadCode: {HeadCode}, CourseIndicator: {CourseIndicator}, TrainServiceCode: {TrainServiceCode}, PortionId: {PortionId}, PowerType: {PowerType}, TimingLoad: {TimingLoad}, Speed: {Speed}, OperatingCharacteristicsString: {OperatingCharacteristicsString}, OperatingCharacteristics: {OperatingCharacteristics}, SeatingClass: {SeatingClass}, Sleepers: {Sleepers}, Reservations: {Reservations}, ConnectionIndicator: {ConnectionIndicator}, CateringCode: {CateringCode}, ServiceBranding: {ServiceBranding}, StpIndicator: {StpIndicator}, ServiceTypeFlags: {ServiceTypeFlags}, UicCode: {UicCode}, AtocCode: {AtocCode}, AtsCode: {AtsCode}, Rsid: {Rsid}, DataSource: {DataSource}, ScheduleLocations: {ScheduleLocations}";
         }
     }
 }

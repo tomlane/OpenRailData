@@ -2,8 +2,8 @@
 using Microsoft.Practices.Unity;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Domain.ScheduleRecords.Enums;
+using OpenRailData.Modules.ScheduleParsing.Cif;
 using OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers;
-using OpenRailData.ScheduleContainer;
 using OpenRailData.ScheduleParsing;
 using Xunit;
 
@@ -17,7 +17,8 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
 
         public TAssociationCifRecordParser()
         {
-            _container = CifParserIocContainerBuilder.Build();
+            _container = SchedulePropertyParsersContainerBuilder.Build();
+            _container = CifScheduleParsingContainerBuilder.Build(_container);
 
             _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
             _dateTimeParser = _container.Resolve<IDateTimeParser>();
@@ -38,8 +39,8 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
                 RecordIdentity = ScheduleRecordType.AAR,
                 MainTrainUid = "W01400",
                 AssocTrainUid = "W00570",
-                DateFrom = new DateTime(2015, 12, 13),
-                DateTo = new DateTime(2016, 2, 7),
+                StartDate = new DateTime(2015, 12, 13),
+                EndDate = new DateTime(2016, 2, 7),
                 AssocDays = Days.Sunday,
                 Category = AssociationCategory.None,
                 DateIndicator = DateIndicator.None,
@@ -66,8 +67,8 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
                 RecordIdentity = ScheduleRecordType.AAN,
                 MainTrainUid = "L82468",
                 AssocTrainUid = "L83922",
-                DateFrom = new DateTime(2015, 12, 19),
-                DateTo = new DateTime(2016, 1, 2),
+                StartDate = new DateTime(2015, 12, 19),
+                EndDate = new DateTime(2016, 1, 2),
                 AssocDays = Days.Saturday,
                 Category = AssociationCategory.None,
                 DateIndicator = DateIndicator.None,
@@ -94,8 +95,8 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
                 RecordIdentity = ScheduleRecordType.AAD,
                 MainTrainUid = "L82468",
                 AssocTrainUid = "L83922",
-                DateFrom = new DateTime(2015, 12, 26),
-                DateTo = null,
+                StartDate = new DateTime(2015, 12, 26),
+                EndDate = null,
                 Category = AssociationCategory.None,
                 DateIndicator = DateIndicator.None,
                 Location = "CLCHSTR",

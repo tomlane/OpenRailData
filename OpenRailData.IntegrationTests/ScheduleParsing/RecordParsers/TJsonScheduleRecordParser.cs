@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Practices.Unity;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Domain.ScheduleRecords.Enums;
-using OpenRailData.ScheduleContainer;
+using OpenRailData.Modules.ScheduleParsing.Cif;
 using OpenRailData.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers;
 using Xunit;
@@ -18,7 +18,8 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
 
         public TJsonScheduleRecordParser()
         {
-            _container = CifParserIocContainerBuilder.Build();
+            _container = SchedulePropertyParsersContainerBuilder.Build();
+            _container = CifScheduleParsingContainerBuilder.Build(_container);
 
             _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
             _timingAllowanceParser = _container.Resolve<ITimingAllowanceParser>();
@@ -110,8 +111,8 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
                 ConnectionIndicator = string.Empty,
                 CourseIndicator = "1",
                 DataSource = string.Empty,
-                DateRunsFrom = new DateTime(2016, 5, 20),
-                DateRunsTo = new DateTime(2016, 12, 9),
+                StartDate = new DateTime(2016, 5, 20),
+                EndDate = new DateTime(2016, 12, 9),
                 HeadCode = "1218",
                 OperatingCharacteristics = OperatingCharacteristics.Q,
                 OperatingCharacteristicsString = "Q",
@@ -131,6 +132,27 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
                 TrainStatus = string.Empty,
                 UicCode = string.Empty,
                 UniqueId = string.Empty
+            };
+
+            var parser = BuildParser();
+
+            var result = parser.ParseRecord(message);
+
+            Assert.Equal(schedule, result);
+        }
+
+        [Fact(Skip = "Need to check list comparison")]
+        public void parse_record_parses_delete_schedule_record_correctly()
+        {
+            var message = "{\"JsonScheduleV1\":{\"CIF_train_uid\":\"H32365\",\"schedule_start_date\":\"2016-06-17\",\"CIF_stp_indicator\":\"C\",\"transaction_type\":\"Delete\"}}";
+
+            var schedule = new ScheduleRecord
+            {
+                TrainUid = "H32365",
+                StartDate = new DateTime(2016, 6, 17),
+                StpIndicator = StpIndicator.C,
+                RecordIdentity = ScheduleRecordType.BSD,
+                UniqueId = "H3236520160617C"
             };
 
             var parser = BuildParser();

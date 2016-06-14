@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
@@ -22,14 +23,15 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
                     AssocType = table.Column<int>(nullable: false),
                     BaseLocationSuffix = table.Column<string>(nullable: true),
                     Category = table.Column<int>(nullable: false),
-                    DateFrom = table.Column<DateTime>(nullable: false),
                     DateIndicator = table.Column<int>(nullable: false),
-                    DateTo = table.Column<DateTime>(nullable: true),
                     DiagramType = table.Column<string>(nullable: true),
+                    EndDate = table.Column<DateTime>(nullable: true),
                     Location = table.Column<string>(nullable: true),
                     MainTrainUid = table.Column<string>(nullable: true),
                     RecordIdentity = table.Column<int>(nullable: false),
-                    StpIndicator = table.Column<int>(nullable: false)
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    StpIndicator = table.Column<int>(nullable: false),
+                    UniqueId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,8 +54,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
                     MainFrameUser = table.Column<string>(nullable: true),
                     RecordIdentity = table.Column<int>(nullable: false),
                     TimeOfExtract = table.Column<string>(nullable: true),
-                    UserExtractEndDate = table.Column<DateTime>(nullable: false),
-                    UserExtractStartDate = table.Column<DateTime>(nullable: false)
+                    UserExtractEndDate = table.Column<DateTime>(nullable: true),
+                    UserExtractStartDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,8 +75,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
                     ConnectionIndicator = table.Column<string>(nullable: true),
                     CourseIndicator = table.Column<string>(nullable: true),
                     DataSource = table.Column<string>(nullable: true),
-                    DateRunsFrom = table.Column<DateTime>(nullable: false),
-                    DateRunsTo = table.Column<DateTime>(nullable: true),
+                    EndDate = table.Column<DateTime>(nullable: true),
                     HeadCode = table.Column<string>(nullable: true),
                     OperatingCharacteristics = table.Column<int>(nullable: false),
                     OperatingCharacteristicsString = table.Column<string>(nullable: true),
@@ -89,6 +90,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
                     ServiceTypeFlags = table.Column<int>(nullable: false),
                     Sleepers = table.Column<int>(nullable: false),
                     Speed = table.Column<int>(nullable: false),
+                    StartDate = table.Column<DateTime>(nullable: false),
                     StpIndicator = table.Column<int>(nullable: false),
                     TimingLoad = table.Column<string>(nullable: true),
                     TrainCategory = table.Column<string>(nullable: true),

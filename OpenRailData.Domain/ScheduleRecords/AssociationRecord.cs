@@ -8,8 +8,8 @@ namespace OpenRailData.Domain.ScheduleRecords
         public ScheduleRecordType RecordIdentity { get; set; }
         public string MainTrainUid { get; set; } = string.Empty;
         public string AssocTrainUid { get; set; } = string.Empty;
-        public DateTime DateFrom { get; set; }
-        public DateTime? DateTo { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public Days AssocDays { get; set; }
         public AssociationCategory Category { get; set; }
         public DateIndicator DateIndicator { get; set; }
@@ -19,6 +19,7 @@ namespace OpenRailData.Domain.ScheduleRecords
         public string DiagramType { get; set; } = string.Empty;
         public AssociationType AssocType { get; set; }
         public StpIndicator StpIndicator { get; set; }
+        public string UniqueId { get; set; } = string.Empty;
 
         protected bool Equals(AssociationRecord other)
         {
@@ -28,14 +29,15 @@ namespace OpenRailData.Domain.ScheduleRecords
                    AssocType == other.AssocType &&
                    string.Equals(BaseLocationSuffix, other.BaseLocationSuffix) &&
                    Category == other.Category &&
-                   DateFrom.Equals(other.DateFrom) &&
+                   StartDate.Equals(other.StartDate) &&
                    DateIndicator == other.DateIndicator &&
-                   DateTo.Equals(other.DateTo) &&
+                   EndDate.Equals(other.EndDate) &&
                    string.Equals(DiagramType, other.DiagramType) &&
                    string.Equals(Location, other.Location) &&
                    string.Equals(MainTrainUid, other.MainTrainUid) &&
                    RecordIdentity == other.RecordIdentity &&
-                   StpIndicator == other.StpIndicator;
+                   StpIndicator == other.StpIndicator &&
+                   string.Equals(UniqueId, other.UniqueId);
         }
 
         public override bool Equals(object obj)
@@ -60,9 +62,9 @@ namespace OpenRailData.Domain.ScheduleRecords
                 hashCode = (hashCode * 397) ^ (int)AssocType;
                 hashCode = (hashCode * 397) ^ (BaseLocationSuffix != null ? BaseLocationSuffix.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (int)Category;
-                hashCode = (hashCode * 397) ^ DateFrom.GetHashCode();
+                hashCode = (hashCode * 397) ^ StartDate.GetHashCode();
                 hashCode = (hashCode * 397) ^ (int)DateIndicator;
-                hashCode = (hashCode * 397) ^ DateTo.GetHashCode();
+                hashCode = (hashCode * 397) ^ EndDate.GetHashCode();
                 hashCode = (hashCode * 397) ^ (DiagramType != null ? DiagramType.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Location != null ? Location.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (MainTrainUid != null ? MainTrainUid.GetHashCode() : 0);
@@ -74,7 +76,7 @@ namespace OpenRailData.Domain.ScheduleRecords
 
         public override string ToString()
         {
-            return $"AssocDays: {AssocDays}, AssocLocationSuffix: {AssocLocationSuffix}, AssocTrainUid: {AssocTrainUid}, AssocType: {AssocType}, BaseLocationSuffix: {BaseLocationSuffix}, Category: {Category}, DateFrom: {DateFrom}, DateIndicator: {DateIndicator}, DateTo: {DateTo}, DiagramType: {DiagramType}, Location: {Location}, MainTrainUid: {MainTrainUid}, RecordIdentity: {RecordIdentity}, StpIndicator: {StpIndicator}";
+            return $"RecordIdentity: {RecordIdentity}, MainTrainUid: {MainTrainUid}, AssocTrainUid: {AssocTrainUid}, DateFrom: {StartDate}, DateTo: {EndDate}, AssocDays: {AssocDays}, Category: {Category}, DateIndicator: {DateIndicator}, Location: {Location}, BaseLocationSuffix: {BaseLocationSuffix}, AssocLocationSuffix: {AssocLocationSuffix}, DiagramType: {DiagramType}, AssocType: {AssocType}, StpIndicator: {StpIndicator}, UniqueId: {UniqueId}";
         }
     }
 }
