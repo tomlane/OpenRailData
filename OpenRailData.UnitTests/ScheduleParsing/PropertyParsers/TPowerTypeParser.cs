@@ -1,6 +1,5 @@
-﻿using System;
-using OpenRailData.Domain.ScheduleRecords.Enums;
-using OpenRailData.Modules.ScheduleParsing.Cif.PropertyParsers;
+﻿using OpenRailData.Domain.ScheduleRecords.Enums;
+using OpenRailData.ScheduleParsing.PropertyParsers;
 using Xunit;
 
 namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers

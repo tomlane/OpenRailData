@@ -7,7 +7,6 @@ using OpenRailData.ScheduleContainer;
 using OpenRailData.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers;
 using Xunit;
-using Xunit.Sdk;
 
 namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
 {
