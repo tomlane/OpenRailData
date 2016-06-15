@@ -1,26 +1,16 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using Apache.NMS;
 using Microsoft.Practices.Unity;
-using Newtonsoft.Json.Linq;
 using OpenRailData.Logging;
-using OpenRailData.Modules.ScheduleStorage.EntityFramework;
-using OpenRailData.ScheduleParsing;
-using OpenRailData.ScheduleParsing.Json;
-using OpenRailData.ScheduleStorage;
-using OpenRailData.TrainMovementParsing;
-using OpenRailData.TrainMovementStorage;
+using OpenRailData.TrainMovementParsing.Json;
+using OpenRailData.TrainMovementStorage.EntityFramework;
 using Serilog;
 
 namespace OpenRailData.TestConsole
 {
     internal static class Program
     {
-        private static ITrainMovementParsingService _movementParsingService;
-        private static ITrainMovementStorageService _movementStorageService;
-
         private static ILogger _logger;
 
         static void Main(string[] args)
@@ -29,56 +19,33 @@ namespace OpenRailData.TestConsole
 
             timer.Start();
 
-            var container = JsonScheduleParsingContainerBuilder.Build();
-            container = SchedulePropertyParsersContainerBuilder.Build(container);
-            container = EntityFrameworkScheduleStorageContainerBuilder.Build(container);
+            var container = JsonTrainMovementParserContainerBuilder.Build();
+            container = EntityFrameworkTrainMovementStorageContainerBuilder.Build(container);
             container.RegisterInstance(ConsoleLoggerConfig.Create());
 
             _logger = container.Resolve<ILogger>();
 
-            var scheduleParsingService = container.Resolve<IScheduleRecordParsingService>();
-            var scheduleStorageService = container.Resolve<IScheduleRecordStorageService>();
+            IConnectionFactory factory = new NMSConnectionFactory("stomp:failover:tcp://datafeeds.networkrail.co.uk:61618");
 
-            var records = File.ReadLines(@"C:\RailData\JSON Extracts\CIF_EF_TOC_FULL_DAILY%2Ftoc-full");
+            IConnection connection = factory.CreateConnection("username", "password");
 
-            var result = scheduleParsingService.ParseScheduleRecords(records);
+            connection.ConnectionInterruptedListener += ConnectionInterruptedHandler;
+            connection.ConnectionResumedListener += ConnectionResumedHandler;
+            connection.ExceptionListener += ExceptionHandler;
 
-            Console.WriteLine("Records Parsed");
-            Console.WriteLine(timer.Elapsed);
+            ISession session = connection.CreateSession();
 
-            scheduleStorageService.StoreScheduleRecords(result);
+            ITopic movementTopic = session.GetTopic("topic://TRAIN_MVT_ALL_TOC");
+            IMessageConsumer movementConsumer = session.CreateDurableConsumer(movementTopic, "rde-movements", null, false);
 
-            timer.Stop();
-            
-            Console.WriteLine("Records stored");
-            Console.WriteLine(timer.Elapsed);
+            connection.Start();
+            movementConsumer.Listener += OnMovementMessage;
+
+            Console.WriteLine("Consumer started, waiting for messages... (Press ENTER to stop.)");
 
             Console.ReadLine();
-            
-            //_movementParsingService = container.Resolve<ITrainMovementParsingService>();
-            //_movementStorageService = container.Resolve<ITrainMovementStorageService>();
 
-            //IConnectionFactory factory = new NMSConnectionFactory("stomp:failover:tcp://datafeeds.networkrail.co.uk:61618");
-
-            //IConnection connection = factory.CreateConnection("username", "password");
-
-            //connection.ConnectionInterruptedListener += ConnectionInterruptedHandler;
-            //connection.ConnectionResumedListener += ConnectionResumedHandler;
-            //connection.ExceptionListener += ExceptionHandler;
-
-            //ISession session = connection.CreateSession();
-
-            //ITopic movementTopic = session.GetTopic("topic://TRAIN_MVT_ALL_TOC");
-            //IMessageConsumer movementConsumer = session.CreateDurableConsumer(movementTopic, "rde-movements", null, false);
-
-            //connection.Start();
-            //movementConsumer.Listener += OnMovementMessage;
-
-            //Console.WriteLine("Consumer started, waiting for messages... (Press ENTER to stop.)");
-
-            //Console.ReadLine();
-
-            //connection.Close();
+            connection.Close();
         }
 
         private static void ExceptionHandler(Exception exception)
@@ -96,7 +63,7 @@ namespace OpenRailData.TestConsole
             _logger.Warning("Connection to Network Rail Data Feeds interrupted.");
         }
 
-        private static async void OnMovementMessage(IMessage message)
+        private static void OnMovementMessage(IMessage message)
         {
             try
             {
@@ -106,13 +73,7 @@ namespace OpenRailData.TestConsole
 
                 var delay = DateTime.Now - msg.NMSTimestamp;
 
-                _logger.Debug("Current message delivery delay: {delay}", delay);
-                
-                var array = JArray.Parse(msg.Text).Children().Select(jToken => jToken.ToString());
-
-                var parsedMessages = _movementParsingService.ParseTrainMovementMessages(array);
-
-                await _movementStorageService.StoreTrainMovementMessages(parsedMessages);
+                _logger.Information("Current message delivery delay: {delay}", delay);
             }
             catch (Exception ex)
             {

@@ -14,6 +14,8 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework
             if (container == null)
                 container = new UnityContainer();
 
+            container.RegisterType<ITrainMovementStorageService, TrainMovementStorageService>();
+
             container.RegisterType<ITrainMovementUnitOfWorkFactory, TrainMovementUnitOfWorkFactory>();
             container.RegisterType<ITrainMovementUnitOfWork, TrainMovementUnitOfWork>();
             container.RegisterType<IDbContextFactory<TrainMovementContext>, TrainMovementContextFactory>();
