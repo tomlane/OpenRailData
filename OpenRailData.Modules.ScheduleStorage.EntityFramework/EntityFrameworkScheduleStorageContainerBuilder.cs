@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Practices.Unity;
+using OpenRailData.Configuration;
+using OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.UnitOfWork;
 using OpenRailData.Modules.ScheduleStorageService;
 using OpenRailData.Modules.ScheduleStorageService.RecordStorageProcessor;
@@ -31,6 +33,11 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework
             container.RegisterType<IScheduleUnitOfWork, ScheduleUnitOfWork>();
 
             container.RegisterType<IDbContextFactory<ScheduleContext>, ScheduleContextFactory>();
+            container.RegisterType<IScheduleContext, ScheduleContext>();
+
+            container.RegisterType<IConnectionStringProvider, ConfigConnectionStringProvider>();
+
+            container.RegisterType<ITiplocRecordRepository, TiplocRecordRepository>();
 
             return container;
         }

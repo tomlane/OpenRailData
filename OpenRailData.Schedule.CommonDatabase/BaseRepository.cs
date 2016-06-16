@@ -44,5 +44,10 @@ namespace OpenRailData.Schedule.CommonDatabase
         {
             return _context.GetSet<TEntity>().Where(predicate).ToList();
         }
+
+        protected IEnumerable<TEntity> GetAll()
+        {
+            return _context.GetSet<TEntity>();
+        }
     }
 }

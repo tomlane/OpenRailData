@@ -60,8 +60,8 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
                 ServiceTypeFlags = 0,
                 Sleepers = (SleeperDetails)_propertyParsers["SleeperDetails"].ParseProperty(deserializedSchedule?.Schedule?.ScheduleSegment?.Sleepers),
                 TimingLoad = deserializedSchedule?.Schedule?.ScheduleSegment?.TimingLoad ?? string.Empty,
-                TrainCategory = deserializedSchedule?.Schedule?.ScheduleSegment?.TrainCategory,
-                TrainIdentity = deserializedSchedule?.Schedule?.ScheduleSegment?.SignallingId,
+                TrainCategory = deserializedSchedule?.Schedule?.ScheduleSegment?.TrainCategory ?? string.Empty,
+                TrainIdentity = deserializedSchedule?.Schedule?.ScheduleSegment?.SignallingId ?? string.Empty,
                 TrainStatus = string.Empty,
                 UicCode = deserializedSchedule?.Schedule?.NewScheduleSegment?.UicCode ?? string.Empty
             };

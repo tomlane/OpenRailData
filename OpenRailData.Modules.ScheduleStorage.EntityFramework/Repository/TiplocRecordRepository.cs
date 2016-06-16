@@ -96,5 +96,24 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
         {
             throw new NotImplementedException();
         }
+
+        public Task<IEnumerable<TiplocRecord>> GetAllTiplocs()
+        {
+            var records = GetAll();
+
+            var response = records.Select(tiplocRecordEntity => new TiplocRecord
+            {
+                CrsCode = tiplocRecordEntity.CrsCode,
+                CapitalsIdentification = tiplocRecordEntity.CapitalsIdentification,
+                CapriDescription = tiplocRecordEntity.CapriDescription,
+                LocationName = tiplocRecordEntity.LocationName,
+                Nalco = tiplocRecordEntity.Nalco,
+                Nlc = tiplocRecordEntity.Nlc,
+                Stanox = tiplocRecordEntity.Stanox,
+                TiplocCode = tiplocRecordEntity.TiplocCode
+            }).ToList();
+
+            return Task.FromResult(response.AsEnumerable());
+        }
     }
 }

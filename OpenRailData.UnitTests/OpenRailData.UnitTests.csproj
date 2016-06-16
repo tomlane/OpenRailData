@@ -126,10 +126,6 @@
       <Project>{4ecab2a3-dd04-4766-a1f7-ec330e37e026}</Project>
       <Name>OpenRailData.Modules.ScheduleParsing.Cif</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OpenRailData.ScheduleContainer\OpenRailData.ScheduleContainer.csproj">
-      <Project>{FBB3001F-2CE9-4963-8299-7AFDBEDB7F8C}</Project>
-      <Name>OpenRailData.ScheduleContainer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.ScheduleParsing.Json\OpenRailData.ScheduleParsing.Json.csproj">
       <Project>{9301FAAA-A4EC-4ECC-92F0-8D8E4DE274ED}</Project>
       <Name>OpenRailData.ScheduleParsing.Json</Name>

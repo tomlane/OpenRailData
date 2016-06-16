@@ -25,7 +25,7 @@ namespace OpenRailData.Domain.ScheduleRecords
 
         public string OrderTime { get; set; }
 
-        public bool PublicCall => !LocationActivity.HasFlag(LocationActivity.N) && (PublicDeparture != null);
+        public bool PublicCall => PublicDeparture != null;
         public bool ActualCall => WorkingDeparture != null;
 
         protected bool Equals(ScheduleLocationRecord other)

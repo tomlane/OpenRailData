@@ -4,7 +4,6 @@ using OpenRailData.Configuration;
 using OpenRailData.DataFetcher;
 using OpenRailData.Modules.ScheduleFetching.Cif;
 using OpenRailData.Modules.ScheduleParsing.Cif;
-using OpenRailData.Modules.ScheduleStorage.MongoDb;
 using OpenRailData.ScheduleFetching;
 using OpenRailData.ScheduleParsing;
 using OpenRailData.ScheduleStorage;
@@ -22,8 +21,6 @@ namespace OpenRailData.ScheduleContainer
             
             container.RegisterType<IDataFileFetcher, WebDataFileFetcher>();
             container.RegisterType<IDataFileDecompressor, GzipDataFileDecompressor>();
-
-            container.RegisterType<IScheduleRecordStorageService, MongoDbBulkCreateStorageService>();
             
             container.RegisterType<IScheduleFetchingService, FileScheduleFetchingService>();
 

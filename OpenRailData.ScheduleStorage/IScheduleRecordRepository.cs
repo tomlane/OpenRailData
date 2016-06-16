@@ -13,6 +13,6 @@ namespace OpenRailData.ScheduleStorage
         Task InsertRecordAsync(ScheduleRecord record);
         Task InsertMultipleRecordsAsync(IEnumerable<ScheduleRecord> records);
         Task AmendRecordAsync(ScheduleRecord record);
-        Task DeleteRecordAsync(ScheduleRecord record);
+        Task DeleteRecordAsync(ScheduleRecord record);                
     }
 }
