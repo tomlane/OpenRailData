@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace OpenRailData.Schedule.CommonDatabase
 {
@@ -12,6 +13,11 @@ namespace OpenRailData.Schedule.CommonDatabase
         public IDbEntityEntryWrapper WrappedEntry(object entity)
         {
             return new DbEntityEntryWrapper(Entry(entity));
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await base.SaveChangesAsync();
         }
     }
 }

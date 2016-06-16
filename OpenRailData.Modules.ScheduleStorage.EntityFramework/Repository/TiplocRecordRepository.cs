@@ -64,12 +64,12 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 
             var recordToAmend = Find(x => x.TiplocCode == tiplocCode).FirstOrDefault();
 
-            if (recordToAmend != null)
-            {
-                recordToAmend.LocationName = locationName;
+            if (recordToAmend == null)
+                throw new ArgumentException("Tiploc entity not found");
 
-                Add(recordToAmend);
-            }
+            recordToAmend.LocationName = locationName;
+
+            Add(recordToAmend);
         }
 
         public Task InsertRecordAsync(TiplocRecord record)
@@ -97,7 +97,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<TiplocRecord>> GetAllTiplocs()
+        public Task<List<TiplocRecord>> GetAllTiplocs()
         {
             var records = GetAll();
 
@@ -113,7 +113,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
                 TiplocCode = tiplocRecordEntity.TiplocCode
             }).ToList();
 
-            return Task.FromResult(response.AsEnumerable());
+            return Task.FromResult(response);
         }
     }
 }

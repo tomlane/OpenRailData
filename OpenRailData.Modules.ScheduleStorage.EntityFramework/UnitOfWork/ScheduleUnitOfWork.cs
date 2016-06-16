@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository;
 using OpenRailData.ScheduleStorage;
 
@@ -28,7 +29,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.UnitOfWork
         public IScheduleRecordRepository ScheduleRecords { get; }
         public IScheduleLocationRecordRepository ScheduleLocationRecords { get; }
 
-        public int Complete() => _context.SaveChanges();
+        public async Task<int> Complete() => await _context.SaveChangesAsync();
 
         public void Dispose() => _context?.Dispose();
     }

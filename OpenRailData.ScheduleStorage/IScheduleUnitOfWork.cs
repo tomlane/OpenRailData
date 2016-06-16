@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace OpenRailData.ScheduleStorage
 {
@@ -10,6 +11,6 @@ namespace OpenRailData.ScheduleStorage
         IScheduleRecordRepository ScheduleRecords { get; }
         IScheduleLocationRecordRepository ScheduleLocationRecords { get; }
 
-        int Complete();
+        Task<int> Complete();
     }
 }
