@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Logging", "Ope
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.IntegrationTests", "OpenRailData.IntegrationTests\OpenRailData.IntegrationTests.csproj", "{39108023-743B-4C85-AB44-8A2AC617EFE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRailData.Schedule", "OpenRailData.Schedule\OpenRailData.Schedule.csproj", "{D6BAE1F0-A0B7-43E4-9E1A-FF7738ACAEFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -183,6 +185,10 @@ Global
 		{39108023-743B-4C85-AB44-8A2AC617EFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39108023-743B-4C85-AB44-8A2AC617EFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39108023-743B-4C85-AB44-8A2AC617EFE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6BAE1F0-A0B7-43E4-9E1A-FF7738ACAEFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6BAE1F0-A0B7-43E4-9E1A-FF7738ACAEFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6BAE1F0-A0B7-43E4-9E1A-FF7738ACAEFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6BAE1F0-A0B7-43E4-9E1A-FF7738ACAEFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

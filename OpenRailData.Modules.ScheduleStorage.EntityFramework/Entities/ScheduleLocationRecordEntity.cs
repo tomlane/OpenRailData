@@ -10,7 +10,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities
         public Guid? Id { get; set; }
         public ScheduleRecordType RecordIdentity { get; set; }
         public string Tiploc { get; set; } = string.Empty;
-        public string TiplocSuffix { private get; set; } = string.Empty;
+        public string TiplocSuffix { get; set; } = string.Empty;
         public string Location => $"{Tiploc}{TiplocSuffix}";
         public string WorkingArrival { get; set; } = string.Empty;
         public string PublicArrival { get; set; } = string.Empty;

@@ -1,22 +1,53 @@
-﻿using OpenRailData.Domain.ScheduleRecords;
+﻿using System;
+using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters
 {
-    public class HeaderEntityGenerator
+    public static class HeaderEntityGenerator
     {
         internal static HeaderRecordEntity RecordToEntity(HeaderRecord record)
         {
-            var headerRecordEntity = HeaderMapperConfiguration.RecordToEntity().Map<HeaderRecordEntity>(record);
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
 
-            return headerRecordEntity;
+            return new HeaderRecordEntity
+            {
+                RecordIdentity = record.RecordIdentity,
+                DateOfExtract = record.DateOfExtract,
+                CurrentFileRef = record.CurrentFileRef,
+                CifSoftwareVersion = record.CifSoftwareVersion,
+                ExtractUpdateType = record.ExtractUpdateType,
+                LastFileRef = record.LastFileRef,
+                MainFrameExtractDate = record.MainFrameExtractDate,
+                MainFrameIdentity = record.MainFrameIdentity,
+                MainFrameUser = record.MainFrameUser,
+                TimeOfExtract = record.TimeOfExtract,
+                UserExtractEndDate = record.UserExtractEndDate,
+                UserExtractStartDate = record.UserExtractStartDate
+            };
         }
 
         internal static HeaderRecord EntityToRecord(HeaderRecordEntity entity)
         {
-            var headerRecord = HeaderMapperConfiguration.EntityToRecord().Map<HeaderRecord>(entity);
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
 
-            return headerRecord;
+            return new HeaderRecord
+            {
+                RecordIdentity = entity.RecordIdentity,
+                DateOfExtract = entity.DateOfExtract,
+                CurrentFileRef = entity.CurrentFileRef,
+                CifSoftwareVersion = entity.CifSoftwareVersion,
+                ExtractUpdateType = entity.ExtractUpdateType,
+                LastFileRef = entity.LastFileRef,
+                MainFrameExtractDate = entity.MainFrameExtractDate,
+                MainFrameIdentity = entity.MainFrameIdentity,
+                MainFrameUser = entity.MainFrameUser,
+                TimeOfExtract = entity.TimeOfExtract,
+                UserExtractEndDate = entity.UserExtractEndDate,
+                UserExtractStartDate = entity.UserExtractStartDate
+            };
         }
     }
 }

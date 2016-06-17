@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using OpenRailData.Domain.ScheduleRecords;
 
@@ -13,6 +14,8 @@ namespace OpenRailData.ScheduleStorage
         Task InsertRecordAsync(ScheduleRecord record);
         Task InsertMultipleRecordsAsync(IEnumerable<ScheduleRecord> records);
         Task AmendRecordAsync(ScheduleRecord record);
-        Task DeleteRecordAsync(ScheduleRecord record);                
+        Task DeleteRecordAsync(ScheduleRecord record);
+
+        Task<IEnumerable<ScheduleRecord>> GetScheduleRecords(string trainUid, DateTime startDate);
     }
 }

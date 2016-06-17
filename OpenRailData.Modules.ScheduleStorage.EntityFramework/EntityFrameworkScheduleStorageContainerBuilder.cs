@@ -37,6 +37,9 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework
 
             container.RegisterType<IConnectionStringProvider, ConfigConnectionStringProvider>();
 
+            container.RegisterType<IHeaderRecordRepository, HeaderRecordRepository>();
+            container.RegisterType<IAssociationRecordRepository, AssociationRecordRepository>();
+            container.RegisterType<IScheduleRecordRepository, ScheduleRecordRepository>();
             container.RegisterType<ITiplocRecordRepository, TiplocRecordRepository>();
 
             return container;

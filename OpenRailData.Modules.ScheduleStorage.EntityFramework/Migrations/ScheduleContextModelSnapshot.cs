@@ -125,6 +125,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
 
                     b.Property<string>("Tiploc");
 
+                    b.Property<string>("TiplocSuffix");
+
                     b.Property<string>("WorkingArrival");
 
                     b.Property<string>("WorkingDeparture");

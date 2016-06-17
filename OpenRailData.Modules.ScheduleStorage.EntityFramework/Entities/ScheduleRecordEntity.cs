@@ -45,7 +45,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities
         public string Rsid { get; set; } = string.Empty;
         public string DataSource { get; set; } = string.Empty;
 
-        public List<ScheduleLocationRecordEntity> ScheduleLocations { get; set; } = new List<ScheduleLocationRecordEntity>();
+        public virtual List<ScheduleLocationRecordEntity> ScheduleLocations { get; set; } = new List<ScheduleLocationRecordEntity>();
         
         protected bool Equals(ScheduleRecordEntity other)
         {

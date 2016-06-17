@@ -101,19 +101,9 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
         {
             var records = GetAll();
 
-            var response = records.Select(tiplocRecordEntity => new TiplocRecord
-            {
-                CrsCode = tiplocRecordEntity.CrsCode,
-                CapitalsIdentification = tiplocRecordEntity.CapitalsIdentification,
-                CapriDescription = tiplocRecordEntity.CapriDescription,
-                LocationName = tiplocRecordEntity.LocationName,
-                Nalco = tiplocRecordEntity.Nalco,
-                Nlc = tiplocRecordEntity.Nlc,
-                Stanox = tiplocRecordEntity.Stanox,
-                TiplocCode = tiplocRecordEntity.TiplocCode
-            }).ToList();
+            var tiplocRecords = records.Select(TiplocEntityGenerator.EntityToRecord).ToList();
 
-            return Task.FromResult(response);
+            return Task.FromResult(tiplocRecords);
         }
 
         public Task<TiplocRecord> GetTiplocByStanox(string stanox)
@@ -121,28 +111,15 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
             if (string.IsNullOrWhiteSpace(stanox))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(stanox));
 
-            var records = Find(x => x.Stanox == stanox).ToList();
+            var entities = Find(x => x.Stanox == stanox).ToList();
 
-            if (records.Count != 1)
+            if (entities.Count != 1)
                 throw new ArgumentException($"No/Multiple Tiploc records found for {stanox}.");
 
-            var record = records.First();
+            var record = entities.First();
             
             // TODO: Implement mapper of sorts.
-            return Task.FromResult(new TiplocRecord
-            {
-                CapitalsIdentification = record.CapitalsIdentification,
-                CapriDescription = record.CapriDescription,
-                CrsCode = record.CrsCode,
-                LocationName = record.LocationName,
-                Nalco = record.Nalco,
-                Nlc = record.Nlc,
-                OldTiploc = record.OldTiploc,
-                PoMcbCode = record.PoMcbCode,
-                Stanox = record.Stanox,
-                TiplocCode = record.TiplocCode,
-                TpsDescription = record.TpsDescription
-            });
+            return Task.FromResult(TiplocEntityGenerator.EntityToRecord(record));
         }
     }
 }

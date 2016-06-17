@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
@@ -12,8 +13,14 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 {
     public class ScheduleRecordRepository : BaseRepository<ScheduleRecordEntity>, IScheduleRecordRepository
     {
+        private readonly IScheduleContext _context;
+
         public ScheduleRecordRepository(IScheduleContext context) : base(context)
         {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            _context = context;
         }
 
         public void InsertRecord(ScheduleRecord record)
@@ -37,14 +44,14 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
                 x.StpIndicator == record.StpIndicator)
                 .FirstOrDefault();
 
-            if (currentRecord != null)
-            { 
-                var entity = ScheduleEntityGenerator.RecordToEntity(record);
+            if (currentRecord == null)
+                return;
 
-                currentRecord = entity;
+            var entity = ScheduleEntityGenerator.RecordToEntity(record);
 
-                Add(currentRecord);
-            }
+            currentRecord = entity;
+
+            Add(currentRecord);
         }
 
         public void DeleteRecord(ScheduleRecord record)
@@ -80,6 +87,18 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
         public Task DeleteRecordAsync(ScheduleRecord record)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<ScheduleRecord>> GetScheduleRecords(string trainUid, DateTime startDate)
+        {
+            if (string.IsNullOrWhiteSpace(trainUid))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(trainUid));
+
+            var set = _context.GetSet<ScheduleRecordEntity>().Include(x => x.ScheduleLocations);
+
+            var entites = await set.Where(x => x.TrainUid == trainUid && x.StartDate == startDate).ToListAsync();
+
+            return entites.Select(ScheduleEntityGenerator.EntityToRecord);
         }
     }
 }

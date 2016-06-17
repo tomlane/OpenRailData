@@ -328,6 +328,10 @@
       <Project>{E6548915-E0BD-4225-8B8C-695B447F38E9}</Project>
       <Name>OpenRailData.ScheduleStorage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OpenRailData.Schedule\OpenRailData.Schedule.csproj">
+      <Project>{D6BAE1F0-A0B7-43E4-9E1A-FF7738ACAEFA}</Project>
+      <Name>OpenRailData.Schedule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OpenRailData.TrainDescriberParsing.Json\OpenRailData.TrainDescriberParsing.Json.csproj">
       <Project>{44B91613-1CB3-47D9-9814-3DBA124D2E36}</Project>
       <Name>OpenRailData.TrainDescriberParsing.Json</Name>

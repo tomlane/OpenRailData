@@ -1,22 +1,148 @@
-﻿using OpenRailData.Domain.ScheduleRecords;
+﻿using System;
+using System.Linq;
+using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
 
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters
 {
-    public class ScheduleEntityGenerator
+    public static class ScheduleEntityGenerator
     {
         internal static ScheduleRecordEntity RecordToEntity(ScheduleRecord record)
         {
-            var scheduleRecordEntity = ScheduleMapperConfiguration.RecordToEntity().Map<ScheduleRecordEntity>(record);
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
 
-            return scheduleRecordEntity;
+            var entity = new ScheduleRecordEntity
+            {
+                RecordIdentity = record.RecordIdentity,
+                UniqueId = record.UniqueId,
+                EndDate = record.EndDate,
+                StartDate = record.StartDate,
+                SeatingClass = record.SeatingClass,
+                ServiceBranding = record.ServiceBranding,
+                StpIndicator = record.StpIndicator,
+                AtocCode = record.AtocCode,
+                AtsCode = record.AtsCode,
+                BankHolidayRunning = record.BankHolidayRunning,
+                CateringCode = record.CateringCode,
+                ConnectionIndicator = record.ConnectionIndicator,
+                CourseIndicator = record.CourseIndicator,
+                DataSource = record.DataSource,
+                HeadCode = record.HeadCode,
+                OperatingCharacteristics = record.OperatingCharacteristics,
+                OperatingCharacteristicsString = record.OperatingCharacteristicsString,
+                PortionId = record.PortionId,
+                PowerType = record.PowerType,
+                Reservations = record.Reservations,
+                Rsid = record.Rsid,
+                RunningDays = record.RunningDays,
+                ServiceTypeFlags = record.ServiceTypeFlags,
+                Sleepers = record.Sleepers,
+                Speed = record.Speed,
+                TimingLoad = record.TimingLoad,
+                TrainCategory = record.TrainCategory,
+                TrainIdentity = record.TrainIdentity,
+                TrainServiceCode = record.TrainServiceCode,
+                TrainStatus = record.TrainStatus,
+                TrainUid = record.TrainUid,
+                UicCode = record.UicCode
+            };
+
+            if (record.ScheduleLocations != null && record.ScheduleLocations.Any())
+            {
+                entity.ScheduleLocations =
+                    record.ScheduleLocations.Select(locationRecord => new ScheduleLocationRecordEntity
+                    {
+                        RecordIdentity = locationRecord.RecordIdentity,
+                        EngineeringAllowance = locationRecord.EngineeringAllowance,
+                        Line = locationRecord.Line,
+                        LocationActivity = locationRecord.LocationActivity,
+                        LocationActivityString = locationRecord.LocationActivityString,
+                        OrderTime = locationRecord.OrderTime,
+                        Pass = locationRecord.Pass,
+                        Path = locationRecord.Path,
+                        PathingAllowance = locationRecord.PathingAllowance,
+                        PerformanceAllowance = locationRecord.PerformanceAllowance,
+                        Platform = locationRecord.Platform,
+                        PublicArrival = locationRecord.PublicArrival,
+                        PublicDeparture = locationRecord.PublicDeparture,
+                        Tiploc = locationRecord.Tiploc,
+                        TiplocSuffix = locationRecord.TiplocSuffix,
+                        WorkingArrival = locationRecord.WorkingArrival,
+                        WorkingDeparture = locationRecord.WorkingDeparture
+                    }).ToList();
+            }
+
+            return entity;
         }
 
         internal static ScheduleRecord EntityToRecord(ScheduleRecordEntity entity)
         {
-            var scheduleRecord = ScheduleMapperConfiguration.EntityToRecord().Map<ScheduleRecord>(entity);
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
 
-            return scheduleRecord;
+            var record = new ScheduleRecord
+            {
+                RecordIdentity = entity.RecordIdentity,
+                UniqueId = entity.UniqueId,
+                EndDate = entity.EndDate,
+                StartDate = entity.StartDate,
+                SeatingClass = entity.SeatingClass,
+                ServiceBranding = entity.ServiceBranding,
+                StpIndicator = entity.StpIndicator,
+                AtocCode = entity.AtocCode,
+                AtsCode = entity.AtsCode,
+                BankHolidayRunning = entity.BankHolidayRunning,
+                CateringCode = entity.CateringCode,
+                ConnectionIndicator = entity.ConnectionIndicator,
+                CourseIndicator = entity.CourseIndicator,
+                DataSource = entity.DataSource,
+                HeadCode = entity.HeadCode,
+                OperatingCharacteristics = entity.OperatingCharacteristics,
+                OperatingCharacteristicsString = entity.OperatingCharacteristicsString,
+                PortionId = entity.PortionId,
+                PowerType = entity.PowerType,
+                Reservations = entity.Reservations,
+                Rsid = entity.Rsid,
+                RunningDays = entity.RunningDays,
+                ServiceTypeFlags = entity.ServiceTypeFlags,
+                Sleepers = entity.Sleepers,
+                Speed = entity.Speed,
+                TimingLoad = entity.TimingLoad,
+                TrainCategory = entity.TrainCategory,
+                TrainIdentity = entity.TrainIdentity,
+                TrainServiceCode = entity.TrainServiceCode,
+                TrainStatus = entity.TrainStatus,
+                TrainUid = entity.TrainUid,
+                UicCode = entity.UicCode
+            };
+
+            if (entity.ScheduleLocations != null && entity.ScheduleLocations.Any())
+            {
+                record.ScheduleLocations =
+                    entity.ScheduleLocations.Select(locationRecordEntity => new ScheduleLocationRecord
+                    {
+                        RecordIdentity = locationRecordEntity.RecordIdentity,
+                        EngineeringAllowance = locationRecordEntity.EngineeringAllowance,
+                        Line = locationRecordEntity.Line,
+                        LocationActivity = locationRecordEntity.LocationActivity,
+                        LocationActivityString = locationRecordEntity.LocationActivityString,
+                        OrderTime = locationRecordEntity.OrderTime,
+                        Pass = locationRecordEntity.Pass,
+                        Path = locationRecordEntity.Path,
+                        PathingAllowance = locationRecordEntity.PathingAllowance,
+                        PerformanceAllowance = locationRecordEntity.PerformanceAllowance,
+                        Platform = locationRecordEntity.Platform,
+                        PublicArrival = locationRecordEntity.PublicArrival,
+                        PublicDeparture = locationRecordEntity.PublicDeparture,
+                        Tiploc = locationRecordEntity.Tiploc,
+                        TiplocSuffix = locationRecordEntity.TiplocSuffix,
+                        WorkingArrival = locationRecordEntity.WorkingArrival,
+                        WorkingDeparture = locationRecordEntity.WorkingDeparture
+                    }).ToList();
+            }
+
+            return record;
         }
     }
 }

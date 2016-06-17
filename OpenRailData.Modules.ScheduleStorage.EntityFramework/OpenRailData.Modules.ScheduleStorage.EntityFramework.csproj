@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.1.0.0-rc2-final\lib\net451\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
       <Private>True</Private>
@@ -259,10 +255,6 @@
     <Compile Include="Converters\TiplocEntityGenerator.cs" />
     <Compile Include="Converters\ScheduleEntityGenerator.cs" />
     <Compile Include="Converters\AssociationEntityGenerator.cs" />
-    <Compile Include="Converters\TiplocMapperConfiguration.cs" />
-    <Compile Include="Converters\ScheduleMapperConfiguration.cs" />
-    <Compile Include="Converters\HeaderMapperConfiguration.cs" />
-    <Compile Include="Converters\AssociationMapperConfiguration.cs" />
     <Compile Include="Entities\AssociationRecordEntity.cs" />
     <Compile Include="Entities\HeaderRecordEntity.cs" />
     <Compile Include="Entities\ScheduleLocationRecordEntity.cs" />
@@ -273,6 +265,10 @@
     <Compile Include="Migrations\20160614203325_InitialMigration.cs" />
     <Compile Include="Migrations\20160614203325_InitialMigration.designer.cs">
       <DependentUpon>20160614203325_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20160617203159_TiplocSuffix.cs" />
+    <Compile Include="Migrations\20160617203159_TiplocSuffix.designer.cs">
+      <DependentUpon>20160617203159_TiplocSuffix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ScheduleContextModelSnapshot.cs" />
     <Compile Include="Repository\AssociationRecordRepository.cs" />
