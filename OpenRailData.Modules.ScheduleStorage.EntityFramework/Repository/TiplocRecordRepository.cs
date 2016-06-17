@@ -115,5 +115,34 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 
             return Task.FromResult(response);
         }
+
+        public Task<TiplocRecord> GetTiplocByStanox(string stanox)
+        {
+            if (string.IsNullOrWhiteSpace(stanox))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(stanox));
+
+            var records = Find(x => x.Stanox == stanox).ToList();
+
+            if (records.Count != 1)
+                throw new ArgumentException($"No/Multiple Tiploc records found for {stanox}.");
+
+            var record = records.First();
+            
+            // TODO: Implement mapper of sorts.
+            return Task.FromResult(new TiplocRecord
+            {
+                CapitalsIdentification = record.CapitalsIdentification,
+                CapriDescription = record.CapriDescription,
+                CrsCode = record.CrsCode,
+                LocationName = record.LocationName,
+                Nalco = record.Nalco,
+                Nlc = record.Nlc,
+                OldTiploc = record.OldTiploc,
+                PoMcbCode = record.PoMcbCode,
+                Stanox = record.Stanox,
+                TiplocCode = record.TiplocCode,
+                TpsDescription = record.TpsDescription
+            });
+        }
     }
 }
