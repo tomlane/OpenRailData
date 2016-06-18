@@ -29,7 +29,7 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.UnitOfWork
         public IScheduleRecordRepository ScheduleRecords { get; }
         public IScheduleLocationRecordRepository ScheduleLocationRecords { get; }
 
-        public async Task<int> Complete() => await _context.SaveChangesAsync();
+        public int Complete() => _context.SaveChanges();
 
         public void Dispose() => _context?.Dispose();
     }

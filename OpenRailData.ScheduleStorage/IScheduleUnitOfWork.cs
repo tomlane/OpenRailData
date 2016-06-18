@@ -11,6 +11,6 @@ namespace OpenRailData.ScheduleStorage
         IScheduleRecordRepository ScheduleRecords { get; }
         IScheduleLocationRecordRepository ScheduleLocationRecords { get; }
 
-        Task<int> Complete();
+        int Complete();
     }
 }
