@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities;
@@ -12,8 +13,14 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
 {
     public class TiplocRecordRepository : BaseRepository<TiplocRecordEntity>, ITiplocRecordRepository 
     {
+        private readonly IScheduleContext _context;
+
         public TiplocRecordRepository(IScheduleContext context) : base(context)
         {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            _context = context;
         }
 
         public void InsertRecord(TiplocRecord record)
@@ -106,20 +113,24 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Repository
             return Task.FromResult(tiplocRecords);
         }
 
-        public Task<TiplocRecord> GetTiplocByStanox(string stanox)
+        public async Task<List<TiplocRecord>> GetTiplocsByStanox(string stanox)
         {
             if (string.IsNullOrWhiteSpace(stanox))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(stanox));
 
-            var entities = Find(x => x.Stanox == stanox).ToList();
-
-            if (entities.Count != 1)
-                throw new ArgumentException($"No/Multiple Tiploc records found for {stanox}.");
-
-            var record = entities.First();
+            var entities = await _context.GetSet<TiplocRecordEntity>().Where(x => x.Stanox == stanox).ToListAsync();
             
-            // TODO: Implement mapper of sorts.
-            return Task.FromResult(TiplocEntityGenerator.EntityToRecord(record));
+            return entities.Select(TiplocEntityGenerator.EntityToRecord).ToList();
+        }
+
+        public async Task<List<TiplocRecord>> GetTiplocsByCrs(string crs)
+        {
+            if (string.IsNullOrWhiteSpace(crs))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(crs));
+
+            var entites = await _context.GetSet<TiplocRecordEntity>().Where(x => x.CrsCode == crs).ToListAsync();
+
+            return entites.Select(TiplocEntityGenerator.EntityToRecord).ToList();
         }
     }
 }
