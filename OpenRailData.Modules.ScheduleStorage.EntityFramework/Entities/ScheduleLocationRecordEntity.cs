@@ -31,6 +31,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Entities
         public bool PublicCall => !LocationActivity.HasFlag(LocationActivity.N) && (PublicDeparture != null);
         public bool ActualCall => WorkingDeparture != null;
 
+        public ScheduleRecordEntity ScheduleRecord { get; set; }
+
         protected bool Equals(ScheduleLocationRecordEntity other)
         {
             return Id == other.Id &&
