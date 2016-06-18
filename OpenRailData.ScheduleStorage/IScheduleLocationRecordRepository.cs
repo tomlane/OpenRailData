@@ -11,5 +11,7 @@ namespace OpenRailData.ScheduleStorage
 
         Task InsertMultipleRecordsAsync(IEnumerable<ScheduleLocationRecord> records);
         Task DeleteMultipleRecordsAsync(IEnumerable<ScheduleLocationRecord> records);
+
+        Task<List<ScheduleLocationRecord>> GetLocationsByTiploc(string tiploc);
     }
 }

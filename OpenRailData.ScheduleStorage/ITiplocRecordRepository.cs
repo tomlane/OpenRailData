@@ -19,6 +19,7 @@ namespace OpenRailData.ScheduleStorage
         Task AmendLocationNameAsync(string locationName, string tiplocCode);
 
         Task<List<TiplocRecord>> GetAllTiplocs();
-        Task<TiplocRecord> GetTiplocByStanox(string stanox);
+        Task<List<TiplocRecord>> GetTiplocsByStanox(string stanox);
+        Task<List<TiplocRecord>> GetTiplocsByCrs(string crs);
     }
 }
