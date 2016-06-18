@@ -49,30 +49,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters
             };
 
             if (record.ScheduleLocations != null && record.ScheduleLocations.Any())
-            {
-                entity.ScheduleLocations =
-                    record.ScheduleLocations.Select(locationRecord => new ScheduleLocationRecordEntity
-                    {
-                        RecordIdentity = locationRecord.RecordIdentity,
-                        EngineeringAllowance = locationRecord.EngineeringAllowance,
-                        Line = locationRecord.Line,
-                        LocationActivity = locationRecord.LocationActivity,
-                        LocationActivityString = locationRecord.LocationActivityString,
-                        OrderTime = locationRecord.OrderTime,
-                        Pass = locationRecord.Pass,
-                        Path = locationRecord.Path,
-                        PathingAllowance = locationRecord.PathingAllowance,
-                        PerformanceAllowance = locationRecord.PerformanceAllowance,
-                        Platform = locationRecord.Platform,
-                        PublicArrival = locationRecord.PublicArrival,
-                        PublicDeparture = locationRecord.PublicDeparture,
-                        Tiploc = locationRecord.Tiploc,
-                        TiplocSuffix = locationRecord.TiplocSuffix,
-                        WorkingArrival = locationRecord.WorkingArrival,
-                        WorkingDeparture = locationRecord.WorkingDeparture
-                    }).ToList();
-            }
-
+                entity.ScheduleLocations = record.ScheduleLocations.Select(ScheduleLocationEntityGenerator.RecordToEntity).ToList();
+            
             return entity;
         }
 
@@ -118,30 +96,8 @@ namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Converters
             };
 
             if (entity.ScheduleLocations != null && entity.ScheduleLocations.Any())
-            {
-                record.ScheduleLocations =
-                    entity.ScheduleLocations.Select(locationRecordEntity => new ScheduleLocationRecord
-                    {
-                        RecordIdentity = locationRecordEntity.RecordIdentity,
-                        EngineeringAllowance = locationRecordEntity.EngineeringAllowance,
-                        Line = locationRecordEntity.Line,
-                        LocationActivity = locationRecordEntity.LocationActivity,
-                        LocationActivityString = locationRecordEntity.LocationActivityString,
-                        OrderTime = locationRecordEntity.OrderTime,
-                        Pass = locationRecordEntity.Pass,
-                        Path = locationRecordEntity.Path,
-                        PathingAllowance = locationRecordEntity.PathingAllowance,
-                        PerformanceAllowance = locationRecordEntity.PerformanceAllowance,
-                        Platform = locationRecordEntity.Platform,
-                        PublicArrival = locationRecordEntity.PublicArrival,
-                        PublicDeparture = locationRecordEntity.PublicDeparture,
-                        Tiploc = locationRecordEntity.Tiploc,
-                        TiplocSuffix = locationRecordEntity.TiplocSuffix,
-                        WorkingArrival = locationRecordEntity.WorkingArrival,
-                        WorkingDeparture = locationRecordEntity.WorkingDeparture
-                    }).ToList();
-            }
-
+                record.ScheduleLocations = entity.ScheduleLocations.Select(ScheduleLocationEntityGenerator.EntityToRecord).ToList();
+            
             return record;
         }
     }
