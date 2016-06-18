@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IScheduleProvider.cs" />
+    <Compile Include="ITiplocProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScheduleProvider.cs" />
+    <Compile Include="TiplocProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenRailData.Domain\OpenRailData.Domain.csproj">
