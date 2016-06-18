@@ -252,6 +252,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\HeaderEntityGenerator.cs" />
+    <Compile Include="Converters\ScheduleLocationEntityGenerator.cs" />
     <Compile Include="Converters\TiplocEntityGenerator.cs" />
     <Compile Include="Converters\ScheduleEntityGenerator.cs" />
     <Compile Include="Converters\AssociationEntityGenerator.cs" />
@@ -269,6 +270,10 @@
     <Compile Include="Migrations\20160617203159_TiplocSuffix.cs" />
     <Compile Include="Migrations\20160617203159_TiplocSuffix.designer.cs">
       <DependentUpon>20160617203159_TiplocSuffix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20160618134137_LocationRelationship.cs" />
+    <Compile Include="Migrations\20160618134137_LocationRelationship.designer.cs">
+      <DependentUpon>20160618134137_LocationRelationship.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ScheduleContextModelSnapshot.cs" />
     <Compile Include="Repository\AssociationRecordRepository.cs" />

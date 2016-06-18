@@ -8,9 +8,10 @@ using OpenRailData.Modules.ScheduleStorage.EntityFramework;
 namespace OpenRailData.Modules.ScheduleStorage.EntityFramework.Migrations
 {
     [DbContext(typeof(ScheduleContext))]
-    partial class ScheduleContextModelSnapshot : ModelSnapshot
+    [Migration("20160618134137_LocationRelationship")]
+    partial class LocationRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rc2-20901")
