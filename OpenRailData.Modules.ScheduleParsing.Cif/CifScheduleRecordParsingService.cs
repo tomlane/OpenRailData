@@ -24,12 +24,17 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif
             _parsedRecords = new ConcurrentBag<ParsedScheduleRecord>();
         }
 
+        public IScheduleRecord Parse(string record)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Parses a set of schedule record strings to schedule entities/objects.
         /// </summary>
         /// <param name="records">The set of  schedule record strings</param>
         /// <returns>A set of record entities.</returns>
-        public IEnumerable<IScheduleRecord> ParseScheduleRecords(IEnumerable<string> records)
+        public IEnumerable<IScheduleRecord> Parse(IEnumerable<string> records)
         {
             if (records == null)
                 throw new ArgumentNullException(nameof(records));

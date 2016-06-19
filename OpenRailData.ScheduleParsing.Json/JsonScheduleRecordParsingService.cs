@@ -23,7 +23,24 @@ namespace OpenRailData.ScheduleParsing.Json
             _logger = logger;
         }
 
-        public IEnumerable<IScheduleRecord> ParseScheduleRecords(IEnumerable<string> records)
+        public IScheduleRecord Parse(string record)
+        {
+            if (string.IsNullOrWhiteSpace(record))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(record));
+            
+            try
+            {
+                return ParseRecord(record);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "An error occured while trying to parse the following schedule record: {record}", record);
+
+                throw;
+            }
+        }
+
+        public IEnumerable<IScheduleRecord> Parse(IEnumerable<string> records)
         {
             if (records == null)
                 throw new ArgumentNullException(nameof(records));
@@ -34,14 +51,7 @@ namespace OpenRailData.ScheduleParsing.Json
             {
                 try
                 {
-                    var jObject = JObject.Parse(record);
-
-                    var key = jObject.Properties().Select(p => p.Name).ToList().First();
-
-                    if (key == "EOF")
-                        break;
-
-                    response.Add(_recordParsers[key].ParseRecord(record));
+                    response.Add(ParseRecord(record));
                 }
                 catch (Exception ex)
                 {
@@ -50,6 +60,18 @@ namespace OpenRailData.ScheduleParsing.Json
             }
 
             return response;
+        }
+
+        private IScheduleRecord ParseRecord(string record)
+        {
+            var jObject = JObject.Parse(record);
+
+            var key = jObject.Properties().Select(p => p.Name).ToList().First();
+
+            if (key == "EOF")
+                return new EndOfFileRecord();
+
+            return _recordParsers[key].ParseRecord(record);
         }
     }
 }

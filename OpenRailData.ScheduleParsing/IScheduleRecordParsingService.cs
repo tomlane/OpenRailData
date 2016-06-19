@@ -5,6 +5,8 @@ namespace OpenRailData.ScheduleParsing
 {
     public interface IScheduleRecordParsingService
     {
-        IEnumerable<IScheduleRecord> ParseScheduleRecords(IEnumerable<string> records);
+        IScheduleRecord Parse(string record);
+
+        IEnumerable<IScheduleRecord> Parse(IEnumerable<string> records);
     }
 }
