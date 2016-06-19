@@ -5,6 +5,7 @@ namespace OpenRailData.ScheduleStorage
 {
     public interface IScheduleRecordStorageService
     {
-        void StoreScheduleRecords(IEnumerable<IScheduleRecord> records);
+        void Store(IEnumerable<IScheduleRecord> records);
+        void Store(IScheduleRecord record);
     }
 }

@@ -19,12 +19,20 @@ namespace OpenRailData.Modules.ScheduleStorageService
             _storageProcessors = scheduleRecordStorageProcessors.ToDictionary(x => x.RecordKey, x => x);
         }
 
-        public void StoreScheduleRecords(IEnumerable<IScheduleRecord> recordsToStore)
+        public void Store(IEnumerable<IScheduleRecord> recordsToStore)
         {
             if (recordsToStore == null)
                 throw new ArgumentNullException(nameof(recordsToStore));
 
             Parallel.ForEach(recordsToStore, StoreRecord);
+        }
+
+        public void Store(IScheduleRecord record)
+        {
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            StoreRecord(record);
         }
 
         private void StoreRecord(IScheduleRecord record)
