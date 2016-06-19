@@ -35,7 +35,7 @@ namespace OpenRailData.UnitTests.TrainMovementParsing.MessageParsers
 
         [Theory]
         [MemberData("Messages")]
-        public void change_of_origin_parser_does_not_throw_while_parsing_valid_records(string message, ChangeOfOrigin expected)
+        public void change_of_origin_parser_parses_valid_records(string message, ChangeOfOrigin expected)
         {
             var parser = BuildParser();
 
@@ -65,7 +65,7 @@ namespace OpenRailData.UnitTests.TrainMovementParsing.MessageParsers
                     LocationStanox = "88466",
                     DivisionCode = "80",
                     DepartureTimestamp = new DateTime(2016, 5, 24, 20, 7, 30),
-                    ReasonCode = null
+                    ReasonCode = string.Empty
                 }
             },
             new object[]
@@ -87,7 +87,7 @@ namespace OpenRailData.UnitTests.TrainMovementParsing.MessageParsers
                     LocationStanox = "52088",
                     DivisionCode = "30",
                     DepartureTimestamp = new DateTime(2016, 5, 29, 18, 13, 30),
-                    ReasonCode = null
+                    ReasonCode = string.Empty
                 } 
             }
         };
