@@ -2,11 +2,29 @@
 {
     public class BasicScheduleExtraDetailsRecord : IScheduleRecord
     {
+        /// <summary>
+        /// Schedule record type identity.
+        /// </summary>
         public ScheduleRecordType RecordIdentity { get; set; }
+        /// <summary>
+        /// Uic code.
+        /// </summary>
         public string UicCode { get; set; } = string.Empty;
+        /// <summary>
+        /// Atoc code.
+        /// </summary>
         public string AtocCode { get; set; } = string.Empty;
+        /// <summary>
+        /// Ats code.
+        /// </summary>
         public string AtsCode { get; set; } = string.Empty;
+        /// <summary>
+        /// Rsid.
+        /// </summary>
         public string Rsid { get; set; } = string.Empty;
+        /// <summary>
+        /// Data source.
+        /// </summary>
         public string DataSource { get; set; } = string.Empty;
 
         protected bool Equals(BasicScheduleExtraDetailsRecord other)

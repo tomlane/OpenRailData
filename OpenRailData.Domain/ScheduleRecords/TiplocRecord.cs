@@ -2,17 +2,53 @@
 {
     public class TiplocRecord : IScheduleRecord
     {
+        /// <summary>
+        /// Schedule record type identity.
+        /// </summary>
         public ScheduleRecordType RecordIdentity { get; set; }
+        /// <summary>
+        /// Tiploc code.
+        /// </summary>
         public string TiplocCode { get; set; } = string.Empty;
+        /// <summary>
+        /// Capitals identification.
+        /// </summary>
         public string CapitalsIdentification { get; set; } = string.Empty;
+        /// <summary>
+        /// Nalco.
+        /// </summary>
         public string Nalco { get; set; } = string.Empty;
+        /// <summary>
+        /// Nlc.
+        /// </summary>
         public string Nlc { get; set; } = string.Empty;
+        /// <summary>
+        /// Tps description.
+        /// </summary>
         public string TpsDescription { get; set; } = string.Empty;
+        /// <summary>
+        /// Stanox.
+        /// </summary>
         public string Stanox { get; set; } = string.Empty;
+        /// <summary>
+        /// PoMcb code.
+        /// </summary>
         public string PoMcbCode { get; set; } = string.Empty;
+        /// <summary>
+        /// Crs code.
+        /// </summary>
         public string CrsCode { get; set; } = string.Empty;
+        /// <summary>
+        /// Capri description.
+        /// </summary>
         public string CapriDescription { get; set; } = string.Empty;
+        /// <summary>
+        /// Old tiploc code, for when the record has been amended.
+        /// </summary>
         public string OldTiploc { get; set; } = string.Empty;
+        /// <summary>
+        /// Friendly location name.
+        /// </summary>
         public string LocationName { get; set; } = string.Empty;
 
         protected bool Equals(TiplocRecord other)

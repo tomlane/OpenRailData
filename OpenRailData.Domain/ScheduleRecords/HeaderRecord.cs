@@ -5,17 +5,53 @@ namespace OpenRailData.Domain.ScheduleRecords
 {
     public class HeaderRecord : IScheduleRecord
     {
+        /// <summary>
+        /// Schedule record type identity.
+        /// </summary>
         public ScheduleRecordType RecordIdentity { get; set; }
+        /// <summary>
+        /// Main frame identity.
+        /// </summary>
         public string MainFrameIdentity { get; set; } = string.Empty;
+        /// <summary>
+        /// Date of extract.
+        /// </summary>
         public DateTime DateOfExtract { get; set; }
+        /// <summary>
+        /// Time of extract.
+        /// </summary>
         public string TimeOfExtract { get; set; } = string.Empty;
+        /// <summary>
+        /// Current file reference.
+        /// </summary>
         public string CurrentFileRef { get; set; } = string.Empty;
+        /// <summary>
+        /// Last file reference.
+        /// </summary>
         public string LastFileRef { get; set; } = string.Empty;
+        /// <summary>
+        /// Extract update type.
+        /// </summary>
         public ExtractUpdateType ExtractUpdateType { get; set; }
+        /// <summary>
+        /// Cif Software Version.
+        /// </summary>
         public string CifSoftwareVersion { get; set; } = string.Empty;
+        /// <summary>
+        /// User extract start date.
+        /// </summary>
         public DateTime? UserExtractStartDate { get; set; }
+        /// <summary>
+        /// User extract end date.
+        /// </summary>
         public DateTime? UserExtractEndDate { get; set; }
+        /// <summary>
+        /// Main frame user.
+        /// </summary>
         public string MainFrameUser { get; set; } = string.Empty;
+        /// <summary>
+        /// Main frame extract date.
+        /// </summary>
         public DateTime MainFrameExtractDate { get; set; }
 
         protected bool Equals(HeaderRecord other)

@@ -73,6 +73,7 @@
     <Compile Include="TrainDescriber\ITrainDescriberMessage.cs" />
     <Compile Include="TrainDescriber\SignalMessage.cs" />
     <Compile Include="TrainDescriber\SignalMessageType.cs" />
+    <Compile Include="TrainDescriber\TrainDescriberMessageType.cs" />
     <Compile Include="TrainMovements\ChangeOfIdentity.cs" />
     <Compile Include="TrainMovements\ChangeOfOrigin.cs" />
     <Compile Include="TrainMovements\Enums\CancellationType.cs" />

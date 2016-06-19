@@ -7,42 +7,138 @@ namespace OpenRailData.Domain.ScheduleRecords
 {
     public class ScheduleRecord : IScheduleRecord
     {
+        /// <summary>
+        /// Schedule record type identity.
+        /// </summary>
         public ScheduleRecordType RecordIdentity { get; set; }
+        /// <summary>
+        /// Train uid.
+        /// </summary>
         public string TrainUid { get; set; } = string.Empty;
+        /// <summary>
+        /// Unique record id. Can be used for searches.
+        /// </summary>
         public string UniqueId { get; set; } = string.Empty;
+        /// <summary>
+        /// Schedule start date.
+        /// </summary>
         public DateTime StartDate { get; set; }
+        /// <summary>
+        /// Schedule end date.
+        /// </summary>
         public DateTime? EndDate { get; set; }
+        /// <summary>
+        /// Schedule running days.
+        /// </summary>
         public Days RunningDays { get; set; }
-        
+        /// <summary>
+        /// Bank holiday running.
+        /// </summary>
         public BankHolidayRunning BankHolidayRunning { get; set; } = BankHolidayRunning.X;
+        /// <summary>
+        /// Train status.
+        /// </summary>
         public string TrainStatus { get; set; } = string.Empty;
+        /// <summary>
+        /// Train category.
+        /// </summary>
         public string TrainCategory { get; set; } = string.Empty;
+        /// <summary>
+        /// Train identity.
+        /// </summary>
         public string TrainIdentity { get; set; } = string.Empty;
+        /// <summary>
+        /// Headcode.
+        /// </summary>
         public string HeadCode { get; set; } = string.Empty;
+        /// <summary>
+        /// Course indicator.
+        /// </summary>
         public string CourseIndicator { get; set; } = string.Empty;
+        /// <summary>
+        /// Train service code.
+        /// </summary>
         public string TrainServiceCode { get; set; } = string.Empty;
+        /// <summary>
+        /// Portion Id.
+        /// </summary>
         public string PortionId { get; set; } = string.Empty;
+        /// <summary>
+        /// Power type.
+        /// </summary>
         public PowerType PowerType { get; set; } = PowerType.None;
+        /// <summary>
+        /// Timing load.
+        /// </summary>
         public string TimingLoad { get; set; } = string.Empty;
+        /// <summary>
+        /// Speed.
+        /// </summary>
         public int Speed { get; set; }
+        /// <summary>
+        /// Operating characteristics in string format.
+        /// </summary>
         public string OperatingCharacteristicsString { get; set; } = string.Empty;
+        /// <summary>
+        /// Operating characteristics.
+        /// </summary>
         public OperatingCharacteristics OperatingCharacteristics { get; set; }
+        /// <summary>
+        /// Seating class.
+        /// </summary>
         public SeatingClass SeatingClass { get; set; } = SeatingClass.B;
+        /// <summary>
+        /// Sleepers.
+        /// </summary>
         public SleeperDetails Sleepers { get; set; } = SleeperDetails.NotAvailable;
+        /// <summary>
+        /// Reservations.
+        /// </summary>
         public ReservationDetails Reservations { get; set; }
+        /// <summary>
+        /// Connection indicator.
+        /// </summary>
         public string ConnectionIndicator { get; set; } = string.Empty;
+        /// <summary>
+        /// Catering code.
+        /// </summary>
         public CateringCode CateringCode { get; set; } = CateringCode.None;
+        /// <summary>
+        /// Service branding.
+        /// </summary>
         public ServiceBranding ServiceBranding { get; set; } = ServiceBranding.None;
+        /// <summary>
+        /// Stp indicator.
+        /// </summary>
         public StpIndicator StpIndicator { get; set; }
-
+        /// <summary>
+        /// Service type flags.
+        /// </summary>
         public ServiceTypeFlags ServiceTypeFlags { get; set; } = 0;
-
+        /// <summary>
+        /// Uic code.
+        /// </summary>
         public string UicCode { get; set; } = string.Empty;
+        /// <summary>
+        /// Atoc code.
+        /// </summary>
         public string AtocCode { get; set; } = string.Empty;
+        /// <summary>
+        /// Ats code.
+        /// </summary>
         public string AtsCode { get; set; } = string.Empty;
+        /// <summary>
+        /// Rsid.
+        /// </summary>
         public string Rsid { get; set; } = string.Empty;
+        /// <summary>
+        /// Data source.
+        /// </summary>
         public string DataSource { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Schedule locations.
+        /// </summary>
         public List<ScheduleLocationRecord> ScheduleLocations { get; set; } = new List<ScheduleLocationRecord>();
         
         public void MergeExtraScheduleDetails(BasicScheduleExtraDetailsRecord extraDetailsRecord)

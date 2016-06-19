@@ -4,16 +4,25 @@ namespace OpenRailData.Domain.TrainMovements.Enums
 {
     public enum ScheduleType
     {
+        /// <summary>
+        /// Permanent schedule.
+        /// </summary>
         [Display(Name = "Permanent Schedule")]
         P,
-
+        /// <summary>
+        /// Overlay schedule.
+        /// </summary>
         [Display(Name = "Overlay Schedule")]
         O,
-
+        /// <summary>
+        /// New schedule.
+        /// </summary>
         [Display(Name = "New Schedule")]
         N,
-
-        [Display(Name = "Schedule Cancellation")]
+        /// <summary>
+        /// Cancellation schedule.
+        /// </summary>
+        [Display(Name = "Cancellation Schedule")]
         C
     }
 }

@@ -19,7 +19,7 @@
         /// </summary>
         public string FromLine { get; set; }
         /// <summary>
-        ///     Line that the movment is to.
+        ///     Line which the movement is to.
         /// </summary>
         public string ToLine { get; set; }
         /// <summary>
@@ -51,7 +51,7 @@
         /// </summary>
         public BerthStepType BerthStepType { get; set; }
         /// <summary>
-        ///     Comment notes for the record.
+        ///     Comment notes.
         /// </summary>
         public string Comment { get; set; } 
     }

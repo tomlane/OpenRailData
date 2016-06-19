@@ -5,20 +5,65 @@ namespace OpenRailData.Domain.ScheduleRecords
 {
     public class AssociationRecord : IScheduleRecord
     {
+        /// <summary>
+        /// Schedule record type identity.
+        /// </summary>
         public ScheduleRecordType RecordIdentity { get; set; }
+        /// <summary>
+        /// Main train uid.
+        /// </summary>
         public string MainTrainUid { get; set; } = string.Empty;
+        /// <summary>
+        /// Assoc train uid.
+        /// </summary>
         public string AssocTrainUid { get; set; } = string.Empty;
+        /// <summary>
+        /// Association start date.
+        /// </summary>
         public DateTime StartDate { get; set; }
+        /// <summary>
+        /// Association end date.
+        /// </summary>
         public DateTime? EndDate { get; set; }
+        /// <summary>
+        /// Association days.
+        /// </summary>
         public Days AssocDays { get; set; }
+        /// <summary>
+        /// Association category.
+        /// </summary>
         public AssociationCategory Category { get; set; }
+        /// <summary>
+        /// Date indicator.
+        /// </summary>
         public DateIndicator DateIndicator { get; set; }
+        /// <summary>
+        /// Location.
+        /// </summary>
         public string Location { get; set; } = string.Empty;
+        /// <summary>
+        /// Base location suffix.
+        /// </summary>
         public string BaseLocationSuffix { get; set; } = string.Empty;
+        /// <summary>
+        /// Association location suffix.
+        /// </summary>
         public string AssocLocationSuffix { get; set; } = string.Empty;
+        /// <summary>
+        /// Diagram type.
+        /// </summary>
         public string DiagramType { get; set; } = string.Empty;
+        /// <summary>
+        /// Association type.
+        /// </summary>
         public AssociationType AssocType { get; set; }
+        /// <summary>
+        /// Association STP indicator.
+        /// </summary>
         public StpIndicator StpIndicator { get; set; }
+        /// <summary>
+        /// Unique identifier for the record. Can be used as a primary key on searches.
+        /// </summary>
         public string UniqueId { get; set; } = string.Empty;
 
         protected bool Equals(AssociationRecord other)
