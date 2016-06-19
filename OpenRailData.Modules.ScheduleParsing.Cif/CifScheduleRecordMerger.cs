@@ -8,12 +8,18 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif
 {
     public class CifScheduleRecordMerger : IScheduleRecordMerger
     {
+        /// <summary>
+        /// Takes a set of parsed CIF records and merges where required.
+        /// </summary>
+        /// <param name="scheduleRecords">The set of schedule records.</param>
+        /// <returns>A merged set of schedule records.</returns>
+        /// <remarks>Not my finest code.</remarks>
         public IEnumerable<IScheduleRecord> MergeScheduleRecords(IEnumerable<IScheduleRecord> scheduleRecords)
         {
             if (scheduleRecords == null || !scheduleRecords.Any())
                 throw new ArgumentNullException(nameof(scheduleRecords));
 
-            var scheduleEntites = new List<IScheduleRecord>();
+            var scheduleEntities = new List<IScheduleRecord>();
 
             ScheduleRecord scheduleRecord = null;
 
@@ -22,24 +28,24 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif
                 switch (record.RecordIdentity)
                 {
                     case ScheduleRecordType.HD:
-                        scheduleEntites.Add(record);
+                        scheduleEntities.Add(record);
                         break;
                     case ScheduleRecordType.TI:
                     case ScheduleRecordType.TA:
                     case ScheduleRecordType.TD:
-                        scheduleEntites.Add(record);
+                        scheduleEntities.Add(record);
                         break;
                     case ScheduleRecordType.AAN:
                     case ScheduleRecordType.AAR:
                     case ScheduleRecordType.AAD:
-                        scheduleEntites.Add(record);
+                        scheduleEntities.Add(record);
                         break;
                     case ScheduleRecordType.BSN:
                     case ScheduleRecordType.BSR:
                     case ScheduleRecordType.BSD:
                         if (scheduleRecord != null)
                         {
-                            scheduleEntites.Add(scheduleRecord);
+                            scheduleEntities.Add(scheduleRecord);
                             scheduleRecord = null;
                         }
 
@@ -61,7 +67,7 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif
                 }
             }
 
-            return scheduleEntites;
+            return scheduleEntities;
         }
     }
 }

@@ -20,8 +20,16 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers
             _enumPropertyParsers = enumPropertyParsers.ToDictionary(x => x.PropertyKey, x => x);
         }
 
+        /// <summary>
+        /// The schedule record key for this parser.
+        /// </summary>
         public string RecordKey { get; } = "CR";
 
+        /// <summary>
+        /// Parses a record string in to a schedule record entity.
+        /// </summary>
+        /// <param name="recordString">The schedule record string.</param>
+        /// <returns>A schedule record entity.</returns>
         public IScheduleRecord ParseRecord(string recordString)
         {
             if (string.IsNullOrWhiteSpace(recordString))

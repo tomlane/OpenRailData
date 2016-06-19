@@ -24,6 +24,11 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif
             _parsedRecords = new ConcurrentBag<ParsedScheduleRecord>();
         }
 
+        /// <summary>
+        /// Parses a set of schedule record strings to schedule entities/objects.
+        /// </summary>
+        /// <param name="records">The set of  schedule record strings</param>
+        /// <returns>A set of record entities.</returns>
         public IEnumerable<IScheduleRecord> ParseScheduleRecords(IEnumerable<string> records)
         {
             if (records == null)
@@ -58,7 +63,7 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif
             });
         }
 
-        private IList<ScheduleFileLine> BuildLineSet(IEnumerable<string> records)
+        private IEnumerable<ScheduleFileLine> BuildLineSet(IEnumerable<string> records)
         {
             var inputRecords = records as string[] ?? records.ToArray();
 
@@ -68,11 +73,5 @@ namespace OpenRailData.Modules.ScheduleParsing.Cif
                 Record = t
             }).ToList();
         }
-    }
-
-    internal class ParsedScheduleRecord
-    {
-        public int Index { get; set; }
-        public IScheduleRecord ScheduleRecord { get; set; }
     }
 }
