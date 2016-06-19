@@ -26,12 +26,12 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 EventType = (EventType)Enum.Parse(typeof(EventType), deserializedMovement.Body.EventType),
                 OriginalLocationStanox = deserializedMovement.Body.OriginalLocationStanox,
                 TimetableVariation = int.Parse(deserializedMovement.Body.TimetableVariation),
-                CurrentTrainId = deserializedMovement.Body.CurrentTrainId,
+                CurrentTrainId = deserializedMovement.Body.CurrentTrainId ?? string.Empty,
                 DelayMonitoringPoint = bool.Parse(deserializedMovement.Body.DelayMonitoringPoint),
                 ReportingStanox = deserializedMovement.Body.ReportingStanox,
                 Correction = bool.Parse(deserializedMovement.Body.Correction),
                 EventSource = (EventSource)Enum.Parse(typeof(EventSource), deserializedMovement.Body.EventSource),
-                TrainFileAddress = string.Empty,
+                TrainFileAddress = deserializedMovement.Body.TrainFileAddress ?? string.Empty,
                 Platform = deserializedMovement.Body.Platform,
                 DivisionCode = deserializedMovement.Body.DivisionCode,
                 Terminated = bool.Parse(deserializedMovement.Body.TrainTerminated),
@@ -69,10 +69,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 movement.Direction = (Direction) Enum.Parse(typeof(Direction), deserializedMovement.Body.Direction);
             else
                 movement.Direction = Direction.None;
-
-            if (!string.IsNullOrWhiteSpace(deserializedMovement.Body.TrainFileAddress))
-                movement.TrainFileAddress = deserializedMovement.Body.TrainFileAddress;
-
+            
             return movement;
         }
     }

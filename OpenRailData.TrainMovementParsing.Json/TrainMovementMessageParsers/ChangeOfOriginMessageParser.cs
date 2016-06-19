@@ -22,10 +22,10 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
                 OriginalDataSource = deserializedChangeOfOrigin.Header.OriginalDataSource,
                 SourceSystemId = deserializedChangeOfOrigin.Header.SourceSystemId,
 
-                ReasonCode = deserializedChangeOfOrigin.Body.ReasonCode,
+                ReasonCode = deserializedChangeOfOrigin.Body.ReasonCode ?? string.Empty,
                 CurrentTrainId = deserializedChangeOfOrigin.Body.CurrentTrainId,
                 OriginalLocationTimestamp = null,
-                TrainFileAddress = string.Empty,
+                TrainFileAddress = deserializedChangeOfOrigin.Body.TrainFileAddress ?? string.Empty,
                 TrainServiceCode = deserializedChangeOfOrigin.Body.TrainServiceCode,
                 TocId = deserializedChangeOfOrigin.Body.TocId,
                 EventTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedChangeOfOrigin.Body.ChangeOfOriginTimestamp)).UtcDateTime,
@@ -37,10 +37,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
 
             if (!string.IsNullOrWhiteSpace(deserializedChangeOfOrigin.Body.DepartureTimestamp))
                 changeOfOrigin.DepartureTimestamp = DateTimeOffset.FromUnixTimeMilliseconds(Convert.ToInt64(deserializedChangeOfOrigin.Body.DepartureTimestamp)).UtcDateTime;
-
-            if (!string.IsNullOrWhiteSpace(deserializedChangeOfOrigin.Body.TrainFileAddress))
-                changeOfOrigin.TrainFileAddress = deserializedChangeOfOrigin.Body.TrainFileAddress;
-
+            
             return changeOfOrigin;
         }
     }
