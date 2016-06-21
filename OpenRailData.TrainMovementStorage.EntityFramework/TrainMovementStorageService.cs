@@ -18,7 +18,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework
             _storageProcessors = storageProcessors.ToDictionary(x => x.MessageType, x => x);
         }
 
-        public async Task StoreTrainMovementMessages(IEnumerable<ITrainMovementMessage> messages)
+        public async Task Store(IEnumerable<ITrainMovementMessage> messages)
         {
             if (messages == null)
                 throw new ArgumentNullException(nameof(messages));
@@ -27,6 +27,14 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework
             {
                 await _storageProcessors[trainMovementMessage.MessageType].ProcessMessage(trainMovementMessage);
             }
+        }
+
+        public async Task Store(ITrainMovementMessage message)
+        {
+            if (message == null)
+                throw new ArgumentNullException(nameof(message));
+
+            await _storageProcessors[message.MessageType].ProcessMessage(message);
         }
     }
 }

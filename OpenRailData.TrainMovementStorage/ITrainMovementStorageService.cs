@@ -6,6 +6,7 @@ namespace OpenRailData.TrainMovementStorage
 {
     public interface ITrainMovementStorageService
     {
-        Task StoreTrainMovementMessages(IEnumerable<ITrainMovementMessage> messages);
+        Task Store(IEnumerable<ITrainMovementMessage> messages);
+        Task Store(ITrainMovementMessage message);
     }
 }
