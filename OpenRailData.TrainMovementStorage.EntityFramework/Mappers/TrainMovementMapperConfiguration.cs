@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using OpenRailData.Domain.TrainMovements;
-using OpenRailData.TrainMovementStorage.EntityFramework.Entites;
+using OpenRailData.TrainMovementStorage.EntityFramework.Entities;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Mappers
 {

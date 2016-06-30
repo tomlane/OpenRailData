@@ -1,32 +1,34 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Practices.Unity;
-using OpenRailData.Domain.TrainDescriber;
+﻿using System.Reflection;
+using Autofac;
 using OpenRailData.TrainDescriberStorage.EntityFramework.Repository;
-using OpenRailData.TrainDescriberStorage.EntityFramework.StorageProcessor;
 using OpenRailData.TrainDescriberStorage.EntityFramework.UnitOfWork;
 
 namespace OpenRailData.TrainDescriberStorage.EntityFramework
 {
     public static class EntityFrameworkTrainDescriberStorageContainerBuilder
     {
-        public static IUnityContainer Build(IUnityContainer container = null)
+        public static ContainerBuilder Build(ContainerBuilder builder = null)
         {
-            if (container == null)
-                container = new UnityContainer();
+            if (builder == null)
+                builder = new ContainerBuilder();
 
-            container.RegisterType<ITrainDescriberStorageService, TrainDescriberStorageService>();
+            var describerStorage = typeof(SignalMessageRepository).GetTypeInfo().Assembly;
+
+            builder.RegisterAssemblyTypes(describerStorage)
+                .Where(t => t.Name.EndsWith("StorageProcessor"))
+                .AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(describerStorage)
+                .Where(t => t.Name.EndsWith("MessageRepository"))
+                .AsImplementedInterfaces();
+
+            builder.RegisterType<TrainDescriberStorageService>().As<ITrainDescriberStorageService>();
+
+            builder.RegisterType<TrainDescriberUnitOfWorkFactory>().As<ITrainDescriberUnitOfWorkFactory>();
+            builder.RegisterType<TrainDescriberUnitOfWork>().As<ITrainDescriberUnitOfWork>();
+            builder.RegisterType<TrainDescriberContextFactory>().As<ITrainDescriberContextFactory>();
             
-            container.RegisterType<ITrainDescriberUnitOfWorkFactory, TrainDescriberUnitOfWorkFactory>();
-            container.RegisterType<ITrainDescriberUnitOfWork, TrainDescriberUnitOfWork>();
-            container.RegisterType<IDbContextFactory<TrainDescriberContext>, TrainDescriberContextFactory>();
-
-            container.RegisterType<ITrainDescriberStorageProcessor, SignalMessageStorageProcessor>("SignalMessageStorageProcessor");
-            container.RegisterType<ITrainDescriberStorageProcessor, BerthMessageStorageProcessor>("BerthMessageStorageProcessor");
-
-            container.RegisterType<ITrainDescriberRepository<SignalMessage>, SignalMessageRepository>();
-            container.RegisterType<ITrainDescriberRepository<BerthMessage>, BerthMessageRepository>();
-
-            return container;
+            return builder;
         }
     }
 }

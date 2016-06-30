@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using OpenRailData.Domain.TrainMovements;
-using Serilog;
 
 namespace OpenRailData.TrainMovementParsing.Json
 {
@@ -40,11 +40,11 @@ namespace OpenRailData.TrainMovementParsing.Json
 
                     response.Add(parsedMessage);
 
-                    _logger.Information("Succesfully parsed message of type {key}. Input: {message} Result: {parsedMessage}", key, parsedMessage, message);
+                    _logger.LogInformation($"Successfully parsed message of type {key}. Input: {message} Result: {parsedMessage}");
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error(ex, message);
+                    _logger.LogError(message, ex);
                 }
             }
 

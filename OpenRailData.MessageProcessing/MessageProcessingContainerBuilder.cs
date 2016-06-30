@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System.Reflection;
+using Autofac;
 using OpenRailData.MessageProcessing.ActivationProcessors;
 using OpenRailData.MessageProcessing.CancellationProcessors;
 using OpenRailData.MessageProcessing.ChangeOfIdentityProcessors;
@@ -10,26 +11,18 @@ namespace OpenRailData.MessageProcessing
 {
     public static class MessageProcessingContainerBuilder
     {
-        public static IUnityContainer Build(IUnityContainer container = null)
+        public static ContainerBuilder Build(ContainerBuilder builder = null)
         {
-            if (container == null)
-                container = new UnityContainer();
+            if (builder == null)
+                builder = new ContainerBuilder();
 
-            container.RegisterType<ITrainMovementProcessingService, TrainMovementProcessingService>();
+            var messageProcessing = typeof(TrainMovementProcessingService).GetTypeInfo().Assembly;
 
-            container.RegisterType<ITrainMovementMessageProcessor, ActivationStorageProcessor>("ActivationStorageProcessor");
+            builder.RegisterAssemblyTypes(messageProcessing)
+                .Where(t => t.Name.EndsWith("MessageProcessor"))
+                .AsImplementedInterfaces();
 
-            container.RegisterType<ITrainMovementMessageProcessor, CancellationStorageProcessor>("CancellationStorageProcessor");
-
-            container.RegisterType<ITrainMovementMessageProcessor, MovementStorageProcessor>("MovementStorageProcessor");
-
-            container.RegisterType<ITrainMovementMessageProcessor, ReinstatementStorageProcessor>("ReinstatementStorageProcessor");
-
-            container.RegisterType<ITrainMovementMessageProcessor, ChangeOfOriginStorageProcessor>("ChangeOfOriginStorageProcessor");
-
-            container.RegisterType<ITrainMovementMessageProcessor, ChangeOfIdentityStorageProcessor>("ChangeOfIdentityStorageProcessor");
-
-            return container;
+            return builder;
         }
     }
 }

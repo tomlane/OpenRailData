@@ -1,40 +1,34 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Practices.Unity;
-using OpenRailData.Domain.TrainMovements;
+﻿using System.Reflection;
+using Autofac;
 using OpenRailData.TrainMovementStorage.EntityFramework.Repository;
-using OpenRailData.TrainMovementStorage.EntityFramework.StorageProcessor;
 using OpenRailData.TrainMovementStorage.EntityFramework.UnitOfWork;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework
 {
     public static class EntityFrameworkTrainMovementStorageContainerBuilder
     {
-        public static IUnityContainer Build(IUnityContainer container = null)
+        public static ContainerBuilder Build(ContainerBuilder builder = null)
         {
-            if (container == null)
-                container = new UnityContainer();
+            if (builder == null)
+                builder = new ContainerBuilder();
 
-            container.RegisterType<ITrainMovementStorageService, TrainMovementStorageService>();
+            var movementStorage = typeof(ChangeOfIdentityRepository).GetTypeInfo().Assembly;
 
-            container.RegisterType<ITrainMovementUnitOfWorkFactory, TrainMovementUnitOfWorkFactory>();
-            container.RegisterType<ITrainMovementUnitOfWork, TrainMovementUnitOfWork>();
-            container.RegisterType<IDbContextFactory<TrainMovementContext>, TrainMovementContextFactory>();
+            builder.RegisterAssemblyTypes(movementStorage)
+                .Where(t => t.Name.EndsWith("Repository"))
+                .AsImplementedInterfaces();
 
-            container.RegisterType<ITrainMovementRepository<TrainActivation>, TrainActivationRepository>();
-            container.RegisterType<ITrainMovementRepository<TrainCancellation>, TrainCancellationRepository>();
-            container.RegisterType<ITrainMovementRepository<TrainMovement>, TrainMovementRepository>();
-            container.RegisterType<ITrainMovementRepository<TrainReinstatement>, TrainReinstatementRepository>();
-            container.RegisterType<ITrainMovementRepository<ChangeOfOrigin>, ChangeOfOriginRepository>();
-            container.RegisterType<ITrainMovementRepository<ChangeOfIdentity>, ChangeOfIdentityRepository>();
+            builder.RegisterAssemblyTypes(movementStorage)
+                .Where(t => t.Name.EndsWith("StorageProcessor"))
+                .AsImplementedInterfaces();
 
-            container.RegisterType<ITrainMovementStorageProcessor, TrainActivationStorageProcessor>("TrainActivationStorageProcessor");
-            container.RegisterType<ITrainMovementStorageProcessor, TrainCancellationStorageProcessor>("TrainCancellationStorageProcessor");
-            container.RegisterType<ITrainMovementStorageProcessor, TrainMovementStorageProcessor>("TrainMovementStorageProcessor");
-            container.RegisterType<ITrainMovementStorageProcessor, TrainReinstatmentStorageProcessor>("TrainReinstatementStorageProcessor");
-            container.RegisterType<ITrainMovementStorageProcessor, ChangeOfOriginStorageProcessor>("ChangeOfOriginStorageProcessor");
-            container.RegisterType<ITrainMovementStorageProcessor, ChangeOfIdentityStorageProcessor>("ChangeOfIdentityStorageProcessor");
+            builder.RegisterType<TrainMovementStorageService>().As<ITrainMovementStorageService>();
 
-            return container;
+            builder.RegisterType<TrainMovementUnitOfWorkFactory>().As<ITrainMovementUnitOfWorkFactory>();
+            builder.RegisterType<TrainMovementUnitOfWork>().As<ITrainMovementUnitOfWork>();
+            builder.RegisterType<SqlServerTrainMovementContextFactory>().As<ITrainMovementContextFactory>();
+            
+            return builder;
         }
     }
 }
