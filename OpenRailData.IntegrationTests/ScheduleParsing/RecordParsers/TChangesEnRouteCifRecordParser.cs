@@ -1,8 +1,8 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Autofac;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Domain.ScheduleRecords.Enums;
-using OpenRailData.Modules.ScheduleParsing.Cif;
-using OpenRailData.Modules.ScheduleParsing.Cif.RecordParsers;
+using OpenRailData.ScheduleParsing.Cif;
+using OpenRailData.ScheduleParsing.Cif.RecordParsers;
 using OpenRailData.ScheduleParsing;
 using Xunit;
 
@@ -10,13 +10,15 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
 {
     public class TChangesEnRouteCifRecordParser
     {
-        private static IUnityContainer _container;
+        private static IContainer _container;
         private static IRecordEnumPropertyParser[] _enumPropertyParsers;
 
         public TChangesEnRouteCifRecordParser()
         {
-            _container = SchedulePropertyParsersContainerBuilder.Build();
-            _container = CifScheduleParsingContainerBuilder.Build(_container);
+            var builder = SchedulePropertyParsersContainerBuilder.Build();
+            builder = CifScheduleParsingContainerBuilder.Build(builder);
+
+            _container = builder.Build();
 
             _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
         }

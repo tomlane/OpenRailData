@@ -1,0 +1,22 @@
+version: '1.0.{build}'
+configuration:
+- Debug
+- Release
+platform: Any CPU
+init:
+- ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
+install:
+- appveyor DownloadFile https://download.microsoft.com/download/A/3/8/A38489F3-9777-41DD-83F8-2CBDFAB2520C/packages/DotNetCore.1.0.0-SDK.Preview2-x64.exe
+- DotNetCore.1.0.0-SDK.Preview2-x64.exe /quiet
+environment:
+  PATH: $(PATH);$(PROGRAMFILES)\dotnet\
+build_script:
+- appveyor-retry dotnet restore -v Minimal
+- dotnet build **\project.json -c %CONFIGURATION%
+test_script:
+- dotnet test -c %CONFIGURATION% --no-build .\OpenRailData.UnitTests
+- dotnet test -c %CONFIGURATION% --no-build .\OpenRailData.IntegrationTests
+artifacts:
+- path: artifacts\**\*.*
+cache:
+- '%USERPROFILE%\.nuget\packages'

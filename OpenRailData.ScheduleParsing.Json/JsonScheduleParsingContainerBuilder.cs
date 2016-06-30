@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System.Reflection;
+using Autofac;
 using OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers;
 using OpenRailData.ScheduleParsing.PropertyParsers;
 
@@ -6,21 +7,23 @@ namespace OpenRailData.ScheduleParsing.Json
 {
     public static class JsonScheduleParsingContainerBuilder
     {
-        public static IUnityContainer Build(IUnityContainer container = null)
+        public static ContainerBuilder Build(ContainerBuilder builder = null)
         {
-            if (container == null)
-                container = new UnityContainer();
+            if (builder == null)
+                builder = new ContainerBuilder();
 
-            container.RegisterType<IScheduleRecordParsingService, JsonScheduleRecordParsingService>();
+            var scheduleParsing = typeof(JsonScheduleRecordParsingService).GetTypeInfo().Assembly;
 
-            container.RegisterType<IScheduleRecordParser, JsonAssociationRecordParser>("AssociationJsonRecordParser");
-            container.RegisterType<IScheduleRecordParser, JsonScheduleRecordParser>("ScheduleJsonRecordParser");
-            container.RegisterType<IScheduleRecordParser, JsonHeaderRecordParser>("HeaderJsonRecordParser");
-            container.RegisterType<IScheduleRecordParser, JsonTiplocRecordParser>("TiplocJsonRecordParser");
+            builder.RegisterAssemblyTypes(scheduleParsing)
+                .Where(t => t.Name.EndsWith("RecordParser"))
+                .AsImplementedInterfaces();
 
-            container.RegisterType<ITimingAllowanceParser, TimingAllowanceParser>();
+            builder.RegisterType<JsonScheduleRecordParsingService>().As<IScheduleRecordParsingService>();
+            
 
-            return container;
+            builder.RegisterType<TimingAllowanceParser>().As<ITimingAllowanceParser>();
+
+            return builder;
         }
     }
 }

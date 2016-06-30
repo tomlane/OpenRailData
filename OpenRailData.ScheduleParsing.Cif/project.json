@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc2-240",
+    "NETStandard.Library": "1.6.0",
+    "OpenRailData.Domain": "1.0.0-*",
+    "OpenRailData.ScheduleParsing": "1.0.0-*",
+    "System.Threading.Tasks.Parallel": "4.0.1"
+  },
+
+  "frameworks": {
+    "netstandard1.5": {
+      "imports": "dnxcore50"
+    }
+  }
+}

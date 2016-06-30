@@ -1,6 +1,6 @@
 ﻿using System;
+using OpenRailData.CommonDatabase;
 using OpenRailData.Domain.TrainDescriber;
-using OpenRailData.Schedule.CommonDatabase;
 
 namespace OpenRailData.TrainDescriberStorage.EntityFramework.Entities
 {

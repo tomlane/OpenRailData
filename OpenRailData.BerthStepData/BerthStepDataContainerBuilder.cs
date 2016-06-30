@@ -1,17 +1,17 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Autofac;
 
 namespace OpenRailData.BerthStepData
 {
     public static class BerthStepDataContainerBuilder
     {
-        public static IUnityContainer Build(IUnityContainer container = null)
+        public static ContainerBuilder Build(ContainerBuilder builder = null)
         {
-            if (container == null)
-                container = new UnityContainer();
+            if (builder == null)
+                builder = new ContainerBuilder();
 
-            container.RegisterType<IBerthStepDataProvider, BerthStepDataProvider>();
+            builder.RegisterType<BerthStepDataProvider>().As<IBerthStepDataProvider>();
 
-            return container;
+            return builder;
         }
     }
 }

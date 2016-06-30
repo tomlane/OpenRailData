@@ -1,22 +1,15 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using OpenRailData.Configuration;
-using OpenRailData.Schedule.CommonDatabase;
-using OpenRailData.TrainMovementStorage.EntityFramework.Entites;
+using OpenRailData.TrainMovementStorage.EntityFramework.Entities;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework
 {
-    public class TrainMovementContext : ContextBase, ITrainMovementContext
+    public class TrainMovementContext : DbContext, ITrainMovementContext
     {
-        private readonly IConnectionStringProvider _connectionStringProvider;
 
-        public TrainMovementContext(IConnectionStringProvider connectionStringProvider)
-        {
-            if (connectionStringProvider == null)
-                throw new ArgumentNullException(nameof(connectionStringProvider));
-
-            _connectionStringProvider = connectionStringProvider;
-        }
+        public TrainMovementContext(DbContextOptions options)
+            : base(options)
+        { }
 
         public DbSet<TrainActivationEntity> TrainActivations { get; set; }
         public DbSet<TrainCancellationEntity> TrainCancellations { get; set; }
@@ -38,10 +31,19 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework
             modelBuilder.Entity<ChangeOfIdentityEntity>().ToTable("ChangeOfIdentity", schema);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DbSet<T> GetSet<T>() where T : class
         {
-            optionsBuilder.UseSqlServer(_connectionStringProvider.ConnectionString("TrainMovementContext"));
+            return Set<T>();
+        }
+
+        public int SaveChanges()
+        {
+            return base.SaveChanges();
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await base.SaveChangesAsync();
         }
     }
-
 }

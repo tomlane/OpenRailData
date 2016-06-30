@@ -1,25 +1,24 @@
-﻿using Microsoft.Practices.Unity;
-using OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers;
+﻿using System.Reflection;
+using Autofac;
 
 namespace OpenRailData.TrainMovementParsing.Json
 {
     public static class JsonTrainMovementParserContainerBuilder
     {
-        public static IUnityContainer Build(IUnityContainer container = null)
+        public static ContainerBuilder Build(ContainerBuilder builder = null)
         {
-            if (container == null)
-                container = new UnityContainer();
+            if (builder == null)
+                builder = new ContainerBuilder();
 
-            container.RegisterType<ITrainMovementParsingService, TrainMovementParsingService>();
+            var trainMovementParsing = typeof(TrainMovementParsingService).GetTypeInfo().Assembly;
 
-            container.RegisterType<ITrainMovementMessageParser, TrainActivationMessageParser>("TrainActivationMessageParser");
-            container.RegisterType<ITrainMovementMessageParser, TrainCancellationMessageParser>("TrainCancellationMessageParser");
-            container.RegisterType<ITrainMovementMessageParser, TrainMovementMessageParser>("TrainMovementMessageParser");
-            container.RegisterType<ITrainMovementMessageParser, TrainReinstatementMessageParser>("TrainReinstatementMessageParser");
-            container.RegisterType<ITrainMovementMessageParser, ChangeOfIdentityMessageParser>("ChangeOfIdentityMessageParser");
-            container.RegisterType<ITrainMovementMessageParser, ChangeOfOriginMessageParser>("ChangeOfOriginMessageParser");
+            builder.RegisterAssemblyTypes(trainMovementParsing)
+                .Where(t => t.Name.EndsWith("MessageParser"))
+                .AsImplementedInterfaces();
 
-            return container;
+            builder.RegisterType<TrainMovementParsingService>().As<ITrainMovementParsingService>();
+            
+            return builder;
         }
     }
 }

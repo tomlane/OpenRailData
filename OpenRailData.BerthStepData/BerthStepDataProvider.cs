@@ -1,51 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
-using OpenRailData.DataFetcher;
 using OpenRailData.Domain.ReferenceData;
 
 namespace OpenRailData.BerthStepData
 {
     public class BerthStepDataProvider : IBerthStepDataProvider
     {
-        private readonly IDataFileFetcher _dataFileFetcher;
-        private readonly IDataFileDecompressor _dataFileDecompressor;
-
-        public BerthStepDataProvider(IDataFileFetcher dataFileFetcher, IDataFileDecompressor dataFileDecompressor)
-        {
-            if (dataFileFetcher == null)
-                throw new ArgumentNullException(nameof(dataFileFetcher));
-            if (dataFileDecompressor == null)
-                throw new ArgumentNullException(nameof(dataFileDecompressor));
-
-            _dataFileFetcher = dataFileFetcher;
-            _dataFileDecompressor = dataFileDecompressor;
-        }
-
         public IList<BerthStep> GetBerthSteps()
         {
-            var rawData = _dataFileDecompressor.DecompressDataFile(_dataFileFetcher.FetchDataFile(@"C:\RailData\BERTH Extracts\SMARTExtract.json.gz"));
+            throw new NotImplementedException();
 
-            var rawSteps = JsonConvert.DeserializeObject<RawBerthData>(Encoding.UTF8.GetString(rawData));
+            //var rawData = _dataFileDecompressor.DecompressDataFile(_dataFileFetcher.FetchDataFile(@"C:\RailData\BERTH Extracts\SMARTExtract.json.gz"));
 
-            return rawSteps.RawBerthSteps.Select(rawBerthStep => new BerthStep
-            {
-                BerthEvent = (BerthEvent) BerthEventParser.Parse(rawBerthStep.Event),
-                BerthOffset = long.Parse(rawBerthStep.BerthOffset),
-                BerthStepType = (BerthStepType) BerthStepTypeParser.Parse(rawBerthStep.StepType),
-                Comment = rawBerthStep.Comment,
-                FromBerth = rawBerthStep.FromBerth,
-                FromLine = rawBerthStep.FromLine,
-                Platform = rawBerthStep.Platform,
-                Route = rawBerthStep.Route,
-                Stanme = rawBerthStep.Stanme,
-                Stanox = rawBerthStep.Stanox,
-                ToBerth = rawBerthStep.ToBerth,
-                ToLine = rawBerthStep.ToLine,
-                TrainDescriber = rawBerthStep.TrainDescriber
-            }).ToList();
+            //var rawSteps = JsonConvert.DeserializeObject<RawBerthData>(Encoding.UTF8.GetString(rawData));
+
+            //return rawSteps.RawBerthSteps.Select(rawBerthStep => new BerthStep
+            //{
+            //    BerthEvent = (BerthEvent) BerthEventParser.Parse(rawBerthStep.Event),
+            //    BerthOffset = long.Parse(rawBerthStep.BerthOffset),
+            //    BerthStepType = (BerthStepType) BerthStepTypeParser.Parse(rawBerthStep.StepType),
+            //    Comment = rawBerthStep.Comment,
+            //    FromBerth = rawBerthStep.FromBerth,
+            //    FromLine = rawBerthStep.FromLine,
+            //    Platform = rawBerthStep.Platform,
+            //    Route = rawBerthStep.Route,
+            //    Stanme = rawBerthStep.Stanme,
+            //    Stanox = rawBerthStep.Stanox,
+            //    ToBerth = rawBerthStep.ToBerth,
+            //    ToLine = rawBerthStep.ToLine,
+            //    TrainDescriber = rawBerthStep.TrainDescriber
+            //}).ToList();
         }
     }
 

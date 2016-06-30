@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using OpenRailData.Domain.ScheduleRecords;
-using Serilog;
 
 namespace OpenRailData.ScheduleParsing.Json
 {
@@ -34,7 +34,7 @@ namespace OpenRailData.ScheduleParsing.Json
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "An error occured while trying to parse the following schedule record: {record}", record);
+                _logger.LogError($"An error occured while trying to parse the following schedule record: {record}", ex);
 
                 throw;
             }
@@ -55,7 +55,7 @@ namespace OpenRailData.ScheduleParsing.Json
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error(ex, "An error occured while trying to parse the following schedule record: {record}", record);
+                    _logger.LogError($"An error occured while trying to parse the following schedule record: {record}", ex);
                 }
             }
 

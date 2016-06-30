@@ -17,7 +17,7 @@ namespace OpenRailData.ScheduleParsing.PropertyParsers
                 return null;
 
 
-            var culture = CultureInfo.CreateSpecificCulture("en-UK");
+            var culture = new CultureInfo("en-gb");
 
             // year should be 19xx if > 60 and 20xx if < 60
             culture.Calendar.TwoDigitYearMax = 2059;

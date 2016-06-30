@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Practices.Unity;
+using Autofac;
 using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.Domain.ScheduleRecords.Enums;
-using OpenRailData.Modules.ScheduleParsing.Cif;
+using OpenRailData.ScheduleParsing.Cif;
 using OpenRailData.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers;
 using Xunit;
@@ -12,14 +12,14 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
 {
     public class TJsonScheduleRecordParser
     {
-        private static IUnityContainer _container;
+        private static IContainer _container;
         private static IRecordEnumPropertyParser[] _enumPropertyParsers;
         private static ITimingAllowanceParser _timingAllowanceParser;
 
         public TJsonScheduleRecordParser()
         {
-            _container = SchedulePropertyParsersContainerBuilder.Build();
-            _container = CifScheduleParsingContainerBuilder.Build(_container);
+            var builder = SchedulePropertyParsersContainerBuilder.Build();
+            builder = CifScheduleParsingContainerBuilder.Build(builder);
 
             _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();
             _timingAllowanceParser = _container.Resolve<ITimingAllowanceParser>();
