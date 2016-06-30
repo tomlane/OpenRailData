@@ -47,7 +47,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.IntegrationTes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{77363B1F-58C4-4848-9EF5-013685CF8CDD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{A94057ED-E3FD-4EBC-97C6-001BDF8617FE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D8FEBC3E-3955-47A6-889F-DBF177EEA02F}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.config = NuGet.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
