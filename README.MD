@@ -8,4 +8,4 @@ Original project based on [swlines' Cif Reader](https://github.com/swlines/CIFRe
 
 A continuous work in progress. This project has been more of a development playground for me than something with an end goal.
 
-[More information on open rail data](https://www.openraildata.com).
+[More information on open rail data](http://www.openraildata.com).
