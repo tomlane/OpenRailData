@@ -52,6 +52,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		NuGet.config = NuGet.config
 	EndProjectSection
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.Darwin", "OpenRailData.Darwin\OpenRailData.Darwin.xproj", "{1563D0CC-2C97-42C2-A49B-620A5E39344D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -142,6 +144,10 @@ Global
 		{C43AA399-2AC9-43BF-A036-996DD0728412}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C43AA399-2AC9-43BF-A036-996DD0728412}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C43AA399-2AC9-43BF-A036-996DD0728412}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1563D0CC-2C97-42C2-A49B-620A5E39344D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1563D0CC-2C97-42C2-A49B-620A5E39344D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1563D0CC-2C97-42C2-A49B-620A5E39344D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1563D0CC-2C97-42C2-A49B-620A5E39344D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
