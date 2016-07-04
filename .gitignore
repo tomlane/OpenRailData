@@ -170,3 +170,6 @@ node_modules/
 *.orig
 
 .vs/
+
+# dotnet core specifics
+**/project.lock.json
