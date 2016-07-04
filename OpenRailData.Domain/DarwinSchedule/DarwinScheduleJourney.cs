@@ -34,9 +34,14 @@ namespace OpenRailData.Domain.DarwinSchedule
         /// </summary>
         public bool IsPassengerService { get; set; }
         /// <summary>
+        /// The status code of the train.
+        /// </summary>
+        public string TrainStatus { get; set; }
+        /// <summary>
         /// A list of points in the schedule.
         /// </summary>
         /// <remarks>Typically contains an origin and destination point, along with intermediate passenger points, operational stops and passes.</remarks>
         public List<DarwinSchedulePoint> SchedulePoints { get; set; }
+        
     }
 }

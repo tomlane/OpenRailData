@@ -29,9 +29,17 @@
         /// </summary>
         public string AssocRid { get; set; }
         /// <summary>
+        /// Working arrival time of the associated journey.
+        /// </summary>
+        public string AssocWorkingArrivalTime { get; set; }
+        /// <summary>
         /// Working departure time of the associated journey.
         /// </summary>
         public string AssocWorkingDepartureTime { get; set; }
+        /// <summary>
+        /// Public arrival time of the associated journey.
+        /// </summary>
+        public string AssocPublicArrivalTime { get; set; }
         /// <summary>
         /// Public departure time of the associated journey. 
         /// </summary>

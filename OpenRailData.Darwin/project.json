@@ -4,7 +4,8 @@
   "dependencies": {
     "Microsoft.Extensions.Options": "1.0.0",
     "NETStandard.Library": "1.6.0",
-    "System.Net.Requests": "4.0.11"
+    "OpenRailData.Domain": "1.0.0-*",
+    "System.Xml.XmlSerializer": "4.0.11"
   },
 
   "frameworks": {
