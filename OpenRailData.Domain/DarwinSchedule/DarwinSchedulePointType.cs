@@ -5,9 +5,14 @@ namespace OpenRailData.Domain.DarwinSchedule
     public enum DarwinSchedulePointType
     {
         /// <summary>
-        /// Origin point.
+        /// Operational origin point (not applicable to passengers).
         /// </summary>
-        [Display(Name = "Origin")]
+        [Display(Name = "Operational Origin")]
+        OPOR,
+        /// <summary>
+        /// Public origin point.
+        /// </summary>
+        [Display(Name = "Public Origin")]
         OR,
         /// <summary>
         /// Passing point.
@@ -25,9 +30,14 @@ namespace OpenRailData.Domain.DarwinSchedule
         [Display(Name = "Operational Stop")]
         OPIP,
         /// <summary>
-        /// Destination point.
+        /// Public destination point.
         /// </summary>
         [Display(Name = "Destination")]
-        DT
+        DT,
+        /// <summary>
+        /// Operational destination point (not applicable to passengers).
+        /// </summary>
+        [Display(Name = "Operational Destination")]
+        OPDT
     }
 }
