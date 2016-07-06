@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
-using OpenRailData.Darwin.DeserializedXmlObjects;
+using OpenRailData.Darwin.ScheduleDeserialization;
 using OpenRailData.Domain.DarwinSchedule;
 
 namespace OpenRailData.Darwin.ScheduleParsing
@@ -55,7 +55,7 @@ namespace OpenRailData.Darwin.ScheduleParsing
             {                
                 IsPassengerService = deserializedDarwinJourney.PassengerService,
                 Rid = deserializedDarwinJourney.Rid,
-                SchedulePoints = deserializedDarwinJourney.DeserializedDarwinJourneyPoints.Select(ConvertDarwinPoint).ToList(),
+                //SchedulePoints = deserializedDarwinJourney.DeserializedDarwinJourneyPoints.Select(ConvertDarwinPoint).ToList(),
                 ScheduleStartDate = DateTime.Parse(deserializedDarwinJourney.ScheduleStartDate),
                 Toc = deserializedDarwinJourney.TrainOperatingCompany,
                 TrainCategory = deserializedDarwinJourney.TrainCategory,
@@ -65,20 +65,20 @@ namespace OpenRailData.Darwin.ScheduleParsing
             };
         }
 
-        private DarwinSchedulePoint ConvertDarwinPoint(DeserializedDarwinJourneyPoint deserializedDarwinPoint)
-        {
-            return new DarwinSchedulePoint
-            {
-                // TODO: Schedule point type is not being set. 
-                LocationActivity = deserializedDarwinPoint.LocationActivity,
-                Platform = deserializedDarwinPoint.Platform,
-                PublicArrivalTime = deserializedDarwinPoint.PublicArrivalTime,
-                PublicDepartureTime = deserializedDarwinPoint.PublicDepartureTime,
-                Tiploc = deserializedDarwinPoint.TiplocCode,
-                WorkingArrivalTime = deserializedDarwinPoint.WorkingArrivalTime,
-                WorkingDepartureTime = deserializedDarwinPoint.WorkingDepartureTime,
-                WorkingPassTime = deserializedDarwinPoint.WorkingPassingTime
-            };
-        }
+        //private DarwinSchedulePoint ConvertDarwinPoint(DeserializedDarwinJourneyPoint deserializedDarwinPoint)
+        //{
+        //    return new DarwinSchedulePoint
+        //    {
+        //        // TODO: Schedule point type is not being set. 
+        //        LocationActivity = deserializedDarwinPoint.LocationActivity,
+        //        Platform = deserializedDarwinPoint.Platform,
+        //        PublicArrivalTime = deserializedDarwinPoint.PublicArrivalTime,
+        //        PublicDepartureTime = deserializedDarwinPoint.PublicDepartureTime,
+        //        Tiploc = deserializedDarwinPoint.TiplocCode,
+        //        WorkingArrivalTime = deserializedDarwinPoint.WorkingArrivalTime,
+        //        WorkingDepartureTime = deserializedDarwinPoint.WorkingDepartureTime,
+        //        WorkingPassTime = deserializedDarwinPoint.WorkingPassingTime
+        //    };
+        //}
     }
 }

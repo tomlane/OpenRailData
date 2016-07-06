@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace OpenRailData.Darwin.DeserializedXmlObjects
+namespace OpenRailData.Darwin.ScheduleDeserialization
 {
-    internal class DeserializedDarwinJourney
+    public class DeserializedDarwinJourney
     {
         [XmlAttribute("rid")]
         public string Rid { get; set; }

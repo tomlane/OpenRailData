@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace OpenRailData.Darwin.DeserializedXmlObjects
+namespace OpenRailData.Darwin.ScheduleDeserialization
 {
     [XmlRoot("PportTimetable", Namespace = "http://www.thalesgroup.com/rtti/XmlTimetable/v8")]
-    internal class DeserializedDarwinSchedule
+    public class DeserializedDarwinSchedule
     {
         [XmlAttribute("timetableID")]
         public string TimetableId { get; set; }

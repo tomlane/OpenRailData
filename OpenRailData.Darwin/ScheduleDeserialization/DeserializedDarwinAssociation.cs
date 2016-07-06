@@ -1,8 +1,8 @@
 ﻿using System.Xml.Serialization;
 
-namespace OpenRailData.Darwin.DeserializedXmlObjects
+namespace OpenRailData.Darwin.ScheduleDeserialization
 {
-    internal class DeserializedDarwinAssociation
+    public class DeserializedDarwinAssociation
     {
         [XmlAttribute("tiploc")]
         public string TiplocCode { get; set; }
@@ -14,7 +14,7 @@ namespace OpenRailData.Darwin.DeserializedXmlObjects
         public DeserializedDarwinAssociationPortion Assoc { get; set; }
     }
 
-    internal class DeserializedDarwinAssociationPortion
+    public class DeserializedDarwinAssociationPortion
     {
         [XmlAttribute("rid")]
         public string Rid { get; set; }
