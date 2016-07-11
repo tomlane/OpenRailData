@@ -44,5 +44,13 @@
         /// Public departure time of the associated journey. 
         /// </summary>
         public string AssocPublicDepartureTime { get; set; }
+        /// <summary>
+        /// The association category.
+        /// </summary>
+        public string Category { get; set; }
+        /// <summary>
+        /// The tiploc code of the location where the association applies.
+        /// </summary>
+        public string TiplocCode { get; set; }
     }
 }
