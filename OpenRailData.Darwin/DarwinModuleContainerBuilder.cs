@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using Autofac;
-using Microsoft.Extensions.Options;
+﻿using Autofac;
 using OpenRailData.Darwin.DataDecompression;
-using OpenRailData.Darwin.ScheduleFetching;
+using OpenRailData.Darwin.DataFetching;
 using OpenRailData.Darwin.ScheduleParsing;
 
 namespace OpenRailData.Darwin
@@ -14,16 +12,14 @@ namespace OpenRailData.Darwin
             if (builder == null) 
                 builder = new ContainerBuilder();
 
-            builder.RegisterType<LocalFileDarwinScheduleFetcher>().As<IDarwinScheduleFetcher>();
+            builder.RegisterType<LocalDarwinDataFileFetcher>().As<IDarwinDataFileFetcher>();
 
             builder.RegisterType<GzipDataDecompressor>().As<IDataDecompressor>();
 
             builder.RegisterType<XmlDarwinScheduleParser>().As<IDarwinScheduleParser>();
 
             builder.RegisterType<DarwinScheduleProvider>().As<IDarwinScheduleProvider>();
-
-            builder.RegisterInstance<IOptions<DarwinLocalFileFetcherOptions>>(new OptionsManager<DarwinLocalFileFetcherOptions>(new List<IConfigureOptions<DarwinLocalFileFetcherOptions>>()));
-
+            
             return builder;
         }
     }
