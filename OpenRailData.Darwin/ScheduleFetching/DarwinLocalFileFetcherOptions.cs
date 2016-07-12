@@ -1,6 +1,6 @@
 ﻿namespace OpenRailData.Darwin.ScheduleFetching
 {
-    public class DarwinLocalFileFetcherOptions : IDarwinScheduleFetcherOptions
+    public class DarwinLocalFileFetcherOptions
     {
         public string DarwinScheduleFilePath { get; set; }
 

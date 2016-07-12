@@ -42,6 +42,9 @@ namespace OpenRailData.Domain.DarwinSchedule
         /// </summary>
         /// <remarks>Typically contains an origin and destination point, along with intermediate passenger points, operational stops and passes.</remarks>
         public List<DarwinSchedulePoint> SchedulePoints { get; set; }
-        
+        /// <summary>
+        /// The reason code if the journey has been cancelled.
+        /// </summary>
+        public string CancellationReason { get; set; }
     }
 }
