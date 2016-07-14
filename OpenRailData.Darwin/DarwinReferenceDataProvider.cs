@@ -33,7 +33,7 @@ namespace OpenRailData.Darwin
 
             var dataFile = _dataDecompressor.Decompress(compressedDataFile);
 
-            return _referenceDataParser.ParDarwinReferenceDataSet(Encoding.UTF8.GetString(dataFile));
+            return _referenceDataParser.ParseDarwinReferenceDataSet(Encoding.UTF8.GetString(dataFile));
         }
     }
 }

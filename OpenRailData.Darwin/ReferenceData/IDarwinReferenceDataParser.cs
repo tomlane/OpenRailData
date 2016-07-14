@@ -4,6 +4,6 @@ namespace OpenRailData.Darwin.ReferenceData
 {
     public interface IDarwinReferenceDataParser
     {
-        DarwinReferenceDataSet ParDarwinReferenceDataSet(string rawData);
+        DarwinReferenceDataSet ParseDarwinReferenceDataSet(string rawData);
     }
 }

@@ -7,7 +7,7 @@ namespace OpenRailData.Darwin.ReferenceData
 {
     public class XmlDarwinReferenceDataParser : IDarwinReferenceDataParser
     {
-        public DarwinReferenceDataSet ParDarwinReferenceDataSet(string rawData)
+        public DarwinReferenceDataSet ParseDarwinReferenceDataSet(string rawData)
         {
             if (string.IsNullOrWhiteSpace(rawData))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(rawData));
