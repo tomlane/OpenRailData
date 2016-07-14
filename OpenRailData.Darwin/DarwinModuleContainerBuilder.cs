@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using OpenRailData.Darwin.DataDecompression;
 using OpenRailData.Darwin.DataFetching;
+using OpenRailData.Darwin.ReferenceData;
 using OpenRailData.Darwin.ScheduleParsing;
 
 namespace OpenRailData.Darwin
@@ -19,6 +20,10 @@ namespace OpenRailData.Darwin
             builder.RegisterType<XmlDarwinScheduleParser>().As<IDarwinScheduleParser>();
 
             builder.RegisterType<DarwinScheduleProvider>().As<IDarwinScheduleProvider>();
+
+            builder.RegisterType<DarwinReferenceDataProvider>().As<IDarwinReferenceDataProvider>();
+
+            builder.RegisterType<XmlDarwinReferenceDataParser>().As<IDarwinReferenceDataParser>();
             
             return builder;
         }
