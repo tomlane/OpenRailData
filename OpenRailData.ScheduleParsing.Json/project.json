@@ -12,10 +12,11 @@
   },
 
   "frameworks": {
-    "netstandard1.5": {
+    "netstandard1.4": {
       "imports": "dnxcore50",
       "dependencies": {
       }
-    }
+    },
+    "net461": { }
   }
 }

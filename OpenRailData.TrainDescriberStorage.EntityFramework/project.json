@@ -3,6 +3,7 @@
 
   "dependencies": {
     "Autofac.Extensions.DependencyInjection": "4.0.0-rc2-240",
+    "AutoMapper": "4.2.1",
     "Microsoft.EntityFrameworkCore.Relational": "1.0.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
     "NETStandard.Library": "1.6.0",
@@ -12,11 +13,9 @@
   },
 
   "frameworks": {
-    "netstandard1.5": {
-      "imports": "dnxcore50",
-      "dependencies": {
-        "AutoMapper": "4.2.1"
-      }
-    }
+    "netstandard1.4": {
+      "imports": "dnxcore50"
+    },
+    "net461": { }
   }
 }
