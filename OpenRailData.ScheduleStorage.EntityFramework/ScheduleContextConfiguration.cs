@@ -1,6 +1,6 @@
 ﻿namespace OpenRailData.ScheduleStorage.EntityFramework
 {
-    public class ScheduleContextOptions
+    public class ScheduleContextConfiguration
     {
         public string ConnectionString { get; set; }
     }

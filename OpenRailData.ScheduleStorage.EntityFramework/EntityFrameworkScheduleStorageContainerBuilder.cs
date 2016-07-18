@@ -14,7 +14,7 @@ namespace OpenRailData.ScheduleStorage.EntityFramework
 
             var scheduleStorage = typeof(AssociationAmendScheduleRecordStorageProcessor).GetTypeInfo().Assembly;
 
-            builder.RegisterType<IScheduleRecordStorageService>().As<ScheduleRecordStorageService>();
+            builder.RegisterType<ScheduleRecordStorageService>().As<IScheduleRecordStorageService>();
 
             builder.RegisterAssemblyTypes(scheduleStorage)
                 .Where(t => t.Name.EndsWith("StorageProcessor"))
@@ -27,7 +27,13 @@ namespace OpenRailData.ScheduleStorage.EntityFramework
             builder.RegisterType<ScheduleUnitOfWorkFactory>().As<IScheduleUnitOfWorkFactory>();
             builder.RegisterType<ScheduleUnitOfWork>().As<IScheduleUnitOfWork>();
 
+            builder.RegisterType<SqlServerScheduleContextFactory>().As<IScheduleContextFactory>();
             builder.RegisterType<ScheduleContext>().As<IScheduleContext>();
+
+            builder.RegisterType<StaticScheduleContextConfigurationProvider>()
+                .As<IScheduleContextConfigurationProvider>();
+
+            builder.RegisterType<ScheduleDatabaseMigrator>().As<IScheduleDatabaseMigrator>();
             
             return builder;
         }

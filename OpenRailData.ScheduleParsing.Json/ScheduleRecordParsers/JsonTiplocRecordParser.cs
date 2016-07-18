@@ -37,6 +37,8 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
                 case "Delete":
                     tiploc.RecordIdentity = ScheduleRecordType.TD;
                     break;
+                default:
+                    throw new ArgumentException("Unable to obtain Tiploc transaction type");
             }
 
             return tiploc;

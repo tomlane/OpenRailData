@@ -1,11 +1,5 @@
 ﻿using System.Reflection;
 using Autofac;
-using OpenRailData.MessageProcessing.ActivationProcessors;
-using OpenRailData.MessageProcessing.CancellationProcessors;
-using OpenRailData.MessageProcessing.ChangeOfIdentityProcessors;
-using OpenRailData.MessageProcessing.ChangeOfOriginProcessors;
-using OpenRailData.MessageProcessing.MovementProcessors;
-using OpenRailData.MessageProcessing.ReinstatementProcessors;
 
 namespace OpenRailData.MessageProcessing
 {

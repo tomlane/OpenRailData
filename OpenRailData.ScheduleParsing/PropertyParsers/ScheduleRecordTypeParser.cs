@@ -11,7 +11,7 @@ namespace OpenRailData.ScheduleParsing.PropertyParsers
         {
             if (string.IsNullOrWhiteSpace(propertyString))
                 throw new ArgumentNullException(nameof(propertyString));
-
+            
             return (ScheduleRecordType)Enum.Parse(typeof(ScheduleRecordType), propertyString);
         }
     }

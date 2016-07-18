@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Autofac;
-using OpenRailData.ScheduleParsing.Cif.RecordParsers;
 
 namespace OpenRailData.ScheduleParsing.Cif
 {

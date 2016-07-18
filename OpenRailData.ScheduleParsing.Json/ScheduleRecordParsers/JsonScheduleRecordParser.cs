@@ -92,6 +92,8 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
                 case "Delete":
                     schedule.RecordIdentity = ScheduleRecordType.BSD;
                     break;
+                default:
+                    throw new ArgumentException("Unable to obtain Schedule transaction type.");
             }
 
             return schedule;

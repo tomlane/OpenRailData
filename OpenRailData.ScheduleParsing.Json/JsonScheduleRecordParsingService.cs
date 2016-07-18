@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using OpenRailData.Domain.ScheduleRecords;
 
@@ -9,35 +8,22 @@ namespace OpenRailData.ScheduleParsing.Json
 {
     public class JsonScheduleRecordParsingService : IScheduleRecordParsingService
     {
-        private readonly ILogger _logger;
         private readonly Dictionary<string, IScheduleRecordParser> _recordParsers;
 
-        public JsonScheduleRecordParsingService(IScheduleRecordParser[] scheduleRecordParsers, ILogger logger)
+        public JsonScheduleRecordParsingService(IScheduleRecordParser[] scheduleRecordParsers)
         {
             if (scheduleRecordParsers == null)
                 throw new ArgumentNullException(nameof(scheduleRecordParsers));
-            if (logger == null)
-                throw new ArgumentNullException(nameof(logger));
 
             _recordParsers = scheduleRecordParsers.ToDictionary(x => x.RecordKey, x => x);
-            _logger = logger;
         }
 
         public IScheduleRecord Parse(string record)
         {
             if (string.IsNullOrWhiteSpace(record))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(record));
-            
-            try
-            {
-                return ParseRecord(record);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"An error occured while trying to parse the following schedule record: {record}", ex);
 
-                throw;
-            }
+            return ParseRecord(record);
         }
 
         public IEnumerable<IScheduleRecord> Parse(IEnumerable<string> records)
@@ -45,21 +31,7 @@ namespace OpenRailData.ScheduleParsing.Json
             if (records == null)
                 throw new ArgumentNullException(nameof(records));
 
-            var response = new List<IScheduleRecord>();
-
-            foreach (var record in records)
-            {
-                try
-                {
-                    response.Add(ParseRecord(record));
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError($"An error occured while trying to parse the following schedule record: {record}", ex);
-                }
-            }
-
-            return response;
+            return records.Select(ParseRecord).Where(x => x.RecordIdentity != 0).ToList();
         }
 
         private IScheduleRecord ParseRecord(string record)

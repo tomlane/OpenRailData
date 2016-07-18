@@ -1,5 +1,4 @@
-﻿using System;
-using OpenRailData.Domain.ScheduleRecords.Enums;
+﻿using OpenRailData.Domain.ScheduleRecords.Enums;
 using OpenRailData.ScheduleParsing.PropertyParsers;
 using Xunit;
 

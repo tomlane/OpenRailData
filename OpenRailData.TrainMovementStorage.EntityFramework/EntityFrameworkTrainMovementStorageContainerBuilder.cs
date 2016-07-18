@@ -27,7 +27,10 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework
             builder.RegisterType<TrainMovementUnitOfWorkFactory>().As<ITrainMovementUnitOfWorkFactory>();
             builder.RegisterType<TrainMovementUnitOfWork>().As<ITrainMovementUnitOfWork>();
             builder.RegisterType<SqlServerTrainMovementContextFactory>().As<ITrainMovementContextFactory>();
-            
+
+            builder.RegisterType<StaticTrainMovementContextConfigurationProvider>()
+                .As<ITrainMovementContextConfigurationProvider>();
+
             return builder;
         }
     }

@@ -1,6 +1,6 @@
 namespace OpenRailData.TrainMovementStorage.EntityFramework
 {
-    public class TrainMovementContextOptions
+    public class TrainMovementContextConfiguration
     {
         public string ConnectionString { get; set; }
     }

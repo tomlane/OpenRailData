@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Autofac;
-using OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers;
 using OpenRailData.ScheduleParsing.PropertyParsers;
 
 namespace OpenRailData.ScheduleParsing.Json

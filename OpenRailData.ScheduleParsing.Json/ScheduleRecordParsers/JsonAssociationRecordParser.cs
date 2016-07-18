@@ -68,6 +68,8 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
                 case "Delete":
                     association.RecordIdentity = ScheduleRecordType.AAD;
                     break;
+                default:
+                    throw new ArgumentException("Unable to obtain Association transaction type.");
             }
 
             return association;

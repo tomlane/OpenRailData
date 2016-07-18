@@ -27,7 +27,10 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework
             builder.RegisterType<TrainDescriberUnitOfWorkFactory>().As<ITrainDescriberUnitOfWorkFactory>();
             builder.RegisterType<TrainDescriberUnitOfWork>().As<ITrainDescriberUnitOfWork>();
             builder.RegisterType<TrainDescriberContextFactory>().As<ITrainDescriberContextFactory>();
-            
+
+            builder.RegisterType<StaticTrainDescriberContextConfigurationProvider>()
+                .As<ITrainDescriberContextConfigurationProvider>();
+
             return builder;
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace OpenRailData.TrainDescriberStorage.EntityFramework
 {
-    public class TrainDescriberContextOptions
+    public class TrainDescriberContextConfiguration
     {
         public string ConnectionString { get; set; }
     }
