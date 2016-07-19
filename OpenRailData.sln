@@ -3,13 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.Domain", "OpenRailData.Domain\OpenRailData.Domain.xproj", "{EFE0BC40-A3D0-4F88-9C28-977A974FF8A4}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.Schedule", "OpenRailData.Schedule\OpenRailData.Schedule.xproj", "{8C74AC31-5F4C-43BB-BF32-81346E0D951A}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.TrainMovementParsing", "OpenRailData.TrainMovementParsing\OpenRailData.TrainMovementParsing.xproj", "{FC07DF7E-5182-4A20-8588-962406ADB6F0}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.TrainMovementStorage", "OpenRailData.TrainMovementStorage\OpenRailData.TrainMovementStorage.xproj", "{F3CD3DAA-149D-409E-9827-30B7C08CB3AF}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.ScheduleParsing.Json", "OpenRailData.ScheduleParsing.Json\OpenRailData.ScheduleParsing.Json.xproj", "{5576BCFF-9C57-47FF-8878-84CC67D909D9}"
 EndProject
@@ -48,28 +42,18 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.NetworkRailSch
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.TrainDescriber", "OpenRailData.TrainDescriber\OpenRailData.TrainDescriber.xproj", "{C57EFDDE-2494-4ED4-B253-81819DBDC69F}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.TrainMovement", "OpenRailData.TrainMovement\OpenRailData.TrainMovement.xproj", "{F745A804-0712-467D-B2AC-A300CE8F4C73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EFE0BC40-A3D0-4F88-9C28-977A974FF8A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFE0BC40-A3D0-4F88-9C28-977A974FF8A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFE0BC40-A3D0-4F88-9C28-977A974FF8A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFE0BC40-A3D0-4F88-9C28-977A974FF8A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8C74AC31-5F4C-43BB-BF32-81346E0D951A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C74AC31-5F4C-43BB-BF32-81346E0D951A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C74AC31-5F4C-43BB-BF32-81346E0D951A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C74AC31-5F4C-43BB-BF32-81346E0D951A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC07DF7E-5182-4A20-8588-962406ADB6F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC07DF7E-5182-4A20-8588-962406ADB6F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC07DF7E-5182-4A20-8588-962406ADB6F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC07DF7E-5182-4A20-8588-962406ADB6F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3CD3DAA-149D-409E-9827-30B7C08CB3AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3CD3DAA-149D-409E-9827-30B7C08CB3AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3CD3DAA-149D-409E-9827-30B7C08CB3AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3CD3DAA-149D-409E-9827-30B7C08CB3AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5576BCFF-9C57-47FF-8878-84CC67D909D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5576BCFF-9C57-47FF-8878-84CC67D909D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5576BCFF-9C57-47FF-8878-84CC67D909D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -130,6 +114,10 @@ Global
 		{C57EFDDE-2494-4ED4-B253-81819DBDC69F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C57EFDDE-2494-4ED4-B253-81819DBDC69F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C57EFDDE-2494-4ED4-B253-81819DBDC69F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F745A804-0712-467D-B2AC-A300CE8F4C73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F745A804-0712-467D-B2AC-A300CE8F4C73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F745A804-0712-467D-B2AC-A300CE8F4C73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F745A804-0712-467D-B2AC-A300CE8F4C73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

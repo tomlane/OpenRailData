@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
+using OpenRailData.TrainMovement.TrainMovementParsing;
 
 namespace OpenRailData.TrainMovementParsing.Json
 {

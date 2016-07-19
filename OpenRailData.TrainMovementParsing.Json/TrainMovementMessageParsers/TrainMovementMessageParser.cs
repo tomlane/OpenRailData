@@ -1,7 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
-using OpenRailData.Domain.TrainMovements;
-using OpenRailData.Domain.TrainMovements.Enums;
+using OpenRailData.TrainMovement.Entities;
+using OpenRailData.TrainMovement.Entities.Enums;
+using OpenRailData.TrainMovement.TrainMovementParsing;
 using OpenRailData.TrainMovementParsing.Json.RawMessages;
 
 namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
@@ -17,7 +18,7 @@ namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers
 
             var deserializedMovement = JsonConvert.DeserializeObject<DeserializedJsonTrainMovement>(message);
 
-            var movement = new TrainMovement
+            var movement = new TrainMovement.Entities.TrainMovement
             {
                 SourceDeviceId = deserializedMovement.Header.SourceDeviceId,
                 OriginalDataSource = deserializedMovement.Header.OriginalDataSource,

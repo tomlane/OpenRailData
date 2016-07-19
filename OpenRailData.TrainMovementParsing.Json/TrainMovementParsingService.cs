@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using OpenRailData.Domain.TrainMovements;
+using OpenRailData.TrainMovement.Entities;
+using OpenRailData.TrainMovement.TrainMovementParsing;
 
 namespace OpenRailData.TrainMovementParsing.Json
 {

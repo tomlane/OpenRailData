@@ -1,7 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
-using OpenRailData.Domain.TrainMovements;
-using OpenRailData.Domain.TrainMovements.Enums;
+using OpenRailData.TrainMovement.Entities;
+using OpenRailData.TrainMovement.Entities.Enums;
+using OpenRailData.TrainMovement.TrainMovementParsing;
 using OpenRailData.TrainMovementParsing.Json.RawMessages;
 
 namespace OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers

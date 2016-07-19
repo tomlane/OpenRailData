@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using OpenRailData.Domain.TrainMovements;
+using OpenRailData.TrainMovement.Entities;
 using OpenRailData.TrainMovementStorage.EntityFramework.Entities;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Mappers
@@ -12,7 +12,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Mappers
             {
                 cfg.CreateMap<TrainActivation, TrainActivationEntity>().ForMember(dest => dest.Id, opt => opt.Ignore()).ReverseMap();
                 cfg.CreateMap<TrainCancellation, TrainCancellationEntity>().ForMember(dest => dest.Id, opt => opt.Ignore()).ReverseMap();
-                cfg.CreateMap<TrainMovement, TrainMovementEntity>().ForMember(dest => dest.Id, opt => opt.Ignore()).ReverseMap();
+                cfg.CreateMap<TrainMovement.Entities.TrainMovement, TrainMovementEntity>().ForMember(dest => dest.Id, opt => opt.Ignore()).ReverseMap();
                 cfg.CreateMap<TrainReinstatement, TrainReinstatementEntity>().ForMember(dest => dest.Id, opt => opt.Ignore()).ReverseMap();
                 cfg.CreateMap<ChangeOfOrigin, ChangeOfOriginEntity>().ForMember(dest => dest.Id, opt => opt.Ignore()).ReverseMap();
                 cfg.CreateMap<ChangeOfIdentity, ChangeOfIdentityEntity>().ForMember(dest => dest.Id, opt => opt.Ignore()).ReverseMap();

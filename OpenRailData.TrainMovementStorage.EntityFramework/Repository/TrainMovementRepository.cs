@@ -2,13 +2,13 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using OpenRailData.CommonDatabase;
-using OpenRailData.Domain.TrainMovements;
+using OpenRailData.TrainMovement.TrainMovementStorage;
 using OpenRailData.TrainMovementStorage.EntityFramework.Entities;
 using OpenRailData.TrainMovementStorage.EntityFramework.Mappers;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Repository
 {
-    public class TrainMovementRepository : BaseRepository<TrainMovementEntity>, ITrainMovementRepository<TrainMovement>
+    public class TrainMovementRepository : BaseRepository<TrainMovementEntity>, ITrainMovementRepository<TrainMovement.Entities.TrainMovement>
     {
         private readonly IMapper _mapper;
 
@@ -17,7 +17,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Repository
             _mapper = TrainMovementMapperConfiguration.CreateMapper();
         }
 
-        public void InsertRecord(TrainMovement record)
+        public void InsertRecord(TrainMovement.Entities.TrainMovement record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
@@ -27,12 +27,12 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Repository
             Add(entity);
         }
 
-        public void AmendRecord(TrainMovement record)
+        public void AmendRecord(TrainMovement.Entities.TrainMovement record)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteRecord(TrainMovement record)
+        public void DeleteRecord(TrainMovement.Entities.TrainMovement record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
@@ -42,7 +42,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Repository
             Remove(entity);
         }
 
-        public Task InsertRecordAsync(TrainMovement record)
+        public Task InsertRecordAsync(TrainMovement.Entities.TrainMovement record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
@@ -54,12 +54,12 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.Repository
             return Task.CompletedTask;
         }
 
-        public Task AmendRecordAsync(TrainMovement record)
+        public Task AmendRecordAsync(TrainMovement.Entities.TrainMovement record)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteRecordAsync(TrainMovement record)
+        public Task DeleteRecordAsync(TrainMovement.Entities.TrainMovement record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));

@@ -5,7 +5,6 @@
     "xunit": "2.1.0",
     "OpenRailData.ScheduleParsing.Json": "1.0.0-*",
     "OpenRailData.ScheduleParsing.Cif": "1.0.0-*",
-    "OpenRailData.Domain": "1.0.0-*",
     "OpenRailData.Darwin": "1.0.0-*",
     "Microsoft.NETCore.App": "1.0.0",
     "dotnet-test-xunit": "1.0.0-rc2-build10025"

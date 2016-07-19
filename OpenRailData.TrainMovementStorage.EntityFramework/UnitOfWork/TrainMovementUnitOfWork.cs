@@ -1,5 +1,6 @@
 ﻿using System;
-using OpenRailData.Domain.TrainMovements;
+using OpenRailData.TrainMovement.Entities;
+using OpenRailData.TrainMovement.TrainMovementStorage;
 using OpenRailData.TrainMovementStorage.EntityFramework.Repository;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.UnitOfWork
@@ -26,7 +27,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.UnitOfWork
 
         public ITrainMovementRepository<TrainActivation> TrainActivations { get; }
         public ITrainMovementRepository<TrainCancellation> TrainCancellations { get; }
-        public ITrainMovementRepository<TrainMovement> TrainMovements { get; }
+        public ITrainMovementRepository<TrainMovement.Entities.TrainMovement> TrainMovements { get; }
         public ITrainMovementRepository<TrainReinstatement> TrainReinstatements { get; }
         public ITrainMovementRepository<ChangeOfOrigin> ChangeOfOrigins { get; }
         public ITrainMovementRepository<ChangeOfIdentity> ChangeOfIdentities { get; }

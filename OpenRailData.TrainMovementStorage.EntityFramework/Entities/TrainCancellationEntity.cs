@@ -1,6 +1,6 @@
 ﻿using System;
 using OpenRailData.CommonDatabase;
-using OpenRailData.Domain.TrainMovements.Enums;
+using OpenRailData.TrainMovement.Entities.Enums;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Entities
 {

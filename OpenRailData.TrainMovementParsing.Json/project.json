@@ -6,8 +6,7 @@
     "Microsoft.Extensions.Logging.Abstractions": "1.0.0",
     "NETStandard.Library": "1.6.0",
     "Newtonsoft.Json": "9.0.1",
-    "OpenRailData.Domain": "1.0.0-*",
-    "OpenRailData.TrainMovementParsing": "1.0.0-*",
+    "OpenRailData.TrainMovement": "1.0.0-*",
     "System.Dynamic.Runtime": "4.0.11"
   },
 

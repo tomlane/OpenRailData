@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using OpenRailData.Domain.TrainMovements;
-using OpenRailData.TrainMovementStorage;
+using OpenRailData.TrainMovement.Entities;
+using OpenRailData.TrainMovement.TrainMovementStorage;
 
 namespace OpenRailData.MessageProcessing.ChangeOfIdentityProcessors
 {

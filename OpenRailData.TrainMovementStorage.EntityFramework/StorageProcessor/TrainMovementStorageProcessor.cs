@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using OpenRailData.Domain.TrainMovements;
+using OpenRailData.TrainMovement.Entities;
+using OpenRailData.TrainMovement.TrainMovementStorage;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.StorageProcessor
 {
@@ -24,7 +25,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.StorageProcessor
 
             using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                await unitOfWork.TrainMovements.InsertRecordAsync(message as TrainMovement);
+                await unitOfWork.TrainMovements.InsertRecordAsync(message as TrainMovement.Entities.TrainMovement);
 
                 unitOfWork.Complete();
             }

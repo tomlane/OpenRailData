@@ -4,13 +4,13 @@
   "dependencies": {
     "Microsoft.Extensions.Options": "1.0.0",
     "NETStandard.Library": "1.6.0",
-    "OpenRailData.Domain": "1.0.0-*",
     "System.Xml.XmlSerializer": "4.0.11",
-    "Autofac.Extensions.DependencyInjection": "4.0.0-rc2-240"
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc2-240",
+    "System.ComponentModel.Annotations": "4.1.0"
   },
 
   "frameworks": {
-    "netstandard1.6": {
+    "netstandard1.4": {
       "imports": "dnxcore50"
     }
   },

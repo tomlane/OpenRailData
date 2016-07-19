@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using OpenRailData.Domain.TrainMovements;
+using OpenRailData.TrainMovement.Entities;
 using OpenRailData.TrainMovementParsing.Json.TrainMovementMessageParsers;
 using Xunit;
 

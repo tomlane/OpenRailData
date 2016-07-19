@@ -4,9 +4,8 @@
   "dependencies": {
     "Autofac.Extensions.DependencyInjection": "4.0.0-rc2-240",
     "NETStandard.Library": "1.6.0",
-    "OpenRailData.Domain": "1.0.0-*",
     "OpenRailData.Schedule": "1.0.0-*",
-    "OpenRailData.TrainMovementStorage": "1.0.0-*"
+    "OpenRailData.TrainMovement": "1.0.0-*",
   },
 
   "frameworks": {

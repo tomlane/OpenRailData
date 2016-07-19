@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using OpenRailData.CommonDatabase;
-using OpenRailData.Domain.TrainMovements;
+using OpenRailData.TrainMovement.Entities;
+using OpenRailData.TrainMovement.TrainMovementStorage;
 using OpenRailData.TrainMovementStorage.EntityFramework.Entities;
 using OpenRailData.TrainMovementStorage.EntityFramework.Mappers;
 

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using OpenRailData.Domain.TrainMovements;
+using OpenRailData.TrainMovement.Entities;
 
 namespace OpenRailData.MessageProcessing
 {
