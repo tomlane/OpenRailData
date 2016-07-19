@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OpenRailData.Domain.TrainDescriber
+namespace OpenRailData.TrainDescriber.Entities
 {
     public enum SignalMessageType
     {

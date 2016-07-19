@@ -1,5 +1,6 @@
 ﻿using System;
-using OpenRailData.Domain.TrainDescriber;
+using OpenRailData.TrainDescriber.Entities;
+using OpenRailData.TrainDescriber.TrainDescriberStorage;
 using OpenRailData.TrainDescriberStorage.EntityFramework.Repository;
 
 namespace OpenRailData.TrainDescriberStorage.EntityFramework.UnitOfWork

@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
+using OpenRailData.TrainDescriber.TrainDescriberParsing;
 
 namespace OpenRailData.TrainDescriberParsing.Json
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
-using OpenRailData.Domain.TrainDescriber;
+using OpenRailData.TrainDescriber.Entities;
+using OpenRailData.TrainDescriber.TrainDescriberParsing;
 using OpenRailData.TrainDescriberParsing.Json.RawMessages;
 
 namespace OpenRailData.TrainDescriberParsing.Json.TrainDescriberMessageParsers

@@ -1,6 +1,6 @@
-﻿using OpenRailData.Domain.TrainDescriber;
+﻿using OpenRailData.TrainDescriber.Entities;
 
-namespace OpenRailData.TrainDescriberParsing
+namespace OpenRailData.TrainDescriber.TrainDescriberParsing
 {
     public interface ITrainDescriberMessageParser
     {

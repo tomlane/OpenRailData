@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using OpenRailData.Domain.TrainDescriber;
+using OpenRailData.TrainDescriber.Entities;
 using OpenRailData.TrainDescriberStorage.EntityFramework.Entities;
 
 namespace OpenRailData.TrainDescriberStorage.EntityFramework.Mappers

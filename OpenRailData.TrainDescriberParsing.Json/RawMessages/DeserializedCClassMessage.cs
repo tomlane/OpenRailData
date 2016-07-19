@@ -2,7 +2,7 @@
 
 namespace OpenRailData.TrainDescriberParsing.Json.RawMessages
 {
-    public class DeserializedCClassMessage
+    internal class DeserializedCClassMessage
     {
         [JsonProperty("time")]
         public string Time { get; set; }

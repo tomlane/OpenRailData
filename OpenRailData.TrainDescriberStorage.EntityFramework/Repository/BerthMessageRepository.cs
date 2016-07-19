@@ -2,7 +2,8 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using OpenRailData.CommonDatabase;
-using OpenRailData.Domain.TrainDescriber;
+using OpenRailData.TrainDescriber.Entities;
+using OpenRailData.TrainDescriber.TrainDescriberStorage;
 using OpenRailData.TrainDescriberStorage.EntityFramework.Entities;
 using OpenRailData.TrainDescriberStorage.EntityFramework.Mappers;
 

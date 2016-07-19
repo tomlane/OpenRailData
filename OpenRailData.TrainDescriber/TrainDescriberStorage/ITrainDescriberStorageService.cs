@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using OpenRailData.Domain.TrainDescriber;
+using OpenRailData.TrainDescriber.Entities;
 
-namespace OpenRailData.TrainDescriberStorage
+namespace OpenRailData.TrainDescriber.TrainDescriberStorage
 {
     public interface ITrainDescriberStorageService
     {

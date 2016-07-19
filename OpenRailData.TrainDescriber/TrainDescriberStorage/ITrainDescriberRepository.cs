@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using OpenRailData.Domain.TrainDescriber;
+using OpenRailData.TrainDescriber.Entities;
 
-namespace OpenRailData.TrainDescriberStorage
+namespace OpenRailData.TrainDescriber.TrainDescriberStorage
 {
     public interface ITrainDescriberRepository<T> where T : ITrainDescriberMessage
     {

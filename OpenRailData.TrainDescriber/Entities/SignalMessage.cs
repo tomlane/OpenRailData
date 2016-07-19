@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenRailData.Domain.TrainDescriber
+namespace OpenRailData.TrainDescriber.Entities
 {
     public class SignalMessage : ITrainDescriberMessage
     {

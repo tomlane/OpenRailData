@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using OpenRailData.Domain.TrainDescriber;
+using OpenRailData.TrainDescriber.Entities;
+using OpenRailData.TrainDescriber.TrainDescriberParsing;
 
 namespace OpenRailData.TrainDescriberParsing.Json
 {

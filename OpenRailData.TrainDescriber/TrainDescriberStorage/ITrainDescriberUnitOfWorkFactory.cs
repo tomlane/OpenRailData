@@ -1,4 +1,4 @@
-﻿namespace OpenRailData.TrainDescriberStorage
+﻿namespace OpenRailData.TrainDescriber.TrainDescriberStorage
 {
     public interface ITrainDescriberUnitOfWorkFactory
     {

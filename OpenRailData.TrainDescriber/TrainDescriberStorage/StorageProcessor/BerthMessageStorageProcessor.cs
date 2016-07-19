@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
-using OpenRailData.Domain.TrainDescriber;
+using OpenRailData.TrainDescriber.Entities;
 
-namespace OpenRailData.TrainDescriberStorage.EntityFramework.StorageProcessor
+namespace OpenRailData.TrainDescriber.TrainDescriberStorage.StorageProcessor
 {
-    public class SignalMessageStorageProcessor : ITrainDescriberStorageProcessor
+    public class BerthMessageStorageProcessor : ITrainDescriberStorageProcessor
     {
         private readonly ITrainDescriberUnitOfWorkFactory _unitOfWorkFactory;
 
-        public TrainDescriberMessageType MessageType { get; } = TrainDescriberMessageType.SignalMessage;
+        public TrainDescriberMessageType MessageType { get; } = TrainDescriberMessageType.BerthMessage;
 
-        public SignalMessageStorageProcessor(ITrainDescriberUnitOfWorkFactory unitOfWorkFactory)
+        public BerthMessageStorageProcessor(ITrainDescriberUnitOfWorkFactory unitOfWorkFactory)
         {
             if (unitOfWorkFactory == null)
                 throw new ArgumentNullException(nameof(unitOfWorkFactory));
@@ -25,7 +25,7 @@ namespace OpenRailData.TrainDescriberStorage.EntityFramework.StorageProcessor
 
             using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                await unitOfWork.SignalMessages.InsertRecordAsync(message as SignalMessage);
+                await unitOfWork.BerthMessages.InsertRecordAsync(message as BerthMessage);
 
                 unitOfWork.Complete();
             }

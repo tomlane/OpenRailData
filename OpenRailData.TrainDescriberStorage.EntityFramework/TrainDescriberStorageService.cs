@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OpenRailData.Domain.TrainDescriber;
+using OpenRailData.TrainDescriber.Entities;
+using OpenRailData.TrainDescriber.TrainDescriberStorage;
 
 namespace OpenRailData.TrainDescriberStorage.EntityFramework
 {
