@@ -1,4 +1,4 @@
-﻿namespace OpenRailData.Domain.ReferenceData
+﻿namespace OpenRailData.BerthStepData.Entites
 {
     public class BerthStep
     {

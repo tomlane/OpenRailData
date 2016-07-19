@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenRailData.Domain.ReferenceData;
+using OpenRailData.BerthStepData.Entites;
 
 namespace OpenRailData.BerthStepData
 {

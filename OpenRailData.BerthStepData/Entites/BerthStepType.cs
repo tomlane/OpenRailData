@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OpenRailData.Domain.ReferenceData
+namespace OpenRailData.BerthStepData.Entites
 {
     public enum BerthStepType
     {
