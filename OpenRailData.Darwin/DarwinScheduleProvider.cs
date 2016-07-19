@@ -2,8 +2,8 @@
 using System.Text;
 using OpenRailData.Darwin.DataDecompression;
 using OpenRailData.Darwin.DataFetching;
+using OpenRailData.Darwin.Entites.Schedule;
 using OpenRailData.Darwin.ScheduleParsing;
-using OpenRailData.Domain.DarwinSchedule;
 
 namespace OpenRailData.Darwin
 {

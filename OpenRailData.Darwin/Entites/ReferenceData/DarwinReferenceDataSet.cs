@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace OpenRailData.Domain.DarwinReferenceData
+namespace OpenRailData.Darwin.Entites.ReferenceData
 {
     public class DarwinReferenceDataSet
     {

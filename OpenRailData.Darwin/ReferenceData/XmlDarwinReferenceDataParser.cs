@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
-using OpenRailData.Domain.DarwinReferenceData;
 using System.Linq;
+using OpenRailData.Darwin.Entites.ReferenceData;
 
 namespace OpenRailData.Darwin.ReferenceData
 {

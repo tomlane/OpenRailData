@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OpenRailData.Domain.DarwinSchedule
+namespace OpenRailData.Darwin.Entites.Schedule
 {
     public enum DarwinSchedulePointType
     {

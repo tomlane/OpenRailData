@@ -1,4 +1,4 @@
-﻿using OpenRailData.Domain.DarwinReferenceData;
+﻿using OpenRailData.Darwin.Entites.ReferenceData;
 
 namespace OpenRailData.Darwin.ReferenceData
 {

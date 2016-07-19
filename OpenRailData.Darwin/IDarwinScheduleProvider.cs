@@ -1,4 +1,4 @@
-﻿using OpenRailData.Domain.DarwinSchedule;
+﻿using OpenRailData.Darwin.Entites.Schedule;
 
 namespace OpenRailData.Darwin
 {

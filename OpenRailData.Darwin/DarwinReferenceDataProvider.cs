@@ -2,8 +2,8 @@
 using System.Text;
 using OpenRailData.Darwin.DataDecompression;
 using OpenRailData.Darwin.DataFetching;
+using OpenRailData.Darwin.Entites.ReferenceData;
 using OpenRailData.Darwin.ReferenceData;
-using OpenRailData.Domain.DarwinReferenceData;
 
 namespace OpenRailData.Darwin
 {

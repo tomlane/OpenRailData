@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace OpenRailData.Domain.DarwinSchedule
+namespace OpenRailData.Darwin.Entites.Schedule
 {
     public class DarwinScheduleJourney
     {

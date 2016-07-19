@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
-using OpenRailData.Domain.DarwinSchedule;
+using OpenRailData.Darwin.Entites.Schedule;
 
 namespace OpenRailData.Darwin.ScheduleParsing
 {
