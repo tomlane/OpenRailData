@@ -1,4 +1,4 @@
-﻿using OpenRailData.Domain.ScheduleRecords;
+﻿using OpenRailData.Schedule.Entities;
 using OpenRailData.ScheduleParsing.Cif.RecordParsers;
 using Xunit;
 

@@ -11,9 +11,7 @@
     },
     "OpenRailData.Domain": "1.0.0-*",
     "OpenRailData.Schedule": "1.0.0-*",
-    "OpenRailData.ScheduleParsing": "1.0.0-*",
     "OpenRailData.ScheduleParsing.Json": "1.0.0-*",
-    "OpenRailData.ScheduleStorage": "1.0.0-*",
     "OpenRailData.ScheduleStorage.EntityFramework": "1.0.0-*"
   },
 

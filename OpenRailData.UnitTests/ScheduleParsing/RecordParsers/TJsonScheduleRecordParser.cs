@@ -1,6 +1,6 @@
 ﻿using System;
 using Moq;
-using OpenRailData.ScheduleParsing;
+using OpenRailData.Schedule.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers;
 using Xunit;
 

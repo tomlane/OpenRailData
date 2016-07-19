@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Schedule.Entities;
 using OpenRailData.ScheduleStorage.EntityFramework.Entities;
 
 namespace OpenRailData.ScheduleStorage.EntityFramework.Converters

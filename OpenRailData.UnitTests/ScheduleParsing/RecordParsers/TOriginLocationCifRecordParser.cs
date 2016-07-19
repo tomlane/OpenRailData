@@ -1,7 +1,7 @@
 ﻿using System;
 using Moq;
+using OpenRailData.Schedule.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Cif.RecordParsers;
-using OpenRailData.ScheduleParsing;
 using Xunit;
 
 namespace OpenRailData.UnitTests.ScheduleParsing.RecordParsers

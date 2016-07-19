@@ -1,9 +1,9 @@
 ﻿using System;
 using Autofac;
-using OpenRailData.Domain.ScheduleRecords;
-using OpenRailData.Domain.ScheduleRecords.Enums;
+using OpenRailData.Schedule.Entities;
+using OpenRailData.Schedule.Entities.Enums;
+using OpenRailData.Schedule.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Cif;
-using OpenRailData.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers;
 using Xunit;
 

@@ -7,12 +7,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.Domain", "Open
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.Schedule", "OpenRailData.Schedule\OpenRailData.Schedule.xproj", "{8C74AC31-5F4C-43BB-BF32-81346E0D951A}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.ScheduleStorage", "OpenRailData.ScheduleStorage\OpenRailData.ScheduleStorage.xproj", "{3C9BDAF6-E76D-4C1A-B2CC-F4125040DAFE}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.ScheduleParsing", "OpenRailData.ScheduleParsing\OpenRailData.ScheduleParsing.xproj", "{93D5D3B7-D854-448D-B9F8-70984A762399}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.ScheduleValidation", "OpenRailData.ScheduleValidation\OpenRailData.ScheduleValidation.xproj", "{FAFF05C6-5ABE-4EDB-87AA-46A5869EEC96}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.TrainDescriberParsing", "OpenRailData.TrainDescriberParsing\OpenRailData.TrainDescriberParsing.xproj", "{6B99B7DB-271E-43C2-B096-A7F2CEC9E5D3}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.TrainDescriberStorage", "OpenRailData.TrainDescriberStorage\OpenRailData.TrainDescriberStorage.xproj", "{4350424C-D30C-48FF-BD5A-799771F250F6}"
@@ -70,18 +64,6 @@ Global
 		{8C74AC31-5F4C-43BB-BF32-81346E0D951A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C74AC31-5F4C-43BB-BF32-81346E0D951A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C74AC31-5F4C-43BB-BF32-81346E0D951A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C9BDAF6-E76D-4C1A-B2CC-F4125040DAFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C9BDAF6-E76D-4C1A-B2CC-F4125040DAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C9BDAF6-E76D-4C1A-B2CC-F4125040DAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C9BDAF6-E76D-4C1A-B2CC-F4125040DAFE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93D5D3B7-D854-448D-B9F8-70984A762399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93D5D3B7-D854-448D-B9F8-70984A762399}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93D5D3B7-D854-448D-B9F8-70984A762399}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93D5D3B7-D854-448D-B9F8-70984A762399}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FAFF05C6-5ABE-4EDB-87AA-46A5869EEC96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FAFF05C6-5ABE-4EDB-87AA-46A5869EEC96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FAFF05C6-5ABE-4EDB-87AA-46A5869EEC96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FAFF05C6-5ABE-4EDB-87AA-46A5869EEC96}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6B99B7DB-271E-43C2-B096-A7F2CEC9E5D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B99B7DB-271E-43C2-B096-A7F2CEC9E5D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B99B7DB-271E-43C2-B096-A7F2CEC9E5D3}.Release|Any CPU.ActiveCfg = Release|Any CPU

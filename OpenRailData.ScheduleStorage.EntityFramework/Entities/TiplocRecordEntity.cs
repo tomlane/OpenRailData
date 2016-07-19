@@ -1,6 +1,6 @@
 ﻿using System;
 using OpenRailData.CommonDatabase;
-using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Schedule.Entities;
 
 namespace OpenRailData.ScheduleStorage.EntityFramework.Entities
 {

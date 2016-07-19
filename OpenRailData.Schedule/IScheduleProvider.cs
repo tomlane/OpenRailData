@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Schedule.Entities;
 
 namespace OpenRailData.Schedule
 {

@@ -1,9 +1,9 @@
 ﻿using System.IO;
-using Autofac;
-using OpenRailData.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Json;
-using OpenRailData.ScheduleStorage;
 using OpenRailData.ScheduleStorage.EntityFramework;
+using OpenRailData.Schedule.ScheduleParsing;
+using OpenRailData.Schedule.ScheduleStorage;
+using Autofac;
 using System.Linq;
 
 namespace OpenRailData.NetworkRailScheduleBootstrapper

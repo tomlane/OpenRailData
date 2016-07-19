@@ -1,10 +1,10 @@
 ﻿using System;
 using Autofac;
-using OpenRailData.Domain.ScheduleRecords;
-using OpenRailData.Domain.ScheduleRecords.Enums;
+using OpenRailData.Schedule.Entities;
+using OpenRailData.Schedule.Entities.Enums;
+using OpenRailData.Schedule.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Cif;
 using OpenRailData.ScheduleParsing.Cif.RecordParsers;
-using OpenRailData.ScheduleParsing;
 using Xunit;
 
 namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers

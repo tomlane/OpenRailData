@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using OpenRailData.Domain.ScheduleRecords;
-using OpenRailData.Domain.ScheduleRecords.Enums;
+using OpenRailData.Schedule.Entities;
+using OpenRailData.Schedule.Entities.Enums;
+using OpenRailData.Schedule.ScheduleParsing;
 
 namespace OpenRailData.ScheduleParsing.Cif.RecordParsers
 {

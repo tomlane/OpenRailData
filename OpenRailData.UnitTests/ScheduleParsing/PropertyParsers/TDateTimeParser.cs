@@ -1,6 +1,6 @@
 ﻿using System;
-using OpenRailData.ScheduleParsing;
-using OpenRailData.ScheduleParsing.PropertyParsers;
+using OpenRailData.Schedule.ScheduleParsing;
+using OpenRailData.Schedule.ScheduleParsing.PropertyParsers;
 using Xunit;
 
 namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers

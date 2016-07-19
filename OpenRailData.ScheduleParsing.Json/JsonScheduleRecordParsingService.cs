@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Schedule.Entities;
+using OpenRailData.Schedule.ScheduleParsing;
 
 namespace OpenRailData.ScheduleParsing.Json
 {

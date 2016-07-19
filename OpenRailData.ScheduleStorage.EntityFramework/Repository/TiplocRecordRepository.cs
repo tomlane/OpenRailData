@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using OpenRailData.CommonDatabase;
-using OpenRailData.Domain.ScheduleRecords;
 using OpenRailData.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.ScheduleStorage.EntityFramework.Entities;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using OpenRailData.Schedule.Entities;
+using OpenRailData.Schedule.ScheduleStorage;
 
 namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
 {

@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenRailData.ScheduleParsing.PropertyParsers;
+using OpenRailData.Schedule.ScheduleParsing.PropertyParsers;
 using Xunit;
 
 namespace OpenRailData.UnitTests.ScheduleParsing.PropertyParsers

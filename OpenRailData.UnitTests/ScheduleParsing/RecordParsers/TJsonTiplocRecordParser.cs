@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Schedule.Entities;
 using OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers;
 using Xunit;
 

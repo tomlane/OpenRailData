@@ -3,7 +3,8 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Schedule.Entities;
+using OpenRailData.Schedule.ScheduleParsing;
 
 namespace OpenRailData.ScheduleParsing.Cif
 {

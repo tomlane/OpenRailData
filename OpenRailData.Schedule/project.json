@@ -4,7 +4,8 @@
   "dependencies": {
     "NETStandard.Library": "1.6.0",
     "OpenRailData.Domain": "1.0.0-*",
-    "OpenRailData.ScheduleStorage": "1.0.0-*"
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc2-240",
+    "System.Threading.Tasks.Parallel": "4.0.1"
   },
 
   "frameworks": {

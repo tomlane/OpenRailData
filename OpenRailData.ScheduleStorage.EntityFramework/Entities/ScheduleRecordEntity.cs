@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenRailData.CommonDatabase;
-using OpenRailData.Domain.ScheduleRecords;
-using OpenRailData.Domain.ScheduleRecords.Enums;
+using OpenRailData.Schedule.Entities;
+using OpenRailData.Schedule.Entities.Enums;
 
 namespace OpenRailData.ScheduleStorage.EntityFramework.Entities
 {

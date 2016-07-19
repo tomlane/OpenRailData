@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OpenRailData.Domain.ScheduleRecords;
-using OpenRailData.ScheduleStorage;
+using OpenRailData.Schedule.Entities;
+using OpenRailData.Schedule.ScheduleStorage;
 
 namespace OpenRailData.Schedule
 {

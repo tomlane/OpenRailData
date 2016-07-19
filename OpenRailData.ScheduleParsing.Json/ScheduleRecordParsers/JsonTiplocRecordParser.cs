@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
-using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Schedule.Entities;
+using OpenRailData.Schedule.ScheduleParsing;
 using OpenRailData.ScheduleParsing.Json.RawRecords;
 
 namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers

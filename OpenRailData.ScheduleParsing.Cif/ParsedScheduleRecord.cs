@@ -1,4 +1,4 @@
-using OpenRailData.Domain.ScheduleRecords;
+using OpenRailData.Schedule.Entities;
 
 namespace OpenRailData.ScheduleParsing.Cif
 {
