@@ -55,5 +55,23 @@ namespace OpenRailData.Schedule
             return records.First();
 
         }
+
+        public async Task UpdateTiplocLocationName(string tiplocCode, string locationName)
+        {
+            if (string.IsNullOrWhiteSpace(tiplocCode))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(tiplocCode));
+
+            if (string.IsNullOrWhiteSpace(locationName))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(locationName));
+
+            using (var unitOfWork = _unitOfWorkFactory.Create())
+            {
+                var tiploc = await unitOfWork.TiplocRecords.GetTiplocByTiplocCode(tiplocCode);
+
+                tiploc.LocationName = locationName;
+
+                await unitOfWork.TiplocRecords.AmendRecordAsync(tiploc);
+            }
+        }
     }
 }

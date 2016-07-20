@@ -61,24 +61,6 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
                 Remove(recordToDelete);
         }
 
-        public void AmendLocationName(string locationName, string tiplocCode)
-        {
-            if (string.IsNullOrWhiteSpace(locationName))
-                throw new ArgumentNullException(nameof(locationName));
-
-            if (string.IsNullOrWhiteSpace(tiplocCode))
-                throw new ArgumentNullException(nameof(tiplocCode));
-
-            var recordToAmend = Find(x => x.TiplocCode == tiplocCode).FirstOrDefault();
-
-            if (recordToAmend == null)
-                throw new ArgumentException("Tiploc entity not found");
-
-            recordToAmend.LocationName = locationName;
-
-            Add(recordToAmend);
-        }
-
         public Task InsertRecordAsync(TiplocRecord record)
         {
             throw new NotImplementedException();
@@ -95,11 +77,6 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
         }
 
         public Task DeleteRecordAsync(TiplocRecord record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task AmendLocationNameAsync(string locationName, string tiplocCode)
         {
             throw new NotImplementedException();
         }
@@ -131,6 +108,19 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
             var entites = await _context.GetSet<TiplocRecordEntity>().Where(x => x.CrsCode == crs).ToListAsync();
 
             return entites.Select(TiplocEntityGenerator.EntityToRecord).ToList();
+        }
+
+        public async Task<TiplocRecord> GetTiplocByTiplocCode(string tiplocCode)
+        {
+            if (string.IsNullOrWhiteSpace(tiplocCode))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(tiplocCode));
+
+            var entity =
+                await _context.GetSet<TiplocRecordEntity>().Where(x => x.TiplocCode == tiplocCode).ToListAsync();
+
+            var record = TiplocEntityGenerator.EntityToRecord(entity.First());
+
+            return record;
         }
     }
 }

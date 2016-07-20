@@ -6,7 +6,7 @@
         {
             return new TrainDescriberContextConfiguration
             {
-                ConnectionString = @"Server=localhost\SQLSERVER2016RC1;Initial Catalog=RailDataEngine; Integrated Security=true;"
+                ConnectionString = @"Server=localhost\SQLSERVER2016;Initial Catalog=RailDataEngine; Integrated Security=true;"
             };
         }
     }
