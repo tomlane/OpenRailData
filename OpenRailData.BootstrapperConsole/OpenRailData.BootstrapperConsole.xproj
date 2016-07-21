@@ -7,11 +7,11 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>2fe30267-2823-40af-a1a3-786b8a4d76f4</ProjectGuid>
-    <RootNamespace>OpenRailData.NetworkRailScheduleBootstrapper</RootNamespace>
+    <ProjectGuid>7a6d3a31-aa7a-4009-bafe-f993c7217bdd</ProjectGuid>
+    <RootNamespace>OpenRailData.BootstrapperConsole</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
   </PropertyGroup>
 
   <PropertyGroup>

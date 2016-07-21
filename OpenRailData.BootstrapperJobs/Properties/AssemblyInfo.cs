@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OpenRailData.NetworkRailScheduleBootstrapper")]
+[assembly: AssemblyProduct("OpenRailData.BootstrapperJobs")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -15,4 +15,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2fe30267-2823-40af-a1a3-786b8a4d76f4")]
+[assembly: Guid("7466ce14-e92e-4f49-ae2d-a04aae6977b0")]

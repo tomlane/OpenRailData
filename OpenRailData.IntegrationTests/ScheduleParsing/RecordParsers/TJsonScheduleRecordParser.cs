@@ -18,7 +18,7 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
 
         public TJsonScheduleRecordParser()
         {
-            var builder = SchedulePropertyParsersContainerBuilder.Build();
+            var builder = ScheduleModuleContainerBuilder.Build();
             builder = CifScheduleParsingContainerBuilder.Build(builder);
 
             _enumPropertyParsers = _container.Resolve<IRecordEnumPropertyParser[]>();

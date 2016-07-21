@@ -38,7 +38,7 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var currentRecord = Find(x => x.TiplocCode == record.TiplocCode).FirstOrDefault();
+            var currentRecord = Find(x => x.TiplocCode == record.TiplocCode).First();
 
             if (currentRecord != null)
             {
@@ -55,7 +55,7 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var recordToDelete = Find(x => x.TiplocCode == record.TiplocCode).FirstOrDefault();
+            var recordToDelete = Find(x => x.TiplocCode == record.TiplocCode).First();
 
             if (recordToDelete != null)
                 Remove(recordToDelete);
@@ -71,9 +71,23 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
             throw new NotImplementedException();
         }
 
-        public Task AmendRecordAsync(TiplocRecord record)
+        public async Task AmendRecordAsync(TiplocRecord record)
         {
-            throw new NotImplementedException();
+            if (record == null)
+                throw new ArgumentNullException(nameof(record));
+
+            var currentRecord = await _context.GetSet<TiplocRecordEntity>().FirstOrDefaultAsync(x => x.TiplocCode == record.TiplocCode);
+
+            if (currentRecord != null)
+            {
+                var entity = TiplocEntityGenerator.RecordToEntity(record);
+
+                Remove(currentRecord);
+
+                currentRecord = entity;
+
+                Add(entity);
+            }
         }
 
         public Task DeleteRecordAsync(TiplocRecord record)
@@ -116,11 +130,12 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(tiplocCode));
 
             var entity =
-                await _context.GetSet<TiplocRecordEntity>().Where(x => x.TiplocCode == tiplocCode).ToListAsync();
+                await _context.GetSet<TiplocRecordEntity>().FirstOrDefaultAsync(x => x.TiplocCode == tiplocCode);
 
-            var record = TiplocEntityGenerator.EntityToRecord(entity.First());
+            if (entity != null)
+                return TiplocEntityGenerator.EntityToRecord(entity);
 
-            return record;
+            return null;
         }
     }
 }

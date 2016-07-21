@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
   "buildOptions": {
     "emitEntryPoint": true
@@ -9,6 +9,8 @@
       "type": "platform",
       "version": "1.0.0"
     },
+    "OpenRailData.BootstrapperJobs": "1.0.0-*",
+    "OpenRailData.Darwin": "1.0.0-*",
     "OpenRailData.Schedule": "1.0.0-*",
     "OpenRailData.ScheduleParsing.Json": "1.0.0-*",
     "OpenRailData.ScheduleStorage.EntityFramework": "1.0.0-*"

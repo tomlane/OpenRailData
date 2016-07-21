@@ -15,7 +15,7 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
 
         public TChangesEnRouteCifRecordParser()
         {
-            var builder = SchedulePropertyParsersContainerBuilder.Build();
+            var builder = ScheduleModuleContainerBuilder.Build();
             builder = CifScheduleParsingContainerBuilder.Build(builder);
 
             _container = builder.Build();

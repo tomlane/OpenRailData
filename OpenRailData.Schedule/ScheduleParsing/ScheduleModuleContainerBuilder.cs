@@ -4,7 +4,7 @@ using OpenRailData.Schedule.ScheduleParsing.PropertyParsers;
 
 namespace OpenRailData.Schedule.ScheduleParsing
 {
-    public static class SchedulePropertyParsersContainerBuilder
+    public static class ScheduleModuleContainerBuilder
     {
         public static ContainerBuilder Build(ContainerBuilder builder = null)
         {
@@ -16,6 +16,8 @@ namespace OpenRailData.Schedule.ScheduleParsing
             builder.RegisterAssemblyTypes(scheduleParsing)
                 .Where(t => t.Name.EndsWith("Parser"))
                 .AsImplementedInterfaces();
+
+            builder.RegisterType<TiplocEditor>().As<ITiplocEditor>();
 
             return builder;
         }

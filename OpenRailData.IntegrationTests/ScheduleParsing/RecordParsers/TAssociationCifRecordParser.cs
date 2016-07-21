@@ -17,7 +17,7 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
 
         public TAssociationCifRecordParser()
         {
-            var builder = SchedulePropertyParsersContainerBuilder.Build();
+            var builder = ScheduleModuleContainerBuilder.Build();
             builder = CifScheduleParsingContainerBuilder.Build(builder);
 
             _container = builder.Build();

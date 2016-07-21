@@ -16,7 +16,7 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
 
         public TIntermediateLocationCifRecordParser()
         {
-            var builder = SchedulePropertyParsersContainerBuilder.Build();
+            var builder = ScheduleModuleContainerBuilder.Build();
             builder = CifScheduleParsingContainerBuilder.Build(builder);
 
             _container = builder.Build();
