@@ -78,7 +78,7 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
             }
         }
 
-        public async Task<IEnumerable<ScheduleRecord>> GetScheduleRecords(string trainUid, DateTime startDate)
+        public async Task<List<ScheduleRecord>> GetScheduleRecords(string trainUid, DateTime startDate)
         {
             if (string.IsNullOrWhiteSpace(trainUid))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(trainUid));
@@ -87,7 +87,7 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
 
             var entites = await set.Where(x => x.TrainUid == trainUid && x.StartDate == startDate).ToListAsync();
 
-            return entites.Select(ScheduleEntityGenerator.EntityToRecord);
+            return entites.Select(ScheduleEntityGenerator.EntityToRecord).ToList();
         }
     }
 }

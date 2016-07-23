@@ -12,6 +12,6 @@ namespace OpenRailData.Schedule.ScheduleStorage
         Task AmendRecord(ScheduleRecord record);
         Task DeleteRecord(ScheduleRecord record);
 
-        Task<IEnumerable<ScheduleRecord>> GetScheduleRecords(string trainUid, DateTime startDate);
+        Task<List<ScheduleRecord>> GetScheduleRecords(string trainUid, DateTime startDate);
     }
 }
