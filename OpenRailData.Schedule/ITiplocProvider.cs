@@ -7,5 +7,7 @@ namespace OpenRailData.Schedule
     {
         Task<TiplocRecord> GetTiplocByCrs(string crs);
         Task<TiplocRecord> GetTiplocByStanox(string stanox);
+        Task<string> GetLocationNameByStanox(string stanox);
+        Task<string> GetLocationNameByTiplocCode(string tiplocCode);
     }
 }
