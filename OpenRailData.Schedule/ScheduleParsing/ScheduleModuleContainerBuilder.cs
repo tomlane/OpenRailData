@@ -20,6 +20,7 @@ namespace OpenRailData.Schedule.ScheduleParsing
             builder.RegisterType<TiplocEditor>().As<ITiplocEditor>();
 
             builder.RegisterType<ScheduleProvider>().As<IScheduleProvider>();
+            builder.RegisterType<TiplocProvider>().As<ITiplocProvider>();
 
             return builder;
         }

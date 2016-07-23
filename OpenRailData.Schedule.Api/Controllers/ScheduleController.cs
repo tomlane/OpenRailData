@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using OpenRailData.Schedule.Api.BindingModels;
 using OpenRailData.Schedule.Api.Presenters;
 using OpenRailData.Schedule.Api.ResponseModels;
-using OpenRailData.Schedule.Entities;
 
 namespace OpenRailData.Schedule.Api.Controllers
 {
