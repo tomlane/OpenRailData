@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using OpenRailData.Schedule.Entities;
 
 namespace OpenRailData.Schedule.ScheduleStorage.RecordStorageProcessor
@@ -17,16 +18,16 @@ namespace OpenRailData.Schedule.ScheduleStorage.RecordStorageProcessor
 
         public ScheduleRecordType RecordKey { get; } = ScheduleRecordType.BSN;
 
-        public void StoreRecord(IScheduleRecord record)
+        public async Task StoreRecord(IScheduleRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                unitOfWork.ScheduleRecords.InsertRecord(record as ScheduleRecord);
+                await unitOfWork.ScheduleRecords.InsertRecord(record as ScheduleRecord);
 
-                unitOfWork.Complete();
+                await unitOfWork.Complete();
             }
         }
     }

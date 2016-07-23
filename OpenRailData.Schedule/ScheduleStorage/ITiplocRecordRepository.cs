@@ -6,16 +6,11 @@ namespace OpenRailData.Schedule.ScheduleStorage
 {
     public interface ITiplocRecordRepository
     {
-        void InsertRecord(TiplocRecord record);
-        void AmendRecord(TiplocRecord record);
-        void DeleteRecord(TiplocRecord record);
-
-        Task InsertRecordAsync(TiplocRecord record);
-        Task InsertMultipleRecordsAsync(IEnumerable<TiplocRecord> records);
-        Task AmendRecordAsync(TiplocRecord record);
-        Task DeleteRecordAsync(TiplocRecord record);
-
-
+        Task InsertRecord(TiplocRecord record);
+        Task InsertMultipleRecords(IEnumerable<TiplocRecord> records);
+        Task AmendRecord(TiplocRecord record);
+        Task DeleteRecord(TiplocRecord record);
+        
         Task<List<TiplocRecord>> GetAllTiplocs();
         Task<List<TiplocRecord>> GetTiplocsByStanox(string stanox);
         Task<List<TiplocRecord>> GetTiplocsByCrs(string crs);

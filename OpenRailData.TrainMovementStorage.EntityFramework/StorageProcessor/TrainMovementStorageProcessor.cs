@@ -25,7 +25,7 @@ namespace OpenRailData.TrainMovementStorage.EntityFramework.StorageProcessor
 
             using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                await unitOfWork.TrainMovements.InsertRecordAsync(message as TrainMovement.Entities.TrainMovement);
+                await unitOfWork.TrainMovements.InsertRecord(message as TrainMovement.Entities.TrainMovement);
 
                 unitOfWork.Complete();
             }

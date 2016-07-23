@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using OpenRailData.Schedule.Entities;
 
 namespace OpenRailData.Schedule.ScheduleStorage
 {
     public interface IScheduleRecordStorageService
     {
-        void Store(IEnumerable<IScheduleRecord> records);
-        void Store(IScheduleRecord record);
+        Task Store(IEnumerable<IScheduleRecord> records);
+        Task Store(IScheduleRecord record);
     }
 }

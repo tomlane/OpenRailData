@@ -34,7 +34,7 @@ namespace OpenRailData.BootstrapperJobs
 
             var schedules =
                 File.ReadAllLines(
-                    @"C:\Users\Tom\OneDrive\RailData\JSON Schedule Extracts\schedule-tiplocs-only");
+                    @"C:\Users\Tom\OneDrive\RailData\JSON Schedule Extracts\CIF_ALL_FULL_DAILY_toc-full");
 
             var parsedSchedule = _scheduleRecordParsingService.Parse(schedules).ToList();
 

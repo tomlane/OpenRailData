@@ -1,4 +1,5 @@
-﻿using OpenRailData.Schedule.Entities;
+﻿using System.Threading.Tasks;
+using OpenRailData.Schedule.Entities;
 
 namespace OpenRailData.Schedule.ScheduleStorage
 {
@@ -6,6 +7,6 @@ namespace OpenRailData.Schedule.ScheduleStorage
     {
         ScheduleRecordType RecordKey { get; }
 
-        void StoreRecord(IScheduleRecord record);
+        Task StoreRecord(IScheduleRecord record);
     }
 }

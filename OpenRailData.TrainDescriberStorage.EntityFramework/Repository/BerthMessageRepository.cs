@@ -9,65 +9,45 @@ using OpenRailData.TrainDescriberStorage.EntityFramework.Mappers;
 
 namespace OpenRailData.TrainDescriberStorage.EntityFramework.Repository
 {
-    public class BerthMessageRepository : BaseRepository<BerthMessageEntity>, ITrainDescriberRepository<BerthMessage>
+    public class BerthMessageRepository : ITrainDescriberRepository<BerthMessage>
     {
+        private readonly IContext _context;
         private readonly IMapper _mapper;
 
-        public BerthMessageRepository(IContext context) : base(context)
+        public BerthMessageRepository(IContext context)
         {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            _context = context;
             _mapper = TrainDescriberMapperConfiguration.CreateMapper();
         }
-
-        public void InsertRecord(BerthMessage record)
+        
+        public Task InsertRecord(BerthMessage record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             var entity = _mapper.Map<BerthMessageEntity>(record);
 
-            Add(entity);
-        }
-
-        public void AmendRecord(BerthMessage record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteRecord(BerthMessage record)
-        {
-            if (record == null)
-                throw new ArgumentNullException(nameof(record));
-
-            var entity = _mapper.Map<BerthMessageEntity>(record);
-
-            Remove(entity);
-        }
-
-        public Task InsertRecordAsync(BerthMessage record)
-        {
-            if (record == null)
-                throw new ArgumentNullException(nameof(record));
-
-            var entity = _mapper.Map<BerthMessageEntity>(record);
-
-            Add(entity);
+            _context.GetSet<BerthMessageEntity>().Add(entity);
 
             return Task.CompletedTask;
         }
 
-        public Task AmendRecordAsync(BerthMessage record)
+        public Task AmendRecord(BerthMessage record)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteRecordAsync(BerthMessage record)
+        public Task DeleteRecord(BerthMessage record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             var entity = _mapper.Map<BerthMessageEntity>(record);
 
-            Remove(entity);
+            _context.GetSet<BerthMessageEntity>().Remove(entity);
 
             return Task.CompletedTask;
         }

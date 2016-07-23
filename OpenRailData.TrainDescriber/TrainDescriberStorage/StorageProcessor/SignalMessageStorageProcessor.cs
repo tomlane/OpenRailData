@@ -25,7 +25,7 @@ namespace OpenRailData.TrainDescriber.TrainDescriberStorage.StorageProcessor
 
             using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                await unitOfWork.SignalMessages.InsertRecordAsync(message as SignalMessage);
+                await unitOfWork.SignalMessages.InsertRecord(message as SignalMessage);
 
                 unitOfWork.Complete();
             }

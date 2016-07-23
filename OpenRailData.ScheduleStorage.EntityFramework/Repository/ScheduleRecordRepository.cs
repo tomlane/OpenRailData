@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OpenRailData.CommonDatabase;
 using OpenRailData.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.ScheduleStorage.EntityFramework.Entities;
 using System.Linq;
@@ -11,11 +10,11 @@ using OpenRailData.Schedule.ScheduleStorage;
 
 namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
 {
-    public class ScheduleRecordRepository : BaseRepository<ScheduleRecordEntity>, IScheduleRecordRepository
+    public class ScheduleRecordRepository : IScheduleRecordRepository
     {
         private readonly IScheduleContext _context;
 
-        public ScheduleRecordRepository(IScheduleContext context) : base(context)
+        public ScheduleRecordRepository(IScheduleContext context)
         {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
@@ -23,70 +22,60 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
             _context = context;
         }
 
-        public void InsertRecord(ScheduleRecord record)
+        public Task InsertRecord(ScheduleRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             var entity = ScheduleEntityGenerator.RecordToEntity(record);
 
-            Add(entity);
+            _context.GetSet<ScheduleRecordEntity>().Add(entity);
+
+            return Task.CompletedTask;
         }
 
-        public void AmendRecord(ScheduleRecord record)
+        public Task InsertMultipleRecords(IEnumerable<ScheduleRecord> records)
+        {
+            if (records == null)
+                throw new ArgumentNullException(nameof(records));
+
+            var entites = records.Select(ScheduleEntityGenerator.RecordToEntity).ToList();
+
+            _context.GetSet<ScheduleRecordEntity>().AddRange(entites);
+
+            return Task.CompletedTask;
+        }
+
+        public async Task AmendRecord(ScheduleRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var currentRecord = Find(x =>
-                x.TrainUid == record.TrainUid &&
-                x.StartDate == record.StartDate &&
-                x.StpIndicator == record.StpIndicator)
-                .FirstOrDefault();
+            var currentRecord = await 
+                _context.GetSet<ScheduleRecordEntity>().Where(x => x.UniqueId == record.UniqueId).FirstOrDefaultAsync();
 
-            if (currentRecord == null)
-                return;
+            if (currentRecord != null)
+            {
+                var entity = ScheduleEntityGenerator.RecordToEntity(record);
 
-            var entity = ScheduleEntityGenerator.RecordToEntity(record);
+                _context.GetSet<ScheduleRecordEntity>().Remove(currentRecord);
 
-            currentRecord = entity;
-
-            Add(currentRecord);
+                _context.GetSet<ScheduleRecordEntity>().Add(entity);
+            }
         }
 
-        public void DeleteRecord(ScheduleRecord record)
+        public async Task DeleteRecord(ScheduleRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var recordToDelete = Find(x => 
-                x.TrainUid == record.TrainUid && 
-                x.StartDate == record.StartDate && 
-                x.StpIndicator == record.StpIndicator)
-                .FirstOrDefault();
+            var recordToDelete = await 
+                _context.GetSet<ScheduleRecordEntity>().Where(x => x.UniqueId == record.UniqueId).FirstOrDefaultAsync();
 
             if (recordToDelete != null)
-                Remove(recordToDelete);
-        }
-
-        public Task InsertRecordAsync(ScheduleRecord record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task InsertMultipleRecordsAsync(IEnumerable<ScheduleRecord> records)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task AmendRecordAsync(ScheduleRecord record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteRecordAsync(ScheduleRecord record)
-        {
-            throw new NotImplementedException();
+            {
+                _context.GetSet<ScheduleRecordEntity>().Remove(recordToDelete);
+            }
         }
 
         public async Task<IEnumerable<ScheduleRecord>> GetScheduleRecords(string trainUid, DateTime startDate)

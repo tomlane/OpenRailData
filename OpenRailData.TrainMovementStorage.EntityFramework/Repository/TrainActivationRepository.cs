@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using OpenRailData.CommonDatabase;
 using OpenRailData.TrainMovement.Entities;
 using OpenRailData.TrainMovement.TrainMovementStorage;
 using OpenRailData.TrainMovementStorage.EntityFramework.Entities;
@@ -9,65 +8,45 @@ using OpenRailData.TrainMovementStorage.EntityFramework.Mappers;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Repository
 {
-    public class TrainActivationRepository : BaseRepository<TrainActivationEntity>, ITrainMovementRepository<TrainActivation>
+    public class TrainActivationRepository : ITrainMovementRepository<TrainActivation>
     {
+        private readonly ITrainMovementContext _context;
         private readonly IMapper _mapper;
 
-        public TrainActivationRepository(ITrainMovementContext context) : base(context)
+        public TrainActivationRepository(ITrainMovementContext context)
         {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            _context = context;
             _mapper = TrainMovementMapperConfiguration.CreateMapper();
         }
 
-        public void InsertRecord(TrainActivation record)
+        public Task InsertRecord(TrainActivation record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             var entity = _mapper.Map<TrainActivationEntity>(record);
 
-            Add(entity);
-        }
-
-        public void AmendRecord(TrainActivation record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteRecord(TrainActivation record)
-        {
-            if (record == null)
-                throw new ArgumentNullException(nameof(record));
-
-            var entity = _mapper.Map<TrainActivationEntity>(record);
-
-            Remove(entity);
-        }
-
-        public Task InsertRecordAsync(TrainActivation record)
-        {
-            if (record == null)
-                throw new ArgumentNullException(nameof(record));
-
-            var entity = _mapper.Map<TrainActivationEntity>(record);
-
-            Add(entity);
+            _context.GetSet<TrainActivationEntity>().Add(entity);
 
             return Task.CompletedTask;
         }
 
-        public Task AmendRecordAsync(TrainActivation record)
+        public Task AmendRecord(TrainActivation record)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteRecordAsync(TrainActivation record)
+        public Task DeleteRecord(TrainActivation record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             var entity = _mapper.Map<TrainActivationEntity>(record);
 
-            Remove(entity);
+            _context.GetSet<TrainActivationEntity>().Remove(entity);
 
             return Task.CompletedTask;
         }

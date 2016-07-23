@@ -7,14 +7,10 @@ namespace OpenRailData.Schedule.ScheduleStorage
 {
     public interface IScheduleRecordRepository
     {
-        void InsertRecord(ScheduleRecord record);
-        void AmendRecord(ScheduleRecord record);
-        void DeleteRecord(ScheduleRecord record);
-
-        Task InsertRecordAsync(ScheduleRecord record);
-        Task InsertMultipleRecordsAsync(IEnumerable<ScheduleRecord> records);
-        Task AmendRecordAsync(ScheduleRecord record);
-        Task DeleteRecordAsync(ScheduleRecord record);
+        Task InsertRecord(ScheduleRecord record);
+        Task InsertMultipleRecords(IEnumerable<ScheduleRecord> records);
+        Task AmendRecord(ScheduleRecord record);
+        Task DeleteRecord(ScheduleRecord record);
 
         Task<IEnumerable<ScheduleRecord>> GetScheduleRecords(string trainUid, DateTime startDate);
     }

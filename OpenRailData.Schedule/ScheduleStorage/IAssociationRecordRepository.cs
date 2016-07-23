@@ -6,13 +6,9 @@ namespace OpenRailData.Schedule.ScheduleStorage
 {
     public interface IAssociationRecordRepository
     {
-        void InsertRecord(AssociationRecord record);
-        void AmendRecord(AssociationRecord record);
-        void DeleteRecord(AssociationRecord record);
-
-        Task InsertRecordAsync(AssociationRecord record);
-        Task InsertMultipleRecordsAsync(IEnumerable<AssociationRecord> records);
-        Task AmendRecordAsync(AssociationRecord record);
-        Task DeleteRecordAsync(AssociationRecord record);
+        Task InsertRecord(AssociationRecord record);
+        Task InsertMultipleRecords(IEnumerable<AssociationRecord> records);
+        Task AmendRecord(AssociationRecord record);
+        Task DeleteRecord(AssociationRecord record);
     }
 }

@@ -1,85 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using OpenRailData.CommonDatabase;
-using OpenRailData.ScheduleStorage.EntityFramework.Converters;
-using OpenRailData.ScheduleStorage.EntityFramework.Entities;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using OpenRailData.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.Schedule.Entities;
 using OpenRailData.Schedule.ScheduleStorage;
+using OpenRailData.ScheduleStorage.EntityFramework.Entities;
 
 namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
 {
-    public class AssociationRecordRepository : BaseRepository<AssociationRecordEntity>, IAssociationRecordRepository
+    public class AssociationRecordRepository : IAssociationRecordRepository
     {
-        public AssociationRecordRepository(IScheduleContext context) : base(context)
-        {
-        }
+        private readonly IScheduleContext _context;
 
-        public void InsertRecord(AssociationRecord record)
+        public AssociationRecordRepository(IScheduleContext context)
+        {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            _context = context;
+        }
+        
+        public Task InsertRecord(AssociationRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var entityRecord = AssociationEntityGenerator.RecordToEntity(record);
+            var entity = AssociationEntityGenerator.RecordToEntity(record);
 
-            Add(entityRecord);
+            _context.GetSet<AssociationRecordEntity>().Add(entity);
+
+            return Task.CompletedTask;
         }
 
-        public void AmendRecord(AssociationRecord record)
+        public Task InsertMultipleRecords(IEnumerable<AssociationRecord> records)
+        {
+            if (records == null)
+                throw new ArgumentNullException(nameof(records));
+
+            var entites = records.Select(AssociationEntityGenerator.RecordToEntity).ToList();
+
+            _context.GetSet<AssociationRecordEntity>().AddRange(entites);
+
+            return Task.CompletedTask;
+        }
+
+        public async Task AmendRecord(AssociationRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var currentRecord = Find(x =>
-                x.MainTrainUid == record.MainTrainUid &&
-                x.AssocTrainUid == record.AssocTrainUid &&
-                x.StartDate == record.StartDate &&
-                x.StpIndicator == record.StpIndicator)
-                .FirstOrDefault();
+            var currentRecord = await _context.GetSet<AssociationRecordEntity>().FirstOrDefaultAsync(x => x.UniqueId== record.UniqueId);
 
             if (currentRecord != null)
             {
-                var entityRecord = AssociationEntityGenerator.RecordToEntity(record);
+                var entity = AssociationEntityGenerator.RecordToEntity(record);
 
-                currentRecord = entityRecord;
+                _context.GetSet<AssociationRecordEntity>().Remove(currentRecord);
 
-                Add(currentRecord);
+                _context.GetSet<AssociationRecordEntity>().Add(entity);
             }
         }
 
-        public void DeleteRecord(AssociationRecord record)
-        {
-            if (record == null)
-                throw new ArgumentNullException(nameof(record));
-
-            var recordToDelete = Find(x => 
-                x.MainTrainUid == record.MainTrainUid && 
-                x.AssocTrainUid == record.AssocTrainUid &&
-                x.StartDate == record.StartDate && 
-                x.StpIndicator == record.StpIndicator)
-                .FirstOrDefault();
-
-            if (recordToDelete != null)
-                Remove(recordToDelete);
-        }
-
-        public Task InsertRecordAsync(AssociationRecord record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task InsertMultipleRecordsAsync(IEnumerable<AssociationRecord> records)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task AmendRecordAsync(AssociationRecord record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteRecordAsync(AssociationRecord record)
+        public Task DeleteRecord(AssociationRecord record)
         {
             throw new NotImplementedException();
         }

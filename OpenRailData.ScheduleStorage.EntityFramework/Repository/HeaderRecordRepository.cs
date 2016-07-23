@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using OpenRailData.CommonDatabase;
 using OpenRailData.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.ScheduleStorage.EntityFramework.Entities;
 using System.Linq;
@@ -9,41 +9,35 @@ using OpenRailData.Schedule.ScheduleStorage;
 
 namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
 {
-    public class HeaderRecordRepository : BaseRepository<HeaderRecordEntity>, IHeaderRecordRepository
+    public class HeaderRecordRepository : IHeaderRecordRepository
     {
-        public HeaderRecordRepository(IScheduleContext context) : base(context)
+        private readonly IScheduleContext _context;
+
+        public HeaderRecordRepository(IScheduleContext context)
         {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            _context = context;
         }
 
-        public void InsertRecord(HeaderRecord record)
+        public Task InsertRecord(HeaderRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            var recordEntity = HeaderEntityGenerator.RecordToEntity(record);
+            var entity = HeaderEntityGenerator.RecordToEntity(record);
 
-            Add(recordEntity);
+            _context.GetSet<HeaderRecordEntity>().Add(entity);
+
+            return Task.CompletedTask;
         }
 
-        public HeaderRecord GetPreviousUpdate()
+        public Task<List<HeaderRecord>> GetPreviousUpdates()
         {
-            var update = Find(x => true)
-                .OrderByDescending(x => x.DateOfExtract)
-                .Take(1).FirstOrDefault();
+            var updates = _context.GetSet<HeaderRecordEntity>().OrderByDescending(x => x.DateOfExtract);
 
-            var record = HeaderEntityGenerator.EntityToRecord(update);
-
-            return record;
-        }
-
-        public Task InsertRecordAsync(HeaderRecord record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<HeaderRecord> GetPreviousUpdateAsync()
-        {
-            throw new NotImplementedException();
+            return Task.FromResult(updates.Select(HeaderEntityGenerator.EntityToRecord).ToList());
         }
     }
 }

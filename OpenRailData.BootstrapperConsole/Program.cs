@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using OpenRailData.BootstrapperJobs;
 using OpenRailData.Darwin;
 using OpenRailData.Schedule.ScheduleParsing;
@@ -12,6 +14,10 @@ namespace OpenRailData.BootstrapperConsole
     {
         public static void Main(string[] args)
         {
+            var timer = new Stopwatch();
+
+            timer.Start();
+
             var containerBuilder = DarwinModuleContainerBuilder.Build();
             containerBuilder = EntityFrameworkScheduleStorageContainerBuilder.Build(containerBuilder);
             containerBuilder = ScheduleModuleContainerBuilder.Build(containerBuilder);
@@ -25,6 +31,10 @@ namespace OpenRailData.BootstrapperConsole
 
             Task.Run(() => scheduleDataJob.Execute()).Wait();
             Task.Run(() => darwinLocationDataJob.Execute()).Wait();
+
+            timer.Stop();
+
+            Console.WriteLine(timer.Elapsed);
         }
     }
 }

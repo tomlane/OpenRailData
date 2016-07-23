@@ -30,7 +30,7 @@ namespace OpenRailData.Schedule
                 {
                     tiploc.LocationName = request.LocationName;
 
-                    await unitOfWork.TiplocRecords.AmendRecordAsync(tiploc);
+                    await unitOfWork.TiplocRecords.AmendRecord(tiploc);
 
                     await unitOfWork.Complete();
                 }

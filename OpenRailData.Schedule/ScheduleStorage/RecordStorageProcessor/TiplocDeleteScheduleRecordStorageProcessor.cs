@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using OpenRailData.Schedule.Entities;
 
 namespace OpenRailData.Schedule.ScheduleStorage.RecordStorageProcessor
@@ -17,16 +18,16 @@ namespace OpenRailData.Schedule.ScheduleStorage.RecordStorageProcessor
 
         public ScheduleRecordType RecordKey { get; } = ScheduleRecordType.TD;
 
-        public void StoreRecord(IScheduleRecord record)
+        public async Task StoreRecord(IScheduleRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             using (var unitOfWork = _unitOfWorkFactory.Create())
             {
-                unitOfWork.TiplocRecords.DeleteRecord(record as TiplocRecord);
+                await unitOfWork.TiplocRecords.DeleteRecord(record as TiplocRecord);
 
-                unitOfWork.Complete();
+                await unitOfWork.Complete();
             }
         }
     }

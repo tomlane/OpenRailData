@@ -9,65 +9,45 @@ using OpenRailData.TrainMovementStorage.EntityFramework.Mappers;
 
 namespace OpenRailData.TrainMovementStorage.EntityFramework.Repository
 {
-    public class ChangeOfOriginRepository : BaseRepository<ChangeOfOriginEntity>, ITrainMovementRepository<ChangeOfOrigin>
+    public class ChangeOfOriginRepository : ITrainMovementRepository<ChangeOfOrigin>
     {
+        private readonly IContext _context;
         private readonly IMapper _mapper;
 
-        public ChangeOfOriginRepository(IContext context) : base(context)
+        public ChangeOfOriginRepository(IContext context)
         {
+            if (context == null)
+                throw new ArgumentNullException(nameof(context));
+
+            _context = context;
             _mapper = TrainMovementMapperConfiguration.CreateMapper();
         }
 
-        public void InsertRecord(ChangeOfOrigin record)
+        public Task InsertRecord(ChangeOfOrigin record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             var entity = _mapper.Map<ChangeOfOriginEntity>(record);
 
-            Add(entity);
-        }
-
-        public void AmendRecord(ChangeOfOrigin record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteRecord(ChangeOfOrigin record)
-        {
-            if (record == null)
-                throw new ArgumentNullException(nameof(record));
-
-            var entity = _mapper.Map<ChangeOfOriginEntity>(record);
-
-            Remove(entity);
-        }
-
-        public Task InsertRecordAsync(ChangeOfOrigin record)
-        {
-            if (record == null)
-                throw new ArgumentNullException(nameof(record));
-
-            var entity = _mapper.Map<ChangeOfOriginEntity>(record);
-
-            Add(entity);
+            _context.GetSet<ChangeOfOriginEntity>().Add(entity);
 
             return Task.CompletedTask;
         }
 
-        public Task AmendRecordAsync(ChangeOfOrigin record)
+        public Task AmendRecord(ChangeOfOrigin record)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteRecordAsync(ChangeOfOrigin record)
+        public Task DeleteRecord(ChangeOfOrigin record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             var entity = _mapper.Map<ChangeOfOriginEntity>(record);
 
-            Remove(entity);
+            _context.GetSet<ChangeOfOriginEntity>().Remove(entity);
 
             return Task.CompletedTask;
         }

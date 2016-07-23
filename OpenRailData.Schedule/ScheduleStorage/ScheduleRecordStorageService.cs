@@ -18,23 +18,23 @@ namespace OpenRailData.Schedule.ScheduleStorage
             _storageProcessors = scheduleRecordStorageProcessors.ToDictionary(x => x.RecordKey, x => x);
         }
 
-        public void Store(IEnumerable<IScheduleRecord> recordsToStore)
+        public async Task Store(IEnumerable<IScheduleRecord> recordsToStore)
         {
             if (recordsToStore == null)
                 throw new ArgumentNullException(nameof(recordsToStore));
 
-            Parallel.ForEach(recordsToStore, StoreRecord);
+            await Task.WhenAll(recordsToStore.Select(StoreRecord));
         }
 
-        public void Store(IScheduleRecord record)
+        public async Task Store(IScheduleRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
-            StoreRecord(record);
+            await StoreRecord(record);
         }
 
-        private void StoreRecord(IScheduleRecord record)
+        private async Task StoreRecord(IScheduleRecord record)
         {
             IScheduleRecordStorageProcessor scheduleRecordStorageProcessor;
 
@@ -47,7 +47,7 @@ namespace OpenRailData.Schedule.ScheduleStorage
                 throw new ArgumentException($"No storage processor found for record type {record.RecordIdentity}", exception);
             }
 
-            scheduleRecordStorageProcessor.StoreRecord(record);
+            await scheduleRecordStorageProcessor.StoreRecord(record);
         }
     }
 }

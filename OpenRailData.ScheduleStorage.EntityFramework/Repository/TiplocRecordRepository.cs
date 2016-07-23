@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OpenRailData.CommonDatabase;
 using OpenRailData.ScheduleStorage.EntityFramework.Converters;
 using OpenRailData.ScheduleStorage.EntityFramework.Entities;
 using System.Linq;
@@ -11,67 +10,43 @@ using OpenRailData.Schedule.ScheduleStorage;
 
 namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
 {
-    public class TiplocRecordRepository : BaseRepository<TiplocRecordEntity>, ITiplocRecordRepository 
+    public class TiplocRecordRepository : ITiplocRecordRepository 
     {
         private readonly IScheduleContext _context;
 
-        public TiplocRecordRepository(IScheduleContext context) : base(context)
+        public TiplocRecordRepository(IScheduleContext context)
         {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
 
             _context = context;
         }
-
-        public void InsertRecord(TiplocRecord record)
+        
+        public Task InsertRecord(TiplocRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
 
             var entity = TiplocEntityGenerator.RecordToEntity(record);
 
-            Add(entity);
+            _context.GetSet<TiplocRecordEntity>().Add(entity);
+
+            return Task.CompletedTask;
         }
 
-        public void AmendRecord(TiplocRecord record)
+        public Task InsertMultipleRecords(IEnumerable<TiplocRecord> records)
         {
-            if (record == null)
-                throw new ArgumentNullException(nameof(record));
+            if (records == null)
+                throw new ArgumentNullException(nameof(records));
 
-            var currentRecord = Find(x => x.TiplocCode == record.TiplocCode).First();
+            var entities = records.Select(TiplocEntityGenerator.RecordToEntity).ToList();
 
-            if (currentRecord != null)
-            {
-                var entity = TiplocEntityGenerator.RecordToEntity(record);
+            _context.GetSet<TiplocRecordEntity>().AddRange(entities);
 
-                currentRecord = entity;
-
-                Add(currentRecord);
-            }
+            return Task.CompletedTask;
         }
 
-        public void DeleteRecord(TiplocRecord record)
-        {
-            if (record == null)
-                throw new ArgumentNullException(nameof(record));
-
-            var recordToDelete = Find(x => x.TiplocCode == record.TiplocCode).First();
-
-            if (recordToDelete != null)
-                Remove(recordToDelete);
-        }
-
-        public Task InsertRecordAsync(TiplocRecord record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task InsertMultipleRecordsAsync(IEnumerable<TiplocRecord> records)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task AmendRecordAsync(TiplocRecord record)
+        public async Task AmendRecord(TiplocRecord record)
         {
             if (record == null)
                 throw new ArgumentNullException(nameof(record));
@@ -82,26 +57,22 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
             {
                 var entity = TiplocEntityGenerator.RecordToEntity(record);
 
-                Remove(currentRecord);
+                _context.GetSet<TiplocRecordEntity>().Remove(currentRecord);
 
-                currentRecord = entity;
-
-                Add(entity);
+                _context.GetSet<TiplocRecordEntity>().Add(entity);
             }
         }
 
-        public Task DeleteRecordAsync(TiplocRecord record)
+        public Task DeleteRecord(TiplocRecord record)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<TiplocRecord>> GetAllTiplocs()
+        public async Task<List<TiplocRecord>> GetAllTiplocs()
         {
-            var records = GetAll();
+            var records = await _context.GetSet<TiplocRecordEntity>().ToListAsync();
 
-            var tiplocRecords = records.Select(TiplocEntityGenerator.EntityToRecord).ToList();
-
-            return Task.FromResult(tiplocRecords);
+            return records.Select(TiplocEntityGenerator.EntityToRecord).ToList();
         }
 
         public async Task<List<TiplocRecord>> GetTiplocsByStanox(string stanox)
