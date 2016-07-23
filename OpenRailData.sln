@@ -64,6 +64,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.BootstrapperJo
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.BootstrapperConsole", "OpenRailData.BootstrapperConsole\OpenRailData.BootstrapperConsole.xproj", "{7A6D3A31-AA7A-4009-BAFE-F993C7217BDD}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRailData.Schedule.Api", "OpenRailData.Schedule.Api\OpenRailData.Schedule.Api.xproj", "{F7023480-4353-48F0-B4EB-948D7FC04523}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -142,6 +144,10 @@ Global
 		{7A6D3A31-AA7A-4009-BAFE-F993C7217BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A6D3A31-AA7A-4009-BAFE-F993C7217BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A6D3A31-AA7A-4009-BAFE-F993C7217BDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7023480-4353-48F0-B4EB-948D7FC04523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7023480-4353-48F0-B4EB-948D7FC04523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7023480-4353-48F0-B4EB-948D7FC04523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7023480-4353-48F0-B4EB-948D7FC04523}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,5 +171,6 @@ Global
 		{F745A804-0712-467D-B2AC-A300CE8F4C73} = {67E2AA11-1341-4F22-9C59-57DF193CDB94}
 		{7466CE14-E92E-4F49-AE2D-A04AAE6977B0} = {32E1AB89-CE36-48C7-B365-5275773B1B2A}
 		{7A6D3A31-AA7A-4009-BAFE-F993C7217BDD} = {40A5C96F-956B-46FE-AD94-7FDF1359AB3F}
+		{F7023480-4353-48F0-B4EB-948D7FC04523} = {8023A363-A315-4161-B2F2-F5EFEBE16BBB}
 	EndGlobalSection
 EndGlobal
