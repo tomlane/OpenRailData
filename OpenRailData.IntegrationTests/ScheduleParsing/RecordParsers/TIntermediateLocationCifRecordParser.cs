@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using NodaTime;
 using OpenRailData.Schedule.Entities;
 using OpenRailData.Schedule.Entities.Enums;
 using OpenRailData.Schedule.ScheduleParsing;
@@ -39,14 +40,14 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
             {
                 RecordIdentity = ScheduleRecordType.LI,
                 Tiploc = "MELKSHM",
-                WorkingArrival = "1307H",
-                PublicArrival = "1308",
-                WorkingDeparture = "1308",
-                PublicDeparture = "1308",
+                WorkingArrival = new LocalTime(13, 07, 30),
+                PublicArrival = new LocalTime(13, 08),
+                WorkingDeparture = new LocalTime(13, 08),
+                PublicDeparture = new LocalTime(13, 08),
                 LocationActivity = LocationActivity.T,
                 LocationActivityString = "T           ",
-                OrderTime = "1308",
-                Pass = string.Empty
+                OrderTime = new LocalTime(13, 08),
+                Pass = null
             };
 
             var result = recordParser.ParseRecord(recordToParse);
@@ -63,13 +64,13 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
             {
                 RecordIdentity = ScheduleRecordType.LI,
                 Tiploc = "BRDFDJN",
-                Pass = "1314",
-                OrderTime = "1314",
+                Pass = new LocalTime(13, 14),
+                OrderTime = new LocalTime(13, 14),
                 LocationActivityString = "            ",
-                PublicArrival = string.Empty,
-                PublicDeparture = string.Empty,
-                WorkingDeparture = string.Empty,
-                WorkingArrival = string.Empty
+                PublicArrival = null,
+                PublicDeparture = null,
+                WorkingDeparture = null,
+                WorkingArrival = null
             };
 
             var result = recordParser.ParseRecord(recordToParse);

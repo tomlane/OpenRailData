@@ -5,7 +5,8 @@
     "NETStandard.Library": "1.6.0",
     "Autofac.Extensions.DependencyInjection": "4.0.0-rc2-240",
     "System.Threading.Tasks.Parallel": "4.0.1",
-    "System.ComponentModel.Annotations": "4.1.0"
+    "System.ComponentModel.Annotations": "4.1.0",
+    "NodaTime": "2.0.0-alpha20160707"
   },
 
   "frameworks": {

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using NodaTime;
 using OpenRailData.Schedule.Entities;
 using OpenRailData.Schedule.Entities.Enums;
 using OpenRailData.Schedule.ScheduleParsing;
@@ -37,12 +38,12 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
             {
                 RecordIdentity = ScheduleRecordType.LT,
                 Tiploc = "WSTBRYW",
-                WorkingArrival = "1323",
-                PublicArrival = "1325",
+                WorkingArrival = new LocalTime(13, 23),
+                PublicArrival = new LocalTime(13, 25),
                 Platform = "3",
                 LocationActivity = LocationActivity.TF,
                 LocationActivityString = "TF          ",
-                OrderTime = "1323"
+                OrderTime = new LocalTime(13, 23)
             };
 
             var result = recordParser.ParseRecord(recordToParse);

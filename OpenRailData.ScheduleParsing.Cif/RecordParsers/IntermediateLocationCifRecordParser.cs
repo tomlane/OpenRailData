@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using NodaTime;
 using OpenRailData.Schedule.Entities;
 using OpenRailData.Schedule.Entities.Enums;
 using OpenRailData.Schedule.ScheduleParsing;
+using OpenRailData.Schedule.ScheduleParsing.PropertyParsers;
 
 namespace OpenRailData.ScheduleParsing.Cif.RecordParsers
 {
@@ -43,11 +45,11 @@ namespace OpenRailData.ScheduleParsing.Cif.RecordParsers
                 RecordIdentity = ScheduleRecordType.LI,
                 Tiploc = recordString.Substring(2, 7).Trim(),
                 TiplocSuffix = recordString.Substring(9, 1).Trim(),
-                WorkingArrival = recordString.Substring(10, 5).Trim(),
-                WorkingDeparture = recordString.Substring(15, 5).Trim(),
-                Pass = recordString.Substring(20, 5).Trim(),
-                PublicArrival = recordString.Substring(25, 4).Trim(),
-                PublicDeparture = recordString.Substring(29, 4).Trim(),
+                WorkingArrival = ScheduleLocationTimeParser.ParseLocationTimeString(recordString.Substring(10, 5).Trim()),
+                WorkingDeparture = ScheduleLocationTimeParser.ParseLocationTimeString(recordString.Substring(15, 5).Trim()),
+                Pass = ScheduleLocationTimeParser.ParseLocationTimeString(recordString.Substring(20, 5).Trim()),
+                PublicArrival = ScheduleLocationTimeParser.ParseLocationTimeString(recordString.Substring(25, 4).Trim()),
+                PublicDeparture = ScheduleLocationTimeParser.ParseLocationTimeString(recordString.Substring(29, 4).Trim()),
                 Platform = recordString.Substring(33, 3).Trim(),
                 Line = recordString.Substring(36, 3).Trim(),
                 Path = recordString.Substring(39, 3).Trim(),
@@ -59,13 +61,13 @@ namespace OpenRailData.ScheduleParsing.Cif.RecordParsers
 
             record.LocationActivity = (LocationActivity)_enumPropertyParsers["LocationActivity"].ParseProperty(record.LocationActivityString);
 
-            record.OrderTime = !string.IsNullOrWhiteSpace(record.Pass) ? record.Pass : record.WorkingDeparture;
+            if (record.PublicArrival == LocalTime.Midnight)
+                record.PublicArrival = null;
 
-            if (record.PublicArrival == "0000")
-                record.PublicArrival = string.Empty;
+            if (record.PublicDeparture == LocalTime.Midnight)
+                record.PublicDeparture = null;
 
-            if (record.PublicDeparture == "0000")
-                record.PublicDeparture = string.Empty;
+            record.OrderTime = record.Pass ?? record.WorkingDeparture;
             
             return record;
         }

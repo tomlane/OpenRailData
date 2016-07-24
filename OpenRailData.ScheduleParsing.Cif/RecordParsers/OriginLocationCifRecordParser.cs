@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using NodaTime;
 using OpenRailData.Schedule.Entities;
 using OpenRailData.Schedule.Entities.Enums;
 using OpenRailData.Schedule.ScheduleParsing;
+using OpenRailData.Schedule.ScheduleParsing.PropertyParsers;
 
 namespace OpenRailData.ScheduleParsing.Cif.RecordParsers
 {
@@ -43,8 +45,8 @@ namespace OpenRailData.ScheduleParsing.Cif.RecordParsers
                 RecordIdentity = ScheduleRecordType.LO,
                 Tiploc = recordString.Substring(2, 7).Trim(),
                 TiplocSuffix = recordString.Substring(9, 1).Trim(),
-                WorkingDeparture = recordString.Substring(10, 5).Trim(),
-                PublicDeparture = recordString.Substring(15, 4).Trim(),
+                WorkingDeparture = ScheduleLocationTimeParser.ParseLocationTimeString(recordString.Substring(10, 5).Trim()),
+                PublicDeparture = ScheduleLocationTimeParser.ParseLocationTimeString(recordString.Substring(15, 4).Trim()),
                 Platform = recordString.Substring(19, 3).Trim(),
                 Line = recordString.Substring(22, 3).Trim(),
                 EngineeringAllowance = _timingAllowanceParser.ParseTime(recordString.Substring(25, 2)),
@@ -55,14 +57,14 @@ namespace OpenRailData.ScheduleParsing.Cif.RecordParsers
 
             record.LocationActivity = (LocationActivity)_enumPropertyParsers["LocationActivity"].ParseProperty(record.LocationActivityString);
 
+            if (record.PublicArrival == LocalTime.Midnight)
+                record.PublicArrival = null;
+
+            if (record.PublicDeparture == LocalTime.Midnight)
+                record.PublicDeparture = null;
+
             record.OrderTime = record.WorkingDeparture;
-
-            if (record.PublicArrival == "0000")
-                record.PublicArrival = string.Empty;
-
-            if (record.PublicDeparture == "0000")
-                record.PublicDeparture = string.Empty;
-
+            
             return record;
         }
     }

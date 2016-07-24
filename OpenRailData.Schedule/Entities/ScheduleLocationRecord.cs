@@ -1,4 +1,5 @@
 ﻿using System;
+using NodaTime;
 using OpenRailData.Schedule.Entities.Enums;
 
 namespace OpenRailData.Schedule.Entities
@@ -25,23 +26,23 @@ namespace OpenRailData.Schedule.Entities
         /// <summary>
         /// Working arrival.
         /// </summary>
-        public string WorkingArrival { get; set; } = string.Empty;
+        public LocalTime? WorkingArrival { get; set; }
         /// <summary>
         /// Public passenger arrival.
         /// </summary>
-        public string PublicArrival { get; set; } = string.Empty;
+        public LocalTime? PublicArrival { get; set; }
         /// <summary>
         /// Working departure.
         /// </summary>
-        public string WorkingDeparture { get; set; } = string.Empty;
+        public LocalTime? WorkingDeparture { get; set; }
         /// <summary>
         /// Public passenger departure.
         /// </summary>
-        public string PublicDeparture { get; set; } = string.Empty;
+        public LocalTime? PublicDeparture { get; set; }
         /// <summary>
         /// Pass time.
         /// </summary>
-        public string Pass { get; set; } = string.Empty;
+        public LocalTime? Pass { get; set; }
         /// <summary>
         /// Platform.
         /// </summary>
@@ -77,7 +78,7 @@ namespace OpenRailData.Schedule.Entities
         /// <summary>
         /// Location order time.
         /// </summary>
-        public string OrderTime { get; set; }
+        public LocalTime? OrderTime { get; set; }
         /// <summary>
         /// Whether a location is a public call.
         /// </summary>
@@ -93,19 +94,19 @@ namespace OpenRailData.Schedule.Entities
                 string.Equals(Line, other.Line) && 
                 LocationActivity == other.LocationActivity && 
                 string.Equals(LocationActivityString, other.LocationActivityString) && 
-                string.Equals(OrderTime, other.OrderTime) && 
-                string.Equals(Pass, other.Pass) && 
+                string.Equals(OrderTime, other.OrderTime) &&
+                Equals(Pass, other.Pass) && 
                 string.Equals(Path, other.Path) && 
                 PathingAllowance.Equals(other.PathingAllowance) && 
                 PerformanceAllowance.Equals(other.PerformanceAllowance) && 
                 string.Equals(Platform, other.Platform) && 
-                string.Equals(PublicArrival, other.PublicArrival) && 
-                string.Equals(PublicDeparture, other.PublicDeparture) && 
+                Equals(PublicArrival, other.PublicArrival) && 
+                Equals(PublicDeparture, other.PublicDeparture) && 
                 RecordIdentity == other.RecordIdentity && 
                 string.Equals(Tiploc, other.Tiploc) && 
                 string.Equals(TiplocSuffix, other.TiplocSuffix) && 
-                string.Equals(WorkingArrival, other.WorkingArrival) && 
-                string.Equals(WorkingDeparture, other.WorkingDeparture);
+                Equals(WorkingArrival, other.WorkingArrival) && 
+                Equals(WorkingDeparture, other.WorkingDeparture);
         }
 
         public override bool Equals(object obj)
