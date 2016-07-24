@@ -1,0 +1,9 @@
+version: 0.0
+os: windows
+files:
+  - source: \
+    destination: C:\OpenRailData
+hooks:
+  ValidateService:
+    - location: .\ValidateInstall.ps1
+      timeout: 300
