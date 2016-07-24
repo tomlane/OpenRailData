@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autofac;
+using NodaTime;
 using OpenRailData.Schedule.Entities;
 using OpenRailData.Schedule.Entities.Enums;
 using OpenRailData.Schedule.ScheduleParsing;
@@ -52,16 +53,16 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
                         EngineeringAllowance = new TimeSpan(),
                         LocationActivity = 0,
                         LocationActivityString = string.Empty,
-                        OrderTime = "2145",
-                        Pass = string.Empty,
+                        OrderTime = new LocalTime(21, 45),
+                        Pass = null,
                         Path = string.Empty,
                         PathingAllowance = new TimeSpan(),
                         PerformanceAllowance = new TimeSpan(),
-                        PublicArrival = string.Empty,
-                        PublicDeparture = "2145",
+                        PublicArrival = null,
+                        PublicDeparture = new LocalTime(21, 45),
                         TiplocSuffix = string.Empty,
-                        WorkingArrival = string.Empty,
-                        WorkingDeparture = "2145"
+                        WorkingArrival = null,
+                        WorkingDeparture = new LocalTime(21, 45)
                     },
                     new ScheduleLocationRecord
                     {
@@ -69,16 +70,16 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
                         RecordIdentity = ScheduleRecordType.LI,
                         Platform = string.Empty,
                         Line = string.Empty,
-                        Pass = "2149",
-                        WorkingArrival = string.Empty,
-                        OrderTime = "2149",
+                        Pass = new LocalTime(21, 49),
+                        WorkingArrival = null,
+                        OrderTime = new LocalTime(21, 49),
                         TiplocSuffix = string.Empty,
-                        WorkingDeparture = string.Empty,
+                        WorkingDeparture = null,
                         LocationActivity = 0,
                         EngineeringAllowance = new TimeSpan(),
                         PerformanceAllowance = new TimeSpan(),
-                        PublicDeparture = string.Empty,
-                        PublicArrival = string.Empty,
+                        PublicDeparture = null,
+                        PublicArrival = null,
                         PathingAllowance = new TimeSpan(),
                         LocationActivityString = string.Empty,
                         Path = string.Empty
@@ -89,16 +90,16 @@ namespace OpenRailData.IntegrationTests.ScheduleParsing.RecordParsers
                         RecordIdentity = ScheduleRecordType.LT,
                         Platform = "1",
                         Line = string.Empty,
-                        Pass = string.Empty,
-                        WorkingArrival = "0508",
-                        OrderTime = "0508",
+                        Pass = null,
+                        WorkingArrival = new LocalTime(05, 08),
+                        OrderTime = new LocalTime(05, 08),
                         TiplocSuffix = string.Empty,
-                        WorkingDeparture = string.Empty,
+                        WorkingDeparture = null,
                         LocationActivity = 0,
                         EngineeringAllowance = new TimeSpan(),
                         PerformanceAllowance = new TimeSpan(),
-                        PublicDeparture = string.Empty,
-                        PublicArrival = "0512",
+                        PublicDeparture = null,
+                        PublicArrival = new LocalTime(05, 12),
                         PathingAllowance = new TimeSpan(),
                         LocationActivityString = string.Empty,
                         Path = string.Empty

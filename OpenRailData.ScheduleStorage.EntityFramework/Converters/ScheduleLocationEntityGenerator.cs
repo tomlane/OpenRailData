@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenRailData.Schedule.Entities;
+using OpenRailData.Schedule.ScheduleParsing.PropertyParsers;
 using OpenRailData.ScheduleStorage.EntityFramework.Entities;
 
 namespace OpenRailData.ScheduleStorage.EntityFramework.Converters
@@ -18,18 +19,18 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Converters
                 Line = entity.Line,
                 LocationActivity = entity.LocationActivity,
                 LocationActivityString = entity.LocationActivityString,
-                OrderTime = entity.OrderTime,
-                Pass = entity.Pass,
+                OrderTime = ScheduleLocationTimeParser.ParseLocationTimeString(entity.OrderTime),
+                Pass = ScheduleLocationTimeParser.ParseLocationTimeString(entity.Pass),
                 Path = entity.Path,
                 PathingAllowance = entity.PathingAllowance,
                 PerformanceAllowance = entity.PerformanceAllowance,
                 Platform = entity.Platform,
-                PublicArrival = entity.PublicArrival,
-                PublicDeparture = entity.PublicDeparture,
+                PublicArrival = ScheduleLocationTimeParser.ParseLocationTimeString(entity.PublicArrival),
+                PublicDeparture = ScheduleLocationTimeParser.ParseLocationTimeString(entity.PublicDeparture),
                 Tiploc = entity.Tiploc,
                 TiplocSuffix = entity.TiplocSuffix,
-                WorkingArrival = entity.WorkingArrival,
-                WorkingDeparture = entity.WorkingDeparture
+                WorkingArrival = ScheduleLocationTimeParser.ParseLocationTimeString(entity.WorkingArrival),
+                WorkingDeparture = ScheduleLocationTimeParser.ParseLocationTimeString(entity.WorkingDeparture)
             };
 
         }
@@ -46,18 +47,18 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Converters
                 Line = record.Line,
                 LocationActivity = record.LocationActivity,
                 LocationActivityString = record.LocationActivityString,
-                OrderTime = record.OrderTime,
-                Pass = record.Pass,
+                OrderTime = ScheduleLocationTimeParser.ParseLocalTimeInstance(record.OrderTime),
+                Pass = ScheduleLocationTimeParser.ParseLocalTimeInstance(record.Pass),
                 Path = record.Path,
                 PathingAllowance = record.PathingAllowance,
                 PerformanceAllowance = record.PerformanceAllowance,
                 Platform = record.Platform,
-                PublicArrival = record.PublicArrival,
-                PublicDeparture = record.PublicDeparture,
+                PublicArrival = ScheduleLocationTimeParser.ParseLocalTimeInstance(record.PublicArrival),
+                PublicDeparture = ScheduleLocationTimeParser.ParseLocalTimeInstance(record.PublicDeparture),
                 Tiploc = record.Tiploc,
                 TiplocSuffix = record.TiplocSuffix,
-                WorkingArrival = record.WorkingArrival,
-                WorkingDeparture = record.WorkingDeparture
+                WorkingArrival = ScheduleLocationTimeParser.ParseLocalTimeInstance(record.WorkingArrival),
+                WorkingDeparture = ScheduleLocationTimeParser.ParseLocalTimeInstance(record.WorkingDeparture)
             };
         }
     }

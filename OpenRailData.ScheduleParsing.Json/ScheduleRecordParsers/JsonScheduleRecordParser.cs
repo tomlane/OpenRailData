@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using OpenRailData.Schedule.Entities;
 using OpenRailData.Schedule.Entities.Enums;
 using OpenRailData.Schedule.ScheduleParsing;
+using OpenRailData.Schedule.ScheduleParsing.PropertyParsers;
 using OpenRailData.ScheduleParsing.Json.RawRecords;
 
 namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
@@ -108,32 +109,32 @@ namespace OpenRailData.ScheduleParsing.Json.ScheduleRecordParsers
                 Line = location.Line ?? string.Empty,
                 LocationActivity = 0,
                 LocationActivityString = string.Empty,
-                Pass = location.Pass ?? string.Empty,
+                Pass = ScheduleLocationTimeParser.ParseLocationTimeString(location.Pass),
                 Path = location.Path ?? string.Empty,
                 PathingAllowance = _timingAllowanceParser.ParseTime(location.PathingAllowance),
                 PerformanceAllowance = _timingAllowanceParser.ParseTime(location.PerformanceAllowance),
                 Platform = location.Platform ?? string.Empty,
-                PublicArrival = location.PublicArrival ?? string.Empty,
-                PublicDeparture = location.PublicDeparture ?? string.Empty,
+                PublicArrival = ScheduleLocationTimeParser.ParseLocationTimeString(location.PublicArrival),
+                PublicDeparture = ScheduleLocationTimeParser.ParseLocationTimeString(location.PublicDeparture),
                 Tiploc = location.TiplocCode,
                 TiplocSuffix = location.TiplocInstance ?? string.Empty,
-                WorkingArrival = location.WorkingArrival ?? string.Empty,
-                WorkingDeparture = location.WorkingDeparture ?? string.Empty
+                WorkingArrival = ScheduleLocationTimeParser.ParseLocationTimeString(location.WorkingArrival),
+                WorkingDeparture = ScheduleLocationTimeParser.ParseLocationTimeString(location.WorkingDeparture)
             };
 
             switch (location.LocationType)
             {
                 case "LO":
                     locationRecord.RecordIdentity = ScheduleRecordType.LO;
-                    locationRecord.OrderTime = location.WorkingDeparture;
+                    locationRecord.OrderTime = locationRecord.WorkingDeparture;
                     break;
                 case "LI":
                     locationRecord.RecordIdentity = ScheduleRecordType.LI;
-                    locationRecord.OrderTime = !string.IsNullOrWhiteSpace(location.Pass) ? location.Pass : location.WorkingDeparture;
+                    locationRecord.OrderTime = locationRecord.Pass ?? locationRecord.WorkingDeparture;
                     break;
                 case "LT":
                     locationRecord.RecordIdentity = ScheduleRecordType.LT;
-                    locationRecord.OrderTime = location.WorkingArrival;
+                    locationRecord.OrderTime = locationRecord.WorkingArrival;
                     break;
             }
 
