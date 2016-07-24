@@ -50,5 +50,20 @@ namespace OpenRailData.Schedule
             
             return records.OrderByDescending(x => x.StpIndicator).First();
         }
+
+        public async Task<List<ScheduleLocationRecord>> GetScheduleLocationsByTiploc(string tiplocCode)
+        {
+            if (tiplocCode == null)
+                throw new ArgumentNullException(nameof(tiplocCode));
+
+            List<ScheduleLocationRecord> records;
+
+            using (var unitOfWork = _unitOfWorkFactory.Create())
+            {
+                records = await unitOfWork.ScheduleLocationRecords.GetLocationsByTiploc(tiplocCode);
+            }
+
+            return records.OrderBy(x => x.OrderTime.Value.TickOfDay).ToList();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using NodaTime;
 using OpenRailData.Schedule.Entities;
 using OpenRailData.Schedule.ScheduleParsing.PropertyParsers;
 using OpenRailData.ScheduleStorage.EntityFramework.Entities;
