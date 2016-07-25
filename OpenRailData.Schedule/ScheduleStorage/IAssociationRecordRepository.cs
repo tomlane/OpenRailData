@@ -10,5 +10,7 @@ namespace OpenRailData.Schedule.ScheduleStorage
         Task InsertMultipleRecords(IEnumerable<AssociationRecord> records);
         Task AmendRecord(AssociationRecord record);
         Task DeleteRecord(AssociationRecord record);
+        Task<List<AssociationRecord>> FindByMainTrainUid(string mainTrainId, string location);
+        Task<List<AssociationRecord>> FindByAssocTrainUid(string assocTrainId, string location);
     }
 }

@@ -67,5 +67,35 @@ namespace OpenRailData.ScheduleStorage.EntityFramework.Repository
         {
             throw new NotImplementedException();
         }
+
+        public async Task<List<AssociationRecord>> FindByMainTrainUid(string mainTrainId, string location)
+        {
+            if (string.IsNullOrWhiteSpace(mainTrainId))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(mainTrainId));
+            if (string.IsNullOrWhiteSpace(location))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(location));
+
+            var entities = await
+                _context.GetSet<AssociationRecordEntity>()
+                    .Where(x => x.MainTrainUid == mainTrainId && x.Location == location)
+                    .ToListAsync();
+
+            return entities.Select(AssociationEntityGenerator.EntityToRecord).ToList();
+        }
+
+        public async Task<List<AssociationRecord>> FindByAssocTrainUid(string assocTrainId, string location)
+        {
+            if (string.IsNullOrWhiteSpace(assocTrainId))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(assocTrainId));
+            if (string.IsNullOrWhiteSpace(location))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(location));
+
+            var entities = await
+                _context.GetSet<AssociationRecordEntity>()
+                    .Where(x => x.AssocTrainUid == assocTrainId && x.Location == location)
+                    .ToListAsync();
+
+            return entities.Select(AssociationEntityGenerator.EntityToRecord).ToList();
+        }
     }
 }
